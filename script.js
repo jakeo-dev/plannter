@@ -5,6 +5,12 @@ const currentDate = new Date(currentYear, currentMonth - 1, currentDay);
 
 const oneDay = 24 * 60 * 60 * 1000; // hours * mins * secs * millisecs
 
+let advWeight = 0;
+let colWeight = 0;
+let honWeight = 0.5;
+let apWeight = 1;
+let ibWeight = 1;
+
 input = document.getElementById('courseTitle');
 input.addEventListener('keyup', function () {
     if (input.value.toLowerCase().includes('advance') || input.value.toLowerCase().includes('accel') || input.value.toLowerCase().includes('honor') || input.value.toLowerCase().includes('ap') || input.value.toLowerCase().includes('ib')) {
@@ -34,9 +40,27 @@ getActs();
 getTests();
 getCD();
 calcListDiff();
+calcGPA();
 updateAllItems();
 
 function toggleMenu() {
+    document.getElementById('optionsDiv').classList.toggle('hidden');
+}
+
+document.onclick = function (e) {
+    if (e.target.id !== 'optionsDiv' && e.target.id !== 'optionsBtn' && e.target.id !== 'optionsBtnI') {
+        document.getElementById('optionsDiv').classList.add('hidden');
+    } else {
+    }
+};
+
+/* document.addEventListener('click', (event) => {
+    if (!document.getElementById('optionsDiv').contains(event.target) && document.getElementById('optionsBtn') !== event.target) {
+        document.getElementById('optionsDiv').classList.add('hidden');
+    }
+}); */
+
+function toggleMenuSm() {
     document.getElementById('menuDiv').classList.toggle('hidden');
     document.getElementById('menuDiv').classList.toggle('block');
 }
@@ -79,7 +103,7 @@ function selTestSpeciesFunc() {
 }
 
 function selTestSpeciesEditFunc() {
-    document.getElementById('testSubSpeciesdit').classList.add('hidden');
+    document.getElementById('testSubSpeciesEdit').classList.add('hidden');
     document.getElementById('testSpeciesOtherEdit').classList.add('hidden');
     document.getElementById('readingTestScoreEdit').classList.add('hidden');
     document.getElementById('mathTestScoreEdit').classList.add('hidden');
@@ -140,9 +164,16 @@ function openDiff() {
     document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
 }
 
-function openDiffPercent() {
+/* function openDiffPercent() {
     document.getElementById('diffPercentModal').classList.remove('fadeIn');
     document.getElementById('diffPercentModal').classList.add('fadeOut');
+
+    document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
+} */
+
+function openGPA() {
+    document.getElementById('gpaModal').classList.remove('fadeIn');
+    document.getElementById('gpaModal').classList.add('fadeOut');
 
     document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
 }
@@ -162,6 +193,19 @@ function openCD() {
     if (gradYear != NaN && gradYear != null && gradYear != 0) {
         document.getElementById('gradYear').value = gradYear;
     }
+}
+
+function openChangeWeights() {
+    document.getElementById('weightsModal').classList.remove('fadeIn');
+    document.getElementById('weightsModal').classList.add('fadeOut');
+
+    document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
+
+    document.getElementById('advWeightInp').value = advWeight;
+    document.getElementById('colWeightInp').value = colWeight;
+    document.getElementById('honWeightInp').value = honWeight;
+    document.getElementById('apWeightInp').value = apWeight;
+    document.getElementById('ibWeightInp').value = ibWeight;
 }
 
 let buttons = document.querySelectorAll('.planBtns');
@@ -195,21 +239,21 @@ function showPlan() {
     document.getElementById('planDiv').classList.remove('hidden');
     document.getElementById('actsDiv').classList.add('hidden');
     document.getElementById('testsDiv').classList.add('hidden');
-    toggleMenu();
+    toggleMenuSm();
 }
 
 function showExtra() {
     document.getElementById('actsDiv').classList.remove('hidden');
     document.getElementById('planDiv').classList.add('hidden');
     document.getElementById('testsDiv').classList.add('hidden');
-    toggleMenu();
+    toggleMenuSm();
 }
 
 function showTests() {
     document.getElementById('testsDiv').classList.remove('hidden');
     document.getElementById('planDiv').classList.add('hidden');
     document.getElementById('actsDiv').classList.add('hidden');
-    toggleMenu();
+    toggleMenuSm();
 }
 
 document.getElementById('addCourseBtn').addEventListener('click', function (event) {
@@ -271,7 +315,7 @@ document.getElementById('addCourseBtn').addEventListener('click', function (even
         div = document.createElement('div');
         div.id = course.id + 'Grade';
         [diffText, diffClass] = getDiff(course.diff);
-        t = document.createTextNode('Grade: ' + course.grade);
+        t = document.createTextNode(course.grade);
         div.className = 'attr grade';
         if (course.grade == 'none') {
             div.classList.add('hidden');
@@ -343,6 +387,7 @@ document.getElementById('addCourseBtn').addEventListener('click', function (even
         }
 
         calcListDiff();
+        calcGPA();
         saveLists();
         hide();
     }
@@ -641,7 +686,7 @@ function clickPen(c) {
 
     if (course.grade && course.grade.includes('%')) {
         document.getElementById('selLetterGradeEdit').value = 'Use percent';
-        document.getElementById('percentGradeEdit').value = course.grade.replace('%', '').replace('A ', '').replace('B ', '').replace('C ', '').replace('D ', '').replace('F ', '');
+        document.getElementById('percentGradeEdit').value = course.grade.replace('%', '').replace('- ', '').replace('+ ', '').replace('A', '').replace('B', '').replace('C', '').replace('D', '').replace('F', '').replace(' ', '');
         document.getElementById('percentGradeEdit').classList.remove('hidden');
     } else if (course.grade) {
         document.getElementById('selLetterGradeEdit').value = course.grade;
@@ -715,6 +760,7 @@ function clickTrash(el) {
         el.remove();
 
         calcListDiff();
+        calcGPA();
         saveLists();
     }
 }
@@ -757,7 +803,7 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
             course.grade = cLetterGradeInput;
         }
 
-        course.innerHTML = `<i id='${course.id}SbjI'></i>${course.name}<div id='${course.id}Diff'></div><div id='${course.id}Grade'>Grade: ${course.grade}</div>`;
+        course.innerHTML = `<i id='${course.id}SbjI'></i>${course.name}<div id='${course.id}Diff'></div><div id='${course.id}Grade'>${course.grade}</div>`;
 
         div = document.createElement('div');
         div.className = 'optDiv';
@@ -817,6 +863,7 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
         getLists();
         getCourses();
         calcListDiff();
+        calcGPA();
 
         let pen = document.getElementsByClassName('pen');
         for (i = 0; i < pen.length; i++) {
@@ -870,7 +917,7 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
             activity.innerHTML = `<i id='${activity.id}ActI' class='${getActIcon(activity.category)}' aria-label='${activity.category}'></i>${activity.name}<div class='attr actPos' id='${activity.id}Pos'>${activity.pos}</div>`;
         }
 
-        if (activity.pos !== '') {
+        if (activity.pos != '') {
             document.getElementById(activity.id + 'Pos').classList.remove('hidden');
         }
 
@@ -1099,6 +1146,29 @@ document.getElementById('saveDateBtn').addEventListener('click', function (event
     }
 })
 
+document.getElementById('saveWeightsBtn').addEventListener('click', function (event) {
+    event.preventDefault();
+
+    advWeight = Number(document.getElementById('advWeightInp').value);
+    colWeight = Number(document.getElementById('colWeightInp').value);
+    honWeight = Number(document.getElementById('honWeightInp').value);
+    apWeight = Number(document.getElementById('apWeightInp').value);
+    ibWeight = Number(document.getElementById('ibWeightInp').value);
+
+    if (advWeight < 0 || advWeight > 2 || colWeight < 0 || colWeight > 2 || honWeight < 0 || honWeight > 2 || apWeight < 0 || apWeight > 2 || ibWeight < 0 || ibWeight > 2) {
+        alert('Weights must be between zero and two');
+    } else {
+        localStorage.setItem('advWeight', advWeight);
+        localStorage.setItem('colWeight', colWeight);
+        localStorage.setItem('honWeight', honWeight);
+        localStorage.setItem('apWeight', apWeight);
+        localStorage.setItem('ibWeight', ibWeight);
+
+        calcGPA();
+        hide();
+    }
+})
+
 function getCD() {
     gradDay = Number(localStorage.getItem('gradDay', gradDay));
     gradMonth = Number(localStorage.getItem('gradMonth', gradMonth));
@@ -1173,11 +1243,11 @@ function calcListDiff() { // calcs diffs of ALL lists
     for (let i = 9; i <= 13; i++) {
         let sum = 0;
         let currentItems = document.getElementById('list' + i).getElementsByTagName('li');
-        let advItems = document.getElementById('list' + i).getElementsByClassName('adv').length
-            + document.getElementById('list' + i).getElementsByClassName('cp').length
+        /* let advItems = document.getElementById('list' + i).getElementsByClassName('adv').length
+            + document.getElementById('list' + i).getElementsByClassName('col').length
             + document.getElementById('list' + i).getElementsByClassName('hon').length
             + document.getElementById('list' + i).getElementsByClassName('ap').length
-            + document.getElementById('list' + i).getElementsByClassName('ib').length;
+            + document.getElementById('list' + i).getElementsByClassName('ib').length; */
 
         for (let j = 0; j < currentItems.length; j++) {
             course = currentItems[j];
@@ -1189,7 +1259,7 @@ function calcListDiff() { // calcs diffs of ALL lists
             } else if (document.getElementById(course.id + 'Diff').innerText == 'Honors') {
                 course.diff = 3;
             } else if (document.getElementById(course.id + 'Diff').innerText == 'College') {
-                course.diff = 2.5;
+                course.diff = 3.5;
             } else if (document.getElementById(course.id + 'Diff').innerText == 'Advanced') {
                 course.diff = 2;
             } else {
@@ -1235,34 +1305,35 @@ function calcListDiff() { // calcs diffs of ALL lists
 
         if (currentItems.length < 1 || localStorage.getItem('list' + i + 'Diff') <= 0) {
             document.getElementById('diff' + i).innerText = '';
+            document.getElementById('diff' + i).className = 'attr hidden';
         } else if (localStorage.getItem('list' + i + 'Diff') < 1) {
-            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' - Easy';
+            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Easy';
             document.getElementById('diff' + i).className = 'attr lev1';
         } else if (localStorage.getItem('list' + i + 'Diff') < 2) {
-            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' - Normal';
+            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Normal';
             document.getElementById('diff' + i).className = 'attr lev2';
         } else if (localStorage.getItem('list' + i + 'Diff') < 3) {
-            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' - Hard';
+            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Hard';
             document.getElementById('diff' + i).className = 'attr lev3';
         } else if (localStorage.getItem('list' + i + 'Diff') < 4) {
-            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' - Difficult';
+            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Difficult';
             document.getElementById('diff' + i).className = 'attr lev4';
         } else if (localStorage.getItem('list' + i + 'Diff') < 5) {
-            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' - Challenging';
+            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Challenging';
             document.getElementById('diff' + i).className = 'attr lev5';
         } else if (localStorage.getItem('list' + i + 'Diff') >= 5) {
-            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' - Extreme';
+            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Extreme';
             document.getElementById('diff' + i).className = 'attr lev6';
         }
 
-        if (advItems > 0) {
+        /* if (advItems > 0) {
             let advPercent = (advItems / currentItems.length) * 100;
             localStorage.setItem('list' + i + 'DiffPercent', Math.round(advPercent));
             document.getElementById('diffPercent' + i).innerText = localStorage.getItem('list' + i + 'DiffPercent') + '%';
             document.getElementById('diffPercent' + i).classList.remove('hidden');
         } else {
             document.getElementById('diffPercent' + i).classList.add('hidden');
-        }
+        } */
     }
 }
 
@@ -1275,17 +1346,21 @@ function updateAllItems() {
 
             document.getElementById(course.id + 'Diff2').classList.add('hidden');
             if (document.getElementById(course.id + 'Grade') && document.getElementById(course.id + 'Grade').innerText.includes('%')) {
-                letter = getLetter(Number(document.getElementById(course.id + 'Grade').innerText.replace('%', '').replace('Grade: ', '').replace('A ', '').replace('B ', '').replace('C ', '').replace('D ', '').replace('F ', '')));
-                document.getElementById(course.id + 'Grade').innerHTML = 'Grade: ' + letter + ' ' + document.getElementById(course.id + 'Grade').innerText.replace('%', '').replace('Grade: ', '').replace('A ', '').replace('B ', '').replace('C ', '').replace('D ', '').replace('F ', '') + '%';
+                letter = getLetter(Number(document.getElementById(course.id + 'Grade').innerText.replace('%', '').replace('- ', '').replace('+ ', '').replace('A', '').replace('B', '').replace('C', '').replace('D', '').replace('F', '').replace(' ', '').replace('Grade:', '')));
+                document.getElementById(course.id + 'Grade').innerHTML = letter + ' ' + document.getElementById(course.id + 'Grade').innerText.replace('%', '').replace('- ', '').replace('+ ', '').replace('A', '').replace('B', '').replace('C', '').replace('D', '').replace('F', '').replace(' ', '').replace('Grade:', '') + '%';
             }
-            if (document.getElementById(course.id + 'Grade') && !document.getElementById(course.id + 'Grade').innerText.includes('Grade')) {
-                document.getElementById(course.id + 'Grade').innerHTML = 'Grade: ' + document.getElementById(course.id + 'Grade').innerText;
+            if (document.getElementById(course.id + 'Grade') && document.getElementById(course.id + 'Grade').innerText.includes('Grade')) {
+                document.getElementById(course.id + 'Grade').innerHTML = course.grade;
             }
             if (document.getElementById(course.id + 'Grade') && document.getElementById(course.id + 'Grade').className.includes('desc')) {
                 document.getElementById(course.id + 'Grade').classList.remove('desc');
                 document.getElementById(course.id + 'Grade').classList.add('attr');
             }
             if (document.getElementById(course.id + 'Diff') && document.getElementById(course.id + 'Diff').className.includes('cp')) {
+                document.getElementById(course.id + 'Diff').classList.remove('cp');
+                document.getElementById(course.id + 'Diff').classList.add('col');
+            }
+            if (document.getElementById(course.id + 'Diff') && document.getElementById(course.id + 'Diff').className.includes('col')) {
                 document.getElementById(course.id + 'Diff').innerText = 'College';
             }
 
@@ -1435,6 +1510,8 @@ function getSubjectIcon(sub) {
 function getActIcon(act) {
     if (act == 'Athletics') {
         return 'actI fa-solid fa-dumbbell';
+    } else if (act == 'Award') {
+        return 'actI fa-solid fa-award';
     } else if (act == 'Club') {
         return 'actI fa-solid fa-puzzle-piece';
     } else if (act == 'Competition') {
@@ -1451,6 +1528,8 @@ function getActIcon(act) {
         return 'actI fa-solid fa-music';
     } else if (act == 'Science') {
         return 'actI fa-solid fa-atom';
+    } else if (act == 'Summer Class') {
+        return 'actI fa-solid fa-umbrella-beach';
     } else if (act == 'Technology') {
         return 'actI fa-solid fa-compass-drafting';
     } else if (act == 'Visual Arts') {
@@ -1471,8 +1550,8 @@ function getDiff(diff) {
         return ['AP', 'attr ap'];
     } else if (diff == '3') {
         return ['Honors', 'attr hon'];
-    } else if (diff == '2.5') {
-        return ['College', 'attr cp'];
+    } else if (diff == '3.5') {
+        return ['College', 'attr col'];
     } else if (diff == '2') {
         return ['Advanced', 'attr adv'];
     } else {
@@ -1490,21 +1569,116 @@ function getDiff2(diff2) {
     } else if (diff2 == '0.25') {
         return 'attr effortless hidden';
     } else {
-        return 'attr normal hidden';
+        return 'attr regular hidden';
     }
 }
 
 function getLetter(pc) {
-    if (pc >= 90) {
+    if (pc >= 93) {
         return 'A';
-    } else if (pc >= 80) {
+    } else if (pc >= 90) {
+        return 'A-';
+    } else if (pc >= 87) {
+        return 'B+';
+    } else if (pc >= 83) {
         return 'B';
-    } else if (pc >= 70) {
+    } else if (pc >= 80) {
+        return 'B-';
+    } else if (pc >= 77) {
+        return 'C+';
+    } else if (pc >= 73) {
         return 'C';
-    } else if (pc >= 60) {
+    } else if (pc >= 70) {
+        return 'C-';
+    } else if (pc >= 67) {
+        return 'D+';
+    } else if (pc >= 63) {
         return 'D';
+    } else if (pc >= 60) {
+        return 'D-';
     } else {
         return 'F';
+    }
+}
+
+function calcGPA() {
+    if (localStorage.getItem('advWeight') != null) {
+        advWeight = localStorage.getItem('advWeight');
+    }
+    if (localStorage.getItem('colWeight') != null) {
+        colWeight = localStorage.getItem('colWeight');
+    }
+    if (localStorage.getItem('honWeight') != null) {
+        honWeight = localStorage.getItem('honWeight');
+    }
+    if (localStorage.getItem('apWeight') != null) {
+        apWeight = localStorage.getItem('apWeight');
+    }
+    if (localStorage.getItem('ibWeight') != null) {
+        ibWeight = localStorage.getItem('ibWeight');
+    }
+
+    for (let i = 9; i <= 13; i++) {
+        let sum = 0;
+        let wSum = 0;
+        let ungradedCourses = 0;
+        let currentItems = document.getElementById('list' + i).getElementsByTagName('li');
+
+        for (let j = 0; j < currentItems.length; j++) {
+            course = currentItems[j];
+
+            if (course.grade.includes('A')) {
+                course.indGPAGrade = 4;
+            } else if (course.grade.includes('B')) {
+                course.indGPAGrade = 3;
+            } else if (course.grade.includes('C')) {
+                course.indGPAGrade = 2;
+            } else if (course.grade.includes('D')) {
+                course.indGPAGrade = 1;
+            } else {
+                course.indGPAGrade = 0;
+                ungradedCourses++;
+            }
+
+            sum = sum + course.indGPAGrade;
+
+            if (course.grade.includes('A') || course.grade.includes('B') || course.grade.includes('C') || course.grade.includes('D') || course.grade.includes('F')) {
+                if (document.getElementById(course.id + 'Diff').innerText == 'IB') {
+                    course.wIndGPAGrade = +course.indGPAGrade + +ibWeight;
+                } else if (document.getElementById(course.id + 'Diff').innerText == 'AP') {
+                    course.wIndGPAGrade = +course.indGPAGrade + +apWeight;
+                } else if (document.getElementById(course.id + 'Diff').innerText == 'Honors') {
+                    course.wIndGPAGrade = +course.indGPAGrade + +honWeight;
+                } else if (document.getElementById(course.id + 'Diff').innerText == 'College') {
+                    course.wIndGPAGrade = +course.indGPAGrade + +colWeight;
+                } else if (document.getElementById(course.id + 'Diff').innerText == 'Advanced') {
+                    course.wIndGPAGrade = +course.indGPAGrade + +advWeight;
+                } else {
+                    course.wIndGPAGrade = course.indGPAGrade;
+                }
+            } else {
+                course.wIndGPAGrade = 0;
+            }
+
+            wSum = wSum + course.wIndGPAGrade;
+        }
+
+        gradedCourses = currentItems.length - ungradedCourses;
+        gpa = (sum / gradedCourses).toFixed(2);
+        wGpa = (wSum / gradedCourses).toFixed(2);
+
+        if (gradedCourses < 1) {
+            document.getElementById('gpa' + i).innerText = '';
+            document.getElementById('wGpa' + i).innerText = '';
+            document.getElementById('gpa' + i).className = 'attr gpa hidden';
+            document.getElementById('wGpa' + i).className = 'attr wGpa hidden';
+        } else {
+            document.getElementById('gpa' + i).innerText = gpa + ' GPA';
+            document.getElementById('wGpa' + i).innerText = wGpa + ' GPA (Weighted)';
+            document.getElementById('gpa' + i).className = 'attr gpa';
+            document.getElementById('wGpa' + i).className = 'attr wGpa';
+        }
+
     }
 }
 
@@ -1524,46 +1698,46 @@ document.getElementById('advOptEditC').addEventListener('click', function (event
 
 /* document.addEventListener('DOMContentLoaded', (event) => {
     var dragSrcEl = null;
-
+ 
     function handleDragStart(e) {
         this.style.opacity = '0.5';
-
+ 
         dragSrcEl = this;
-
+ 
         e.dataTransfer.effectAllowed = 'move';
         e.dataTransfer.setData('text/html', this.innerHTML);
     }
-
+ 
     function handleDragOver(e) {
         if (e.preventDefault) {
             e.preventDefault();
         }
-
+ 
         e.dataTransfer.dropEffect = 'move';
-
+ 
         return false;
     }
-
+ 
     function handleDragEnter(e) {
         this.classList.add('over');
     }
-
+ 
     function handleDragLeave(e) {
         this.classList.remove('over');
     }
-
+ 
     function handleDrop(e) {
         if (e.stopPropagation) {
             e.stopPropagation(); // stops the browser from redirecting.
         }
-
+ 
         if (dragSrcEl != this) {
             dragSrcEl.innerHTML = this.innerHTML;
             this.innerHTML = e.dataTransfer.getData('text/html');
-
+ 
             console.log(dragSrcEl);
             console.log(this);
-
+ 
             let pen = document.getElementsByClassName('pen');
             for (i = 0; i < pen.length; i++) {
                 pen[i].onclick = function () {
@@ -1576,7 +1750,7 @@ document.getElementById('advOptEditC').addEventListener('click', function (event
                     }
                 }
             }
-
+ 
             let trash = document.getElementsByClassName('trash');
             for (i = 0; i < trash.length; i++) {
                 trash[i].onclick = function () {
@@ -1584,21 +1758,21 @@ document.getElementById('advOptEditC').addEventListener('click', function (event
                 }
             }
         }
-
+ 
         return false;
     }
-
+ 
     function handleDragEnd(e) {
         this.style.opacity = '1';
-
+ 
         items.forEach(function (item) {
             item.classList.remove('over');
         });
-
+ 
         saveLists();
         calcListDiff();
     }
-
+ 
     let items = document.querySelectorAll('.item');
     items.forEach(function (item) {
         item.addEventListener('dragstart', handleDragStart, false);
@@ -1618,7 +1792,9 @@ window.onclick = function (event) {
         || event.target == document.getElementById('testModal')
         || event.target == document.getElementById('editTestModal')
         || event.target == document.getElementById('diffModal')
-        || event.target == document.getElementById('diffPercentModal')
+        // || event.target == document.getElementById('diffPercentModal')
+        || event.target == document.getElementById('gpaModal')
+        || event.target == document.getElementById('weightsModal')
         || event.target == document.getElementById('countdownModal')
         || event.target == document.getElementById('countdownModal')) {
         hide();
@@ -1689,8 +1865,14 @@ function hide() {
     document.getElementById('diffModal').classList.add('fadeIn');
     document.getElementById('diffModal').classList.remove('fadeOut');
 
-    document.getElementById('diffPercentModal').classList.add('fadeIn');
-    document.getElementById('diffPercentModal').classList.remove('fadeOut');
+    // document.getElementById('diffPercentModal').classList.add('fadeIn');
+    // document.getElementById('diffPercentModal').classList.remove('fadeOut');
+
+    document.getElementById('gpaModal').classList.add('fadeIn');
+    document.getElementById('gpaModal').classList.remove('fadeOut');
+
+    document.getElementById('weightsModal').classList.add('fadeIn');
+    document.getElementById('weightsModal').classList.remove('fadeOut');
 
     document.getElementById('countdownModal').classList.add('fadeIn');
     document.getElementById('countdownModal').classList.remove('fadeOut');
