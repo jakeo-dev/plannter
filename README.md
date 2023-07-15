@@ -1,5 +1,5 @@
 # Plannter
-### Manage and keep track of all the courses, achievements, and tests you have completed during high school
+### Manage all the courses, achievements, and tests you've completed during high school
 
 ![image](https://github.com/jakeorch/plannter/assets/56329025/58b0aaca-2876-4943-8722-412d18bf24b3)
 
