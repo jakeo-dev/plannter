@@ -41,6 +41,7 @@ getTests();
 getCD();
 calcListDiff();
 calcGPA();
+calcCumGPA();
 updateAllItems();
 
 function toggleMenu() {
@@ -388,6 +389,7 @@ document.getElementById('addCourseBtn').addEventListener('click', function (even
 
         calcListDiff();
         calcGPA();
+        calcCumGPA();
         saveLists();
         hide();
     }
@@ -761,6 +763,7 @@ function clickTrash(el) {
 
         calcListDiff();
         calcGPA();
+        calcCumGPA();
         saveLists();
     }
 }
@@ -864,6 +867,7 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
         getCourses();
         calcListDiff();
         calcGPA();
+        calcCumGPA();
 
         let pen = document.getElementsByClassName('pen');
         for (i = 0; i < pen.length; i++) {
@@ -1165,6 +1169,7 @@ document.getElementById('saveWeightsBtn').addEventListener('click', function (ev
         localStorage.setItem('ibWeight', ibWeight);
 
         calcGPA();
+        calcCumGPA();
         hide();
     }
 })
@@ -1680,6 +1685,90 @@ function calcGPA() {
         }
 
     }
+}
+
+function calcCumGPA() {
+    if (localStorage.getItem('advWeight') != null) {
+        advWeight = localStorage.getItem('advWeight');
+    }
+    if (localStorage.getItem('colWeight') != null) {
+        colWeight = localStorage.getItem('colWeight');
+    }
+    if (localStorage.getItem('honWeight') != null) {
+        honWeight = localStorage.getItem('honWeight');
+    }
+    if (localStorage.getItem('apWeight') != null) {
+        apWeight = localStorage.getItem('apWeight');
+    }
+    if (localStorage.getItem('ibWeight') != null) {
+        ibWeight = localStorage.getItem('ibWeight');
+    }
+
+    let cumSum = 0;
+    let cumWSum = 0;
+    let cumUngradedCourses = 0;
+    let cumAllItems = 0;
+
+    for (let i = 9; i <= 13; i++) {
+        let currentItems = document.getElementById('list' + i).getElementsByTagName('li');
+        cumAllItems = cumAllItems + currentItems.length;
+
+        for (let j = 0; j < currentItems.length; j++) {
+            course = currentItems[j];
+
+            if (course.grade.includes('A')) {
+                course.indGPAGrade = 4;
+            } else if (course.grade.includes('B')) {
+                course.indGPAGrade = 3;
+            } else if (course.grade.includes('C')) {
+                course.indGPAGrade = 2;
+            } else if (course.grade.includes('D')) {
+                course.indGPAGrade = 1;
+            } else {
+                course.indGPAGrade = 0;
+                cumUngradedCourses++;
+            }
+
+            cumSum = cumSum + course.indGPAGrade;
+
+            if (course.grade.includes('A') || course.grade.includes('B') || course.grade.includes('C') || course.grade.includes('D') || course.grade.includes('F')) {
+                if (document.getElementById(course.id + 'Diff').innerText == 'IB') {
+                    course.wIndGPAGrade = +course.indGPAGrade + +ibWeight;
+                } else if (document.getElementById(course.id + 'Diff').innerText == 'AP') {
+                    course.wIndGPAGrade = +course.indGPAGrade + +apWeight;
+                } else if (document.getElementById(course.id + 'Diff').innerText == 'Honors') {
+                    course.wIndGPAGrade = +course.indGPAGrade + +honWeight;
+                } else if (document.getElementById(course.id + 'Diff').innerText == 'College') {
+                    course.wIndGPAGrade = +course.indGPAGrade + +colWeight;
+                } else if (document.getElementById(course.id + 'Diff').innerText == 'Advanced') {
+                    course.wIndGPAGrade = +course.indGPAGrade + +advWeight;
+                } else {
+                    course.wIndGPAGrade = course.indGPAGrade;
+                }
+            } else {
+                course.wIndGPAGrade = 0;
+            }
+
+            cumWSum = cumWSum + course.wIndGPAGrade;
+        }
+    }
+
+    cumGradedCourses = cumAllItems - cumUngradedCourses;
+    cumGpa = (cumSum / cumGradedCourses).toFixed(2);
+    cumWGpa = (cumWSum / cumGradedCourses).toFixed(2);
+
+    if (cumGradedCourses < 1) {
+        document.getElementById('gpaCum').innerText = '';
+        document.getElementById('wGpaCum').innerText = '';
+        document.getElementById('gpaCum').className = 'attr gpa hidden';
+        document.getElementById('wGpaCum').className = 'attr wGpa hidden';
+    } else {
+        document.getElementById('gpaCum').innerText = cumGpa + ' Cumulative GPA';
+        document.getElementById('wGpaCum').innerText = cumWGpa + ' Cumulative GPA (Weighted)';
+        document.getElementById('gpaCum').className = 'attr gpa';
+        document.getElementById('wGpaCum').className = 'attr wGpa';
+    }
+
 }
 
 document.getElementById('advOptAddC').addEventListener('click', function (event) {
