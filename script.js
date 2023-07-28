@@ -1439,6 +1439,13 @@ function updateAllItems() {
             /* if (course.draggable == false) {
                 course.draggable = true;
             } */
+
+            saveLists();
+            getLists();
+            getCourses();
+            calcListDiff();
+            calcGPA();
+            calcCumGPA();
         }
     }
 
@@ -1467,6 +1474,10 @@ function updateAllItems() {
         /* if (activity.draggable == false) {
             activity.draggable = true;
         } */
+
+        saveLists();
+        getLists();
+        getActs();
     }
 
     currentItems = document.getElementById('listTests').getElementsByTagName('li');
@@ -1539,6 +1550,10 @@ function updateAllItems() {
         /* if (test.draggable == false) {
             test.draggable = true;
         } */
+
+        saveLists();
+        getLists();
+        getTests();
     }
 }
 
