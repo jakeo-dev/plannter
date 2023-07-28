@@ -429,7 +429,7 @@ document.getElementById('addActBtn').addEventListener('click', function (event) 
         activity.appendChild(t);
         activity.className = 'item activity';
 
-        activity.pos = aPosInput;
+        /* activity.pos = aPosInput;
 
         let div = document.createElement('div');
         div.className = 'attr actPos';
@@ -439,7 +439,7 @@ document.getElementById('addActBtn').addEventListener('click', function (event) 
         div.id = activity.id + 'Pos';
         t = document.createTextNode(activity.pos);
         div.appendChild(t);
-        activity.appendChild(div);
+        activity.appendChild(div); */
 
         div = document.createElement('div');
         div.className = 'optDiv';
@@ -478,7 +478,7 @@ document.getElementById('addActBtn').addEventListener('click', function (event) 
         localStorage.setItem(activity.id + 'Name', activity.name);
         localStorage.setItem(activity.id + 'Desc', activity.desc);
         localStorage.setItem(activity.id + 'Category', activity.category);
-        localStorage.setItem(activity.id + 'Pos', activity.pos);
+        //localStorage.setItem(activity.id + 'Pos', activity.pos);
 
         document.getElementById('listActs').appendChild(activity);
 
@@ -913,17 +913,17 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
         activity.name = aTitleInput;
         activity.desc = aDescInput;
         activity.category = aCategoryInput;
-        activity.pos = aPosInput;
+        //activity.pos = aPosInput;
 
         if (activity.desc != '') {
-            activity.innerHTML = `<i id='${activity.id}ActI' class='${getActIcon(activity.category)}' aria-label='${activity.category}'></i>${activity.name}<div class='attr actPos' id='${activity.id}Pos'>${activity.pos}</div><h2 class='desc' id='${activity.id}Desc'>${activity.desc}</h2>`;
+            activity.innerHTML = `<i id='${activity.id}ActI' class='${getActIcon(activity.category)}' aria-label='${activity.category}'></i>${activity.name}<h2 class='desc' id='${activity.id}Desc'>${activity.desc}</h2>`;
         } else {
-            activity.innerHTML = `<i id='${activity.id}ActI' class='${getActIcon(activity.category)}' aria-label='${activity.category}'></i>${activity.name}<div class='attr actPos' id='${activity.id}Pos'>${activity.pos}</div>`;
+            activity.innerHTML = `<i id='${activity.id}ActI' class='${getActIcon(activity.category)}' aria-label='${activity.category}'></i>${activity.name}`;
         }
 
-        if (activity.pos != '') {
+        /* if (activity.pos != '') {
             document.getElementById(activity.id + 'Pos').classList.remove('hidden');
-        }
+        } */
 
         div = document.createElement('div');
         div.className = 'optDiv';
@@ -951,7 +951,7 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
         localStorage.setItem(activity.id + 'Name', activity.name);
         localStorage.setItem(activity.id + 'Desc', activity.desc);
         localStorage.setItem(activity.id + 'Category', activity.category);
-        localStorage.setItem(activity.id + 'Pos', activity.pos);
+        //localStorage.setItem(activity.id + 'Pos', activity.pos);
 
         saveLists();
         getLists();
@@ -1219,11 +1219,11 @@ function getActs() { // gets all stored info of activities
         activity.name = localStorage.getItem(activity.id + 'Name');
         activity.desc = localStorage.getItem(activity.id + 'Desc');
         activity.category = localStorage.getItem(activity.id + 'Category');
-        activity.pos = localStorage.getItem(activity.id + 'Pos');
+        //activity.pos = localStorage.getItem(activity.id + 'Pos');
 
-        if (activity.pos == '') {
+        /* if (activity.pos == '') {
             document.getElementById(activity.id + 'Pos').classList.add('hidden');
-        }
+        } */
     }
 }
 
@@ -1466,10 +1466,10 @@ function updateAllItems() {
 
         /*   7 / 27 / 2023   */
 
-        if (activity.pos != '' && document.getElementById(activity.id + 'Pos')) {
+        /* if (activity.pos != '' && document.getElementById(activity.id + 'Pos')) {
             document.getElementById(activity.id + 'Pos').remove();
             activity.pos = '';
-        }
+        } */
 
         /* if (activity.draggable == false) {
             activity.draggable = true;
