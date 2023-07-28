@@ -39,10 +39,11 @@ getCourses();
 getActs();
 getTests();
 getCD();
+saveLists();
 calcListDiff();
 calcGPA();
 calcCumGPA();
-updateAllItems();
+//updateAllItems();
 
 function toggleMenu() {
     document.getElementById('optionsDiv').classList.toggle('hidden');
@@ -539,12 +540,6 @@ document.getElementById('addTestBtn').addEventListener('click', function (event)
         let test = document.createElement('li');
         test.id = 'T' + Math.floor(100000000 + Math.random() * 900000000);
 
-        /* let i = document.createElement('i');
-        i.id = test.id + 'TestI';
-        i.className = 'testI fa-solid fa-file-lines';
-        i.ariaLabel = 'Test icon';
-        test.appendChild(i); */
-
         test.score = tScoreInput;
         test.readScore = tReadScoreInput;
         test.mathScore = tMathScoreInput;
@@ -716,7 +711,6 @@ function clickPenAct(a) {
 
     document.getElementById('actDescEdit').value = activity.desc;
     document.getElementById('selActCategoryEdit').value = activity.category;
-    //document.getElementById('actPositionEdit').value = activity.pos;
 
     document.getElementById('editActModal').classList.remove('fadeIn');
     document.getElementById('editActModal').classList.add('fadeOut');
@@ -851,9 +845,6 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
             document.getElementById(course.id + 'Diff2').className = diff2Class;
         }
 
-        //document.getElementById(course.id + 'SbjI').className = getSubjectIcon(course.sub);
-        //document.getElementById(course.id + 'SbjI').ariaLabel = course.sub;
-
         localStorage.setItem(course.id + 'Name', course.name);
         localStorage.setItem(course.id + 'GradeLevel', course.gradeLevel);
         localStorage.setItem(course.id + 'Sub', course.sub);
@@ -903,9 +894,7 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
         alert('Actvity title is too long');
     } else if (aDescInput.length > 350) {
         alert('Actvity description is too long');
-    }/*  else if (aPosInput.length > 30) {
-        alert('Position title is too long');
-    } */ else if (aTitleInput == '') {
+    } else if (aTitleInput == '') {
         alert('Enter the title of your activity');
     } else {
         event.preventDefault();
@@ -913,17 +902,12 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
         activity.name = aTitleInput;
         activity.desc = aDescInput;
         activity.category = aCategoryInput;
-        //activity.pos = aPosInput;
 
         if (activity.desc != '') {
             activity.innerHTML = `<i id='${activity.id}ActI' class='${getActIcon(activity.category)}' aria-label='${activity.category}'></i>${activity.name}<h2 class='desc' id='${activity.id}Desc'>${activity.desc}</h2>`;
         } else {
             activity.innerHTML = `<i id='${activity.id}ActI' class='${getActIcon(activity.category)}' aria-label='${activity.category}'></i>${activity.name}`;
         }
-
-        /* if (activity.pos != '') {
-            document.getElementById(activity.id + 'Pos').classList.remove('hidden');
-        } */
 
         div = document.createElement('div');
         div.className = 'optDiv';
@@ -951,7 +935,6 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
         localStorage.setItem(activity.id + 'Name', activity.name);
         localStorage.setItem(activity.id + 'Desc', activity.desc);
         localStorage.setItem(activity.id + 'Category', activity.category);
-        //localStorage.setItem(activity.id + 'Pos', activity.pos);
 
         saveLists();
         getLists();
@@ -1030,7 +1013,7 @@ document.getElementById('saveTestBtn').addEventListener('click', function (event
             test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div>${test.species} ${test.subSpecies} — ${test.month}/${test.year}`;
         } else if (test.species == 'SAT' || test.species == 'PSAT') {
             test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div>${test.species} — ${test.month}/${test.year}<div class='testReadScore' id='${test.id}ReadScore'>Reading: ${test.readScore}</div><div class='testMathScore' id='${test.id}MathScore'>Math: ${test.mathScore}</div>`;
-            if (tReadScoreInput == '' && tMathScoreInput == '') {
+            if (test.readScore == '' && test.mathScore == '') {
                 test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div>${test.species} — ${test.month}/${test.year}`;
             }
         } else if (test.species == 'Other') {
@@ -1219,11 +1202,6 @@ function getActs() { // gets all stored info of activities
         activity.name = localStorage.getItem(activity.id + 'Name');
         activity.desc = localStorage.getItem(activity.id + 'Desc');
         activity.category = localStorage.getItem(activity.id + 'Category');
-        //activity.pos = localStorage.getItem(activity.id + 'Pos');
-
-        /* if (activity.pos == '') {
-            document.getElementById(activity.id + 'Pos').classList.add('hidden');
-        } */
     }
 }
 
@@ -1248,11 +1226,6 @@ function calcListDiff() { // calcs diffs of ALL lists
     for (let i = 9; i <= 13; i++) {
         let sum = 0;
         let currentItems = document.getElementById('list' + i).getElementsByTagName('li');
-        /* let advItems = document.getElementById('list' + i).getElementsByClassName('adv').length
-            + document.getElementById('list' + i).getElementsByClassName('col').length
-            + document.getElementById('list' + i).getElementsByClassName('hon').length
-            + document.getElementById('list' + i).getElementsByClassName('ap').length
-            + document.getElementById('list' + i).getElementsByClassName('ib').length; */
 
         for (let j = 0; j < currentItems.length; j++) {
             course = currentItems[j];
@@ -1330,15 +1303,6 @@ function calcListDiff() { // calcs diffs of ALL lists
             document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Extreme';
             document.getElementById('diff' + i).className = 'attr lev6';
         }
-
-        /* if (advItems > 0) {
-            let advPercent = (advItems / currentItems.length) * 100;
-            localStorage.setItem('list' + i + 'DiffPercent', Math.round(advPercent));
-            document.getElementById('diffPercent' + i).innerText = localStorage.getItem('list' + i + 'DiffPercent') + '%';
-            document.getElementById('diffPercent' + i).classList.remove('hidden');
-        } else {
-            document.getElementById('diffPercent' + i).classList.add('hidden');
-        } */
     }
 }
 
@@ -1484,20 +1448,20 @@ function updateAllItems() {
     for (let j = 0; j < currentItems.length; j++) {
         test = currentItems[j];
 
-        /*   2 / 8 / 2023   */
+        /*   2 / 8 / 2023 ... 7 / 28 / 2023   */
 
+        if (tMonthInput.length == 1) {
+            test.month = '0' + localStorage.getItem(test.id + 'Month');
+        } else {
+            test.month = localStorage.getItem(test.id + 'Month');
+        }
+        test.year = localStorage.getItem(test.id + 'Year');
+        test.score = localStorage.getItem(test.id + 'Score');
+        test.readScore = localStorage.getItem(test.id + 'ReadingScore');
+        test.mathScore = localStorage.getItem(test.id + 'MathScore');
         test.species = localStorage.getItem(test.id + 'Species');
         test.subSpecies = localStorage.getItem(test.id + 'SubSpecies');
         test.speciesOther = localStorage.getItem(test.id + 'SpeciesOther');
-        test.month = localStorage.getItem(test.id + 'Month');
-        test.year = localStorage.getItem(test.id + 'Year');
-
-        test.name = `${test.species} — ${test.month}/${test.year}`;
-        if (test.species == 'AP') {
-            test.name = `${test.species} ${test.subSpecies} — ${test.month}/${test.year}`;
-        } else if (test.species == 'Other') {
-            test.name = `${test.speciesOther} — ${test.month}/${test.year}`;
-        }
 
         test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div>${test.species} — ${test.month}/${test.year}`;
         if (test.species == 'AP') {
@@ -1509,6 +1473,13 @@ function updateAllItems() {
             }
         } else if (test.species == 'Other') {
             test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div>${test.speciesOther} — ${test.month}/${test.year}`;
+        }
+
+        test.name = `${test.species} — ${test.month}/${test.year}`;
+        if (test.species == 'AP') {
+            test.name = `${test.species} ${test.subSpecies} — ${test.month}/${test.year}`;
+        } else if (test.species == 'Other') {
+            test.name = `${test.speciesOther} — ${test.month}/${test.year}`;
         }
 
         div = document.createElement('div');
@@ -1534,25 +1505,43 @@ function updateAllItems() {
 
         test.appendChild(div);
 
-        document.getElementById(test.id + 'Score').classList.remove('attr');
-        if (document.getElementById(test.id + 'ReadScore')) {
-            document.getElementById(test.id + 'ReadScore').classList.remove('attr');
-        }
-        if (document.getElementById(test.id + 'MathScore')) {
-            document.getElementById(test.id + 'MathScore').classList.remove('attr');
+        localStorage.setItem(test.id + 'Species', test.species);
+        localStorage.setItem(test.id + 'SubSpecies', test.subSpecies);
+        localStorage.setItem(test.id + 'SpeciesOther', test.speciesOther);
+        localStorage.setItem(test.id + 'Month', test.month);
+        localStorage.setItem(test.id + 'Year', test.year);
+        localStorage.setItem(test.id + 'Score', test.score);
+        localStorage.setItem(test.id + 'ReadingScore', test.readScore);
+        localStorage.setItem(test.id + 'MathScore', test.mathScore);
+        localStorage.setItem(test.id + 'Name', test.name);
+
+        saveLists();
+        getLists();
+        getTests();
+
+        let pen = document.getElementsByClassName('pen');
+        for (i = 0; i < pen.length; i++) {
+            pen[i].onclick = function () {
+                if (this.parentElement.parentElement.id.startsWith('C')) {
+                    clickPen(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('A')) {
+                    clickPenAct(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('T')) {
+                    clickPenTest(this.parentElement.parentElement);
+                }
+            }
         }
 
-        if (document.getElementById(test.id + 'Score') && !document.getElementById(test.id + 'Score').classList.contains('attr')) {
-            document.getElementById(test.id + 'Score').classList.add('attr');
+        let trash = document.getElementsByClassName('trash');
+        for (i = 0; i < trash.length; i++) {
+            trash[i].onclick = function () {
+                clickTrash(this.parentElement.parentElement);
+            }
         }
 
         /* if (test.draggable == false) {
             test.draggable = true;
         } */
-
-        saveLists();
-        getLists();
-        getTests();
     }
 }
 
@@ -1969,7 +1958,6 @@ window.onclick = function (event) {
         || event.target == document.getElementById('testModal')
         || event.target == document.getElementById('editTestModal')
         || event.target == document.getElementById('diffModal')
-        // || event.target == document.getElementById('diffPercentModal')
         || event.target == document.getElementById('gpaModal')
         || event.target == document.getElementById('weightsModal')
         || event.target == document.getElementById('countdownModal')
@@ -2008,7 +1996,6 @@ function hide() {
     document.getElementById('actTitle').value = '';
     document.getElementById('actDesc').value = '';
     document.getElementById('selActCategory').value = 'Athletics';
-    //document.getElementById('actPosition').value = '';
 
     document.getElementById('editActModal').classList.add('fadeIn');
     document.getElementById('editActModal').classList.remove('fadeOut');
@@ -2041,9 +2028,6 @@ function hide() {
 
     document.getElementById('diffModal').classList.add('fadeIn');
     document.getElementById('diffModal').classList.remove('fadeOut');
-
-    // document.getElementById('diffPercentModal').classList.add('fadeIn');
-    // document.getElementById('diffPercentModal').classList.remove('fadeOut');
 
     document.getElementById('gpaModal').classList.add('fadeIn');
     document.getElementById('gpaModal').classList.remove('fadeOut');
