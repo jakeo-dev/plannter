@@ -1025,16 +1025,16 @@ document.getElementById('saveTestBtn').addEventListener('click', function (event
         test.subSpecies = tSubSpeciesInput;
         test.speciesOther = tSpeciesOtherInput;
 
-        test.innerHTML = `<div class='attr testScore' id='${test.id}Score'> ${test.score}</div>${test.species} — ${test.month}/${test.year}`;
+        test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div>${test.species} — ${test.month}/${test.year}`;
         if (test.species == 'AP') {
-            test.innerHTML = `<div class='attr testScore' id='${test.id}Score'> ${test.score}</div>${test.species} ${test.subSpecies} — ${test.month}/${test.year}`;
+            test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div>${test.species} ${test.subSpecies} — ${test.month}/${test.year}`;
         } else if (test.species == 'SAT' || test.species == 'PSAT') {
-            test.innerHTML = `<div class='attr testScore' id='${test.id}Score'> ${test.score}</div>${test.species} — ${test.month}/${test.year}<div class='testReadScore' id='${test.id}ReadScore'>Reading: ${test.readScore}</div><div class='testMathScore' id='${test.id}MathScore'>Math: ${test.mathScore}</div>`;
+            test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div>${test.species} — ${test.month}/${test.year}<div class='testReadScore' id='${test.id}ReadScore'>Reading: ${test.readScore}</div><div class='testMathScore' id='${test.id}MathScore'>Math: ${test.mathScore}</div>`;
             if (tReadScoreInput == '' && tMathScoreInput == '') {
-                test.innerHTML = `<div class='attr testScore' id='${test.id}Score'> ${test.score}</div>${test.species} — ${test.month}/${test.year}`;
+                test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div>${test.species} — ${test.month}/${test.year}`;
             }
         } else if (test.species == 'Other') {
-            test.innerHTML = `<div class='attr testScore' id='${test.id}Score'> ${test.score}</div>${test.speciesOther} — ${test.month}/${test.year}`;
+            test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div>${test.speciesOther} — ${test.month}/${test.year}`;
         }
 
         test.name = `${test.species} — ${test.month}/${test.year}`;
@@ -1466,10 +1466,10 @@ function updateAllItems() {
 
         /*   7 / 27 / 2023   */
 
-        /* if (activity.pos != '' && document.getElementById(activity.id + 'Pos')) {
+        if (activity.pos != '' && document.getElementById(activity.id + 'Pos')) {
             document.getElementById(activity.id + 'Pos').remove();
             activity.pos = '';
-        } */
+        }
 
         /* if (activity.draggable == false) {
             activity.draggable = true;
@@ -1499,17 +1499,16 @@ function updateAllItems() {
             test.name = `${test.speciesOther} — ${test.month}/${test.year}`;
         }
 
-        test.innerHTML = `<div class='attr testScore' id='${test.id}Score'> ${test.score}</div>${test.species} — ${test.month}/${test.year}`;
+        test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div>${test.species} — ${test.month}/${test.year}`;
         if (test.species == 'AP') {
-            test.innerHTML = `<div class='attr testScore' id='${test.id}Score'> ${test.score}</div>${test.species} ${test.subSpecies} — ${test.month}/${test.year}`;
+            test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div>${test.species} ${test.subSpecies} — ${test.month}/${test.year}`;
         } else if (test.species == 'SAT' || test.species == 'PSAT') {
-            test.innerHTML = `<div class='attr testScore' id='${test.id}Score'> ${test.score}</div>${test.species} — ${test.month}/${test.year}<div class='testReadScore' id='${test.id}ReadScore'>Reading: ${test.readScore}</div><div class='testMathScore' id='${test.id}MathScore'>Math: ${test.mathScore}</div>`;
+            test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div>${test.species} — ${test.month}/${test.year}<div class='testReadScore' id='${test.id}ReadScore'>Reading: ${test.readScore}</div><div class='testMathScore' id='${test.id}MathScore'>Math: ${test.mathScore}</div>`;
             if (test.readScore == '' && test.mathScore == '') {
-                test.innerHTML = `<div class='attr testScore' id='${test.id}Score'> ${test.score}</div>${test.species} — ${test.month}/${test.year}`;
+                test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div>${test.species} — ${test.month}/${test.year}`;
             }
         } else if (test.species == 'Other') {
-            test.innerHTML = `<div class='attr testScore' id='${test.id}Score'> ${test.score}</div>${test.speciesOther} — ${test.month}/${test.year}`;
-
+            test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div>${test.speciesOther} — ${test.month}/${test.year}`;
         }
 
         div = document.createElement('div');
