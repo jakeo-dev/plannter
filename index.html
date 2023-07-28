@@ -41,14 +41,14 @@
 
                 <h1 class='text-2xl font-medium mb-6'>Add course</h1>
 
-                <label class='text-base text-gray-500 px-2'>Title</label>
-                <input placeholder='Course title' id='courseTitle' class='input text-lg p-2 pl-3 m-0 mb-4'
-                    autocomplete='off' maxlength='60' required>
+                <label for='courseTitle' class='text-base text-gray-500 px-2'>Course name</label>
+                <input id='courseTitle' class='input text-lg p-2 pl-3 m-0 mb-4' autocomplete='off' maxlength='60'
+                    required>
                 <h2 class='hidden text-sm text-teal-700 px-2 mt-1 mb-4' id='diffTip'><b class='font-extrabold'>Tip:</b>
-                    Instead of including the advancement level of your course in the title, set it in the Advancement
+                    Instead of including the advancement level of your course in the name, set it in the Advancement
                     level section</h2>
 
-                <label class='text-base text-gray-500 px-2'>Grade level</label>
+                <label for='selGradeLev' class='text-base text-gray-500 px-2'>Grade level</label>
                 <select id='selGradeLev' class='input text-lg p-2 mb-4'>
                     <optgroup label='Select a grade level'>
                         <option value='9'>9</option>
@@ -59,7 +59,7 @@
                     </optgroup>
                 </select>
 
-                <label class='text-base text-gray-500 px-2'>Subject</label>
+                <label for='selSubject' class='text-base text-gray-500 px-2'>Subject</label>
                 <select id='selSubject' class='input text-lg p-2 mb-4'>
                     <optgroup label='Select a subject'>
                         <option value='History'>History</option>
@@ -75,12 +75,12 @@
                     </optgroup>
                 </select>
 
-                <!-- <label class='text-base text-gray-500 px-2'>Credits <p class='inline text-sm'>(optional)</p>
+                <!-- <label for='credits' class='text-base text-gray-500 px-2'>Credits <p class='inline text-sm'>(optional)</p>
             </label>
             <input placeholder='Number of credits earned' id='credits' type='number'
                 class='input text-lg p-2 pl-3 m-0 mb-4' autocomplete='off'> -->
 
-                <label class='text-base text-gray-500 px-2'>Letter grade</label>
+                <label for='selLetterGrade' class='text-base text-gray-500 px-2'>Letter grade</label>
                 <div class='flex h-auto'>
                     <select id='selLetterGrade' class='input text-lg p-2 mb-4 h-full' onchange='selLetterGradeFunc()'>
                         <optgroup label='Select a letter grade'>
@@ -102,11 +102,11 @@
                         </optgroup>
                     </select>
 
-                    <input placeholder='Number 0-100' id='percentGrade' type='number'
-                        class='input hidden text-lg p-2 pl-3 m-0 ml-2 h-full' min='0' max='100' autocomplete='off'>
+                    <input id='percentGrade' type='number' class='input hidden text-lg p-2 pl-3 m-0 ml-2 h-full' min='0'
+                        max='100' autocomplete='off'>
                 </div>
 
-                <label class='text-base text-gray-500 px-2'>Advancement level</label>
+                <label for='selDiff' class='text-base text-gray-500 px-2'>Advancement level</label>
                 <select id='selDiff' class='input text-lg p-2 mb-4'>
                     <optgroup label='Select an advancement level'>
                         <option value='1'>None</option>
@@ -120,11 +120,11 @@
 
                 <button id='advOptAddC'
                     class='block w-full text-base text-left text-gray-600 hover:text-gray-500 active:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 dark:active:text-gray-600 transition-all px-2 mt-2 mb-4'><i
-                        class='fa-solid fa-chevron-right mr-2 transition-all' id='advOptAddCI'></i>Advanced
-                    options</button>
+                        class='fa-solid fa-chevron-right mr-2 transition-all' id='advOptAddCI'></i>More options</button>
 
                 <div id='advOptionsAddC' class='hidden'>
-                    <label class='text-base text-gray-500 px-2'>Specific difficulty <p class='inline text-sm'>
+                    <label for='selDiff2' class='text-base text-gray-500 px-2'>Specific difficulty <p
+                            class='inline text-sm'>
                             (optional)
                         </p>
                     </label>
@@ -164,15 +164,15 @@
 
                 <h1 class='text-2xl font-medium mb-6'>Edit course</h1>
 
-                <label class='text-base text-gray-500 px-2'>Title</label>
-                <input placeholder='Course title' id='courseTitleEdit' class='input text-lg p-2 pl-3 m-0 mb-4'
-                    autocomplete='off' maxlength='60' required>
+                <label for='courseTitleEdit' class='text-base text-gray-500 px-2'>Course name</label>
+                <input id='courseTitleEdit' class='input text-lg p-2 pl-3 m-0 mb-4' autocomplete='off' maxlength='60'
+                    required>
                 <h2 class='hidden text-sm text-teal-700 px-2 mt-1 mb-4' id='diffTipEdit'><b
                         class='font-extrabold'>Tip:</b>
-                    Instead of including the advancement level of your course in the title, set it in the Advancement
+                    Instead of including the advancement level of your course in the name, set it in the Advancement
                     level section</h2>
 
-                <label class='text-base text-gray-500 px-2'>Grade level</label>
+                <label for='selGradeLevEdit' class='text-base text-gray-500 px-2'>Grade level</label>
                 <select id='selGradeLevEdit' class='input text-lg p-2 mb-4'>
                     <optgroup label='Select a grade level'>
                         <option value='9'>9</option>
@@ -183,7 +183,7 @@
                     </optgroup>
                 </select>
 
-                <label class='text-base text-gray-500 px-2'>Subject</label>
+                <label for='selSubjectEdit' class='text-base text-gray-500 px-2'>Subject</label>
                 <select id='selSubjectEdit' class='input text-lg p-2 mb-4'>
                     <optgroup label='Select a subject'>
                         <option value='History'>History</option>
@@ -199,12 +199,12 @@
                     </optgroup>
                 </select>
 
-                <!-- <label class='text-base text-gray-500 px-2'>Credits <p class='inline text-sm'>(optional)</p>
+                <!-- <label for='creditsEdit' class='text-base text-gray-500 px-2'>Credits <p class='inline text-sm'>(optional)</p>
             </label>
             <input placeholder='Number of credits earned' id='creditsEdit' type='number'
                 class='input text-lg p-2 pl-3 m-0 mb-4' autocomplete='off'> -->
 
-                <label class='text-base text-gray-500 px-2'>Letter grade</label>
+                <label for='selLetterGradeEdit class=' text-base text-gray-500 px-2'>Letter grade</label>
                 <div class='flex h-auto'>
                     <select id='selLetterGradeEdit' class='input text-lg p-2 mb-4 h-full'
                         onchange='selLetterGradeEditFunc()'>
@@ -227,11 +227,11 @@
                         </optgroup>
                     </select>
 
-                    <input placeholder='Number 0-100' id='percentGradeEdit' type='number'
-                        class='input hidden text-lg p-2 pl-3 m-0 ml-2 h-full' min='0' max='100' autocomplete='off'>
+                    <input id='percentGradeEdit' type='number' class='input hidden text-lg p-2 pl-3 m-0 ml-2 h-full'
+                        min='0' max='100' autocomplete='off'>
                 </div>
 
-                <label class='text-base text-gray-500 px-2'>Advancement level</label>
+                <label for='selDiffEdit' class='text-base text-gray-500 px-2'>Advancement level</label>
                 <select id='selDiffEdit' class='input text-lg p-2 mb-4'>
                     <optgroup label='Select an advancement level'>
                         <option value='1'>None</option>
@@ -245,11 +245,12 @@
 
                 <button id='advOptEditC'
                     class='block w-full text-base text-left text-gray-600 hover:text-gray-500 active:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 dark:active:text-gray-600 transition-all px-2 mt-2 mb-4'><i
-                        class='fa-solid fa-chevron-right mr-2 transition-all' id='advOptEditCI'></i>Advanced
+                        class='fa-solid fa-chevron-right mr-2 transition-all' id='advOptEditCI'></i>More
                     options</button>
 
                 <div id='advOptionsEditC' class='hidden'>
-                    <label class='text-base text-gray-500 px-2'>Specific difficulty <p class='inline text-sm'>
+                    <label for='selDiff2Edit' class='text-base text-gray-500 px-2'>Specific difficulty <p
+                            class='inline text-sm'>
                             (optional)
                         </p>
                     </label>
@@ -289,15 +290,13 @@
 
                 <h1 class='text-2xl font-medium mb-6'>Add activity</h1>
 
-                <label class='text-base text-gray-500 px-2'>Title</label>
-                <input placeholder='Activity title' id='actTitle' class='input text-lg p-2 pl-3 mb-4' autocomplete='off'
-                    maxlength='60' required>
+                <label for='actTitle' class='text-base text-gray-500 px-2'>Activity name</label>
+                <input id='actTitle' class='input text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='60' required>
 
-                <label class='text-base text-gray-500 px-2'>Description</label>
-                <input placeholder='Activity description' id='actDesc' class='input text-lg p-2 pl-3 mb-4'
-                    autocomplete='off' maxlength='160'>
+                <label for='actDesc' class='text-base text-gray-500 px-2'>Description</label>
+                <input id='actDesc' class='input text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='350'>
 
-                <label class='text-base text-gray-500 px-2'>Category</label>
+                <label for='selActCategory' class='text-base text-gray-500 px-2'>Category</label>
                 <select id='selActCategory' class='input text-lg p-2 mb-4'>
                     <optgroup label='Select a category'>
                         <option value='Athletics'>Athletics</option>
@@ -319,16 +318,15 @@
                     </optgroup>
                 </select>
 
-                <label class='text-base text-gray-500 px-2'>Position <p class='inline text-sm'>(optional)</p>
+                <!-- <label for='actPosition' class='text-base text-gray-500 px-2'>Position <p class='inline text-sm'>(optional)</p>
                 </label>
-                <input placeholder='Activity position' id='actPosition' class='input text-lg p-2 pl-3 mb-4'
-                    autocomplete='off' maxlength='20'>
+                <input id='actPosition' class='input text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='30'> -->
 
-                <!-- <label class='text-base text-gray-500 px-2'>Hours spent per week</label>
-            <input placeholder='Time spent' type='number' id='actTime' class='input text-lg p-2 pl-3 mb-4' autocomplete='off'>
+                <!-- <label for='actTime' class='text-base text-gray-500 px-2'>Hours spent per week</label>
+            <input placeholder='Time spent' type='number' id='actTimeH' class='input text-lg p-2 pl-3 mb-4' autocomplete='off'>
 
-            <label class='text-base text-gray-500 px-2'>Weeks spent per year</label>
-            <input placeholder='Time spent' type='number' id='actTime' class='input text-lg p-2 pl-3 mb-4' autocomplete='off'> -->
+            <label for='actTime' class='text-base text-gray-500 px-2'>Weeks spent per year</label>
+            <input placeholder='Time spent' type='number' id='actTimeW' class='input text-lg p-2 pl-3 mb-4' autocomplete='off'> -->
 
                 <button id='addActBtn' type='submit'
                     class='text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent text-left transition-all px-3 py-2 mt-4'><i
@@ -355,16 +353,15 @@
 
                 <h1 class='text-2xl font-medium mb-6'>Edit activity</h1>
 
-                <label class='text-base text-gray-500 px-2'>Title</label>
-                <input placeholder='Activity title' id='actTitleEdit' class='input text-lg p-2 pl-3 mb-4'
-                    autocomplete='off' maxlength='60' required>
+                <label for='actTitleEdit' class='text-base text-gray-500 px-2'>Activity name</label>
+                <input id='actTitleEdit' class='input text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='60' required>
 
-                <label class='text-base text-gray-500 px-2'>Description <p class='inline text-sm'>(optional)</p>
+                <label for='actDescEdit' class='text-base text-gray-500 px-2'>Description <p class='inline text-sm'>
+                        (optional)</p>
                 </label>
-                <input placeholder='Activity description' id='actDescEdit' class='input text-lg p-2 pl-3 mb-4'
-                    autocomplete='off' maxlength='160'>
+                <input id='actDescEdit' class='input text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='350'>
 
-                <label class='text-base text-gray-500 px-2'>Category</label>
+                <label for='selActCategoryEdit' class='text-base text-gray-500 px-2'>Category</label>
                 <select id='selActCategoryEdit' class='input text-lg p-2 mb-4'>
                     <optgroup label='Select a category'>
                         <option value='Athletics'>Athletics</option>
@@ -386,15 +383,14 @@
                     </optgroup>
                 </select>
 
-                <label class='text-base text-gray-500 px-2'>Position <p class='inline text-sm'>(optional)</p>
+                <!-- <label for='actPositionEdit' class='text-base text-gray-500 px-2'>Position <p class='inline text-sm'>(optional)</p>
                 </label>
-                <input placeholder='Activity position' id='actPositionEdit' class='input text-lg p-2 pl-3 mb-4'
-                    autocomplete='off' maxlength='20'>
+                <input id='actPositionEdit' class='input text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='30'> -->
 
-                <!-- <label class='text-base text-gray-500 px-2'>Hours spent per week</label>
+                <!-- <label for='actTimeHEdit' class='text-base text-gray-500 px-2'>Hours spent per week</label>
             <input placeholder='Time spent' type='number' id='actTimeHEdit' class='input text-lg p-2 pl-3 mb-4' autocomplete='off'>
 
-            <label class='text-base text-gray-500 px-2'>Weeks spent per year</label>
+            <label for='actTimeWEdit' class='text-base text-gray-500 px-2'>Weeks spent per year</label>
             <input placeholder='Time spent' type='number' id='actTimeWEdit' class='input text-lg p-2 pl-3 mb-4' autocomplete='off'> -->
 
                 <button id='saveActBtn' type='submit'
@@ -422,7 +418,7 @@
 
                 <h1 class='text-2xl font-medium mb-6'>Add test</h1>
 
-                <label class='text-base text-gray-500 px-2'>Type</label>
+                <label for='selTestSpecies' class='text-base text-gray-500 px-2'>Type</label>
                 <select id='selTestSpecies' class='input text-lg p-2 mb-4' onchange='selTestSpeciesFunc()'>
                     <optgroup label='Select a type'>
                         <option value='ACT'>ACT</option>
@@ -435,30 +431,35 @@
                     </optgroup>
                 </select>
 
-                <input placeholder='Course' id='testSubSpecies' class='input hidden text-lg p-2 pl-3 mb-4'
-                    autocomplete='off' maxlength='30'>
-                <input placeholder='Test name' id='testSpeciesOther' class='input hidden text-lg p-2 pl-3 mb-4'
-                    autocomplete='off' maxlength='30'>
+                <input id='testSubSpecies' class='input hidden text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='30'>
+                <input id='testSpeciesOther' class='input hidden text-lg p-2 pl-3 mb-4' autocomplete='off'
+                    maxlength='30'>
 
-                <label class='text-base text-gray-500 px-2'>
+                <label for='testMonth' class='text-base text-gray-500 px-2'>
                     Date taken <p class='inline text-sm'>(MM/YYYY)</p>
                 </label>
                 <div class='flex'>
-                    <input placeholder='Month' id='testMonth' type='number' class='input text-lg p-2 pl-3 mb-4' min='1'
-                        max='12' autocomplete='off' required>
-                    <input placeholder='Year' id='testYear' type='number' class='input text-lg p-2 pl-3 mb-4 ml-2'
-                        min='1900' autocomplete='off' required>
+                    <input id='testMonth' type='number' class='input text-lg p-2 pl-3 mb-4' min='1' max='12'
+                        autocomplete='off' required>
+                    <input id='testYear' type='number' class='input text-lg p-2 pl-3 mb-4 ml-2' min='1900'
+                        autocomplete='off' required>
                 </div>
 
-                <label class='text-base text-gray-500 px-2'>Score</label>
-                <input placeholder='Test score' id='testScore' type='number' class='input text-lg p-2 pl-3 mb-4' min='0'
-                    max='9999' autocomplete='off' required>
+                <label for='testScore' class='text-base text-gray-500 px-2'>Score</label>
+                <input id='testScore' type='number' class='input text-lg p-2 pl-3 mb-4' min='0' max='9999'
+                    autocomplete='off' required>
 
-                <div class='flex'>
-                    <input placeholder='Reading/Writing score' id='readingTestScore' type='number'
-                        class='input hidden text-lg p-2 pl-3 mb-4' min='0' max='9999' autocomplete='off'>
-                    <input placeholder='Math score' id='mathTestScore' type='number'
-                        class='input hidden text-lg p-2 pl-3 mb-4 ml-2' min='0' max='9999' autocomplete='off'>
+                <div class='hidden w-full' id='testSubScoreDiv'>
+                    <div class='w-full'>
+                        <label for='readingTestScore' class='text-base text-gray-500 px-2'>Reading/Writing</label>
+                        <input id='readingTestScore' type='number' class='input text-lg p-2 pl-3 mb-4' min='0'
+                            max='9999' autocomplete='off'>
+                    </div>
+                    <div class='w-full'>
+                        <label for='mathTestScore' class='text-base text-gray-500 px-4'>Math</label>
+                        <input id='mathTestScore' type='number' class='input text-lg p-2 pl-3 mb-4 ml-2' min='0'
+                            max='9999' autocomplete='off'>
+                    </div>
                 </div>
 
                 <button id='addTestBtn' type='submit'
@@ -486,7 +487,7 @@
 
                 <h1 class='text-2xl font-medium mb-6'>Edit test</h1>
 
-                <label class='text-base text-gray-500 px-2'>Type</label>
+                <label for='selTestSpeciesEdit' class='text-base text-gray-500 px-2'>Type</label>
                 <select id='selTestSpeciesEdit' class='input text-lg p-2 mb-4' onchange='selTestSpeciesEditFunc()'>
                     <optgroup label='Select a type'>
                         <option value='ACT'>ACT</option>
@@ -499,29 +500,37 @@
                     </optgroup>
                 </select>
 
-                <input placeholder='Course' id='testSubSpeciesEdit' class='input hidden text-lg p-2 pl-3 mb-4'
-                    autocomplete='off' maxlength='30'>
-                <input placeholder='Test name' id='testSpeciesOtherEdit' class='input hidden text-lg p-2 pl-3 mb-4'
-                    autocomplete='off' maxlength='30'>
+                <input id='testSubSpeciesEdit' class='input hidden text-lg p-2 pl-3 mb-4' autocomplete='off'
+                    maxlength='30'>
+                <input id='testSpeciesOtherEdit' class='input hidden text-lg p-2 pl-3 mb-4' autocomplete='off'
+                    maxlength='30'>
 
-                <label class='text-base text-gray-500 px-2'>
+                <label for='testMonthEdit' class='text-base text-gray-500 px-2'>
                     Date taken <p class='inline text-sm'>(MM/YYYY)</p>
                 </label>
                 <div class='flex'>
-                    <input placeholder='Month' id='testMonthEdit' type='number' class='input text-lg p-2 pl-3 mb-4 mr-1'
-                        min='1' max='12' autocomplete='off' required>
-                    <input placeholder='Year' id='testYearEdit' type='number' class='input text-lg p-2 pl-3 mb-4 ml-1'
-                        min='1900' autocomplete='off' required>
+                    <input id='testMonthEdit' type='number' class='input text-lg p-2 pl-3 mb-4 mr-1' min='1' max='12'
+                        autocomplete='off' required>
+                    <input id='testYearEdit' type='number' class='input text-lg p-2 pl-3 mb-4 ml-1' min='1900'
+                        autocomplete='off' required>
                 </div>
 
-                <label class='text-base text-gray-500 px-2'>Score</label>
-                <input placeholder='Test score' id='testScoreEdit' type='number' class='input text-lg p-2 pl-3 mb-4'
-                    min='0' max='9999' autocomplete='off' required>
+                <label for='testScoreEdit' class='text-base text-gray-500 px-2'>Score</label>
+                <input id='testScoreEdit' type='number' class='input text-lg p-2 pl-3 mb-4' min='0' max='9999'
+                    autocomplete='off' required>
 
-                <input placeholder='Reading/Writing score' id='readingTestScoreEdit' type='number' min='0' max='9999'
-                    class='input hidden text-lg p-2 pl-3 mb-4' autocomplete='off'>
-                <input placeholder='Math score' id='mathTestScoreEdit' type='number' min='0' max='9999'
-                    class='input hidden text-lg p-2 pl-3 mb-4' autocomplete='off'>
+                <div class='hidden w-full' id='testSubScoreDivEdit'>
+                    <div class='w-full'>
+                        <label for='readingTestScoreEdit' class='text-base text-gray-500 px-2'>Reading/Writing</label>
+                        <input id='readingTestScoreEdit' type='number' class='input text-lg p-2 pl-3 mb-4' min='0'
+                            max='9999' autocomplete='off'>
+                    </div>
+                    <div class='w-full'>
+                        <label for='mathTestScoreEdit class=' text-base text-gray-500 px-4'>Math</label>
+                        <input id='mathTestScoreEdit' type='number' class='input text-lg p-2 pl-3 mb-4 ml-2' min='0'
+                            max='9999' autocomplete='off'>
+                    </div>
+                </div>
 
                 <button id='saveTestBtn' type='submit'
                     class='text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent text-left transition-all px-3 py-2 mt-4'><i
@@ -599,16 +608,16 @@
 
                 <h1 class='text-2xl font-medium mb-6'>Edit graduation countdown</h1>
 
-                <label class='text-base text-gray-500 px-2'>
-                    Graduation date <p class='inline text-sm'>(DD/MM/YYYY)</p>
+                <label for='gradYear' class='text-base text-gray-500 px-2'>
+                    Graduation date <p class='inline text-sm'>(YYYY/MM/DD)</p>
                 </label>
                 <div class='flex'>
-                    <input placeholder='Day' id='gradDay' type='number' class='input text-lg p-2 pl-3 mb-4 mr-2' min='1'
-                        max='31' autocomplete='off' required>
-                    <input placeholder='Month' id='gradMonth' type='number' class='input text-lg p-2 pl-3 mb-4 mr-2'
-                        min='1' max='12' autocomplete='off' required>
-                    <input placeholder='Year' id='gradYear' type='number' class='input text-lg p-2 pl-3 mb-4'
+                    <input id='gradYear' type='number' placeholder='YYYY' class='input text-lg p-2 pl-3 mb-4'
                         autocomplete='off' required>
+                    <input id='gradMonth' type='number' placeholder='MM' class='input text-lg p-2 pl-3 mb-4 ml-2'
+                        min='1' max='12' autocomplete='off' required>
+                    <input id='gradDay' type='number' placeholder='DD' class='input text-lg p-2 pl-3 mb-4 ml-2' min='1'
+                        max='31' autocomplete='off' required>
                 </div>
 
                 <button id='saveDateBtn' type='submit'
@@ -636,25 +645,26 @@
 
                 <h1 class='text-2xl font-medium mb-6'>Change advanced course weights</h1>
 
-                <label class='text-base text-gray-500 px-2'>Advanced/Accelerated</label>
-                <input placeholder='Advanced weight' id='advWeightInp' class='input text-lg p-2 pl-3 mb-4'
-                    autocomplete='off' min='0' max='2' value='0' required>
+                <label for='advWeightInp' class='text-base text-gray-500 px-2'>Advanced/Accelerated weight</label>
+                <input id='advWeightInp' class='input text-lg p-2 pl-3 mb-4' autocomplete='off' min='0' max='2'
+                    value='0' required>
 
-                <label class='text-base text-gray-500 px-2'>Honors</label>
-                <input placeholder='Honors weight' id='honWeightInp' class='input text-lg p-2 pl-3 mb-4'
-                    autocomplete='off' min='0' max='2' value='0.5' required>
+                <label for='honWeightInp class=' text-base text-gray-500 px-2'>Honors weight</label>
+                <input id='honWeightInp' class='input text-lg p-2 pl-3 mb-4' autocomplete='off' min='0' max='2'
+                    value='0.5' required>
 
-                <label class='text-base text-gray-500 px-2'>College</label>
-                <input placeholder='College weight' id='colWeightInp' class='input text-lg p-2 pl-3 mb-4'
-                    autocomplete='off' min='0' max='2' value='0' required>
+                <label for='colWeightInp' class='text-base text-gray-500 px-2'>College weight</label>
+                <input id='colWeightInp' class='input text-lg p-2 pl-3 mb-4' autocomplete='off' min='0' max='2'
+                    value='0' required>
 
-                <label class='text-base text-gray-500 px-2'>Advanced Placement (AP)</label>
-                <input placeholder='AP weight' id='apWeightInp' class='input text-lg p-2 pl-3 mb-4' autocomplete='off'
-                    min='0' max='2' value='1' required>
+                <label for='apWeightInp' class='text-base text-gray-500 px-2'>Advanced Placement (AP) weight</label>
+                <input id='apWeightInp' class='input text-lg p-2 pl-3 mb-4' autocomplete='off' min='0' max='2' value='1'
+                    required>
 
-                <label class='text-base text-gray-500 px-2'>International Baccalaureate (IB)</label>
-                <input placeholder='IB weight' id='ibWeightInp' class='input text-lg p-2 pl-3 mb-4' autocomplete='off'
-                    min='0' max='2' value='1' required>
+                <label for='ibWeightInp' class='text-base text-gray-500 px-2'>International Baccalaureate (IB)
+                    weight</label>
+                <input id='ibWeightInp' class='input text-lg p-2 pl-3 mb-4' autocomplete='off' min='0' max='2' value='1'
+                    required>
 
                 <button id='saveWeightsBtn' type='submit'
                     class='text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent text-left transition-all px-3 py-2 mt-4'><i
@@ -719,18 +729,19 @@
             </button>
             <button
                 class='planBtns w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-8 py-4 transition-all'
-                onclick='showExtra()'>
-                <h1 class='tracking-wide'>Extracurriculars</h1>
+                onclick='showTests()'>
+                <h1 class='tracking-wide'>Tests</h1>
             </button>
             <button
                 class='planBtns w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-8 py-4 transition-all'
-                onclick='showTests()'>
-                <h1 class='tracking-wide'>Testing</h1>
+                onclick='showExtra()'>
+                <h1 class='tracking-wide'>Extracurriculars</h1>
             </button>
 
-            <div class='font-LexendDeca block border-t-2 border-gray-300 font-medium px-8 py-4 mt-4'>
-                <div><button class='gpa hidden m-0' id='gpaCum' onclick='openGPA()'></button></div>
-                <div><button class='wGpa hidden m-0' id='wGpaCum' onclick='openGPA()'></button></div>
+            <div
+                class='font-LexendDeca block border-t-2 border-gray-300 dark:border-gray-700 font-medium px-8 py-4 mt-4'>
+                <div><button class='gpa hidden' id='gpaCum' onclick='openGPA()'></button></div>
+                <div><button class='wGpa hidden' id='wGpaCum' onclick='openGPA()'></button></div>
             </div>
 
             <div class='font-LexendDeca md:hidden block border-t-2 border-gray-300 font-medium text-lg mt-4'>
@@ -753,7 +764,7 @@
 
             <div class='mb-12'>
                 <div class='font-medium px-4'>
-                    <h2 class='text-xl'>Grade 9 (Freshman)</h2>
+                    <h2 class='text-xl font-Calistoga'>Grade 9 (Freshman)</h2>
                     <div class='block font-medium mb-3'>
                         <button class='attr hidden' id='diff9' onclick='openDiff()'></button>
                         <!-- <button class='attr listPercent hidden' id='diffPercent9' onclick='openDiffPercent()'></button> -->
@@ -770,7 +781,7 @@
 
             <div class='mb-12'>
                 <div class='font-medium px-4'>
-                    <h2 class='text-xl'>Grade 10 (Sophomore)</h2>
+                    <h2 class='text-xl font-Calistoga'>Grade 10 (Sophomore)</h2>
                     <div class='block font-medium mb-3'>
                         <button class='attr hidden' id='diff10' onclick='openDiff()'></button>
                         <!-- <button class='attr listPercent hidden' id='diffPercent10' onclick='openDiffPercent()'></button> -->
@@ -787,7 +798,7 @@
 
             <div class='mb-12'>
                 <div class='font-medium px-4'>
-                    <h2 class='text-xl'>Grade 11 (Junior)</h2>
+                    <h2 class='text-xl font-Calistoga'>Grade 11 (Junior)</h2>
                     <div class='block font-medium mb-3'>
                         <button class='attr hidden' id='diff11' onclick='openDiff()'></button>
                         <!-- <button class='attr listPercent hidden' id='diffPercent11' onclick='openDiffPercent()'></button> -->
@@ -804,7 +815,7 @@
 
             <div class='mb-12'>
                 <div class='font-medium px-4'>
-                    <h2 class='text-xl'>Grade 12 (Senior)</h2>
+                    <h2 class='text-xl font-Calistoga'>Grade 12 (Senior)</h2>
                     <div class='block font-medium mb-3'>
                         <button class='attr hidden' id='diff12' onclick='openDiff()'></button>
                         <!-- <button class='attr listPercent hidden' id='diffPercent12' onclick='openDiffPercent()'></button> -->
@@ -822,7 +833,7 @@
 
             <div class='mb-12'>
                 <div class='font-medium px-4'>
-                    <h2 class='text-xl'>Extra Courses</h2>
+                    <h2 class='text-xl font-Calistoga'>Extra Courses</h2>
                     <div class='block font-medium mb-3'>
                         <button class='attr hidden' id='diff13' onclick='openDiff()'></button>
                         <!-- <button class='attr listPercent hidden' id='diffPercent13' onclick='openDiffPercent()'></button> -->
@@ -842,7 +853,7 @@
         <div id='actsDiv' class='hidden w-full px-4 md:px-14 lg:px-24 xl:px-32 mt-12 md:mt-20'>
 
             <div class='mb-12'>
-                <h2 class='text-xl font-medium px-4 mb-3'>Extracurriculars</h2>
+                <h2 class='text-xl font-Calistoga font-medium px-4 mb-3'>Extracurriculars</h2>
                 <ul id='listActs'> <!-- class='grid grid-cols-2' -->
                 </ul>
                 <button
@@ -856,7 +867,7 @@
         <div id='testsDiv' class='hidden w-full px-4 md:px-14 lg:px-24 xl:px-32 mt-12 md:mt-20'>
 
             <div class='mb-12'>
-                <h2 class='text-xl font-medium px-4 mb-3'>Testing</h2>
+                <h2 class='text-xl font-Calistoga font-medium px-4 mb-3'>Tests</h2>
                 <ul id='listTests'> <!-- class='grid grid-cols-2' -->
                 </ul>
                 <button
