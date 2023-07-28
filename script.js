@@ -1450,11 +1450,7 @@ function updateAllItems() {
 
         /*   2 / 8 / 2023 ... 7 / 28 / 2023   */
 
-        if (tMonthInput.length == 1) {
-            test.month = '0' + localStorage.getItem(test.id + 'Month');
-        } else {
-            test.month = localStorage.getItem(test.id + 'Month');
-        }
+        test.month = localStorage.getItem(test.id + 'Month');
         test.year = localStorage.getItem(test.id + 'Year');
         test.score = localStorage.getItem(test.id + 'Score');
         test.readScore = localStorage.getItem(test.id + 'ReadingScore');
@@ -1504,16 +1500,6 @@ function updateAllItems() {
         div.appendChild(btn);
 
         test.appendChild(div);
-
-        localStorage.setItem(test.id + 'Species', test.species);
-        localStorage.setItem(test.id + 'SubSpecies', test.subSpecies);
-        localStorage.setItem(test.id + 'SpeciesOther', test.speciesOther);
-        localStorage.setItem(test.id + 'Month', test.month);
-        localStorage.setItem(test.id + 'Year', test.year);
-        localStorage.setItem(test.id + 'Score', test.score);
-        localStorage.setItem(test.id + 'ReadingScore', test.readScore);
-        localStorage.setItem(test.id + 'MathScore', test.mathScore);
-        localStorage.setItem(test.id + 'Name', test.name);
 
         saveLists();
         getLists();
