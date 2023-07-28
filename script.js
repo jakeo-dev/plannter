@@ -43,7 +43,7 @@ saveLists();
 calcListDiff();
 calcGPA();
 calcCumGPA();
-//updateAllItems();
+updateAllItems();
 
 function toggleMenu() {
     document.getElementById('optionsDiv').classList.toggle('hidden');
