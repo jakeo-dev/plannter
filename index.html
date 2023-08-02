@@ -44,7 +44,7 @@
                 <label for='courseTitle' class='text-base text-gray-500 px-2'>Course name</label>
                 <input id='courseTitle' class='input text-lg p-2 pl-3 m-0 mb-4' autocomplete='off' maxlength='60'
                     required>
-                <h2 class='hidden text-sm text-teal-700 px-2 mt-1 mb-4' id='diffTip'><b class='font-extrabold'>Tip:</b>
+                <h2 class='hidden text-sm text-teal-700 px-2 mt-1 mb-4' id='diffTip'><b class='font-semibold'>Tip:</b>
                     Instead of including the advancement level of your course in the name, set it in the Advancement
                     level section</h2>
 
@@ -159,8 +159,8 @@
                             <option value='0.25'>Effortless</option>
                             <option value='0.5'>Easy</option>
                             <option value='1' selected>Regular</option>
-                            <option value='2'>Difficult</option>
-                            <option value='3'>Challenging</option>
+                            <option value='1.5'>Difficult</option>
+                            <option value='1.75'>Challenging</option>
                         </optgroup>
                     </select>
                 </div>
@@ -194,7 +194,7 @@
                 <input id='courseTitleEdit' class='input text-lg p-2 pl-3 m-0 mb-4' autocomplete='off' maxlength='60'
                     required>
                 <h2 class='hidden text-sm text-teal-700 px-2 mt-1 mb-4' id='diffTipEdit'><b
-                        class='font-extrabold'>Tip:</b>
+                        class='font-semibold'>Tip:</b>
                     Instead of including the advancement level of your course in the name, set it in the Advancement
                     level section</h2>
 
@@ -312,8 +312,8 @@
                             <option value='0.25'>Effortless</option>
                             <option value='0.5'>Easy</option>
                             <option value='1' selected>Regular</option>
-                            <option value='2'>Difficult</option>
-                            <option value='3'>Challenging</option>
+                            <option value='1.5'>Difficult</option>
+                            <option value='1.75'>Challenging</option>
                         </optgroup>
                     </select>
                 </div>
@@ -785,8 +785,9 @@
 
             <div
                 class='font-LexendDeca block border-t-2 border-gray-300 dark:border-gray-700 font-medium px-8 py-4 mt-4'>
-                <div><button class='gpa hidden' id='gpaCum' onclick='openGPA()'></button></div>
-                <div><button class='wGpa hidden' id='wGpaCum' onclick='openGPA()'></button></div>
+                <div><button class='attr hidden' id='diffCum' onclick='openDiff()'></button></div>
+                <div><button class='attr gpa hidden' id='gpaCum' onclick='openGPA()'></button></div>
+                <div><button class='attr wGpa hidden' id='wGpaCum' onclick='openGPA()'></button></div>
             </div>
 
             <div class='font-LexendDeca md:hidden block border-t-2 border-gray-300 font-medium text-lg mt-4'>

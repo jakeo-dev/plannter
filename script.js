@@ -42,6 +42,7 @@ getCD();
 calcListDiff();
 calcGPA();
 calcCumGPA();
+calcCumDiff();
 
 function toggleMenu() {
     document.getElementById('optionsDiv').classList.toggle('hidden');
@@ -413,6 +414,7 @@ document.getElementById('addCourseBtn').addEventListener('click', function (even
         calcListDiff();
         calcGPA();
         calcCumGPA();
+        calcCumDiff();
         saveLists();
         hide();
     }
@@ -781,6 +783,7 @@ function clickTrash(el) {
         calcListDiff();
         calcGPA();
         calcCumGPA();
+        calcCumDiff();
         saveLists();
     }
 }
@@ -896,6 +899,7 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
         calcListDiff();
         calcGPA();
         calcCumGPA();
+        calcCumDiff();
 
         let pen = document.getElementsByClassName('pen');
         for (i = 0; i < pen.length; i++) {
@@ -1295,9 +1299,9 @@ function calcListDiff() { // calcs diffs of ALL lists
             }
 
             if (document.getElementById(course.id + 'Diff2').className.includes('challenging')) {
-                course.diff2 = 3;
+                course.diff2 = 1.75;
             } else if (document.getElementById(course.id + 'Diff2').className.includes('difficult')) {
-                course.diff2 = 2;
+                course.diff2 = 1.5;
             } else if (document.getElementById(course.id + 'Diff2').className.includes('easy')) {
                 course.diff2 = 0.5;
             } else if (document.getElementById(course.id + 'Diff2').className.includes('effortless')) {
@@ -1346,6 +1350,43 @@ function calcListDiff() { // calcs diffs of ALL lists
             document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Extreme';
             document.getElementById('diff' + i).className = 'attr lev6';
         }
+    }
+}
+
+function calcCumDiff() {
+    let cumDiffSum = 0;
+    let filledLists = 0;
+
+    for (let i = 9; i <= 13; i++) {
+        if (!document.getElementById('diff' + i).className.includes('hidden')) {
+            cumDiffSum += +localStorage.getItem('list' + i + 'Diff');
+            filledLists++;
+        }
+    }
+
+    cumDiff = (cumDiffSum / filledLists).toFixed(2);
+
+    if (filledLists < 1 || cumDiff <= 0) {
+        document.getElementById('diffCum').innerText = '';
+        document.getElementById('diffCum').className = 'attr hidden';
+    } else if (cumDiff < 1) {
+        document.getElementById('diffCum').innerText = cumDiff + ' Easy';
+        document.getElementById('diffCum').className = 'attr lev1';
+    } else if (cumDiff < 2) {
+        document.getElementById('diffCum').innerText = cumDiff + ' Normal';
+        document.getElementById('diffCum').className = 'attr lev2';
+    } else if (cumDiff < 3) {
+        document.getElementById('diffCum').innerText = cumDiff + ' Hard';
+        document.getElementById('diffCum').className = 'attr lev3';
+    } else if (cumDiff < 4) {
+        document.getElementById('diffCum').innerText = cumDiff + ' Difficult';
+        document.getElementById('diffCum').className = 'attr lev4';
+    } else if (cumDiff < 5) {
+        document.getElementById('diffCum').innerText = cumDiff + ' Challenging';
+        document.getElementById('diffCum').className = 'attr lev5';
+    } else if (cumDiff >= 5) {
+        document.getElementById('diffCum').innerText = cumDiff + ' Extreme';
+        document.getElementById('diffCum').className = 'attr lev6';
     }
 }
 
@@ -1446,9 +1487,9 @@ function getDiff(diff) {
 }
 
 function getDiff2(diff2) {
-    if (diff2 == '3') {
+    if (diff2 == '1.75') {
         return 'attr challenging hidden';
-    } else if (diff2 == '2') {
+    } else if (diff2 == '1.5') {
         return 'attr difficult hidden';
     } else if (diff2 == '0.5') {
         return 'attr easy hidden';

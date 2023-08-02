@@ -1543,6 +1543,10 @@ video {
   font-weight: 500;
 }
 
+.font-semibold {
+  font-weight: 600;
+}
+
 .tracking-wide {
   letter-spacing: 0.025em;
 }
