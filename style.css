@@ -736,6 +736,8 @@ video {
 }
 
 .grade {
+  margin-left: 0px;
+  margin-right: 0px;
   margin-right: 0.5rem;
   margin-top: 0px;
   border-radius: 0.375rem;

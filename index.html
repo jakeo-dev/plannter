@@ -80,7 +80,7 @@
             <input placeholder='Number of credits earned' id='credits' type='number'
                 class='input text-lg p-2 pl-3 m-0 mb-4' autocomplete='off'> -->
 
-                <label for='selLetterGrade' class='text-base text-gray-500 px-2'>Letter grade</label>
+                <label for='selLetterGrade' class='text-base text-gray-500 px-2'>Letter grade (Semester 1)</label>
                 <div class='flex h-auto'>
                     <select id='selLetterGrade' class='input text-lg p-2 mb-4 h-full' onchange='selLetterGradeFunc()'>
                         <optgroup label='Select a letter grade'>
@@ -104,6 +104,32 @@
 
                     <input id='percentGrade' type='number' class='input hidden text-lg p-2 pl-3 m-0 ml-2 h-full' min='0'
                         max='100' autocomplete='off'>
+                </div>
+
+                <label for='selLetterGrade2' class='text-base text-gray-500 px-2'>Letter grade (Semester 2)</label>
+                <div class='flex h-auto'>
+                    <select id='selLetterGrade2' class='input text-lg p-2 mb-4 h-full' onchange='selLetterGrade2Func()'>
+                        <optgroup label='Select a letter grade'>
+                            <option value='none'>None</option>
+                            <option value='A+'>A+</option>
+                            <option value='A'>A</option>
+                            <option value='A-'>A-</option>
+                            <option value='B+'>B+</option>
+                            <option value='B'>B</option>
+                            <option value='B-'>B-</option>
+                            <option value='C+'>C+</option>
+                            <option value='C'>C</option>
+                            <option value='C-'>C-</option>
+                            <option value='D+'>D+</option>
+                            <option value='D'>D</option>
+                            <option value='D-'>D-</option>
+                            <option value='F'>F</option>
+                            <option value='Use percent'>Use percent</option>
+                        </optgroup>
+                    </select>
+
+                    <input id='percentGrade2' type='number' class='input hidden text-lg p-2 pl-3 m-0 ml-2 h-full'
+                        min='0' max='100' autocomplete='off'>
                 </div>
 
                 <label for='selDiff' class='text-base text-gray-500 px-2'>Advancement level</label>
@@ -204,7 +230,7 @@
             <input placeholder='Number of credits earned' id='creditsEdit' type='number'
                 class='input text-lg p-2 pl-3 m-0 mb-4' autocomplete='off'> -->
 
-                <label for='selLetterGradeEdit' class='text-base text-gray-500 px-2'>Letter grade</label>
+                <label for='selLetterGradeEdit' class='text-base text-gray-500 px-2'>Letter grade (Semester 1)</label>
                 <div class='flex h-auto'>
                     <select id='selLetterGradeEdit' class='input text-lg p-2 mb-4 h-full'
                         onchange='selLetterGradeEditFunc()'>
@@ -228,6 +254,33 @@
                     </select>
 
                     <input id='percentGradeEdit' type='number' class='input hidden text-lg p-2 pl-3 m-0 ml-2 h-full'
+                        min='0' max='100' autocomplete='off'>
+                </div>
+
+                <label for='selLetterGrade2Edit' class='text-base text-gray-500 px-2'>Letter grade (Semester 2)</label>
+                <div class='flex h-auto'>
+                    <select id='selLetterGrade2Edit' class='input text-lg p-2 mb-4 h-full'
+                        onchange='selLetterGrade2EditFunc()'>
+                        <optgroup label='Select a letter grade'>
+                            <option value='none'>None</option>
+                            <option value='A+'>A+</option>
+                            <option value='A'>A</option>
+                            <option value='A-'>A-</option>
+                            <option value='B+'>B+</option>
+                            <option value='B'>B</option>
+                            <option value='B-'>B-</option>
+                            <option value='C+'>C+</option>
+                            <option value='C'>C</option>
+                            <option value='C-'>C-</option>
+                            <option value='D+'>D+</option>
+                            <option value='D'>D</option>
+                            <option value='D-'>D-</option>
+                            <option value='F'>F</option>
+                            <option value='Use percent'>Use percent</option>
+                        </optgroup>
+                    </select>
+
+                    <input id='percentGrade2Edit' type='number' class='input hidden text-lg p-2 pl-3 m-0 ml-2 h-full'
                         min='0' max='100' autocomplete='off'>
                 </div>
 

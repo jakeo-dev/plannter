@@ -64,7 +64,7 @@
   }
 
   .grade {
-    @apply bg-gray-500 text-gray-100 rounded-md px-2 mr-2 mt-0;
+    @apply bg-gray-500 text-gray-100 rounded-md px-2 mx-0 mr-2 mt-0;
   }
 
   .desc {

@@ -134,6 +134,22 @@ function selLetterGradeEditFunc() {
     }
 }
 
+function selLetterGrade2Func() {
+    document.getElementById('percentGrade2').classList.add('hidden');
+
+    if (document.getElementById('selLetterGrade2').value == 'Use percent') {
+        document.getElementById('percentGrade2').classList.remove('hidden');
+    }
+}
+
+function selLetterGrade2EditFunc() {
+    document.getElementById('percentGrade2Edit').classList.add('hidden');
+
+    if (document.getElementById('selLetterGrade2Edit').value == 'Use percent') {
+        document.getElementById('percentGrade2Edit').classList.remove('hidden');
+    }
+}
+
 function openAddCourse(num) {
     document.getElementById('courseModal').classList.remove('fadeIn');
     document.getElementById('courseModal').classList.add('fadeOut');
@@ -257,12 +273,14 @@ document.getElementById('addCourseBtn').addEventListener('click', function (even
     let cDiff2Input = document.getElementById('selDiff2').value;
     let cLetterGradeInput = document.getElementById('selLetterGrade').value;
     let cPercentGradeInput = document.getElementById('percentGrade').value;
+    let cLetterGradeInput2 = document.getElementById('selLetterGrade2').value;
+    let cPercentGradeInput2 = document.getElementById('percentGrade2').value;
 
     if (cTitleInput.length > 60) {
         alert('Course title is too long');
     } else if (cTitleInput == '') {
         alert('Enter the title of your course');
-    } else if (cLetterGradeInput == 'Use percent' && (Number(cPercentGradeInput) > 100 || Number(cPercentGradeInput) < 0)) {
+    } else if ((cLetterGradeInput == 'Use percent' && (Number(cPercentGradeInput) > 100 || Number(cPercentGradeInput) < 0)) || (cLetterGradeInput2 == 'Use percent' && (Number(cPercentGradeInput2) > 100 || Number(cPercentGradeInput2) < 0))) {
         alert('Grade not possible');
     } else {
         event.preventDefault();
@@ -281,12 +299,28 @@ document.getElementById('addCourseBtn').addEventListener('click', function (even
             course.grade = cLetterGradeInput;
         }
 
+        if (cLetterGradeInput2 == 'Use percent') {
+            letter = getLetter(cPercentGradeInput2);
+            course.grade2 = letter + ' ' + ((Math.round((cPercentGradeInput2) * 100)) / 100) + '%';
+        } else {
+            course.grade2 = cLetterGradeInput2;
+        }
+
         let div = document.createElement('div');
         div.id = course.id + 'Grade';
-        [diffText, diffClass] = getDiff(course.diff);
         let t = document.createTextNode(course.grade);
         div.className = 'attr grade';
         if (course.grade == 'none') {
+            div.classList.add('hidden');
+        }
+        div.appendChild(t);
+        course.appendChild(div);
+
+        div = document.createElement('div');
+        div.id = course.id + 'Grade2';
+        t = document.createTextNode(course.grade2);
+        div.className = 'attr grade';
+        if (course.grade2 == 'none') {
             div.classList.add('hidden');
         }
         div.appendChild(t);
@@ -352,6 +386,7 @@ document.getElementById('addCourseBtn').addEventListener('click', function (even
         localStorage.setItem(course.id + 'Diff2', course.diff2);
         localStorage.setItem(course.id + 'DiffFull', course.diffFull);
         localStorage.setItem(course.id + 'Grade', course.grade);
+        localStorage.setItem(course.id + 'Grade2', course.grade2);
 
         document.getElementById('list' + course.gradeLevel).appendChild(course);
 
@@ -669,6 +704,16 @@ function clickPen(c) {
         document.getElementById('selLetterGradeEdit').value = 'none';
     }
 
+    if (course.grade2 && course.grade2.includes('%')) {
+        document.getElementById('selLetterGrade2Edit').value = 'Use percent';
+        document.getElementById('percentGrade2Edit').value = course.grade2.replace('%', '').replace('- ', '').replace('+ ', '').replace('A', '').replace('B', '').replace('C', '').replace('D', '').replace('F', '').replace(' ', '');
+        document.getElementById('percentGrade2Edit').classList.remove('hidden');
+    } else if (course.grade2) {
+        document.getElementById('selLetterGrade2Edit').value = course.grade2;
+    } else {
+        document.getElementById('selLetterGrade2Edit').value = 'none';
+    }
+
     if (course.diff2 != 1) {
         document.getElementById('advOptEditCI').classList.add('rotate-90');
         document.getElementById('advOptionsEditC').classList.remove('hidden');
@@ -744,12 +789,14 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
     let cTitleInput = document.getElementById('courseTitleEdit').value.trim();
     let cLetterGradeInput = document.getElementById('selLetterGradeEdit').value;
     let cPercentGradeInput = document.getElementById('percentGradeEdit').value;
+    let cLetterGrade2Input = document.getElementById('selLetterGrade2Edit').value;
+    let cPercentGrade2Input = document.getElementById('percentGrade2Edit').value;
 
     if (cTitleInput.length > 60) {
         alert('Course title is too long');
     } else if (cTitleInput == '') {
         alert('Enter the title of your course');
-    } else if (cPercentGradeInput != '' && (Number(cPercentGradeInput) > 100 || Number(cPercentGradeInput) < 0)) {
+    } else if ((cPercentGradeInput != '' && (Number(cPercentGradeInput) > 100 || Number(cPercentGradeInput) < 0)) || (cPercentGrade2Input != '' && (Number(cPercentGrade2Input) > 100 || Number(cPercentGrade2Input) < 0))) {
         alert('Grade not possible');
     } else {
         event.preventDefault();
@@ -778,7 +825,14 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
             course.grade = cLetterGradeInput;
         }
 
-        course.innerHTML = `<div id='${course.id}Grade'>${course.grade}</div><span id='${course.id}Text'>${course.name}</span><div id='${course.id}Diff'>${course.diff}</div>`;
+        if (cLetterGrade2Input == 'Use percent') {
+            letter = getLetter(cPercentGrade2Input);
+            course.grade2 = letter + ' ' + ((Math.round((cPercentGrade2Input) * 100)) / 100) + '%';
+        } else {
+            course.grade2 = cLetterGrade2Input;
+        }
+
+        course.innerHTML = `<div id='${course.id}Grade'>${course.grade}</div><div id='${course.id}Grade2'>${course.grade2}</div><span id='${course.id}Text'>${course.name}</span><div id='${course.id}Diff'>${course.diff}</div>`;
 
         div = document.createElement('div');
         div.className = 'optDiv';
@@ -808,8 +862,12 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
         document.getElementById(course.id + 'Diff').innerText = diffText;
 
         document.getElementById(course.id + 'Grade').className = 'attr grade';
+        document.getElementById(course.id + 'Grade2').className = 'attr grade';
         if (course.grade == 'none') {
             document.getElementById(course.id + 'Grade').classList.add('hidden');
+        }
+        if (course.grade2 == 'none') {
+            document.getElementById(course.id + 'Grade2').classList.add('hidden');
         }
 
         if (document.getElementById(course.id + 'Diff2') == null || document.getElementById(course.id + 'Diff2') == undefined) {
@@ -830,6 +888,7 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
         localStorage.setItem(course.id + 'Diff2', course.diff2);
         localStorage.setItem(course.id + 'DiffFull', course.diffFull);
         localStorage.setItem(course.id + 'Grade', course.grade);
+        localStorage.setItem(course.id + 'Grade2', course.grade2);
 
         saveLists();
         getLists();
@@ -1168,6 +1227,12 @@ function getCourses() { // gets all stored info of each course
             course.diff2 = localStorage.getItem(course.id + 'Diff2');
             course.diffFull = localStorage.getItem(course.id + 'DiffFull');
             course.grade = localStorage.getItem(course.id + 'Grade');
+            if (localStorage.getItem(course.id + 'Grade2') != null) {
+                course.grade2 = localStorage.getItem(course.id + 'Grade2');
+            } else {
+                course.grade2 = 'none';
+                localStorage.setItem(course.id + 'Grade2', course.grade2);
+            }
         }
     }
 }
@@ -1442,7 +1507,7 @@ function calcGPA() {
     for (let i = 9; i <= 13; i++) {
         let sum = 0;
         let wSum = 0;
-        let ungradedCourses = 0;
+        let ungradedSems = 0;
         let currentItems = document.getElementById('list' + i).getElementsByTagName('li');
 
         for (let j = 0; j < currentItems.length; j++) {
@@ -1460,10 +1525,25 @@ function calcGPA() {
                 course.indGPAGrade = 0;
             } else {
                 course.indGPAGrade = 0;
-                ungradedCourses++;
+                ungradedSems++;
             }
 
-            sum = sum + course.indGPAGrade;
+            if (course.grade2.includes('A')) {
+                course.indGPAGrade2 = 4;
+            } else if (course.grade2.includes('B')) {
+                course.indGPAGrade2 = 3;
+            } else if (course.grade2.includes('C')) {
+                course.indGPAGrade2 = 2;
+            } else if (course.grade2.includes('D')) {
+                course.indGPAGrade2 = 1;
+            } else if (course.grade2.includes('F')) {
+                course.indGPAGrade2 = 0;
+            } else {
+                course.indGPAGrade2 = 0;
+                ungradedSems++;
+            }
+
+            sum = sum + course.indGPAGrade + course.indGPAGrade2;
 
             if (course.grade.includes('A') || course.grade.includes('B') || course.grade.includes('C') || course.grade.includes('D') || course.grade.includes('F')) {
                 if (document.getElementById(course.id + 'Diff').innerText == 'IB') {
@@ -1483,14 +1563,32 @@ function calcGPA() {
                 course.wIndGPAGrade = 0;
             }
 
-            wSum = wSum + course.wIndGPAGrade;
+            if (course.grade2.includes('A') || course.grade2.includes('B') || course.grade2.includes('C') || course.grade2.includes('D') || course.grade2.includes('F')) {
+                if (document.getElementById(course.id + 'Diff').innerText == 'IB') {
+                    course.wIndGPAGrade2 = +course.indGPAGrade2 + +ibWeight;
+                } else if (document.getElementById(course.id + 'Diff').innerText == 'AP') {
+                    course.wIndGPAGrade2 = +course.indGPAGrade2 + +apWeight;
+                } else if (document.getElementById(course.id + 'Diff').innerText == 'Honors') {
+                    course.wIndGPAGrade2 = +course.indGPAGrade2 + +honWeight;
+                } else if (document.getElementById(course.id + 'Diff').innerText == 'College') {
+                    course.wIndGPAGrade2 = +course.indGPAGrade2 + +colWeight;
+                } else if (document.getElementById(course.id + 'Diff').innerText == 'Advanced') {
+                    course.wIndGPAGrade2 = +course.indGPAGrade2 + +advWeight;
+                } else {
+                    course.wIndGPAGrade2 = course.indGPAGrade2;
+                }
+            } else {
+                course.wIndGPAGrade2 = 0;
+            }
+
+            wSum = wSum + course.wIndGPAGrade + course.wIndGPAGrade2;
         }
 
-        gradedCourses = currentItems.length - ungradedCourses;
-        gpa = (sum / gradedCourses).toFixed(2);
-        wGpa = (wSum / gradedCourses).toFixed(2);
+        gradedSems = (currentItems.length * 2) - ungradedSems;
+        gpa = (sum / gradedSems).toFixed(2);
+        wGpa = (wSum / gradedSems).toFixed(2);
 
-        if (gradedCourses < 1) {
+        if (gradedSems < 1) {
             document.getElementById('gpa' + i).innerText = '';
             document.getElementById('wGpa' + i).innerText = '';
             document.getElementById('gpa' + i).className = 'attr gpa hidden';
@@ -1524,12 +1622,12 @@ function calcCumGPA() {
 
     let cumSum = 0;
     let cumWSum = 0;
-    let cumUngradedCourses = 0;
+    let cumUngradedSems = 0;
     let cumAllItems = 0;
 
     for (let i = 9; i <= 13; i++) {
         let currentItems = document.getElementById('list' + i).getElementsByTagName('li');
-        cumAllItems = cumAllItems + currentItems.length;
+        cumAllItems = cumAllItems + (currentItems.length * 2);
 
         for (let j = 0; j < currentItems.length; j++) {
             course = currentItems[j];
@@ -1546,10 +1644,25 @@ function calcCumGPA() {
                 course.indGPAGrade = 0;
             } else {
                 course.indGPAGrade = 0;
-                cumUngradedCourses++;
+                cumUngradedSems++;
             }
 
-            cumSum = cumSum + course.indGPAGrade;
+            if (course.grade2.includes('A')) {
+                course.indGPAGrade2 = 4;
+            } else if (course.grade2.includes('B')) {
+                course.indGPAGrade2 = 3;
+            } else if (course.grade2.includes('C')) {
+                course.indGPAGrade2 = 2;
+            } else if (course.grade2.includes('D')) {
+                course.indGPAGrade2 = 1;
+            } else if (course.grade2.includes('F')) {
+                course.indGPAGrade2 = 0;
+            } else {
+                course.indGPAGrade2 = 0;
+                cumUngradedSems++;
+            }
+
+            cumSum = cumSum + course.indGPAGrade + course.indGPAGrade2;
 
             if (course.grade.includes('A') || course.grade.includes('B') || course.grade.includes('C') || course.grade.includes('D') || course.grade.includes('F')) {
                 if (document.getElementById(course.id + 'Diff').innerText == 'IB') {
@@ -1569,15 +1682,33 @@ function calcCumGPA() {
                 course.wIndGPAGrade = 0;
             }
 
-            cumWSum = cumWSum + course.wIndGPAGrade;
+            if (course.grade2.includes('A') || course.grade2.includes('B') || course.grade2.includes('C') || course.grade2.includes('D') || course.grade2.includes('F')) {
+                if (document.getElementById(course.id + 'Diff').innerText == 'IB') {
+                    course.wIndGPAGrade2 = +course.indGPAGrade2 + +ibWeight;
+                } else if (document.getElementById(course.id + 'Diff').innerText == 'AP') {
+                    course.wIndGPAGrade2 = +course.indGPAGrade2 + +apWeight;
+                } else if (document.getElementById(course.id + 'Diff').innerText == 'Honors') {
+                    course.wIndGPAGrade2 = +course.indGPAGrade2 + +honWeight;
+                } else if (document.getElementById(course.id + 'Diff').innerText == 'College') {
+                    course.wIndGPAGrade2 = +course.indGPAGrade2 + +colWeight;
+                } else if (document.getElementById(course.id + 'Diff').innerText == 'Advanced') {
+                    course.wIndGPAGrade2 = +course.indGPAGrade2 + +advWeight;
+                } else {
+                    course.wIndGPAGrade2 = course.indGPAGrade2;
+                }
+            } else {
+                course.wIndGPAGrade2 = 0;
+            }
+
+            cumWSum = cumWSum + course.wIndGPAGrade + course.wIndGPAGrade2;
         }
     }
 
-    cumGradedCourses = cumAllItems - cumUngradedCourses;
-    cumGpa = (cumSum / cumGradedCourses).toFixed(2);
-    cumWGpa = (cumWSum / cumGradedCourses).toFixed(2);
+    cumGradedSems = cumAllItems - cumUngradedSems;
+    cumGpa = (cumSum / cumGradedSems).toFixed(2);
+    cumWGpa = (cumWSum / cumGradedSems).toFixed(2);
 
-    if (cumGradedCourses < 1) {
+    if (cumGradedSems < 1) {
         document.getElementById('gpaCum').innerText = '';
         document.getElementById('wGpaCum').innerText = '';
         document.getElementById('gpaCum').className = 'attr gpa hidden';
@@ -1723,6 +1854,9 @@ function hide() {
     document.getElementById('percentGrade').classList.add('hidden');
     document.getElementById('selLetterGrade').value = 'none';
     document.getElementById('percentGrade').value = '';
+    document.getElementById('percentGrade2').classList.add('hidden');
+    document.getElementById('selLetterGrade2').value = 'none';
+    document.getElementById('percentGrade2').value = '';
     input.classList.add('mb-4');
 
     document.getElementById('editCourseModal').classList.add('fadeIn');
@@ -1732,6 +1866,8 @@ function hide() {
     document.getElementById('advOptionsEditC').classList.add('hidden');
     document.getElementById('percentGradeEdit').classList.add('hidden');
     document.getElementById('percentGradeEdit').value = '';
+    document.getElementById('percentGrade2Edit').classList.add('hidden');
+    document.getElementById('percentGrade2Edit').value = '';
     inputE.classList.add('mb-4');
 
     document.getElementById('actModal').classList.add('fadeIn');
