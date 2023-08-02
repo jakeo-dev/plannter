@@ -39,7 +39,6 @@ getCourses();
 getActs();
 getTests();
 getCD();
-saveLists();
 calcListDiff();
 calcGPA();
 calcCumGPA();
@@ -1457,6 +1456,8 @@ function calcGPA() {
                 course.indGPAGrade = 2;
             } else if (course.grade.includes('D')) {
                 course.indGPAGrade = 1;
+            } else if (course.grade.includes('F')) {
+                course.indGPAGrade = 0;
             } else {
                 course.indGPAGrade = 0;
                 ungradedCourses++;
@@ -1541,6 +1542,8 @@ function calcCumGPA() {
                 course.indGPAGrade = 2;
             } else if (course.grade.includes('D')) {
                 course.indGPAGrade = 1;
+            } else if (course.grade.includes('F')) {
+                course.indGPAGrade = 0;
             } else {
                 course.indGPAGrade = 0;
                 cumUngradedCourses++;

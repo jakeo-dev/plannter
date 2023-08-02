@@ -601,10 +601,6 @@ video {
   margin-right: 0.5rem;
 }
 
-.testI {
-  margin-right: 0.5rem;
-}
-
 .input {
   margin-bottom: 0.75rem;
   width: 100%;
@@ -693,10 +689,6 @@ video {
   background-color: rgb(156 163 175 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
-}
-
-.actPos {
-  margin-top: 0px;
 }
 
 .testScore {
