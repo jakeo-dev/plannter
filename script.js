@@ -1014,7 +1014,10 @@ function clickPenAct(a) {
     document.getElementById('actTitleEdit').value = activity.name;
     document.getElementById('actDescEdit').value = activity.desc;
     document.getElementById('selActCategoryEdit').value = activity.category;
-    if (activity.strength == null) activity.strength = 1;
+    if (activity.strength == null) {
+        activity.strength = 1;
+        localStorage.setItem(activity.id + 'Strength', activity.strength);
+    }
     document.getElementById('selStrengthEdit').value = activity.strength;
 
     document.getElementById('editActModal').classList.remove('fadeIn');
@@ -1272,15 +1275,18 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
         document.getElementById(activity.id + 'ActI').ariaLabel = activity.category;
         document.getElementById(activity.id + 'Text').innerText = activity.name;
 
+        if (!document.getElementById(activity.id + 'Desc')) {
+            activity.desc = '';
+            t = document.createTextNode(activity.desc);
+            span = document.createElement('span');
+            span.className = 'desc';
+            span.id = activity.id + 'Desc';
+            span.appendChild(t);
+
+            document.getElementById(activity.id).insertBefore(span, document.getElementById(activity.id).getElementsByClassName('optDiv')[0].nextSibling);
+        }
+
         if (activity.desc != null && activity.desc != '') {
-            if (!document.getElementById(activity.id + 'Desc')) {
-                let span = document.createElement('span');
-                span.className = 'desc';
-                span.id = activity.id + 'Desc';
-                t = document.createTextNode(activity.desc);
-                span.appendChild(t);
-                activity.appendChild(span);
-            }
             document.getElementById(activity.id + 'Desc').innerText = activity.desc;
             document.getElementById(activity.id + 'Desc').classList.remove('hidden');
         } else {
