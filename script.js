@@ -1143,6 +1143,20 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
             document.getElementById(course.id + 'Grade').parentNode.insertBefore(div, document.getElementById(course.id + 'Grade').nextSibling);
         }
 
+        if (!document.getElementById(course.id + 'Text')) {
+            console.log(course.name);
+            console.log(document.getElementById(course.id).innerHTML);
+            console.log(document.getElementById(course.id).innerHTML.replace(course.name, ''));
+            document.getElementById(course.id).innerHTML = document.getElementById(course.id).innerHTML.replace(course.name, '');
+
+            t = document.createTextNode(course.name);
+            span = document.createElement('span');
+            span.id = course.id + 'Text';
+            span.appendChild(t);
+
+            document.getElementById(course.id).insertBefore(span, document.getElementById(course.id + 'Diff'));
+        }
+
         document.getElementById(course.id + 'Grade').innerText = course.grade;
         document.getElementById(course.id + 'Grade2').innerText = course.grade2;
         document.getElementById(course.id + 'Text').innerText = course.name;
