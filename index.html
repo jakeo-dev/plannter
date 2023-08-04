@@ -41,7 +41,7 @@
                 <h1 class='text-2xl font-medium mb-6'>Add course</h1>
 
                 <label for='courseTitle' class='text-base text-gray-500 px-2'>Course name</label>
-                <input id='courseTitle' class='input text-lg p-2 pl-3 m-0 mb-4' autocomplete='off' maxlength='60'
+                <input id='courseTitle' class='input text-lg p-2 pl-3 m-0 mb-4' autocomplete='off' maxlength='80'
                     required>
                 <h2 class='hidden text-sm text-teal-700 px-2 mt-1 mb-4' id='diffTip'><b class='font-semibold'>Tip:</b>
                     Instead of including the advancement level of your course in the name, set it in the Advancement
@@ -58,8 +58,8 @@
                     </optgroup>
                 </select>
 
-                <label for='selSubject' class='text-base text-gray-500 px-2'>Subject</label>
-                <select id='selSubject' class='input text-lg p-2 mb-4'>
+                <label for='selSubject' class='hidden text-base text-gray-500 px-2'>Subject</label>
+                <select id='selSubject' class='hidden input text-lg p-2 mb-4'>
                     <optgroup label='Select a subject'>
                         <option value='History'>History</option>
                         <option value='English'>English</option>
@@ -188,7 +188,7 @@
                 <h1 class='text-2xl font-medium mb-6'>Edit course</h1>
 
                 <label for='courseTitleEdit' class='text-base text-gray-500 px-2'>Course name</label>
-                <input id='courseTitleEdit' class='input text-lg p-2 pl-3 m-0 mb-4' autocomplete='off' maxlength='60'
+                <input id='courseTitleEdit' class='input text-lg p-2 pl-3 m-0 mb-4' autocomplete='off' maxlength='80'
                     required>
                 <h2 class='hidden text-sm text-teal-700 px-2 mt-1 mb-4' id='diffTipEdit'><b
                         class='font-semibold'>Tip:</b>
@@ -206,8 +206,8 @@
                     </optgroup>
                 </select>
 
-                <label for='selSubjectEdit' class='text-base text-gray-500 px-2'>Subject</label>
-                <select id='selSubjectEdit' class='input text-lg p-2 mb-4'>
+                <label for='selSubjectEdit' class='hidden text-base text-gray-500 px-2'>Subject</label>
+                <select id='selSubjectEdit' class='hidden input text-lg p-2 mb-4'>
                     <optgroup label='Select a subject'>
                         <option value='History'>History</option>
                         <option value='English'>English</option>
@@ -339,7 +339,7 @@
                 <h1 class='text-2xl font-medium mb-6'>Add activity</h1>
 
                 <label for='actTitle' class='text-base text-gray-500 px-2'>Activity name</label>
-                <input id='actTitle' class='input text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='60' required>
+                <input id='actTitle' class='input text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='120' required>
 
                 <label for='actDesc' class='text-base text-gray-500 px-2'>Description</label>
                 <input id='actDesc' class='input text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='350'>
@@ -407,7 +407,8 @@
                 <h1 class='text-2xl font-medium mb-6'>Edit activity</h1>
 
                 <label for='actTitleEdit' class='text-base text-gray-500 px-2'>Activity name</label>
-                <input id='actTitleEdit' class='input text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='60' required>
+                <input id='actTitleEdit' class='input text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='120'
+                    required>
 
                 <label for='actDescEdit' class='text-base text-gray-500 px-2'>Description</label>
                 <input id='actDescEdit' class='input text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='350'>
@@ -487,9 +488,9 @@
                     </optgroup>
                 </select>
 
-                <input id='testSubSpecies' class='input hidden text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='30'>
+                <input id='testSubSpecies' class='input hidden text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='40'>
                 <input id='testSpeciesOther' class='input hidden text-lg p-2 pl-3 mb-4' autocomplete='off'
-                    maxlength='30'>
+                    maxlength='40'>
 
                 <label for='testMonth' class='text-base text-gray-500 px-2'>
                     Date taken <p class='inline text-sm'>(MM/YYYY)</p>
@@ -627,7 +628,7 @@
                     <span id='essayWordCount' class='text-base text-gray-500 px-2'>0</span>
                 </div>
                 <textarea id='essayText' class='input text-base p-2 pl-3 m-0 mb-4' onkeyup='wordCount()'
-                    autocomplete='off' maxlength='30000' rows='14' required></textarea>
+                    autocomplete='off' maxlength='50000' rows='14' required></textarea>
 
                 <button id='addEssayBtn' type='submit'
                     class='text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent text-left transition-all px-3 py-2 mt-4'><i
@@ -665,7 +666,7 @@
                     <span id='essayWordCountEdit' class='text-base text-gray-500 px-2'>0</span>
                 </div>
                 <textarea id='essayTextEdit' class='input text-base p-2 pl-3 m-0 mb-4' onkeyup='wordCountEdit()'
-                    autocomplete='off' maxlength='30000' rows='12' required></textarea>
+                    autocomplete='off' maxlength='50000' rows='12' required></textarea>
 
                 <button id='saveEssayBtn' type='submit'
                     class='text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent text-left transition-all px-3 py-2 mt-4'><i

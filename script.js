@@ -397,7 +397,7 @@ document.getElementById('addCourseBtn').addEventListener('click', function (even
     let cLetterGradeInput2 = document.getElementById('selLetterGrade2').value;
     let cPercentGradeInput2 = document.getElementById('percentGrade2').value;
 
-    if (cTitleInput.length > 60) {
+    if (cTitleInput.length > 80) {
         alert('Course title is too long');
     } else if (cTitleInput == '') {
         alert('Enter the title of your course');
@@ -548,7 +548,7 @@ document.getElementById('addActBtn').addEventListener('click', function (event) 
     let aCategoryInput = document.getElementById('selActCategory').value;
     let aStrengthInput = document.getElementById('selStrength').value;
 
-    if (aTitleInput.length > 60) {
+    if (aTitleInput.length > 100) {
         alert('Actvity title is too long');
     } else if (aDescInput.length > 350) {
         alert('Actvity description is too long');
@@ -803,7 +803,7 @@ document.getElementById('addEssayBtn').addEventListener('click', function (event
 
     if (ePromptInput.length > 200) {
         alert('Prompt is too long');
-    } else if (eEssayTextInput.length > 30000) {
+    } else if (eEssayTextInput.length > 50000) {
         alert('Essay is too long');
     } else if (ePromptInput == '') {
         alert('Enter the prompt for your essay');
@@ -1094,7 +1094,7 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
     let cLetterGrade2Input = document.getElementById('selLetterGrade2Edit').value;
     let cPercentGrade2Input = document.getElementById('percentGrade2Edit').value;
 
-    if (cTitleInput.length > 60) {
+    if (cTitleInput.length > 80) {
         alert('Course title is too long');
     } else if (cTitleInput == '') {
         alert('Enter the title of your course');
@@ -1236,7 +1236,7 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
     let aCategoryInput = document.getElementById('selActCategoryEdit').value;
     let aStrengthInput = document.getElementById('selStrengthEdit').value;
 
-    if (aTitleInput.length > 60) {
+    if (aTitleInput.length > 100) {
         alert('Actvity title is too long');
     } else if (aDescInput.length > 350) {
         alert('Actvity description is too long');
@@ -1290,6 +1290,7 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
             document.getElementById(activity.id + 'Desc').innerText = activity.desc;
             document.getElementById(activity.id + 'Desc').classList.remove('hidden');
         } else {
+            document.getElementById(activity.id + 'Desc').innerText = '';
             document.getElementById(activity.id + 'Desc').classList.add('hidden');
         }
 
@@ -1471,7 +1472,7 @@ document.getElementById('saveEssayBtn').addEventListener('click', function (even
 
     if (ePromptInput.length > 200) {
         alert('Prompt is too long');
-    } else if (eEssayTextInput.length > 30000) {
+    } else if (eEssayTextInput.length > 50000) {
         alert('Essay is too long');
     } else if (ePromptInput == '') {
         alert('Enter the prompt for your essay');
@@ -2362,6 +2363,7 @@ function hide() {
     document.getElementById('courseTitle').value = '';
     document.getElementById('selSubject').value = 'History';
     document.getElementById('selDiff').value = '1';
+    document.getElementById('selDiff2').value = '1';
     document.getElementById('diffTip').classList.add('hidden');
     document.getElementById('advOptAddCI').classList.remove('rotate-90');
     document.getElementById('advOptionsAddC').classList.add('hidden');
