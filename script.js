@@ -1276,7 +1276,7 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
         document.getElementById(activity.id + 'Text').innerText = activity.name;
 
         if (!document.getElementById(activity.id + 'Desc')) {
-            activity.desc = '';
+            if (activity.desc == null) activity.desc = '';
             t = document.createTextNode(activity.desc);
             span = document.createElement('span');
             span.className = 'desc';
