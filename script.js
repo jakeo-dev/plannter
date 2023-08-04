@@ -548,7 +548,7 @@ document.getElementById('addActBtn').addEventListener('click', function (event) 
     let aCategoryInput = document.getElementById('selActCategory').value;
     let aStrengthInput = document.getElementById('selStrength').value;
 
-    if (aTitleInput.length > 100) {
+    if (aTitleInput.length > 120) {
         alert('Actvity title is too long');
     } else if (aDescInput.length > 350) {
         alert('Actvity description is too long');
@@ -1236,7 +1236,7 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
     let aCategoryInput = document.getElementById('selActCategoryEdit').value;
     let aStrengthInput = document.getElementById('selStrengthEdit').value;
 
-    if (aTitleInput.length > 100) {
+    if (aTitleInput.length > 120) {
         alert('Actvity title is too long');
     } else if (aDescInput.length > 350) {
         alert('Actvity description is too long');
