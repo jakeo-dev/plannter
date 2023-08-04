@@ -11,6 +11,105 @@ let honWeight = 0.5;
 let apWeight = 1;
 let ibWeight = 1;
 
+const promptList = ['Share a personal story that illustrates your resilience in the face of adversity.',
+    'Describe a moment when you challenged a deeply held belief and how it affected your perspective.',
+    'Describe an experience that sparked your passion for a cause or interest that is meaningful to you.',
+    'Reflect on a time when you had to navigate cultural differences and what you learned from it.',
+    'Describe a volunteering experience that changed your outlook on community service.',
+    'Discuss a fictional character or historical figure who inspires you and why.',
+    'Share a challenge you encountered while pursuing a creative project and how you overcame it.',
+    'Reflect on an experience that prompted you to explore your cultural heritage.',
+    'Describe an innovative solution you developed for a real-life problem.',
+    'Discuss a time when you had to advocate for someone else or a cause you believe in.',
+    'Share a moment when you learned the importance of self-care and balance.',
+    'Reflect on a book that significantly influenced your intellectual growth.',
+    'Describe a time when you had to mediate a conflict and facilitate understanding.',
+    'Discuss a mentor or teacher who played a pivotal role in your personal development.',
+    'Share a project or organization you started that impacted your school or community.',
+    'Reflect on a time when you had to make a difficult ethical decision.',
+    'Describe an experience that changed your perspective on global issues.',
+    'Discuss an unconventional hobby or interest and how it shaped your identity.',
+    'Share a moment when you embraced vulnerability and its impact on your relationships.',
+    'Reflect on a time when you learned a valuable lesson through failure.',
+    'Describe a scientific discovery or technological advancement that fascinates you.',
+    'Discuss an experience that challenged your understanding of privilege and inequality.',
+    'Share a personal experience that influenced your academic or career aspirations.',
+    'Describe a time when you used storytelling to create meaningful change.',
+    'Discuss a historical event that made you contemplate your role as a global citizen.',
+    'Share a piece of art, music, or writing that deeply resonates with you and why.',
+    'Reflect on a time when you mentored or supported someone to achieve their goals.',
+    'Describe an experience that led you to pursue a non-traditional academic interest.',
+    'Discuss a project where you leveraged technology to address a societal issue.',
+    'Share a humorous incident that taught you an essential life lesson.',
+    'Reflect on a time when you had to advocate for your own rights or beliefs.',
+    'Describe an experience that fueled your curiosity for scientific exploration.',
+    'Discuss an initiative you took to promote diversity and inclusion in your community.',
+    'Share a cultural tradition or celebration that holds significant meaning for you.',
+    'Reflect on a time when you had to adapt to a new environment or circumstance.',
+    'Describe a person you would invite to a dinner party and the conversation you\'d have.',
+    'Discuss an experience that made you rethink your approach to time management.',
+    'Share a moment when you used your artistic talents to convey a powerful message.',
+    'Reflect on a time when you had to address a misunderstanding or miscommunication.',
+    'Describe a social issue you are passionate about and your efforts to address it.',
+    'Discuss an experience that made you appreciate the value of teamwork and collaboration.',
+    'Share a dream or aspiration you have and the steps you are taking to achieve it.',
+    'Reflect on a time when you had to step out of your comfort zone to grow.',
+    'Describe an experience that made you question the meaning of success.',
+    'Discuss a community organization or initiative you\'d like to create in college.',
+    'Share a time when you had to confront a stereotype and challenge its validity.',
+    'Reflect on a time when you had to prioritize your mental or physical well-being.',
+    'Describe an experience that ignited your interest in social justice issues.',
+    'Discuss a future career path and how it aligns with your personal values.',
+    'Share a significant childhood memory that shaped your personality.',
+    'Reflect on a time when you had to overcome a fear or phobia.',
+    'Describe a cultural tradition that is important to your family and its significance to you.',
+    'Discuss an experience that changed your perspective on health and well-being.',
+    'Share a moment when you had to make a difficult decision and its impact on your life.',
+    'Describe a research or academic project that excites you and why.',
+    'Discuss an experience that taught you the value of effective communication.',
+    'Share a memorable encounter with someone from a different cultural background.',
+    'Reflect on a time when you had to reevaluate your long-term goals.',
+    'Describe a community initiative that you believe should be amplified and why.',
+    'Discuss a memorable interaction with a family member that influenced your values.',
+    'Share an experience that made you question traditional societal norms.',
+    'Reflect on a time when you encountered a language barrier and how you overcame it.',
+    'Describe an event or activity that exemplifies your sense of curiosity.',
+    'Discuss a time when you faced a financial challenge and how you managed it.',
+    'Share a moment when you demonstrated empathy and understanding towards others.',
+    'Reflect on a time when you utilized critical thinking to solve a complex problem.',
+    'Describe a skill you possess and how you plan to further develop it in college.',
+    'Discuss an experience that deepened your appreciation for nature and the environment.',
+    'Share a piece of advice you received that significantly impacted your life choices.',
+    'Reflect on a time when you took the initiative to bring positive change in your community.',
+    'Describe an experience that showcased your ability to work well under pressure.',
+    'Discuss a historical figure or social activist who inspires your commitment to change.',
+    'Share a moment when you successfully persuaded others to support a cause.',
+    'Reflect on a time when you sought feedback and used it to improve yourself.',
+    'Describe a hobby or interest that connects you with a diverse group of people.',
+    'Discuss an experience that challenged your understanding of ethics and morality.',
+    'Share a time when you successfully bridged a cultural or generational gap.',
+    'Reflect on a moment when you had to make a decision that challenged your values.',
+    'Discuss an experience that inspired your commitment to global citizenship.',
+    'Share a moment when you faced an unexpected obstacle and how you handled it.',
+    'Reflect on a time when you organized an event or initiative to benefit others.',
+    'Describe a historical event or period that fascinates you and its relevance today.',
+    'Discuss a time when you collaborated with a team to overcome a significant challenge.',
+    'Share a moment when you advocated for inclusive practices in your school or community.',
+    'Reflect on an experience that taught you the importance of time management.',
+    'Describe a future innovation or technology you would like to see developed.',
+    'Discuss an experience that changed your perception of your own cultural identity.',
+    'Share a significant achievement that resulted from your perseverance and dedication.',
+    'Reflect on a time when you mentored or assisted a peer in their academic journey.',
+    'Describe an experience that highlighted the importance of effective leadership.',
+    'Discuss a time when you demonstrated resilience in the face of a difficult situation.',
+    'Share a moment when you took initiative to address an issue in your school or community.',
+    'Reflect on a time when you took a different approach to problem-solving.',
+    'Describe an event or activity that rekindled your passion for learning and growth.',
+    'Discuss an experience that influenced your understanding of social justice and equality.',
+    'Share a piece of art, literature, or music that profoundly impacted your perspective.',
+    'Reflect on a personal growth experience that changed your outlook on life.']
+// prompts generated by chatgpt
+
 input = document.getElementById('courseTitle');
 input.addEventListener('keyup', function () {
     if (input.value.toLowerCase().includes('advance') || input.value.toLowerCase().includes('accel') || input.value.toLowerCase().includes('honor') || input.value.toLowerCase().includes('ap') || input.value.toLowerCase().includes('ib')) {
@@ -38,6 +137,7 @@ saveLists();
 getCourses();
 getActs();
 getTests();
+getEssays();
 getCD();
 calcListDiff();
 calcGPA();
@@ -160,16 +260,25 @@ function openAddCourse(num) {
     document.getElementById('selGradeLev').value = num;
 }
 
-function openAddAct() {
+function openAddAct(num) {
     document.getElementById('actModal').classList.remove('fadeIn');
     document.getElementById('actModal').classList.add('fadeOut');
 
     document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
+
+    document.getElementById('selStrength').value = num;
 }
 
 function openAddTest() {
     document.getElementById('testModal').classList.remove('fadeIn');
     document.getElementById('testModal').classList.add('fadeOut');
+
+    document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
+}
+
+function openAddEssay() {
+    document.getElementById('essayModal').classList.remove('fadeIn');
+    document.getElementById('essayModal').classList.add('fadeOut');
 
     document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
 }
@@ -249,6 +358,7 @@ function showPlan() {
     document.getElementById('planDiv').classList.remove('hidden');
     document.getElementById('actsDiv').classList.add('hidden');
     document.getElementById('testsDiv').classList.add('hidden');
+    document.getElementById('essaysDiv').classList.add('hidden');
     toggleMenuSm();
 }
 
@@ -256,6 +366,7 @@ function showExtra() {
     document.getElementById('actsDiv').classList.remove('hidden');
     document.getElementById('planDiv').classList.add('hidden');
     document.getElementById('testsDiv').classList.add('hidden');
+    document.getElementById('essaysDiv').classList.add('hidden');
     toggleMenuSm();
 }
 
@@ -263,6 +374,15 @@ function showTests() {
     document.getElementById('testsDiv').classList.remove('hidden');
     document.getElementById('planDiv').classList.add('hidden');
     document.getElementById('actsDiv').classList.add('hidden');
+    document.getElementById('essaysDiv').classList.add('hidden');
+    toggleMenuSm();
+}
+
+function showEssays() {
+    document.getElementById('essaysDiv').classList.remove('hidden');
+    document.getElementById('planDiv').classList.add('hidden');
+    document.getElementById('actsDiv').classList.add('hidden');
+    document.getElementById('testsDiv').classList.add('hidden');
     toggleMenuSm();
 }
 
@@ -400,6 +520,8 @@ document.getElementById('addCourseBtn').addEventListener('click', function (even
                     clickPenAct(this.parentElement.parentElement);
                 } else if (this.parentElement.parentElement.id.startsWith('T')) {
                     clickPenTest(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('E')) {
+                    clickPenEssay(this.parentElement.parentElement);
                 }
             }
         }
@@ -424,6 +546,7 @@ document.getElementById('addActBtn').addEventListener('click', function (event) 
     let aTitleInput = document.getElementById('actTitle').value.trim();
     let aDescInput = document.getElementById('actDesc').value.trim();
     let aCategoryInput = document.getElementById('selActCategory').value;
+    let aStrengthInput = document.getElementById('selStrength').value;
 
     if (aTitleInput.length > 60) {
         alert('Actvity title is too long');
@@ -478,21 +601,26 @@ document.getElementById('addActBtn').addEventListener('click', function (event) 
         activity.appendChild(div);
 
         activity.desc = aDescInput;
+        span = document.createElement('span');
+        span.className = 'desc';
+        if (activity.desc == '') span.classList.add('hidden');
+        span.id = activity.id + 'Desc';
+        t = document.createTextNode(activity.desc);
+        span.appendChild(t);
+        activity.appendChild(span);
 
-        if (activity.desc != '') {
-            let h2 = document.createElement('h2');
-            h2.className = 'desc';
-            h2.id = activity.id + 'Desc';
-            t = document.createTextNode(activity.desc);
-            h2.appendChild(t);
-            activity.appendChild(h2);
-        }
+        activity.strength = aStrengthInput;
 
         localStorage.setItem(activity.id + 'Name', activity.name);
         localStorage.setItem(activity.id + 'Desc', activity.desc);
         localStorage.setItem(activity.id + 'Category', activity.category);
+        localStorage.setItem(activity.id + 'Strength', activity.strength);
 
-        document.getElementById('listActs').appendChild(activity);
+        if (activity.strength == 1) {
+            document.getElementById('listActs').appendChild(activity);
+        } else {
+            document.getElementById('listActs' + activity.strength).appendChild(activity);
+        }
 
         let pen = document.getElementsByClassName('pen');
         for (i = 0; i < pen.length; i++) {
@@ -503,6 +631,8 @@ document.getElementById('addActBtn').addEventListener('click', function (event) 
                     clickPenAct(this.parentElement.parentElement);
                 } else if (this.parentElement.parentElement.id.startsWith('T')) {
                     clickPenTest(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('E')) {
+                    clickPenEssay(this.parentElement.parentElement);
                 }
             }
         }
@@ -649,6 +779,8 @@ document.getElementById('addTestBtn').addEventListener('click', function (event)
                     clickPenAct(this.parentElement.parentElement);
                 } else if (this.parentElement.parentElement.id.startsWith('T')) {
                     clickPenTest(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('E')) {
+                    clickPenEssay(this.parentElement.parentElement);
                 }
             }
         }
@@ -665,6 +797,151 @@ document.getElementById('addTestBtn').addEventListener('click', function (event)
     }
 })
 
+document.getElementById('addEssayBtn').addEventListener('click', function (event) {
+    let ePromptInput = document.getElementById('essayPrompt').value.trim();
+    let eEssayTextInput = document.getElementById('essayText').value.trim();
+
+    if (ePromptInput.length > 200) {
+        alert('Prompt is too long');
+    } else if (eEssayTextInput.length > 30000) {
+        alert('Essay is too long');
+    } else if (ePromptInput == '') {
+        alert('Enter the prompt for your essay');
+    } else if (eEssayTextInput == '') {
+        alert('Enter your essay');
+    } else {
+        event.preventDefault();
+
+        let essay = document.createElement('li');
+        essay.className = 'item essay';
+        essay.prompt = ePromptInput;
+        essay.name = ePromptInput;
+
+        essay.id = 'E' + Math.floor(100000000 + Math.random() * 900000000);
+
+        let i = document.createElement('i');
+        i.id = essay.id + 'EssayI';
+        i.className = 'essayI fa-solid fa-paperclip';
+        i.ariaLabel = 'Essay icon';
+        essay.appendChild(i);
+
+        let t = document.createTextNode(essay.prompt);
+        let span = document.createElement('span');
+        span.id = essay.id + 'Prompt';
+        span.appendChild(t);
+        essay.appendChild(span);
+
+        div = document.createElement('div');
+        div.className = 'optDiv';
+
+        let btn = document.createElement('button');
+        icon = document.createElement('i');
+        icon.className = 'text-lg fa-solid fa-pen';
+        btn.className = 'opt pen';
+        btn.ariaLabel = 'Edit essay';
+        btn.title = 'Edit essay';
+        btn.appendChild(icon);
+        div.appendChild(btn);
+
+        btn = document.createElement('button');
+        icon = document.createElement('i');
+        icon.className = 'text-lg fa-solid fa-trash';
+        btn.className = 'opt trash';
+        btn.ariaLabel = 'Remove essay';
+        btn.title = 'Remove essay';
+        btn.appendChild(icon);
+        div.appendChild(btn);
+
+        essay.appendChild(div);
+
+        essay.essayTeaser = eEssayTextInput.substr(0, 100) + '...';
+        span = document.createElement('span');
+        span.className = 'essayTeaser';
+        span.id = essay.id + 'EssayTeaser';
+        t = document.createTextNode(essay.essayTeaser);
+        span.appendChild(t);
+        essay.appendChild(span);
+
+        essay.essayText = eEssayTextInput;
+        span = document.createElement('span');
+        span.className = 'essayText hidden';
+        span.id = essay.id + 'EssayText';
+        span.innerText = essay.essayText;
+        essay.appendChild(span);
+
+        btn = document.createElement('button');
+        icon = document.createElement('i');
+        icon.className = 'fa-solid fa-chevron-down mr-2';
+        icon.id = essay.id + 'ExpandEI'
+        btn.className = 'expEBtn';
+        btn.id = essay.id + 'ExpandEBtn';
+        btn.appendChild(icon);
+        span = document.createElement('span');
+        span.id = essay.id + 'ExpandEBtnText';
+        t = document.createTextNode('Expand essay');
+        span.appendChild(t);
+        btn.appendChild(span);
+        essay.appendChild(btn);
+
+        essay.wordCount = essay.essayText.split(' ').length;
+        span = document.createElement('span');
+        span.className = 'wordCount';
+        span.id = essay.id + 'WordCount';
+        t = document.createTextNode(essay.wordCount + ' words');
+        span.appendChild(t);
+        essay.appendChild(span);
+
+        localStorage.setItem(essay.id + 'Name', essay.name);
+        localStorage.setItem(essay.id + 'Prompt', essay.prompt);
+        localStorage.setItem(essay.id + 'EssayText', essay.essayText);
+        localStorage.setItem(essay.id + 'EssayTeaser', essay.essayTeaser);
+        localStorage.setItem(essay.id + 'WordCount', essay.wordCount);
+
+        document.getElementById('listEssays').appendChild(essay);
+
+        document.getElementById('essayWordCount').innerText = '0';
+
+        let expEBtn = document.getElementsByClassName('expEBtn');
+        for (i = 0; i < expEBtn.length; i++) {
+            expEBtn[i].onclick = function () {
+                toggleEssay(this.parentElement.id);
+            }
+        }
+
+        let pen = document.getElementsByClassName('pen');
+        for (i = 0; i < pen.length; i++) {
+            pen[i].onclick = function () {
+                if (this.parentElement.parentElement.id.startsWith('C')) {
+                    clickPen(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('A')) {
+                    clickPenAct(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('T')) {
+                    clickPenTest(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('E')) {
+                    clickPenEssay(this.parentElement.parentElement);
+                }
+            }
+        }
+
+        let trash = document.getElementsByClassName('trash');
+        for (i = 0; i < trash.length; i++) {
+            trash[i].onclick = function () {
+                clickTrash(this.parentElement.parentElement);
+            }
+        }
+
+        saveLists();
+        hide();
+    }
+})
+
+let expEBtn = document.getElementsByClassName('expEBtn');
+for (i = 0; i < expEBtn.length; i++) {
+    expEBtn[i].onclick = function () {
+        toggleEssay(this.parentElement.id);
+    }
+}
+
 let pen = document.getElementsByClassName('pen');
 for (i = 0; i < pen.length; i++) {
     pen[i].onclick = function () {
@@ -674,6 +951,8 @@ for (i = 0; i < pen.length; i++) {
             clickPenAct(this.parentElement.parentElement);
         } else if (this.parentElement.parentElement.id.startsWith('T')) {
             clickPenTest(this.parentElement.parentElement);
+        } else if (this.parentElement.parentElement.id.startsWith('E')) {
+            clickPenEssay(this.parentElement.parentElement);
         }
     }
 }
@@ -733,9 +1012,9 @@ function clickPenAct(a) {
     activity = a;
 
     document.getElementById('actTitleEdit').value = activity.name;
-
     document.getElementById('actDescEdit').value = activity.desc;
     document.getElementById('selActCategoryEdit').value = activity.category;
+    document.getElementById('selStrengthEdit').value = activity.strength;
 
     document.getElementById('editActModal').classList.remove('fadeIn');
     document.getElementById('editActModal').classList.add('fadeOut');
@@ -768,6 +1047,22 @@ function clickPenTest(t) {
 
     document.getElementById('editTestModal').classList.remove('fadeIn');
     document.getElementById('editTestModal').classList.add('fadeOut');
+
+    document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
+}
+
+function clickPenEssay(e) {
+    getEssays();
+
+    essay = e;
+
+    document.getElementById('essayPromptEdit').value = essay.prompt;
+    document.getElementById('essayTextEdit').value = essay.essayText;
+
+    wordCountEdit()
+
+    document.getElementById('editEssayModal').classList.remove('fadeIn');
+    document.getElementById('editEssayModal').classList.add('fadeOut');
 
     document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
 }
@@ -811,7 +1106,7 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
             course.remove();
         }
 
-        course.name = document.getElementById('courseTitleEdit').value;
+        course.name = cTitleInput;
         course.sub = document.getElementById('selSubjectEdit').value;
         course.diff = document.getElementById('selDiffEdit').value;
         course.diff2 = document.getElementById('selDiff2Edit').value;
@@ -835,30 +1130,23 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
             course.grade2 = cLetterGrade2Input;
         }
 
-        course.innerHTML = `<div id='${course.id}Grade'>${course.grade}</div><div id='${course.id}Grade2'>${course.grade2}</div><span id='${course.id}Text'>${course.name}</span><div id='${course.id}Diff'>${course.diff}</div>`;
+        if (!document.getElementById(course.id + 'Grade2')) {
+            div = document.createElement('div');
+            div.id = course.id + 'Grade2';
+            t = document.createTextNode(course.grade2);
+            div.className = 'attr grade';
+            if (course.grade2 == 'none') {
+                div.classList.add('hidden');
+            }
+            div.appendChild(t);
 
-        div = document.createElement('div');
-        div.className = 'optDiv';
+            document.getElementById(course.id + 'Grade').parentNode.insertBefore(div, document.getElementById(course.id + 'Grade').nextSibling);
+        }
 
-        let btn = document.createElement('button');
-        icon = document.createElement('i');
-        icon.className = 'text-lg fa-solid fa-pen';
-        btn.className = 'opt pen';
-        btn.ariaLabel = 'Edit course';
-        btn.title = 'Edit course';
-        btn.appendChild(icon);
-        div.appendChild(btn);
-
-        btn = document.createElement('button');
-        icon = document.createElement('i');
-        icon.className = 'text-lg fa-solid fa-trash';
-        btn.className = 'opt trash';
-        btn.ariaLabel = 'Remove course';
-        btn.title = 'Remove course';
-        btn.appendChild(icon);
-        div.appendChild(btn);
-
-        course.appendChild(div);
+        document.getElementById(course.id + 'Grade').innerText = course.grade;
+        document.getElementById(course.id + 'Grade2').innerText = course.grade2;
+        document.getElementById(course.id + 'Text').innerText = course.name;
+        document.getElementById(course.id + 'Diff').innerText = course.diff;
 
         [diffText, diffClass] = getDiff(course.diff);
         document.getElementById(course.id + 'Diff').className = diffClass;
@@ -910,6 +1198,8 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
                     clickPenAct(this.parentElement.parentElement);
                 } else if (this.parentElement.parentElement.id.startsWith('T')) {
                     clickPenTest(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('E')) {
+                    clickPenEssay(this.parentElement.parentElement);
                 }
             }
         }
@@ -929,7 +1219,7 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
     let aTitleInput = document.getElementById('actTitleEdit').value.trim();
     let aDescInput = document.getElementById('actDescEdit').value.trim();
     let aCategoryInput = document.getElementById('selActCategoryEdit').value;
-    //let aPosInput = document.getElementById('actPositionEdit').value.trim();
+    let aStrengthInput = document.getElementById('selStrengthEdit').value;
 
     if (aTitleInput.length > 60) {
         alert('Actvity title is too long');
@@ -940,42 +1230,44 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
     } else {
         event.preventDefault();
 
+        if (activity.strength != aStrengthInput) {
+            activity.strength = aStrengthInput;
+            if (activity.strength == 1) {
+                document.getElementById('listActs').appendChild(activity.cloneNode(true));
+            } else {
+                document.getElementById('listActs' + activity.strength).appendChild(activity.cloneNode(true));
+            }
+            activity.remove();
+        }
+
         activity.name = aTitleInput;
         activity.desc = aDescInput;
         activity.category = aCategoryInput;
+        activity.strength = aStrengthInput;
 
-        if (activity.desc != '') {
-            activity.innerHTML = `<i id='${activity.id}ActI' class='${getActIcon(activity.category)}' aria-label='${activity.category}'></i><span id='${activity.id}Text'>${activity.name}</span><h2 class='desc' id='${activity.id}Desc'>${activity.desc}</h2>`;
+        document.getElementById(activity.id + 'ActI').className = getActIcon(activity.category);
+        document.getElementById(activity.id + 'ActI').ariaLabel = activity.category;
+        document.getElementById(activity.id + 'Text').innerText = activity.name;
+
+        if (activity.desc != null && activity.desc != '') {
+            if (!document.getElementById(activity.id + 'Desc')) {
+                let h2 = document.createElement('h2');
+                h2.className = 'desc';
+                h2.id = activity.id + 'Desc';
+                t = document.createTextNode(activity.desc);
+                h2.appendChild(t);
+                activity.appendChild(h2);
+            }
+            document.getElementById(activity.id + 'Desc').innerText = activity.desc;
+            document.getElementById(activity.id + 'Desc').classList.remove('hidden');
         } else {
-            activity.innerHTML = `<i id='${activity.id}ActI' class='${getActIcon(activity.category)}' aria-label='${activity.category}'></i><span id='${activity.id}Text'>${activity.name}</span>`;
+            document.getElementById(activity.id + 'Desc').classList.add('hidden');
         }
-
-        div = document.createElement('div');
-        div.className = 'optDiv';
-
-        let btn = document.createElement('button');
-        icon = document.createElement('i');
-        icon.className = 'text-lg fa-solid fa-pen';
-        btn.className = 'opt pen';
-        btn.ariaLabel = 'Edit activity';
-        btn.title = 'Edit activity';
-        btn.appendChild(icon);
-        div.appendChild(btn);
-
-        btn = document.createElement('button');
-        icon = document.createElement('i');
-        icon.className = 'text-lg fa-solid fa-trash';
-        btn.className = 'opt trash';
-        btn.ariaLabel = 'Remove activity';
-        btn.title = 'Remove activity';
-        btn.appendChild(icon);
-        div.appendChild(btn);
-
-        activity.appendChild(div);
 
         localStorage.setItem(activity.id + 'Name', activity.name);
         localStorage.setItem(activity.id + 'Desc', activity.desc);
         localStorage.setItem(activity.id + 'Category', activity.category);
+        localStorage.setItem(activity.id + 'Strength', activity.strength);
 
         saveLists();
         getLists();
@@ -990,6 +1282,8 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
                     clickPenAct(this.parentElement.parentElement);
                 } else if (this.parentElement.parentElement.id.startsWith('T')) {
                     clickPenTest(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('E')) {
+                    clickPenEssay(this.parentElement.parentElement);
                 }
             }
         }
@@ -1049,47 +1343,47 @@ document.getElementById('saveTestBtn').addEventListener('click', function (event
         test.subSpecies = tSubSpeciesInput;
         test.speciesOther = tSpeciesOtherInput;
 
-        test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div><span id='${test.id}Text'>${test.species} — ${test.month}/${test.year}</span>`;
-        if (test.species == 'AP') {
-            test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div><span id='${test.id}Text'>${test.species} ${test.subSpecies} — ${test.month}/${test.year}</span>`;
-        } else if (test.species == 'SAT' || test.species == 'PSAT') {
-            test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div><span id='${test.id}Text'>${test.species} — ${test.month}/${test.year}</span><div class='testReadScore' id='${test.id}ReadScore'>Reading: ${test.readScore}</div><div class='testMathScore' id='${test.id}MathScore'>Math: ${test.mathScore}</div>`;
-            if (test.readScore == '' && test.mathScore == '') {
-                test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div><span id='${test.id}Text'>${test.species} — ${test.month}/${test.year}</span>`;
-            }
-        } else if (test.species == 'Other') {
-            test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div><span id='${test.id}Text'>${test.speciesOther} — ${test.month}/${test.year}</span>`;
-        }
-
+        document.getElementById(test.id + 'Score').innerText = test.score;
         test.name = `${test.species} — ${test.month}/${test.year}`;
         if (test.species == 'AP') {
+            document.getElementById(test.id + 'Text').innerText = `${test.species} ${test.subSpecies} — ${test.month}/${test.year}`;
             test.name = `${test.species} ${test.subSpecies} — ${test.month}/${test.year}`;
+        } else if (test.species == 'SAT' || test.species == 'PSAT') {
+            test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div>${test.species} — ${test.month}/${test.year}</span><div class='testReadScore' id='${test.id}ReadScore'>Reading: ${test.readScore}</div><div class='testMathScore' id='${test.id}MathScore'>Math: ${test.mathScore}</div>`;
+            if (test.readScore == '' && test.mathScore == '') {
+                document.getElementById(test.id + 'Text').innerText = `${test.species} — ${test.month}/${test.year}`;
+            }
         } else if (test.species == 'Other') {
+            document.getElementById(test.id + 'Text').innerText = `${test.speciesOther} — ${test.month}/${test.year}`;
             test.name = `${test.speciesOther} — ${test.month}/${test.year}`;
+        } else {
+            document.getElementById(test.id + 'Text').innerText = `${test.species} — ${test.month}/${test.year}`;
         }
 
-        div = document.createElement('div');
-        div.className = 'optDiv';
+        if ((test.species == 'SAT' || test.species == 'PSAT') && !(test.readScore == '' && test.mathScore == '')) {
+            div = document.createElement('div');
+            div.className = 'optDiv';
 
-        let btn = document.createElement('button');
-        icon = document.createElement('i');
-        icon.className = 'text-lg fa-solid fa-pen';
-        btn.className = 'opt pen';
-        btn.ariaLabel = 'Edit test';
-        btn.title = 'Edit test';
-        btn.appendChild(icon);
-        div.appendChild(btn);
+            let btn = document.createElement('button');
+            icon = document.createElement('i');
+            icon.className = 'text-lg fa-solid fa-pen';
+            btn.className = 'opt pen';
+            btn.ariaLabel = 'Edit test';
+            btn.title = 'Edit test';
+            btn.appendChild(icon);
+            div.appendChild(btn);
 
-        btn = document.createElement('button');
-        icon = document.createElement('i');
-        icon.className = 'text-lg fa-solid fa-trash';
-        btn.className = 'opt trash';
-        btn.ariaLabel = 'Remove test';
-        btn.title = 'Remove test';
-        btn.appendChild(icon);
-        div.appendChild(btn);
+            btn = document.createElement('button');
+            icon = document.createElement('i');
+            icon.className = 'text-lg fa-solid fa-trash';
+            btn.className = 'opt trash';
+            btn.ariaLabel = 'Remove test';
+            btn.title = 'Remove test';
+            btn.appendChild(icon);
+            div.appendChild(btn);
 
-        test.appendChild(div);
+            test.appendChild(div);
+        }
 
         localStorage.setItem(test.id + 'Species', test.species);
         localStorage.setItem(test.id + 'SubSpecies', test.subSpecies);
@@ -1114,6 +1408,79 @@ document.getElementById('saveTestBtn').addEventListener('click', function (event
                     clickPenAct(this.parentElement.parentElement);
                 } else if (this.parentElement.parentElement.id.startsWith('T')) {
                     clickPenTest(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('E')) {
+                    clickPenEssay(this.parentElement.parentElement);
+                }
+            }
+        }
+
+        let trash = document.getElementsByClassName('trash');
+        for (i = 0; i < trash.length; i++) {
+            trash[i].onclick = function () {
+                clickTrash(this.parentElement.parentElement);
+            }
+        }
+
+        hide();
+    }
+})
+
+document.getElementById('saveEssayBtn').addEventListener('click', function (event) {
+    let ePromptInput = document.getElementById('essayPromptEdit').value.trim();
+    let eEssayTextInput = document.getElementById('essayTextEdit').value.trim();
+
+    if (ePromptInput.length > 200) {
+        alert('Prompt is too long');
+    } else if (eEssayTextInput.length > 30000) {
+        alert('Essay is too long');
+    } else if (ePromptInput == '') {
+        alert('Enter the prompt for your essay');
+    } else if (eEssayTextInput == '') {
+        alert('Enter your essay');
+    } else {
+        event.preventDefault();
+
+        essay.prompt = ePromptInput;
+        essay.name = ePromptInput;
+        essay.essayText = eEssayTextInput;
+        essay.essayTeaser = eEssayTextInput.substr(0, 150) + '...';
+        essay.wordCount = essay.essayText.split(' ').length;
+
+        document.getElementById(essay.id + 'Prompt').innerText = essay.prompt;
+        document.getElementById(essay.id + 'EssayText').innerText = essay.essayText;
+        document.getElementById(essay.id + 'EssayTeaser').innerText = essay.essayTeaser;
+        document.getElementById(essay.id + 'WordCount').innerText = essay.wordCount + ' words';
+
+        localStorage.setItem(essay.id + 'Name', essay.name);
+        localStorage.setItem(essay.id + 'Prompt', essay.prompt);
+        localStorage.setItem(essay.id + 'EssayText', essay.essayText);
+        localStorage.setItem(essay.id + 'EssayTeaser', essay.essayTeaser);
+        localStorage.setItem(essay.id + 'WordCount', essay.wordCount);
+
+        saveLists();
+        getLists();
+        getEssays();
+
+        document.getElementById('essayWordCount').innerText = '0';
+
+        let expEBtn = document.getElementsByClassName('expEBtn');
+        for (i = 0; i < expEBtn.length; i++) {
+            expEBtn[i].onclick = function () {
+                toggleEssay(this.parentElement.id);
+            }
+        }
+
+        let pen = document.getElementsByClassName('pen');
+        for (i = 0; i < pen.length; i++) {
+            pen[i].onclick = function () {
+                if (this.parentElement.parentElement.id.startsWith('C')) {
+                    clickPen(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('A')) {
+                    clickPenAct(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('T')) {
+                    clickPenTest(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('E')) {
+                    clickPenEssay(this.parentElement.parentElement);
                 }
             }
         }
@@ -1198,6 +1565,12 @@ document.getElementById('saveWeightsBtn').addEventListener('click', function (ev
     }
 })
 
+document.getElementById('randomPromptBtn').addEventListener('click', function (event) {
+    event.preventDefault();
+    randomPrompt = promptList[Math.floor(Math.random() * promptList.length)];
+    document.getElementById('essayPrompt').value = randomPrompt;
+})
+
 function getCD() {
     gradDay = Number(localStorage.getItem('gradDay', gradDay));
     gradMonth = Number(localStorage.getItem('gradMonth', gradMonth));
@@ -1241,18 +1614,26 @@ function getCourses() { // gets all stored info of each course
     }
 }
 
-function getActs() { // gets all stored info of activities
-    let currentItems = document.getElementById('listActs').getElementsByTagName('li');
+function getActs() { // gets all stored info of each activity
+    for (let i = 1; i <= 3; i++) {
+        let currentItems
+        if (i == 1) {
+            currentItems = document.getElementById('listActs').getElementsByTagName('li');
+        } else {
+            currentItems = document.getElementById('listActs' + i).getElementsByTagName('li');
+        }
 
-    for (let j = 0; j < currentItems.length; j++) {
-        activity = currentItems[j];
-        activity.name = localStorage.getItem(activity.id + 'Name');
-        activity.desc = localStorage.getItem(activity.id + 'Desc');
-        activity.category = localStorage.getItem(activity.id + 'Category');
+        for (let j = 0; j < currentItems.length; j++) {
+            activity = currentItems[j];
+            activity.name = localStorage.getItem(activity.id + 'Name');
+            activity.desc = localStorage.getItem(activity.id + 'Desc');
+            activity.category = localStorage.getItem(activity.id + 'Category');
+            activity.strength = localStorage.getItem(activity.id + 'Strength');
+        }
     }
 }
 
-function getTests() { // gets all stored info of activities
+function getTests() { // gets all stored info of each test
     let currentItems = document.getElementById('listTests').getElementsByTagName('li');
 
     for (let j = 0; j < currentItems.length; j++) {
@@ -1266,6 +1647,17 @@ function getTests() { // gets all stored info of activities
         test.readScore = localStorage.getItem(test.id + 'ReadingScore');
         test.mathScore = localStorage.getItem(test.id + 'MathScore');
         test.name = localStorage.getItem(test.id + 'Name');
+    }
+}
+
+function getEssays() { // gets all stored info of each essay
+    let currentItems = document.getElementById('listEssays').getElementsByTagName('li');
+
+    for (let j = 0; j < currentItems.length; j++) {
+        essay = currentItems[j];
+        essay.name = localStorage.getItem(essay.id + 'Name');
+        essay.prompt = localStorage.getItem(essay.id + 'Prompt');
+        essay.essayText = localStorage.getItem(essay.id + 'EssayText');
     }
 }
 
@@ -1370,22 +1762,22 @@ function calcCumDiff() {
         document.getElementById('diffCum').innerText = '';
         document.getElementById('diffCum').className = 'attr hidden';
     } else if (cumDiff < 1) {
-        document.getElementById('diffCum').innerText = cumDiff + ' Easy';
+        document.getElementById('diffCum').innerText = cumDiff + ' Easy (Cumulative)';
         document.getElementById('diffCum').className = 'attr lev1';
     } else if (cumDiff < 2) {
-        document.getElementById('diffCum').innerText = cumDiff + ' Normal';
+        document.getElementById('diffCum').innerText = cumDiff + ' Normal (Cumulative)';
         document.getElementById('diffCum').className = 'attr lev2';
     } else if (cumDiff < 3) {
-        document.getElementById('diffCum').innerText = cumDiff + ' Hard';
+        document.getElementById('diffCum').innerText = cumDiff + ' Hard (Cumulative)';
         document.getElementById('diffCum').className = 'attr lev3';
     } else if (cumDiff < 4) {
-        document.getElementById('diffCum').innerText = cumDiff + ' Difficult';
+        document.getElementById('diffCum').innerText = cumDiff + ' Difficult (Cumulative)';
         document.getElementById('diffCum').className = 'attr lev4';
     } else if (cumDiff < 5) {
-        document.getElementById('diffCum').innerText = cumDiff + ' Challenging';
+        document.getElementById('diffCum').innerText = cumDiff + ' Challenging (Cumulative)';
         document.getElementById('diffCum').className = 'attr lev5';
     } else if (cumDiff >= 5) {
-        document.getElementById('diffCum').innerText = cumDiff + ' Extreme';
+        document.getElementById('diffCum').innerText = cumDiff + ' Extreme (Cumulative)';
         document.getElementById('diffCum').className = 'attr lev6';
     }
 }
@@ -1397,7 +1789,10 @@ function saveLists() {
     localStorage.setItem('list12', document.getElementById('list12').innerHTML);
     localStorage.setItem('list13', document.getElementById('list13').innerHTML);
     localStorage.setItem('listActs', document.getElementById('listActs').innerHTML);
+    localStorage.setItem('listActs2', document.getElementById('listActs2').innerHTML);
+    localStorage.setItem('listActs3', document.getElementById('listActs3').innerHTML);
     localStorage.setItem('listTests', document.getElementById('listTests').innerHTML);
+    localStorage.setItem('listEssays', document.getElementById('listEssays').innerHTML);
 }
 
 function getLists() {
@@ -1407,7 +1802,10 @@ function getLists() {
     document.getElementById('list12').innerHTML = localStorage.getItem('list12');
     document.getElementById('list13').innerHTML = localStorage.getItem('list13');
     document.getElementById('listActs').innerHTML = localStorage.getItem('listActs');
+    document.getElementById('listActs2').innerHTML = localStorage.getItem('listActs2');
+    document.getElementById('listActs3').innerHTML = localStorage.getItem('listActs3');
     document.getElementById('listTests').innerHTML = localStorage.getItem('listTests');
+    document.getElementById('listEssays').innerHTML = localStorage.getItem('listEssays');
 }
 
 function getSubjectIcon(sub) {
@@ -1544,6 +1942,8 @@ function calcGPA() {
     if (localStorage.getItem('ibWeight') != null) {
         ibWeight = localStorage.getItem('ibWeight');
     }
+
+    getCourses();
 
     for (let i = 9; i <= 13; i++) {
         let sum = 0;
@@ -1763,6 +2163,34 @@ function calcCumGPA() {
 
 }
 
+function wordCount() {
+    document.getElementById('essayWordCount').innerText = document.getElementById('essayText').value.split(' ').length;
+}
+
+function wordCountEdit() {
+    document.getElementById('essayWordCountEdit').innerText = document.getElementById('essayTextEdit').value.split(' ').length;
+}
+
+function toggleEssay(id) {
+    if (document.getElementById(id + 'EssayText').className.includes('hidden')) {
+        document.getElementById(id + 'EssayText').classList.remove('hidden');
+        document.getElementById(id + 'EssayTeaser').classList.add('hidden');
+
+        document.getElementById(id + 'ExpandEBtnText').innerText = 'Close essay';
+        document.getElementById(id + 'ExpandEI').classList.remove('fa-chevron-down')
+        document.getElementById(id + 'ExpandEI').classList.add('fa-chevron-up')
+    } else {
+        document.getElementById(id + 'EssayText').classList.add('hidden');
+        document.getElementById(id + 'EssayTeaser').classList.remove('hidden');
+
+        document.getElementById(id + 'ExpandEBtnText').innerText = 'Expand essay';
+        document.getElementById(id + 'ExpandEI').classList.add('fa-chevron-down')
+        document.getElementById(id + 'ExpandEI').classList.remove('fa-chevron-up')
+    }
+
+    saveLists();
+}
+
 document.getElementById('advOptAddC').addEventListener('click', function (event) {
     event.preventDefault();
 
@@ -1777,6 +2205,7 @@ document.getElementById('advOptEditC').addEventListener('click', function (event
     document.getElementById('advOptEditCI').classList.toggle('rotate-90');
 })
 
+// move elements within and between lists
 /* document.addEventListener('DOMContentLoaded', (event) => {
     var dragSrcEl = null;
  
@@ -1828,7 +2257,9 @@ document.getElementById('advOptEditC').addEventListener('click', function (event
                         clickPenAct(this.parentElement.parentElement);
                     } else if (this.parentElement.parentElement.id.startsWith('T')) {
                         clickPenTest(this.parentElement.parentElement);
-                    }
+                    } else if (this.parentElement.parentElement.id.startsWith('E')) {
+                    clickPenEssay(this.parentElement.parentElement);
+                }
                 }
             }
  
@@ -1872,6 +2303,8 @@ window.onclick = function (event) {
         || event.target == document.getElementById('editActModal')
         || event.target == document.getElementById('testModal')
         || event.target == document.getElementById('editTestModal')
+        || event.target == document.getElementById('essayModal')
+        || event.target == document.getElementById('editEssayModal')
         || event.target == document.getElementById('diffModal')
         || event.target == document.getElementById('gpaModal')
         || event.target == document.getElementById('weightsModal')
@@ -1945,6 +2378,14 @@ function hide() {
     document.getElementById('testSpeciesOtherEdit').classList.add('hidden');
     document.getElementById('testSubScoreDivEdit').classList.add('hidden');
     document.getElementById('testSubScoreDivEdit').classList.remove('flex');
+
+    document.getElementById('essayModal').classList.add('fadeIn');
+    document.getElementById('essayModal').classList.remove('fadeOut');
+    document.getElementById('essayPrompt').value = '';
+    document.getElementById('essayText').value = '';
+
+    document.getElementById('editEssayModal').classList.add('fadeIn');
+    document.getElementById('editEssayModal').classList.remove('fadeOut');
 
     document.getElementById('diffModal').classList.add('fadeIn');
     document.getElementById('diffModal').classList.remove('fadeOut');
