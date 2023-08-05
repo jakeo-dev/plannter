@@ -11,6 +11,18 @@ let honWeight = 0.5;
 let apWeight = 1;
 let ibWeight = 1;
 
+let plusMinus;
+
+if (typeof localStorage.getItem('gpaPlusMinus') !== 'undefined') {
+    if (localStorage.getItem('gpaPlusMinus') == 'true') {
+        plusMinus = true;
+    } else {
+        plusMinus = false;
+    }
+} else {
+    plusMinus = false;
+}
+
 const promptList = ['Share a personal story that illustrates your resilience in the face of adversity.',
     'Describe a moment when you challenged a deeply held belief and how it affected your perspective.',
     'Describe an experience that sparked your passion for a cause or interest that is meaningful to you.',
@@ -42,7 +54,6 @@ const promptList = ['Share a personal story that illustrates your resilience in 
     'Discuss a project where you leveraged technology to address a societal issue.',
     'Share a humorous incident that taught you an essential life lesson.',
     'Reflect on a time when you had to advocate for your own rights or beliefs.',
-    'Describe an experience that fueled your curiosity for scientific exploration.',
     'Discuss an initiative you took to promote diversity and inclusion in your community.',
     'Share a cultural tradition or celebration that holds significant meaning for you.',
     'Reflect on a time when you had to adapt to a new environment or circumstance.',
@@ -58,7 +69,6 @@ const promptList = ['Share a personal story that illustrates your resilience in 
     'Discuss a community organization or initiative you\'d like to create in college.',
     'Share a time when you had to confront a stereotype and challenge its validity.',
     'Reflect on a time when you had to prioritize your mental or physical well-being.',
-    'Describe an experience that ignited your interest in social justice issues.',
     'Discuss a future career path and how it aligns with your personal values.',
     'Share a significant childhood memory that shaped your personality.',
     'Reflect on a time when you had to overcome a fear or phobia.',
@@ -133,25 +143,30 @@ inputE.addEventListener('keyup', function () {
 });
 
 getLists();
-saveLists();
 getCourses();
 getActs();
 getTests();
 getEssays();
 getCD();
 calcListDiff();
+calcCumDiff();
 calcGPA();
 calcCumGPA();
-calcCumDiff();
 
 function toggleMenu() {
-    document.getElementById('optionsDiv').classList.toggle('hidden');
+    if (document.getElementById('optionsDiv').className.includes('fadeIn')) {
+        document.getElementById('optionsDiv').classList.remove('fadeIn');
+        document.getElementById('optionsDiv').classList.add('fadeOut');
+    } else {
+        document.getElementById('optionsDiv').classList.add('fadeIn');
+        document.getElementById('optionsDiv').classList.remove('fadeOut');
+    }
 }
 
 document.onclick = function (e) {
-    if (e.target.id !== 'optionsDiv' && e.target.id !== 'optionsBtn' && e.target.id !== 'optionsBtnI') {
-        document.getElementById('optionsDiv').classList.add('hidden');
-    } else {
+    if (e.target.id != 'optionsDiv' && !e.target.className.includes('optBtn') && e.target.id != 'optionsBtn' && e.target.id != 'optionsBtnI') {
+        document.getElementById('optionsDiv').classList.add('fadeIn');
+        document.getElementById('optionsDiv').classList.remove('fadeOut');
     }
 };
 
@@ -314,12 +329,13 @@ function openCD() {
     }
 }
 
-function openChangeWeights() {
-    document.getElementById('weightsModal').classList.remove('fadeIn');
-    document.getElementById('weightsModal').classList.add('fadeOut');
+function openChangeGPACalc() {
+    document.getElementById('changeGPAModal').classList.remove('fadeIn');
+    document.getElementById('changeGPAModal').classList.add('fadeOut');
 
     document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
 
+    document.getElementById('plusMinusSwitch').checked = plusMinus;
     document.getElementById('advWeightInp').value = advWeight;
     document.getElementById('colWeightInp').value = colWeight;
     document.getElementById('honWeightInp').value = honWeight;
@@ -387,6 +403,8 @@ function showEssays() {
 }
 
 document.getElementById('addCourseBtn').addEventListener('click', function (event) {
+    event.preventDefault();
+
     let cTitleInput = document.getElementById('courseTitle').value.trim();
     let cGradeLevInput = document.getElementById('selGradeLev').value;
     let cSubInput = document.getElementById('selSubject').value;
@@ -404,7 +422,6 @@ document.getElementById('addCourseBtn').addEventListener('click', function (even
     } else if ((cLetterGradeInput == 'Use percent' && (Number(cPercentGradeInput) > 100 || Number(cPercentGradeInput) < 0)) || (cLetterGradeInput2 == 'Use percent' && (Number(cPercentGradeInput2) > 100 || Number(cPercentGradeInput2) < 0))) {
         alert('Grade not possible');
     } else {
-        event.preventDefault();
 
         let course = document.createElement('li');
         course.className = 'item course';
@@ -543,6 +560,8 @@ document.getElementById('addCourseBtn').addEventListener('click', function (even
 })
 
 document.getElementById('addActBtn').addEventListener('click', function (event) {
+    event.preventDefault();
+
     let aTitleInput = document.getElementById('actTitle').value.trim();
     let aDescInput = document.getElementById('actDesc').value.trim();
     let aCategoryInput = document.getElementById('selActCategory').value;
@@ -555,8 +574,6 @@ document.getElementById('addActBtn').addEventListener('click', function (event) 
     } else if (aTitleInput == '') {
         alert('Enter the title of your activity');
     } else {
-        event.preventDefault();
-
         let activity = document.createElement('li');
         activity.className = 'item activity';
         activity.name = aTitleInput;
@@ -650,6 +667,8 @@ document.getElementById('addActBtn').addEventListener('click', function (event) 
 })
 
 document.getElementById('addTestBtn').addEventListener('click', function (event) {
+    event.preventDefault();
+
     let tSpeciesInput = document.getElementById('selTestSpecies').value;
     let tSubSpeciesInput = document.getElementById('testSubSpecies').value.trim();
     let tSpeciesOtherInput = document.getElementById('testSpeciesOther').value.trim();
@@ -676,8 +695,6 @@ document.getElementById('addTestBtn').addEventListener('click', function (event)
     } else if (tSpeciesOtherInput == '' && tSpeciesInput == 'Other') {
         alert('Enter the test name');
     } else {
-        event.preventDefault();
-
         let test = document.createElement('li');
         test.className = 'item test';
         test.id = 'T' + Math.floor(100000000 + Math.random() * 900000000);
@@ -798,6 +815,8 @@ document.getElementById('addTestBtn').addEventListener('click', function (event)
 })
 
 document.getElementById('addEssayBtn').addEventListener('click', function (event) {
+    event.preventDefault();
+
     let ePromptInput = document.getElementById('essayPrompt').value.trim();
     let eEssayTextInput = document.getElementById('essayText').value.trim();
 
@@ -810,8 +829,6 @@ document.getElementById('addEssayBtn').addEventListener('click', function (event
     } else if (eEssayTextInput == '') {
         alert('Enter your essay');
     } else {
-        event.preventDefault();
-
         let essay = document.createElement('li');
         essay.className = 'item essay';
         essay.prompt = ePromptInput;
@@ -1088,6 +1105,8 @@ function clickTrash(el) {
 }
 
 document.getElementById('saveCourseBtn').addEventListener('click', function (event) {
+    event.preventDefault();
+
     let cTitleInput = document.getElementById('courseTitleEdit').value.trim();
     let cLetterGradeInput = document.getElementById('selLetterGradeEdit').value;
     let cPercentGradeInput = document.getElementById('percentGradeEdit').value;
@@ -1101,8 +1120,6 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
     } else if ((cPercentGradeInput != '' && (Number(cPercentGradeInput) > 100 || Number(cPercentGradeInput) < 0)) || (cPercentGrade2Input != '' && (Number(cPercentGrade2Input) > 100 || Number(cPercentGrade2Input) < 0))) {
         alert('Grade not possible');
     } else {
-        event.preventDefault();
-
         if (course.gradeLevel != document.getElementById('selGradeLevEdit').value) {
             course.gradeLevel = document.getElementById('selGradeLevEdit').value;
             document.getElementById('list' + course.gradeLevel).appendChild(course.cloneNode(true));
@@ -1231,6 +1248,8 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
 })
 
 document.getElementById('saveActBtn').addEventListener('click', function (event) {
+    event.preventDefault();
+
     let aTitleInput = document.getElementById('actTitleEdit').value.trim();
     let aDescInput = document.getElementById('actDescEdit').value.trim();
     let aCategoryInput = document.getElementById('selActCategoryEdit').value;
@@ -1243,8 +1262,6 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
     } else if (aTitleInput == '') {
         alert('Enter the title of your activity');
     } else {
-        event.preventDefault();
-
         if (activity.strength != aStrengthInput) {
             activity.strength = aStrengthInput;
             if (activity.strength == 1) {
@@ -1330,6 +1347,8 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
 })
 
 document.getElementById('saveTestBtn').addEventListener('click', function (event) {
+    event.preventDefault();
+
     let tSpeciesInput = document.getElementById('selTestSpeciesEdit').value;
     let tSubSpeciesInput = document.getElementById('testSubSpeciesEdit').value.trim();
     let tSpeciesOtherInput = document.getElementById('testSpeciesOtherEdit').value.trim();
@@ -1356,8 +1375,6 @@ document.getElementById('saveTestBtn').addEventListener('click', function (event
     } else if (tSpeciesOtherInput == '' && tSpeciesInput == 'Other') {
         alert('Enter the test name');
     } else {
-        event.preventDefault();
-
         test = document.getElementById(test.id);
 
         if (tMonthInput.length == 1) {
@@ -1467,6 +1484,8 @@ document.getElementById('saveTestBtn').addEventListener('click', function (event
 })
 
 document.getElementById('saveEssayBtn').addEventListener('click', function (event) {
+    event.preventDefault();
+
     let ePromptInput = document.getElementById('essayPromptEdit').value.trim();
     let eEssayTextInput = document.getElementById('essayTextEdit').value.trim();
 
@@ -1479,8 +1498,6 @@ document.getElementById('saveEssayBtn').addEventListener('click', function (even
     } else if (eEssayTextInput == '') {
         alert('Enter your essay');
     } else {
-        event.preventDefault();
-
         essay.prompt = ePromptInput;
         essay.name = ePromptInput;
         essay.essayText = eEssayTextInput;
@@ -1600,6 +1617,14 @@ document.getElementById('saveWeightsBtn').addEventListener('click', function (ev
         localStorage.setItem('apWeight', apWeight);
         localStorage.setItem('ibWeight', ibWeight);
 
+        if (document.getElementById('plusMinusSwitch').checked) {
+            plusMinus = true;
+        } else {
+            plusMinus = false;
+        }
+
+        localStorage.setItem('gpaPlusMinus', plusMinus);
+
         calcGPA();
         calcCumGPA();
         hide();
@@ -1608,6 +1633,7 @@ document.getElementById('saveWeightsBtn').addEventListener('click', function (ev
 
 document.getElementById('randomPromptBtn').addEventListener('click', function (event) {
     event.preventDefault();
+
     randomPrompt = promptList[Math.floor(Math.random() * promptList.length)];
     document.getElementById('essayPrompt').value = randomPrompt;
 })
@@ -1995,34 +2021,102 @@ function calcGPA() {
         for (let j = 0; j < currentItems.length; j++) {
             course = currentItems[j];
 
-            if (course.grade.includes('A')) {
-                course.indGPAGrade = 4;
-            } else if (course.grade.includes('B')) {
-                course.indGPAGrade = 3;
-            } else if (course.grade.includes('C')) {
-                course.indGPAGrade = 2;
-            } else if (course.grade.includes('D')) {
-                course.indGPAGrade = 1;
-            } else if (course.grade.includes('F')) {
-                course.indGPAGrade = 0;
-            } else {
-                course.indGPAGrade = 0;
-                ungradedSems++;
-            }
+            if (!plusMinus) {
 
-            if (course.grade2.includes('A')) {
-                course.indGPAGrade2 = 4;
-            } else if (course.grade2.includes('B')) {
-                course.indGPAGrade2 = 3;
-            } else if (course.grade2.includes('C')) {
-                course.indGPAGrade2 = 2;
-            } else if (course.grade2.includes('D')) {
-                course.indGPAGrade2 = 1;
-            } else if (course.grade2.includes('F')) {
-                course.indGPAGrade2 = 0;
+                if (course.grade.includes('A')) {
+                    course.indGPAGrade = 4;
+                } else if (course.grade.includes('B')) {
+                    course.indGPAGrade = 3;
+                } else if (course.grade.includes('C')) {
+                    course.indGPAGrade = 2;
+                } else if (course.grade.includes('D')) {
+                    course.indGPAGrade = 1;
+                } else if (course.grade.includes('F')) {
+                    course.indGPAGrade = 0;
+                } else {
+                    course.indGPAGrade = 0;
+                    ungradedSems++;
+                }
+
+                if (course.grade2.includes('A')) {
+                    course.indGPAGrade2 = 4;
+                } else if (course.grade2.includes('B')) {
+                    course.indGPAGrade2 = 3;
+                } else if (course.grade2.includes('C')) {
+                    course.indGPAGrade2 = 2;
+                } else if (course.grade2.includes('D')) {
+                    course.indGPAGrade2 = 1;
+                } else if (course.grade2.includes('F')) {
+                    course.indGPAGrade2 = 0;
+                } else {
+                    course.indGPAGrade2 = 0;
+                    ungradedSems++;
+                }
+
             } else {
-                course.indGPAGrade2 = 0;
-                ungradedSems++;
+
+                if (course.grade.includes('A+')) {
+                    course.indGPAGrade = 4;
+                } else if (course.grade.includes('A-')) {
+                    course.indGPAGrade = 3.7;
+                } else if (course.grade.includes('A')) {
+                    course.indGPAGrade = 4;
+                } else if (course.grade.includes('B+')) {
+                    course.indGPAGrade = 3.3;
+                } else if (course.grade.includes('B-')) {
+                    course.indGPAGrade = 2.7;
+                } else if (course.grade.includes('B')) {
+                    course.indGPAGrade = 3;
+                } else if (course.grade.includes('C+')) {
+                    course.indGPAGrade = 2.3;
+                } else if (course.grade.includes('C-')) {
+                    course.indGPAGrade = 1.7;
+                } else if (course.grade.includes('C')) {
+                    course.indGPAGrade = 2;
+                } else if (course.grade.includes('D+')) {
+                    course.indGPAGrade = 1.3;
+                } else if (course.grade.includes('D-')) {
+                    course.indGPAGrade = 0;
+                } else if (course.grade.includes('D')) {
+                    course.indGPAGrade = 1;
+                } else if (course.grade.includes('F')) {
+                    course.indGPAGrade = 0;
+                } else {
+                    course.indGPAGrade = 0;
+                    ungradedSems++;
+                }
+
+                if (course.grade2.includes('A+')) {
+                    course.indGPAGrade2 = 4;
+                } else if (course.grade2.includes('A-')) {
+                    course.indGPAGrade2 = 3.7;
+                } else if (course.grade2.includes('A')) {
+                    course.indGPAGrade2 = 4;
+                } else if (course.grade2.includes('B+')) {
+                    course.indGPAGrade2 = 3.3;
+                } else if (course.grade2.includes('B-')) {
+                    course.indGPAGrade2 = 2.7;
+                } else if (course.grade2.includes('B')) {
+                    course.indGPAGrade2 = 3;
+                } else if (course.grade2.includes('C+')) {
+                    course.indGPAGrade2 = 2.3;
+                } else if (course.grade2.includes('C-')) {
+                    course.indGPAGrade2 = 1.7;
+                } else if (course.grade2.includes('C')) {
+                    course.indGPAGrade2 = 2;
+                } else if (course.grade2.includes('D+')) {
+                    course.indGPAGrade2 = 1.3;
+                } else if (course.grade2.includes('D-')) {
+                    course.indGPAGrade2 = 0;
+                } else if (course.grade2.includes('D')) {
+                    course.indGPAGrade2 = 1;
+                } else if (course.grade2.includes('F')) {
+                    course.indGPAGrade2 = 0;
+                } else {
+                    course.indGPAGrade2 = 0;
+                    ungradedSems++;
+                }
+
             }
 
             sum = sum + course.indGPAGrade + course.indGPAGrade2;
@@ -2114,34 +2208,102 @@ function calcCumGPA() {
         for (let j = 0; j < currentItems.length; j++) {
             course = currentItems[j];
 
-            if (course.grade.includes('A')) {
-                course.indGPAGrade = 4;
-            } else if (course.grade.includes('B')) {
-                course.indGPAGrade = 3;
-            } else if (course.grade.includes('C')) {
-                course.indGPAGrade = 2;
-            } else if (course.grade.includes('D')) {
-                course.indGPAGrade = 1;
-            } else if (course.grade.includes('F')) {
-                course.indGPAGrade = 0;
-            } else {
-                course.indGPAGrade = 0;
-                cumUngradedSems++;
-            }
+            if (!plusMinus) {
 
-            if (course.grade2.includes('A')) {
-                course.indGPAGrade2 = 4;
-            } else if (course.grade2.includes('B')) {
-                course.indGPAGrade2 = 3;
-            } else if (course.grade2.includes('C')) {
-                course.indGPAGrade2 = 2;
-            } else if (course.grade2.includes('D')) {
-                course.indGPAGrade2 = 1;
-            } else if (course.grade2.includes('F')) {
-                course.indGPAGrade2 = 0;
+                if (course.grade.includes('A')) {
+                    course.indGPAGrade = 4;
+                } else if (course.grade.includes('B')) {
+                    course.indGPAGrade = 3;
+                } else if (course.grade.includes('C')) {
+                    course.indGPAGrade = 2;
+                } else if (course.grade.includes('D')) {
+                    course.indGPAGrade = 1;
+                } else if (course.grade.includes('F')) {
+                    course.indGPAGrade = 0;
+                } else {
+                    course.indGPAGrade = 0;
+                    cumUngradedSems++;
+                }
+
+                if (course.grade2.includes('A')) {
+                    course.indGPAGrade2 = 4;
+                } else if (course.grade2.includes('B')) {
+                    course.indGPAGrade2 = 3;
+                } else if (course.grade2.includes('C')) {
+                    course.indGPAGrade2 = 2;
+                } else if (course.grade2.includes('D')) {
+                    course.indGPAGrade2 = 1;
+                } else if (course.grade2.includes('F')) {
+                    course.indGPAGrade2 = 0;
+                } else {
+                    course.indGPAGrade2 = 0;
+                    cumUngradedSems++;
+                }
+
             } else {
-                course.indGPAGrade2 = 0;
-                cumUngradedSems++;
+
+                if (course.grade.includes('A+')) {
+                    course.indGPAGrade = 4;
+                } else if (course.grade.includes('A-')) {
+                    course.indGPAGrade = 3.7;
+                } else if (course.grade.includes('A')) {
+                    course.indGPAGrade = 4;
+                } else if (course.grade.includes('B+')) {
+                    course.indGPAGrade = 3.3;
+                } else if (course.grade.includes('B-')) {
+                    course.indGPAGrade = 2.7;
+                } else if (course.grade.includes('B')) {
+                    course.indGPAGrade = 3;
+                } else if (course.grade.includes('C+')) {
+                    course.indGPAGrade = 2.3;
+                } else if (course.grade.includes('C-')) {
+                    course.indGPAGrade = 1.7;
+                } else if (course.grade.includes('C')) {
+                    course.indGPAGrade = 2;
+                } else if (course.grade.includes('D+')) {
+                    course.indGPAGrade = 1.3;
+                } else if (course.grade.includes('D-')) {
+                    course.indGPAGrade = 0;
+                } else if (course.grade.includes('D')) {
+                    course.indGPAGrade = 1;
+                } else if (course.grade.includes('F')) {
+                    course.indGPAGrade = 0;
+                } else {
+                    course.indGPAGrade = 0;
+                    cumUngradedSems++;
+                }
+
+                if (course.grade2.includes('A+')) {
+                    course.indGPAGrade2 = 4;
+                } else if (course.grade2.includes('A-')) {
+                    course.indGPAGrade2 = 3.7;
+                } else if (course.grade2.includes('A')) {
+                    course.indGPAGrade2 = 4;
+                } else if (course.grade2.includes('B+')) {
+                    course.indGPAGrade2 = 3.3;
+                } else if (course.grade2.includes('B-')) {
+                    course.indGPAGrade2 = 2.7;
+                } else if (course.grade2.includes('B')) {
+                    course.indGPAGrade2 = 3;
+                } else if (course.grade2.includes('C+')) {
+                    course.indGPAGrade2 = 2.3;
+                } else if (course.grade2.includes('C-')) {
+                    course.indGPAGrade2 = 1.7;
+                } else if (course.grade2.includes('C')) {
+                    course.indGPAGrade2 = 2;
+                } else if (course.grade2.includes('D+')) {
+                    course.indGPAGrade2 = 1.3;
+                } else if (course.grade2.includes('D-')) {
+                    course.indGPAGrade2 = 0;
+                } else if (course.grade2.includes('D')) {
+                    course.indGPAGrade2 = 1;
+                } else if (course.grade2.includes('F')) {
+                    course.indGPAGrade2 = 0;
+                } else {
+                    course.indGPAGrade2 = 0;
+                    cumUngradedSems++;
+                }
+
             }
 
             cumSum = cumSum + course.indGPAGrade + course.indGPAGrade2;
@@ -2348,7 +2510,7 @@ window.onclick = function (event) {
         || event.target == document.getElementById('editEssayModal')
         || event.target == document.getElementById('diffModal')
         || event.target == document.getElementById('gpaModal')
-        || event.target == document.getElementById('weightsModal')
+        || event.target == document.getElementById('changeGPAModal')
         || event.target == document.getElementById('countdownModal')
         || event.target == document.getElementById('countdownModal')) {
         hide();
@@ -2425,6 +2587,7 @@ function hide() {
     document.getElementById('essayModal').classList.remove('fadeOut');
     document.getElementById('essayPrompt').value = '';
     document.getElementById('essayText').value = '';
+    document.getElementById('essayWordCount').innerText = '0';
 
     document.getElementById('editEssayModal').classList.add('fadeIn');
     document.getElementById('editEssayModal').classList.remove('fadeOut');
@@ -2435,8 +2598,8 @@ function hide() {
     document.getElementById('gpaModal').classList.add('fadeIn');
     document.getElementById('gpaModal').classList.remove('fadeOut');
 
-    document.getElementById('weightsModal').classList.add('fadeIn');
-    document.getElementById('weightsModal').classList.remove('fadeOut');
+    document.getElementById('changeGPAModal').classList.add('fadeIn');
+    document.getElementById('changeGPAModal').classList.remove('fadeOut');
 
     document.getElementById('countdownModal').classList.add('fadeIn');
     document.getElementById('countdownModal').classList.remove('fadeOut');

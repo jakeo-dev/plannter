@@ -721,12 +721,12 @@
 
             <h1 class='text-2xl font-medium mb-6'>About grade point average (GPA)</h1>
             <h2 class='text-lg'>
-                Grade point average is the average of the grades from each course. It does not take + or - into account.
-                <br><br>Weighted GPA takes the difficulty of individual courses into account, while unweighted GPA does
-                not. You can change the weights of advanced courses by clicking here:
-                <button onclick='openChangeWeights()'
+                Grade point average is the average of the grades from each course. By default, it does not take + or -
+                into account.<br><br>Weighted GPA takes the advancement level of individual courses into account, while
+                unweighted GPA does not. You can change how your GPA is calculated by clicking here:
+                <button onclick='openChangeGPACalc()'
                     class='block input active:bg-gray-300 active:border-transparent dark:active:bg-gray-600 w-auto px-3 py-2 mt-4 mb-0'>Change
-                    weights</button>
+                    GPA calculation</button>
             </h2>
 
         </div>
@@ -769,7 +769,7 @@
         </div>
     </div>
 
-    <div id='weightsModal'
+    <div id='changeGPAModal'
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
             class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-9 py-8 md:px-12 md:py-11'>
@@ -779,7 +779,18 @@
                 <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
-                <h1 class='text-2xl font-medium mb-6'>Change advanced course weights</h1>
+                <h1 class='text-2xl font-medium mb-6'>Change GPA calculation</h1>
+
+                <div class='text-lg mb-4'>
+                    <input id='plusMinusSwitch' type='checkbox' class='hidden'>
+                    <label for='plusMinusSwitch' class='relative pl-8 cursor-pointer select-none'>
+                        <span
+                            class='absolute left-0 top-0 w-6 h-6 bg-gray-100 border-2 border-gray-300 rounded-md'></span>
+                        <span
+                            class='absolute left-0 top-0 w-6 h-6 bg-sky-500 rounded-md opacity-0 transition-all'></span>
+                        Use +/- in calculation
+                    </label>
+                </div>
 
                 <label for='advWeightInp' class='text-base text-gray-500 px-2'>Advanced/Accelerated weight</label>
                 <input id='advWeightInp' class='input text-lg p-2 pl-3 mb-4' type='number' autocomplete='off' step='0.5'
@@ -837,16 +848,13 @@
                     class='text-2xl text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 px-2 pt-1 transition-all'
                     onclick='toggleMenu()' id='optionsBtn'><i class='fa-solid fa-ellipsis-vertical'
                         id='optionsBtnI'></i></button>
-                <div class='hidden absolute right-0 w-80 bg-gray-100 dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 rounded-md shadow-lg p-3 mt-2'
+                <div class='fadeIn absolute right-0 w-80 bg-gray-100 dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 rounded-md shadow-lg p-3 mt-2'
                     id='optionsDiv'>
-                    <button
-                        class='block w-full text-lg text-left text-gray-600 hover:bg-gray-300 active:bg-gray-400 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 transition-all rounded-md px-4 py-2'
-                        onclick='toggleDark()' id='toggleDark'><i class='fa-solid fa-sun mr-2'
+                    <button class='optBtn' onclick='toggleDark()' id='toggleDark'><i class='fa-solid fa-sun mr-2'
                             aria-label='Toggle dark mode'></i>Toggle dark mode</button>
-                    <button
-                        class='block w-full text-lg text-left text-gray-600 hover:bg-gray-300 active:bg-gray-400 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 transition-all rounded-md px-4 py-2 mt-1'
-                        onclick='openChangeWeights()' id='changeWeights'><i class='fa-solid fa-weight-hanging mr-2'
-                            aria-label='Change advanced course weights'></i>Change advanced course weights</button>
+                    <button class='optBtn' onclick='openChangeGPACalc()' id='changeWeights'><i
+                            class='fa-solid fa-wrench mr-2' aria-label='Change GPA calculation'></i>Change GPA
+                        calculation</button>
                 </div>
             </div>
 
@@ -897,8 +905,8 @@
                         aria-label='Toggle dark mode'></i>Toggle dark mode</button>
                 <button
                     class='block w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-8 py-4 transition-all'
-                    onclick='openChangeWeights()' id='changeWeightsSm'><i class='fa-solid fa-weight-hanging mr-2'
-                        aria-label='Change advanced course weights'></i>Change advanced course weights</button>
+                    onclick='openChangeGPACalc()' id='changeWeightsSm'><i class='fa-solid fa-wrench mr-2'
+                        aria-label='Change GPA calculation'></i>Change GPA calculation</button>
             </div>
         </div>
 

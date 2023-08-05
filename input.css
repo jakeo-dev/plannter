@@ -23,6 +23,10 @@
     @apply border-t-2 rounded-t-md border-b-2 rounded-b-md mb-3;
   }
 
+  .optBtn {
+    @apply block w-full text-lg text-left text-gray-600 hover:bg-gray-300 active:bg-gray-400 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 transition-all rounded-md px-4 py-2 mt-1 first:mt-0;
+  }
+
   .sbjI {
     @apply mr-2;
   }
@@ -174,4 +178,8 @@
 
 .item:hover > .optDiv {
   @apply text-gray-900 dark:text-gray-200;
+}
+
+#plusMinusSwitch:checked + label span:nth-child(2) {
+  @apply opacity-100;
 }
