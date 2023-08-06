@@ -666,7 +666,7 @@
                     <span id='essayWordCountEdit' class='text-base text-gray-500 px-2'>0</span>
                 </div>
                 <textarea id='essayTextEdit' class='input text-base p-2 pl-3 m-0 mb-4' onkeyup='wordCountEdit()'
-                    autocomplete='off' maxlength='50000' rows='12' required></textarea>
+                    autocomplete='off' maxlength='50000' rows='14' required></textarea>
 
                 <button id='saveEssayBtn' type='submit'
                     class='text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent text-left transition-all px-3 py-2 mt-4'><i
@@ -697,21 +697,6 @@
         </div>
     </div>
 
-    <!-- <div id='diffPercentModal'
-        class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
-        <div class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-9 py-8 md:px-12 md:py-11'>
-            <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
-                    class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
-
-            <h1 class='text-2xl font-medium mb-6'>About grade level advancement percent</h1>
-            <h2 class='text-lg'>
-                Grade level advancement percent is the percentage of the number of advanced classes to total classes.
-                <br><br> It does not take the difficulty of individual courses into account.
-            </h2>
-
-        </div>
-    </div> -->
-
     <div id='gpaModal'
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
@@ -728,6 +713,21 @@
                     class='block input active:bg-gray-300 active:border-transparent dark:active:bg-gray-600 w-auto px-3 py-2 mt-4 mb-0'>Change
                     GPA calculation</button>
             </h2>
+
+        </div>
+    </div>
+
+    <div id='ecStrengthModal'
+        class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
+        <div
+            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-9 py-8 md:px-12 md:py-11'>
+            <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+                    class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
+
+            <h1 class='text-2xl font-medium mb-6'>About extracurricular strength</h1>
+            <h2 class='text-lg'>Extracurricular strength is calculated using the strength of each individual activity
+                and the number of activities. The stronger the activities, and the more there are, the higher the
+                extracurricular strength score.</h2>
 
         </div>
     </div>
@@ -785,9 +785,9 @@
                     <input id='plusMinusSwitch' type='checkbox' class='hidden'>
                     <label for='plusMinusSwitch' class='relative pl-8 cursor-pointer select-none'>
                         <span
-                            class='absolute left-0 top-0 w-6 h-6 bg-gray-100 border-2 border-gray-300 rounded-md'></span>
+                            class='absolute left-0 top-0 w-6 h-6 bg-gray-100 dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 rounded-md'></span>
                         <span
-                            class='absolute left-0 top-0 w-6 h-6 bg-sky-500 rounded-md opacity-0 transition-all'></span>
+                            class='absolute left-0 top-0 w-6 h-6 bg-sky-500 dark:bg-sky-600 rounded-md opacity-0 transition-all'></span>
                         Use +/- in calculation
                     </label>
                 </div>
@@ -835,7 +835,7 @@
             class='flex items-center tracking-wide text-transparent bg-clip-text font-bold bg-gradient-to-r from-green-600 via-teal-600 to-sky-600 dark:from-green-500 dark:via-teal-500 dark:to-sky-500'>
             <i class='fa-solid fa-seedling mr-3'></i>Plannter
         </h1>
-        <!-- <h2 class='text-lg mt-1'>Manage all of your high school accomplishments</h2> -->
+        <!-- <h2 class='text-lg mt-1'>Manage and plan the next four years</h2> -->
 
         <div class='hidden md:block font-LexendDeca font-medium ml-auto'>
             <button
@@ -878,7 +878,7 @@
             </button>
             <button
                 class='planBtns w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-8 py-4 transition-all'
-                onclick='showExtra()'>
+                onclick='showActs()'>
                 <h1 class='tracking-wide'>Extracurriculars</h1>
             </button>
             <button
@@ -887,24 +887,28 @@
                 <h1 class='tracking-wide'>Essays</h1>
             </button>
 
-            <div
-                class='font-LexendDeca block border-t-2 border-gray-300 dark:border-gray-700 font-medium px-8 py-4 mt-4'>
-                <div><button class='attr hidden' id='diffCum' onclick='openDiff()'></button></div>
-                <div><button class='attr gpa hidden' id='gpaCum' onclick='openGPA()'></button></div>
-                <div><button class='attr wGpa hidden' id='wGpaCum' onclick='openGPA()'></button></div>
+            <div class='border-t-2 border-gray-300 dark:border-gray-700 my-4'></div>
+
+            <div class='font-LexendDeca block w-min font-medium px-8 mt-0'>
+                <button class='cumAttr hidden' id='gpaCum' onclick='openGPA()'></button>
+                <button class='cumAttr hidden' id='wGpaCum' onclick='openGPA()'></button>
+                <button class='cumAttr hidden' id='diffCum' onclick='openDiff()'></button>
+                <button class='cumAttr hidden' id='ecStrength' onclick='openECStrength()'></button>
             </div>
 
-            <div class='font-LexendDeca md:hidden block border-t-2 border-gray-300 font-medium text-lg mt-4'>
+            <div class='block md:hidden border-t-2 border-gray-300 dark:border-gray-700 my-4'></div>
+
+            <div class='font-LexendDeca block md:hidden text-lg font-medium'>
                 <button
-                    class='block w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-8 py-4 mt-4 transition-all'
+                    class='block w-full text-left text-gray-600 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-8 py-4 mt-4 transition-all'
                     onclick='openCD()' id='countdownSm'><i class='fa-solid fa-hourglass-half mr-2'
                         aria-label='Edit countdown'></i>Edit countdown</button>
                 <button
-                    class='block w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-8 py-4 transition-all'
+                    class='block w-full text-left text-gray-600 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-8 py-4 transition-all'
                     onclick='toggleDark()' id='toggleDarkSm'><i class='fa-solid fa-sun mr-2'
                         aria-label='Toggle dark mode'></i>Toggle dark mode</button>
                 <button
-                    class='block w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-8 py-4 transition-all'
+                    class='block w-full text-left text-gray-600 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-8 py-4 transition-all'
                     onclick='openChangeGPACalc()' id='changeWeightsSm'><i class='fa-solid fa-wrench mr-2'
                         aria-label='Change GPA calculation'></i>Change GPA calculation</button>
             </div>
@@ -916,10 +920,9 @@
                 <div class='font-medium px-4'>
                     <h2 class='text-xl font-Calistoga'>Grade 9 (Freshman)</h2>
                     <div class='block font-medium mb-3'>
-                        <button class='attr hidden' id='diff9' onclick='openDiff()'></button>
-                        <!-- <button class='attr listPercent hidden' id='diffPercent9' onclick='openDiffPercent()'></button> -->
                         <button class='attr gpa hidden' id='gpa9' onclick='openGPA()'></button>
                         <button class='attr wGpa hidden' id='wGpa9' onclick='openGPA()'></button>
+                        <button class='attr hidden' id='diff9' onclick='openDiff()'></button>
                     </div>
                 </div>
                 <ul id='list9'>
@@ -933,10 +936,9 @@
                 <div class='font-medium px-4'>
                     <h2 class='text-xl font-Calistoga'>Grade 10 (Sophomore)</h2>
                     <div class='block font-medium mb-3'>
-                        <button class='attr hidden' id='diff10' onclick='openDiff()'></button>
-                        <!-- <button class='attr listPercent hidden' id='diffPercent10' onclick='openDiffPercent()'></button> -->
                         <button class='attr gpa hidden' id='gpa10' onclick='openGPA()'></button>
                         <button class='attr wGpa hidden' id='wGpa10' onclick='openGPA()'></button>
+                        <button class='attr hidden' id='diff10' onclick='openDiff()'></button>
                     </div>
                 </div>
                 <ul id='list10'>
@@ -950,10 +952,9 @@
                 <div class='font-medium px-4'>
                     <h2 class='text-xl font-Calistoga'>Grade 11 (Junior)</h2>
                     <div class='block font-medium mb-3'>
-                        <button class='attr hidden' id='diff11' onclick='openDiff()'></button>
-                        <!-- <button class='attr listPercent hidden' id='diffPercent11' onclick='openDiffPercent()'></button> -->
                         <button class='attr gpa hidden' id='gpa11' onclick='openGPA()'></button>
                         <button class='attr wGpa hidden' id='wGpa11' onclick='openGPA()'></button>
+                        <button class='attr hidden' id='diff11' onclick='openDiff()'></button>
                     </div>
                 </div>
                 <ul id='list11'>
@@ -967,11 +968,9 @@
                 <div class='font-medium px-4'>
                     <h2 class='text-xl font-Calistoga'>Grade 12 (Senior)</h2>
                     <div class='block font-medium mb-3'>
-                        <button class='attr hidden' id='diff12' onclick='openDiff()'></button>
-                        <!-- <button class='attr listPercent hidden' id='diffPercent12' onclick='openDiffPercent()'></button> -->
                         <button class='attr gpa hidden' id='gpa12' onclick='openGPA()'></button>
                         <button class='attr wGpa hidden' id='wGpa12' onclick='openGPA()'></button>
-
+                        <button class='attr hidden' id='diff12' onclick='openDiff()'></button>
                     </div>
                 </div>
                 <ul id='list12'>
@@ -985,10 +984,9 @@
                 <div class='font-medium px-4'>
                     <h2 class='text-xl font-Calistoga'>Other Courses</h2>
                     <div class='block font-medium mb-3'>
-                        <button class='attr hidden' id='diff13' onclick='openDiff()'></button>
-                        <!-- <button class='attr listPercent hidden' id='diffPercent13' onclick='openDiffPercent()'></button> -->
                         <button class='attr gpa hidden' id='gpa13' onclick='openGPA()'></button>
                         <button class='attr wGpa hidden' id='wGpa13' onclick='openGPA()'></button>
+                        <button class='attr hidden' id='diff13' onclick='openDiff()'></button>
                     </div>
                 </div>
                 <ul id='list13'>

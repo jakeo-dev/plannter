@@ -59,6 +59,18 @@
     @apply inline-flex bg-gray-500 dark:bg-gray-400 text-base text-gray-100 dark:text-gray-900 rounded-md break-words px-2 py-[0.055rem] ml-2 first:ml-0 mt-2;
   }
 
+  .listAttr {
+    @apply text-left bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-md break-words transition-all px-2 py-[0.055rem] ml-2 first:ml-0 mt-2;
+  }
+
+  .cumAttr {
+    @apply inline-block whitespace-nowrap w-full text-base text-left bg-transparent hover:bg-gray-300 dark:hover:bg-gray-800 rounded-md text-gray-600 md:text-gray-700 dark:text-gray-300 transition-all pl-2 pr-4 py-[0.055rem] my-1.5 -ml-2;
+  }
+
+  .cumAttrNum {
+    @apply text-lg;
+  }
+
   .actPos {
     @apply mt-0;
   }
@@ -121,18 +133,6 @@
 
   .none {
     @apply hidden;
-  }
-
-  .gpa {
-    @apply text-left bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 transition-all;
-  }
-
-  .wGpa {
-    @apply text-left bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 transition-all;
-  }
-
-  .listPercent {
-    @apply bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 transition-all;
   }
 
   .lev1 {
