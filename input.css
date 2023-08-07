@@ -64,11 +64,11 @@
   }
 
   .cumAttr {
-    @apply inline-block whitespace-nowrap w-full text-base text-left bg-transparent hover:bg-gray-300 dark:hover:bg-gray-800 rounded-md text-gray-600 md:text-gray-700 dark:text-gray-300 transition-all pl-2 pr-4 py-[0.055rem] my-1.5 -ml-2;
+    @apply inline-block whitespace-nowrap w-full text-base text-left bg-transparent hover:bg-gray-300 dark:hover:bg-gray-800 rounded-md text-gray-600 md:text-gray-700 dark:text-gray-400 transition-all pl-2 pr-4 py-[0.055rem] my-1.5 -ml-2;
   }
 
   .cumAttrNum {
-    @apply text-lg;
+    @apply text-lg font-bold;
   }
 
   .actPos {

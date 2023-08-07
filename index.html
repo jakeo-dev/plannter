@@ -28,6 +28,30 @@
     <!-- <button onclick='localStorage.clear()' class='text-3xl border-4 border-red-500 hover:bg-red-300'>CLEAR
         EVERYTHING</button> -->
 
+    <div id='deleteModal'
+        class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
+        <div
+            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-9 py-8 md:px-12 md:py-11'>
+            <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+                    class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
+
+            <h1 class='text-2xl font-medium mb-6'>It seems like your information is out of date</h1>
+            <h2 class='text-lg'>Plannter has been recently updated to be much more efficient, but it seems like your
+                courses, tests, and/or extracurriculars have been added before these updates. You will need delete
+                everything and re-add your information. An update like this one will not happen again.
+                <div class='flex'>
+                    <button onclick='localStorage.clear(); window.location.reload();'
+                        class='input text-red-600 dark:text-red-400 border-red-500 dark:border-red-500 hover:bg-red-500 dark:hover:bg-red-500 hover:text-gray-100 dark:hover:text-gray-100 active:bg-red-600 dark:active:bg-red-600 active:border-transparent dark:active:border-transparent w-auto px-3 py-2 mt-4 mb-0'>Delete
+                        everything now</button>
+                    <button onclick='hide()'
+                        class='input active:bg-gray-300 active:border-transparent dark:active:bg-gray-600 w-auto px-3 py-2 mt-4 mb-0 ml-3'>Not
+                        now</button>
+                </div>
+            </h2>
+
+        </div>
+    </div>
+
     <div id='courseModal'
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
@@ -840,14 +864,14 @@
         <div class='hidden md:block font-LexendDeca font-medium ml-auto'>
             <button
                 class='text-xl text-gray-600 hover:bg-gray-300 active:bg-gray-400 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 rounded-md px-3 py-1 transition-all'
-                onclick='openCD()' id='countdown'><i class='fa-solid fa-hourglass-half'
-                    aria-label='Edit countdown'></i></button>
+                onclick='openCD()' id='countdown'><i class='fa-solid fa-hourglass-half' aria-label='Edit countdown'
+                    title='Edit countdown'></i></button>
 
             <div class='relative inline-block'>
                 <button
                     class='text-2xl text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 px-2 pt-1 transition-all'
-                    onclick='toggleMenu()' id='optionsBtn'><i class='fa-solid fa-ellipsis-vertical'
-                        id='optionsBtnI'></i></button>
+                    onclick='toggleMenu()' id='optionsBtn'><i class='fa-solid fa-ellipsis-vertical' id='optionsBtnI'
+                        aria-label='More options' title='More options'></i></button>
                 <div class='fadeIn absolute right-0 w-80 bg-gray-100 dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 rounded-md shadow-lg p-3 mt-2'
                     id='optionsDiv'>
                     <button class='optBtn' onclick='toggleDark()' id='toggleDark'><i class='fa-solid fa-sun mr-2'
@@ -867,7 +891,7 @@
             class='hidden fixed bg-gray-200 dark:bg-gray-800 md:dark:bg-gray-900 font-Calistoga text-xl font-extrabold border-r-2 border-gray-300 dark:border-gray-700 shadow-2xl h-full z-20 w-10/12 pt-8 pr-4 md:sticky md:top-36 md:border-0 md:shadow-none md:bg-transparent md:z-auto md:block md:w-1/3 md:p-0 md:mt-12'>
 
             <button
-                class='planBtns w-full text-left text-gray-600 dark:text-gray-400 bg-green-600/30 rounded-r-full px-8 py-4 transition-all'
+                class='planBtns w-full text-left text-gray-600 dark:text-gray-300/80 bg-green-600/30 rounded-r-full px-8 py-4 transition-all'
                 onclick='showPlan()'>
                 <h1 class='tracking-wide'>Coursework</h1>
             </button>
@@ -914,7 +938,7 @@
             </div>
         </div>
 
-        <div id='planDiv' class='w-full px-4 md:px-14 lg:px-24 xl:px-32 mt-12 md:mt-20'>
+        <div id='planDiv' class='w-full h-min px-4 md:px-12 lg:px-16 xl:px-32 mt-12 md:mt-20'>
 
             <div class='mb-12'>
                 <div class='font-medium px-4'>
@@ -998,7 +1022,7 @@
 
         </div>
 
-        <div id='actsDiv' class='hidden w-full px-4 md:px-14 lg:px-24 xl:px-32 mt-12 md:mt-20'>
+        <div id='actsDiv' class='hidden w-full h-min px-4 md:px-12 lg:px-16 xl:px-32 mt-12 md:mt-20'>
 
             <div class='mb-12'>
                 <h2 class='text-xl font-Calistoga font-medium px-4 mb-3'>Major Activities</h2>
@@ -1029,7 +1053,7 @@
 
         </div>
 
-        <div id='testsDiv' class='hidden w-full px-4 md:px-14 lg:px-24 xl:px-32 mt-12 md:mt-20'>
+        <div id='testsDiv' class='hidden w-full h-min px-4 md:px-12 lg:px-16 xl:px-32 mt-12 md:mt-20'>
 
             <div class='mb-12'>
                 <h2 class='text-xl font-Calistoga font-medium px-4 mb-3'>Tests</h2>
@@ -1042,7 +1066,7 @@
 
         </div>
 
-        <div id='essaysDiv' class='hidden w-full px-4 md:px-14 lg:px-24 xl:px-32 mt-12 md:mt-20'>
+        <div id='essaysDiv' class='hidden w-full h-min px-4 md:px-12 lg:px-16 xl:px-32 mt-12 md:mt-20'>
 
             <div class='mb-12'>
                 <h2 class='text-xl font-Calistoga font-medium px-4 mb-3'>Essays</h2>
@@ -1050,8 +1074,7 @@
                 </ul>
                 <button
                     class='text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent w-full text-left transition-all px-3 py-2'
-                    onclick='openAddEssay()'><i class='fa-solid fa-plus mr-1'></i>Write an
-                    essay</button>
+                    onclick='openAddEssay()'><i class='fa-solid fa-plus mr-1'></i>Write an essay</button>
             </div>
 
         </div>

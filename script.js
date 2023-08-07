@@ -2,7 +2,6 @@ const currentYear = new Date().getFullYear();
 const currentMonth = Number(String(new Date().getMonth() + 1).padStart(2, '0'));
 const currentDay = Number(String(new Date().getDate()).padStart(2, '0'));
 const currentDate = new Date(currentYear, currentMonth - 1, currentDay);
-
 const oneDay = 24 * 60 * 60 * 1000; // hours * mins * secs * millisecs
 
 let advWeight = 0;
@@ -51,7 +50,7 @@ const promptList = ['Share a personal story that illustrates your resilience in 
     'Share a piece of art, music, or writing that deeply resonates with you and why.',
     'Reflect on a time when you mentored or supported someone to achieve their goals.',
     'Describe an experience that led you to pursue a non-traditional academic interest.',
-    'Discuss a project where you leveraged technology to address a societal issue.',
+    'Share an impactful project where your expertise addressed a societal issue.',
     'Share a humorous incident that taught you an essential life lesson.',
     'Reflect on a time when you had to advocate for your own rights or beliefs.',
     'Discuss an initiative you took to promote diversity and inclusion in your community.',
@@ -122,7 +121,7 @@ const promptList = ['Share a personal story that illustrates your resilience in 
 
 input = document.getElementById('courseTitle');
 input.addEventListener('keyup', function () {
-    if (input.value.toLowerCase().includes('advance') || input.value.toLowerCase().includes('accel') || input.value.toLowerCase().includes('honor') || input.value.toLowerCase().includes('ap') || input.value.toLowerCase().includes('ib')) {
+    if (input.value.toLowerCase().includes('advance') || input.value.toLowerCase().includes('accel') || input.value.toLowerCase().includes('honor') || input.value.toLowerCase().includes(' ap') || input.value.toLowerCase().includes('ap ') || input.value.toLowerCase().includes(' ib') || input.value.toLowerCase().includes('ib ')) {
         document.getElementById('diffTip').classList.remove('hidden');
         input.classList.remove('mb-4');
     } else {
@@ -133,7 +132,7 @@ input.addEventListener('keyup', function () {
 
 inputE = document.getElementById('courseTitleEdit');
 inputE.addEventListener('keyup', function () {
-    if (inputE.value.toLowerCase().includes('advance') || inputE.value.toLowerCase().includes('accel') || inputE.value.toLowerCase().includes('honor') || inputE.value.toLowerCase().includes('ap') || inputE.value.toLowerCase().includes('ib')) {
+    if (inputE.value.toLowerCase().includes('advance') || inputE.value.toLowerCase().includes('accel') || inputE.value.toLowerCase().includes('honor') || inputE.value.toLowerCase().includes(' ap') || inputE.value.toLowerCase().includes('ap ') || inputE.value.toLowerCase().includes(' ib') || inputE.value.toLowerCase().includes('ib ')) {
         document.getElementById('diffTipEdit').classList.remove('hidden');
         inputE.classList.remove('mb-4');
     } else {
@@ -153,6 +152,13 @@ calcCumDiff();
 calcGPA();
 calcCumGPA();
 calcECStrength();
+
+if (typeof course !== 'undefined' && course.innerHTML.includes(course.id + 'SbjI')) {
+    document.getElementById('deleteModal').classList.remove('fadeIn');
+    document.getElementById('deleteModal').classList.add('fadeOut');
+
+    document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
+}
 
 function toggleMenu() {
     if (document.getElementById('optionsDiv').className.includes('fadeIn')) {
@@ -358,7 +364,7 @@ buttons.forEach((planBtns) => {
         buttons.forEach((planBtns) => {
             planBtns.classList.remove('bg-green-600/30');
             planBtns.classList.remove('text-gray-600');
-            planBtns.classList.remove('dark:text-gray-400');
+            planBtns.classList.remove('dark:text-gray-300/80');
             planBtns.classList.add('text-gray-500');
             planBtns.classList.add('hover:bg-gray-400/30');
             planBtns.classList.add('dark:hover:bg-gray-600/30');
@@ -369,7 +375,7 @@ buttons.forEach((planBtns) => {
         // add/remove classes to the clicked button
         planBtns.classList.add('bg-green-600/30');
         planBtns.classList.add('text-gray-600');
-        planBtns.classList.add('dark:text-gray-400');
+        planBtns.classList.add('dark:text-gray-300/80');
         planBtns.classList.remove('text-gray-500');
         planBtns.classList.remove('hover:bg-gray-400/30');
         planBtns.classList.remove('dark:hover:bg-gray-600/30');
@@ -1212,7 +1218,7 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
             document.getElementById(course.id + 'Grade2').classList.add('hidden');
         }
 
-        if (document.getElementById(course.id + 'Diff2') == null || document.getElementById(course.id + 'Diff2') == undefined) {
+        if (document.getElementById(course.id + 'Diff2') == null || document.getElementById(course.id + 'Diff2') == 'undefined') {
             div = document.createElement('div');
             div.id = course.id + 'Diff2';
             diff2Class = getDiff2(course.diff2);
@@ -1779,7 +1785,7 @@ function calcListDiff() { // calcs diffs of ALL lists
                 course.diff = 1;
             }
 
-            if (document.getElementById(course.id + 'Diff2') == null || document.getElementById(course.id + 'Diff2') == undefined) {
+            if (document.getElementById(course.id + 'Diff2') == null || document.getElementById(course.id + 'Diff2') == 'undefined') {
                 div = document.createElement('div');
                 div.id = course.id + 'Diff2';
                 div.className = 'normal';
@@ -1858,22 +1864,22 @@ function calcCumDiff() {
         document.getElementById('diffCum').innerText = '';
         document.getElementById('diffCum').className = 'cumAttr hidden';
     } else if (cumDiff < 1) {
-        document.getElementById('diffCum').innerHTML = `<b class='cumAttrNum'>${cumDiff}</b> Easy Coursework`;
+        document.getElementById('diffCum').innerHTML = `<span class='cumAttrNum'>${cumDiff}</span> Easy Coursework`;
         document.getElementById('diffCum').className = 'cumAttr';
     } else if (cumDiff < 2) {
-        document.getElementById('diffCum').innerHTML = `<b class='cumAttrNum'>${cumDiff}</b> Normal Coursework`;
+        document.getElementById('diffCum').innerHTML = `<span class='cumAttrNum'>${cumDiff}</span> Normal Coursework`;
         document.getElementById('diffCum').className = 'cumAttr';
     } else if (cumDiff < 3) {
-        document.getElementById('diffCum').innerHTML = `<b class='cumAttrNum'>${cumDiff}</b> Hard Coursework`;
+        document.getElementById('diffCum').innerHTML = `<span class='cumAttrNum'>${cumDiff}</span> Hard Coursework`;
         document.getElementById('diffCum').className = 'cumAttr';
     } else if (cumDiff < 4) {
-        document.getElementById('diffCum').innerHTML = `<b class='cumAttrNum'>${cumDiff}</b> Difficult Coursework`;
+        document.getElementById('diffCum').innerHTML = `<span class='cumAttrNum'>${cumDiff}</span> Difficult Coursework`;
         document.getElementById('diffCum').className = 'cumAttr';
     } else if (cumDiff < 5) {
-        document.getElementById('diffCum').innerHTML = `<b class='cumAttrNum'>${cumDiff}</b> Challenging Coursework`;
+        document.getElementById('diffCum').innerHTML = `<span class='cumAttrNum'>${cumDiff}</span> Challenging Coursework`;
         document.getElementById('diffCum').className = 'cumAttr';
     } else if (cumDiff >= 5) {
-        document.getElementById('diffCum').innerHTML = `<b class='cumAttrNum'>${cumDiff}</b> Extreme Coursework`;
+        document.getElementById('diffCum').innerHTML = `<span class='cumAttrNum'>${cumDiff}</span> Extreme Coursework`;
         document.getElementById('diffCum').className = 'cumAttr';
     }
 }
@@ -2389,8 +2395,8 @@ function calcCumGPA() {
         document.getElementById('gpaCum').className = 'cumAttr hidden';
         document.getElementById('wGpaCum').className = 'cumAttr hidden';
     } else {
-        document.getElementById('gpaCum').innerHTML = `<b class='cumAttrNum'>${cumGpa}</b> GPA (Cumulative)`;
-        document.getElementById('wGpaCum').innerHTML = `<b class='cumAttrNum'>${cumWGpa}</b> Weighted GPA (Cumulative)`;
+        document.getElementById('gpaCum').innerHTML = `<span class='cumAttrNum'>${cumGpa}</span> GPA (Cumulative)`;
+        document.getElementById('wGpaCum').innerHTML = `<span class='cumAttrNum'>${cumWGpa}</span> Weighted GPA (Cumulative)`;
         document.getElementById('gpaCum').className = 'cumAttr';
         document.getElementById('wGpaCum').className = 'cumAttr';
     }
@@ -2413,7 +2419,7 @@ function calcECStrength() {
         for (let j = 0; j < currentItems.length; j++) {
             activity = currentItems[j];
 
-            if (activity.revStrength == undefined || activity.revStrength == null) {
+            if (activity.revStrength == 'undefined' || activity.revStrength == null) {
                 if (activity.strength == 1) {
                     activity.revStrength = 3;
                 } else if (activity.strength == 2) {
@@ -2433,22 +2439,22 @@ function calcECStrength() {
         document.getElementById('ecStrength').innerText = '';
         document.getElementById('ecStrength').className = 'cumAttr hidden';
     } else if (ecStrength < 1.5) {
-        document.getElementById('ecStrength').innerHTML = `<b class='cumAttrNum'>${ecStrength}</b> Very Weak Extracurriculars`;
+        document.getElementById('ecStrength').innerHTML = `<span class='cumAttrNum'>${ecStrength}</span> Very Weak Extracurriculars`;
         document.getElementById('ecStrength').className = 'cumAttr';
     } else if (ecStrength < 3) {
-        document.getElementById('ecStrength').innerHTML = `<b class='cumAttrNum'>${ecStrength}</b> Weak Extracurriculars`;
+        document.getElementById('ecStrength').innerHTML = `<span class='cumAttrNum'>${ecStrength}</span> Weak Extracurriculars`;
         document.getElementById('ecStrength').className = 'cumAttr';
     } else if (ecStrength < 4.5) {
-        document.getElementById('ecStrength').innerHTML = `<b class='cumAttrNum'>${ecStrength}</b> Moderate Extracurriculars`;
+        document.getElementById('ecStrength').innerHTML = `<span class='cumAttrNum'>${ecStrength}</span> Moderate Extracurriculars`;
         document.getElementById('ecStrength').className = 'cumAttr';
     } else if (ecStrength < 6) {
-        document.getElementById('ecStrength').innerHTML = `<b class='cumAttrNum'>${ecStrength}</b> Strong Extracurriculars`;
+        document.getElementById('ecStrength').innerHTML = `<span class='cumAttrNum'>${ecStrength}</span> Strong Extracurriculars`;
         document.getElementById('ecStrength').className = 'cumAttr';
     } else if (ecStrength < 7.5) {
-        document.getElementById('ecStrength').innerHTML = `<b class='cumAttrNum'>${ecStrength}</b> Very Strong Extracurriculars`;
+        document.getElementById('ecStrength').innerHTML = `<span class='cumAttrNum'>${ecStrength}</span> Very Strong Extracurriculars`;
         document.getElementById('ecStrength').className = 'cumAttr';
     } else if (ecStrength >= 7.5) {
-        document.getElementById('ecStrength').innerHTML = `<b class='cumAttrNum'>${ecStrength}</b> Exceptional Extracurriculars`;
+        document.getElementById('ecStrength').innerHTML = `<span class='cumAttrNum'>${ecStrength}</span> Exceptional Extracurriculars`;
         document.getElementById('ecStrength').className = 'cumAttr';
     }
 }
@@ -2599,7 +2605,8 @@ window.onclick = function (event) {
         || event.target == document.getElementById('gpaModal')
         || event.target == document.getElementById('changeGPAModal')
         || event.target == document.getElementById('ecStrengthModal')
-        || event.target == document.getElementById('countdownModal')) {
+        || event.target == document.getElementById('countdownModal')
+        || event.target == document.getElementById('deleteModal')) {
         hide();
     }
 }
@@ -2693,6 +2700,9 @@ function hide() {
 
     document.getElementById('countdownModal').classList.add('fadeIn');
     document.getElementById('countdownModal').classList.remove('fadeOut');
+
+    document.getElementById('deleteModal').classList.add('fadeIn');
+    document.getElementById('deleteModal').classList.remove('fadeOut');
 
     document.getElementsByTagName('body')[0].classList.remove('overflow-hidden');
 }
