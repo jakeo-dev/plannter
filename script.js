@@ -177,12 +177,6 @@ document.onclick = function (e) {
     }
 };
 
-/* document.addEventListener('click', (event) => {
-    if (!document.getElementById('optionsDiv').contains(event.target) && document.getElementById('optionsBtn') !== event.target) {
-        document.getElementById('optionsDiv').classList.add('hidden');
-    }
-}); */
-
 function toggleMenuSm() {
     document.getElementById('menuDiv').classList.toggle('hidden');
     document.getElementById('menuDiv').classList.toggle('block');
@@ -436,7 +430,6 @@ document.getElementById('addCourseBtn').addEventListener('click', function (even
     } else if ((cLetterGradeInput == 'Use percent' && (Number(cPercentGradeInput) > 100 || Number(cPercentGradeInput) < 0)) || (cLetterGradeInput2 == 'Use percent' && (Number(cPercentGradeInput2) > 100 || Number(cPercentGradeInput2) < 0))) {
         alert('Grade not possible');
     } else {
-
         let course = document.createElement('li');
         course.className = 'item course';
         course.name = cTitleInput;
