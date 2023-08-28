@@ -635,19 +635,10 @@ document.getElementById('addActBtn').addEventListener('click', function (event) 
 
         activity.strength = aStrengthInput;
 
-        if (activity.strength == 1) {
-            activity.revStrength = 3;
-        } else if (activity.strength == 2) {
-            activity.revStrength = 2;
-        } else if (activity.strength == 3) {
-            activity.revStrength = 1;
-        }
-
         localStorage.setItem(activity.id + 'Name', activity.name);
         localStorage.setItem(activity.id + 'Desc', activity.desc);
         localStorage.setItem(activity.id + 'Category', activity.category);
         localStorage.setItem(activity.id + 'Strength', activity.strength);
-        localStorage.setItem(activity.id + 'RevStrength', activity.revStrength);
 
         if (activity.strength == 1) {
             document.getElementById('listActs').appendChild(activity);
@@ -1294,13 +1285,6 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
         activity.desc = aDescInput;
         activity.category = aCategoryInput;
         activity.strength = aStrengthInput;
-        if (activity.strength == 1) {
-            activity.revStrength = 3;
-        } else if (activity.strength == 2) {
-            activity.revStrength = 2;
-        } else if (activity.strength == 3) {
-            activity.revStrength = 1;
-        }
 
         if (!document.getElementById(activity.id + 'Text')) {
             document.getElementById(activity.id).innerHTML = document.getElementById(activity.id).innerHTML.replace(activity.name, '');
@@ -1340,7 +1324,6 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
         localStorage.setItem(activity.id + 'Desc', activity.desc);
         localStorage.setItem(activity.id + 'Category', activity.category);
         localStorage.setItem(activity.id + 'Strength', activity.strength);
-        localStorage.setItem(activity.id + 'RevStrength', activity.revStrength);
 
         saveLists();
         getLists();
@@ -1723,7 +1706,6 @@ function getActs() { // gets all stored info of each activity
             activity.desc = localStorage.getItem(activity.id + 'Desc');
             activity.category = localStorage.getItem(activity.id + 'Category');
             activity.strength = localStorage.getItem(activity.id + 'Strength');
-            activity.revStrength = localStorage.getItem(activity.id + 'RevStrength');
         }
     }
 }
@@ -1819,22 +1801,22 @@ function calcListDiff() { // calcs diffs of ALL lists
             document.getElementById('diff' + i).innerText = '';
             document.getElementById('diff' + i).className = 'listAttr hidden';
         } else if (localStorage.getItem('list' + i + 'Diff') < 1) {
-            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Easy';
+            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Easy Coursework';
             document.getElementById('diff' + i).className = 'listAttr lev1';
         } else if (localStorage.getItem('list' + i + 'Diff') < 2) {
-            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Normal';
+            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Normal Coursework';
             document.getElementById('diff' + i).className = 'listAttr lev2';
         } else if (localStorage.getItem('list' + i + 'Diff') < 3) {
-            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Hard';
+            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Hard Coursework';
             document.getElementById('diff' + i).className = 'listAttr lev3';
         } else if (localStorage.getItem('list' + i + 'Diff') < 4) {
-            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Difficult';
+            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Difficult Coursework';
             document.getElementById('diff' + i).className = 'listAttr lev4';
         } else if (localStorage.getItem('list' + i + 'Diff') < 5) {
-            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Challenging';
+            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Challenging Coursework';
             document.getElementById('diff' + i).className = 'listAttr lev5';
         } else if (localStorage.getItem('list' + i + 'Diff') >= 5) {
-            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Extreme';
+            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Extreme Coursework';
             document.getElementById('diff' + i).className = 'listAttr lev6';
         }
     }
@@ -2399,6 +2381,7 @@ function calcCumGPA() {
 function calcECStrength() {
     let ecSum = 0;
     let allItems = 0;
+    let maxValue = 5;
 
     for (let i = 1; i <= 3; i++) {
         let currentItems;
@@ -2412,21 +2395,19 @@ function calcECStrength() {
         for (let j = 0; j < currentItems.length; j++) {
             activity = currentItems[j];
 
-            if (activity.revStrength == 'undefined' || activity.revStrength == null) {
-                if (activity.strength == 1) {
-                    activity.revStrength = 3;
-                } else if (activity.strength == 2) {
-                    activity.revStrength = 2;
-                } else if (activity.strength == 3) {
-                    activity.revStrength = 1;
-                }
+            if (activity.strength == 1) {
+                revStrength = 5;
+            } else if (activity.strength == 2) {
+                revStrength = 2.5;
+            } else if (activity.strength == 3) {
+                revStrength = 1;
             }
 
-            ecSum += Number(activity.revStrength);
+            ecSum += Number(revStrength);
         }
     }
 
-    ecStrength = (((ecSum / allItems) / 3) * allItems).toFixed(1);
+    ecStrength = (((ecSum / allItems) / maxValue) * allItems).toFixed(1);
 
     if (allItems < 1) {
         document.getElementById('ecStrength').innerText = '';
