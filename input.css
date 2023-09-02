@@ -56,11 +56,11 @@
   }
 
   .attr {
-    @apply inline-flex bg-gray-500 dark:bg-gray-400 text-base text-gray-100 dark:text-gray-900 rounded-md break-words px-2 py-[0.055rem] ml-2 first:ml-0 mt-2;
+    @apply inline-flex bg-gray-500 dark:bg-gray-400 text-base text-gray-100 dark:text-gray-900 rounded-md break-words px-2 py-[0.055rem] mr-2 mt-2;
   }
 
   .listAttr {
-    @apply text-left bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-md break-words transition-all px-2 py-[0.055rem] ml-2 first:ml-0 mt-2;
+    @apply text-left bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-md break-words transition-all px-2 py-[0.055rem] mr-2 mt-2;
   }
 
   .cumAttr {

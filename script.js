@@ -1136,6 +1136,7 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
             course.remove();
         }
 
+        course.oldName = course.name;
         course.name = cTitleInput;
         course.sub = document.getElementById('selSubjectEdit').value;
         course.diff = document.getElementById('selDiffEdit').value;
@@ -1174,7 +1175,7 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
         }
 
         if (!document.getElementById(course.id + 'Text')) {
-            document.getElementById(course.id).innerHTML = document.getElementById(course.id).innerHTML.replace(course.name, '');
+            document.getElementById(course.id).innerHTML = document.getElementById(course.id).innerHTML.replace(course.oldName, '');
 
             t = document.createTextNode(course.name);
             span = document.createElement('span');
@@ -2403,7 +2404,7 @@ function calcECStrength() {
                 revStrength = 1;
             }
 
-            ecSum += Number(revStrength);
+            ecSum += revStrength;
         }
     }
 
