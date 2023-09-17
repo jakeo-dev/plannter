@@ -1,8 +1,9 @@
 # Plannter
-## Manage all the courses, achievements, and tests you've completed during high school
+## Keep track of all your high school courses, activities, and tests
 
 
-### Calculate grade point average and grade level difficulty for each year
+### Calculate grade point average and grade level difficulty for each year and cumulatively
+
 ![image](https://www.jakeo.dev/images/plannter-ss.png)
 
 
@@ -16,7 +17,7 @@
 ![image](https://www.jakeo.dev/images/plannter-ss-3.png)
 
 
-### Practice writing essays with unique prompts
+### Practice writing essays using unique or custom prompts
 ##### *Prompts displayed in the image below are not representative of the prompts available on the website.
 
 ![image](https://www.jakeo.dev/images/plannter-ss-4.png)
