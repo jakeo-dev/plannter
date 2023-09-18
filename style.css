@@ -688,8 +688,10 @@ video {
   }
 }
 
-.activity:nth-child(odd):nth-last-child(2) {
-  margin-bottom: 0.75rem;
+@media (min-width: 768px) {
+  .activity:nth-child(odd):nth-last-child(2) {
+    margin-bottom: 0.75rem;
+  }
 }
 
 /* .test {
@@ -1988,6 +1990,19 @@ video {
 
 #plusMinusSwitch:checked + label span:nth-child(2) {
   opacity: 1;
+}
+
+::-moz-selection {
+  background: rgba(78, 203, 69, 0.45);
+}
+
+::selection {
+  background: rgba(78, 203, 69, 0.45);
+}
+
+::-moz-selection {
+  /* Firefox */
+  background: rgba(78, 203, 69, 0.45);
 }
 
 .hover\:bg-gray-300:hover {

@@ -1231,6 +1231,13 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
         calcCumGPA();
         calcCumDiff();
 
+        let expEBtn = document.getElementsByClassName('expEBtn');
+        for (i = 0; i < expEBtn.length; i++) {
+            expEBtn[i].onclick = function () {
+                toggleEssay(this.parentElement.id);
+            }
+        }
+
         let pen = document.getElementsByClassName('pen');
         for (i = 0; i < pen.length; i++) {
             pen[i].onclick = function () {
@@ -1330,6 +1337,13 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
         getLists();
         getActs();
         calcECStrength();
+
+        let expEBtn = document.getElementsByClassName('expEBtn');
+        for (i = 0; i < expEBtn.length; i++) {
+            expEBtn[i].onclick = function () {
+                toggleEssay(this.parentElement.id);
+            }
+        }
 
         let pen = document.getElementsByClassName('pen');
         for (i = 0; i < pen.length; i++) {
@@ -1467,6 +1481,13 @@ document.getElementById('saveTestBtn').addEventListener('click', function (event
         saveLists();
         getLists();
         getTests();
+
+        let expEBtn = document.getElementsByClassName('expEBtn');
+        for (i = 0; i < expEBtn.length; i++) {
+            expEBtn[i].onclick = function () {
+                toggleEssay(this.parentElement.id);
+            }
+        }
 
         let pen = document.getElementsByClassName('pen');
         for (i = 0; i < pen.length; i++) {
@@ -2443,20 +2464,23 @@ function wordCountEdit() {
 }
 
 function toggleEssay(id) {
+    console.log('aaa');
     if (document.getElementById(id + 'EssayText').className.includes('hidden')) {
         document.getElementById(id + 'EssayText').classList.remove('hidden');
         document.getElementById(id + 'EssayTeaser').classList.add('hidden');
 
         document.getElementById(id + 'ExpandEBtnText').innerText = 'Close essay';
-        document.getElementById(id + 'ExpandEI').classList.remove('fa-chevron-down')
-        document.getElementById(id + 'ExpandEI').classList.add('fa-chevron-up')
+        document.getElementById(id + 'ExpandEI').classList.remove('fa-chevron-down');
+        document.getElementById(id + 'ExpandEI').classList.add('fa-chevron-up');
+        console.log('bb');
     } else {
         document.getElementById(id + 'EssayText').classList.add('hidden');
         document.getElementById(id + 'EssayTeaser').classList.remove('hidden');
 
         document.getElementById(id + 'ExpandEBtnText').innerText = 'Expand essay';
-        document.getElementById(id + 'ExpandEI').classList.add('fa-chevron-down')
-        document.getElementById(id + 'ExpandEI').classList.remove('fa-chevron-up')
+        document.getElementById(id + 'ExpandEI').classList.add('fa-chevron-down');
+        document.getElementById(id + 'ExpandEI').classList.remove('fa-chevron-up');
+        console.log('cc');
     }
 
     saveLists();
