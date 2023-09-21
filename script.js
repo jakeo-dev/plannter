@@ -153,6 +153,14 @@ calcGPA();
 calcCumGPA();
 calcECStrength();
 
+let badIcons = document.getElementsByTagName('i');
+for (let l = 0; l < badIcons.length; l++) {
+    if (badIcons[l].className.includes('text-lg')) {
+        badIcons[l].classList.remove('text-lg');
+        badIcons[l].classList.add('optI');
+    }
+}
+
 if (typeof course !== 'undefined' && course.innerHTML.includes(course.id + 'SbjI')) {
     document.getElementById('deleteModal').classList.remove('fadeIn');
     document.getElementById('deleteModal').classList.add('fadeOut');
@@ -178,8 +186,8 @@ document.onclick = function (e) {
 };
 
 function toggleMenuSm() {
-    document.getElementById('menuDiv').classList.toggle('hidden');
-    document.getElementById('menuDiv').classList.toggle('block');
+    document.getElementById('menuDiv').classList.toggle('fadeOut');
+    document.getElementById('menuDiv').classList.toggle('fadeIn');
 }
 
 // set theme on page load
@@ -506,7 +514,7 @@ document.getElementById('addCourseBtn').addEventListener('click', function (even
 
         let btn = document.createElement('button');
         icon = document.createElement('i');
-        icon.className = 'text-lg fa-solid fa-pen';
+        icon.className = 'optI fa-solid fa-pen';
         btn.className = 'opt pen';
         btn.ariaLabel = 'Edit course';
         btn.title = 'Edit course';
@@ -515,7 +523,7 @@ document.getElementById('addCourseBtn').addEventListener('click', function (even
 
         btn = document.createElement('button');
         icon = document.createElement('i');
-        icon.className = 'text-lg fa-solid fa-trash';
+        icon.className = 'optI fa-solid fa-trash';
         btn.className = 'opt trash';
         btn.ariaLabel = 'Remove course';
         btn.title = 'Remove course';
@@ -606,7 +614,7 @@ document.getElementById('addActBtn').addEventListener('click', function (event) 
 
         let btn = document.createElement('button');
         icon = document.createElement('i');
-        icon.className = 'text-lg fa-solid fa-pen';
+        icon.className = 'optI fa-solid fa-pen';
         btn.className = 'opt pen';
         btn.ariaLabel = 'Edit activity';
         btn.title = 'Edit activity';
@@ -615,7 +623,7 @@ document.getElementById('addActBtn').addEventListener('click', function (event) 
 
         btn = document.createElement('button');
         icon = document.createElement('i');
-        icon.className = 'text-lg fa-solid fa-trash';
+        icon.className = 'optI fa-solid fa-trash';
         btn.className = 'opt trash';
         btn.ariaLabel = 'Remove activity';
         btn.title = 'Remove activity';
@@ -765,7 +773,7 @@ document.getElementById('addTestBtn').addEventListener('click', function (event)
 
         let btn = document.createElement('button');
         icon = document.createElement('i');
-        icon.className = 'text-lg fa-solid fa-pen';
+        icon.className = 'optI fa-solid fa-pen';
         btn.className = 'opt pen';
         btn.ariaLabel = 'Edit test';
         btn.title = 'Edit test';
@@ -774,7 +782,7 @@ document.getElementById('addTestBtn').addEventListener('click', function (event)
 
         btn = document.createElement('button');
         icon = document.createElement('i');
-        icon.className = 'text-lg fa-solid fa-trash';
+        icon.className = 'optI fa-solid fa-trash';
         btn.className = 'opt trash';
         btn.ariaLabel = 'Remove test';
         btn.title = 'Remove test';
@@ -861,7 +869,7 @@ document.getElementById('addEssayBtn').addEventListener('click', function (event
 
         let btn = document.createElement('button');
         icon = document.createElement('i');
-        icon.className = 'text-lg fa-solid fa-pen';
+        icon.className = 'optI fa-solid fa-pen';
         btn.className = 'opt pen';
         btn.ariaLabel = 'Edit essay';
         btn.title = 'Edit essay';
@@ -870,7 +878,7 @@ document.getElementById('addEssayBtn').addEventListener('click', function (event
 
         btn = document.createElement('button');
         icon = document.createElement('i');
-        icon.className = 'text-lg fa-solid fa-trash';
+        icon.className = 'optI fa-solid fa-trash';
         btn.className = 'opt trash';
         btn.ariaLabel = 'Remove essay';
         btn.title = 'Remove essay';
@@ -1449,7 +1457,7 @@ document.getElementById('saveTestBtn').addEventListener('click', function (event
 
             let btn = document.createElement('button');
             icon = document.createElement('i');
-            icon.className = 'text-lg fa-solid fa-pen';
+            icon.className = 'optI fa-solid fa-pen';
             btn.className = 'opt pen';
             btn.ariaLabel = 'Edit test';
             btn.title = 'Edit test';
@@ -1458,7 +1466,7 @@ document.getElementById('saveTestBtn').addEventListener('click', function (event
 
             btn = document.createElement('button');
             icon = document.createElement('i');
-            icon.className = 'text-lg fa-solid fa-trash';
+            icon.className = 'optI fa-solid fa-trash';
             btn.className = 'opt trash';
             btn.ariaLabel = 'Remove test';
             btn.title = 'Remove test';
@@ -2464,7 +2472,6 @@ function wordCountEdit() {
 }
 
 function toggleEssay(id) {
-    console.log('aaa');
     if (document.getElementById(id + 'EssayText').className.includes('hidden')) {
         document.getElementById(id + 'EssayText').classList.remove('hidden');
         document.getElementById(id + 'EssayTeaser').classList.add('hidden');
@@ -2472,7 +2479,6 @@ function toggleEssay(id) {
         document.getElementById(id + 'ExpandEBtnText').innerText = 'Close essay';
         document.getElementById(id + 'ExpandEI').classList.remove('fa-chevron-down');
         document.getElementById(id + 'ExpandEI').classList.add('fa-chevron-up');
-        console.log('bb');
     } else {
         document.getElementById(id + 'EssayText').classList.add('hidden');
         document.getElementById(id + 'EssayTeaser').classList.remove('hidden');
@@ -2480,7 +2486,6 @@ function toggleEssay(id) {
         document.getElementById(id + 'ExpandEBtnText').innerText = 'Expand essay';
         document.getElementById(id + 'ExpandEI').classList.add('fa-chevron-down');
         document.getElementById(id + 'ExpandEI').classList.remove('fa-chevron-up');
-        console.log('cc');
     }
 
     saveLists();

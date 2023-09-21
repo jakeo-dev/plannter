@@ -4,7 +4,7 @@
 
 @layer components {
   .item {
-    @apply relative text-lg hover:bg-gray-300 dark:hover:bg-gray-700 odd:bg-gray-200 dark:odd:bg-gray-800 w-full text-left border-gray-300 dark:border-gray-700 border-t-0 first:border-t-2 border-b-0 last:border-b-2 border-4 border-y-0 first:rounded-t-md last:rounded-b-md break-words transition-all px-4 py-3 last:mb-3;
+    @apply relative md:text-lg hover:bg-gray-300 dark:hover:bg-gray-700 odd:bg-gray-200 dark:odd:bg-gray-800 w-full text-left border-gray-300 dark:border-gray-700 border-t-0 first:border-t-2 border-b-0 last:border-b-2 border-4 border-y-0 first:rounded-t-md last:rounded-b-md break-words transition-all px-3.5 md:px-4 py-3 last:mb-3;
   }
 
   /* .over {
@@ -44,7 +44,7 @@
   }
 
   .input {
-    @apply text-lg bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-600 border-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 w-full text-left transition-all px-4 py-3 mb-3;
+    @apply md:text-lg bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-600 border-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 w-full text-left transition-all px-3.5 md:px-4 py-2.5 md:py-3 mb-3;
   }
 
   .optDiv {
@@ -52,23 +52,27 @@
   }
 
   .opt {
-    @apply inline-block text-xl ml-3;
+    @apply inline-block ml-2.5 md:ml-3;
+  }
+
+  .optI {
+    @apply text-base md:text-lg;
   }
 
   .attr {
-    @apply inline-flex bg-gray-500 dark:bg-gray-400 text-base text-gray-100 dark:text-gray-900 rounded-md break-words px-2 py-[0.055rem] first:ml-0 ml-2 mt-2;
+    @apply inline-flex bg-gray-500 dark:bg-gray-400 text-sm md:text-base text-gray-100 dark:text-gray-900 rounded-md break-words px-2 py-[0.055rem] first:ml-0 ml-2 mt-2;
   }
 
   .listAttr {
-    @apply text-left bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-md break-words transition-all px-2 py-[0.055rem] mr-2 mt-2;
+    @apply text-sm md:text-base text-left bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-md break-words transition-all px-2 py-[0.055rem] mr-2 mt-2;
   }
 
   .cumAttr {
-    @apply inline-block whitespace-nowrap w-full text-base text-left bg-transparent hover:bg-gray-300 dark:hover:bg-gray-800 rounded-md text-gray-600 md:text-gray-700 dark:text-gray-400 transition-all pl-2 pr-4 py-[0.055rem] my-1.5 -ml-2;
+    @apply inline-block whitespace-nowrap w-full text-sm md:text-base text-left bg-transparent hover:bg-gray-300 dark:hover:bg-gray-800 rounded-md text-gray-600 md:text-gray-700 dark:text-gray-400 transition-all pl-2 pr-4 py-[0.055rem] my-1.5 -ml-2;
   }
 
   .cumAttrNum {
-    @apply text-lg font-bold;
+    @apply text-base md:text-lg font-bold;
   }
 
   .actPos {
@@ -92,23 +96,23 @@
   }
 
   .desc {
-    @apply block text-gray-600 dark:text-gray-400 text-base break-words mt-1;
+    @apply block text-gray-600 dark:text-gray-400 text-sm md:text-base break-words mt-1;
   }
 
   .essayText {
-    @apply block text-gray-600 dark:text-gray-400 text-base break-words mt-1;
+    @apply block text-gray-600 dark:text-gray-400 text-sm md:text-base break-words mt-1;
   }
 
   .essayTeaser {
-    @apply block text-gray-600 dark:text-gray-400 text-base break-words mt-1;
+    @apply block text-gray-600 dark:text-gray-400 text-sm md:text-base break-words mt-1;
   }
 
   .expEBtn {
-    @apply hover:bg-gray-400 active:bg-gray-500 dark:hover:bg-gray-600 dark:active:bg-gray-500 rounded-full text-base text-left text-sky-800 hover:text-gray-100 dark:text-sky-300/80 transition-all px-3 py-1 mt-3;
+    @apply hover:bg-gray-400 active:bg-gray-500 dark:hover:bg-gray-600 dark:active:bg-gray-500 rounded-full text-sm md:text-base text-left text-sky-800 hover:text-gray-100 dark:text-sky-300/80 transition-all px-3 py-1 mt-3;
   }
 
   .wordCount {
-    @apply absolute bottom-4 right-4 text-gray-600 dark:text-gray-400 text-base;
+    @apply absolute bottom-4 right-4 text-gray-600 dark:text-gray-400 text-sm md:text-base;
   }
 
   .ib {
