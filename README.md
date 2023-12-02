@@ -4,7 +4,7 @@
 
 ### Calculate grade point average and grade level difficulty for each year and cumulatively
 
-![image](https://www.jakeo.dev/images/plannter-ss.png)
+![image](https://www.jakeo.dev/images/plannter-ss-1.png)
 
 
 ### Keep track of SATs, ACTs, AP exams, and other tests
