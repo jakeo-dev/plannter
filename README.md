@@ -1,5 +1,4 @@
 # Plannter
-## Keep track of all your high school courses, activities, and tests
 
 
 ### Calculate grade point average and grade level difficulty for each year and cumulatively
