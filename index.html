@@ -523,11 +523,25 @@
                     maxlength='40'>
 
                 <label for='testMonth' class='text-sm md:text-base text-gray-500 px-2'>
-                    Date taken <p class='inline text-sm'>(MM/YYYY)</p>
+                    Date taken <p class='inline text-sm'>(MMM/YYYY)</p>
                 </label>
                 <div class='flex'>
-                    <input id='testMonth' type='number' class='input md:text-lg p-2 pl-3 mb-4' min='1' max='12'
-                        autocomplete='off' required>
+                    <select id='testMonth' class='input md:text-lg p-2 mb-4' required>
+                        <optgroup label='Select a type'>
+                            <option value='Jan'>January</option>
+                            <option value='Feb'>February</option>
+                            <option value='Mar'>March</option>
+                            <option value='Apr'>April</option>
+                            <option value='May'>May</option>
+                            <option value='Jun'>June</option>
+                            <option value='Jul'>July</option>
+                            <option value='Aug'>August</option>
+                            <option value='Sep'>September</option>
+                            <option value='Oct'>October</option>
+                            <option value='Nov'>November</option>
+                            <option value='Dec'>December</option>
+                        </optgroup>
+                    </select>
                     <input id='testYear' type='number' class='input md:text-lg p-2 pl-3 mb-4 ml-2' min='1900'
                         autocomplete='off' required>
                 </div>
@@ -597,8 +611,22 @@
                     Date taken <p class='inline text-sm'>(MM/YYYY)</p>
                 </label>
                 <div class='flex'>
-                    <input id='testMonthEdit' type='number' class='input md:text-lg p-2 pl-3 mb-4 mr-1' min='1' max='12'
-                        autocomplete='off' required>
+                    <select id='testMonthEdit' class='input md:text-lg p-2 mb-4' required>
+                        <optgroup label='Select a type'>
+                            <option value='Jan'>January</option>
+                            <option value='Feb'>February</option>
+                            <option value='Mar'>March</option>
+                            <option value='Apr'>April</option>
+                            <option value='May'>May</option>
+                            <option value='Jun'>June</option>
+                            <option value='Jul'>July</option>
+                            <option value='Aug'>August</option>
+                            <option value='Sep'>September</option>
+                            <option value='Oct'>October</option>
+                            <option value='Nov'>November</option>
+                            <option value='Dec'>December</option>
+                        </optgroup>
+                    </select>
                     <input id='testYearEdit' type='number' class='input md:text-lg p-2 pl-3 mb-4 ml-1' min='1900'
                         autocomplete='off' required>
                 </div>

@@ -4,6 +4,11 @@ const currentDay = Number(String(new Date().getDate()).padStart(2, '0'));
 const currentDate = new Date(currentYear, currentMonth - 1, currentDay);
 const oneDay = 24 * 60 * 60 * 1000; // hours * mins * secs * millisecs
 
+let gradDay
+let gradMonth
+let gradYear;
+let gradDate;
+
 let advWeight = 0;
 let colWeight = 0;
 let honWeight = 0.5;
@@ -737,11 +742,11 @@ document.getElementById('addTestBtn').addEventListener('click', function (event)
             test.month = tMonthInput;
         }
 
-        t = `${test.species} — ${test.month}/${test.year}`;
+        t = `${test.species} (${test.month} ${test.year})`;
         if (test.species == 'AP') {
-            t = `${test.species} ${test.subSpecies} — ${test.month}/${test.year}`;
+            t = `${test.species} ${test.subSpecies} (${test.month} ${test.year})`;
         } else if (test.species == 'Other') {
-            t = `${test.speciesOther} — ${test.month}/${test.year}`;
+            t = `${test.speciesOther} (${test.month} ${test.year})`;
         }
         let span = document.createElement('span');
         span.id = test.id + 'Text';
@@ -1435,20 +1440,20 @@ document.getElementById('saveTestBtn').addEventListener('click', function (event
         }
 
         document.getElementById(test.id + 'Score').innerText = test.score;
-        test.name = `${test.species} — ${test.month}/${test.year}`;
+        test.name = `${test.species} (${test.month} ${test.year})`;
         if (test.species == 'AP') {
-            document.getElementById(test.id + 'Text').innerText = `${test.species} ${test.subSpecies} — ${test.month}/${test.year}`;
-            test.name = `${test.species} ${test.subSpecies} — ${test.month}/${test.year}`;
+            document.getElementById(test.id + 'Text').innerText = `${test.species} ${test.subSpecies} (${test.month} ${test.year})`;
+            test.name = `${test.species} ${test.subSpecies} (${test.month} ${test.year})`;
         } else if (test.species == 'SAT' || test.species == 'PSAT') {
-            test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div><span class='${course.id}Text'>${test.species} — ${test.month}/${test.year}</span><div class='testReadScore' id='${test.id}ReadScore'>Reading: ${test.readScore}</div><div class='testMathScore' id='${test.id}MathScore'>Math: ${test.mathScore}</div>`;
+            test.innerHTML = `<div class='attr testScore' id='${test.id}Score'>${test.score}</div><span class='${course.id}Text'>${test.species} (${test.month} ${test.year})</span><div class='testReadScore' id='${test.id}ReadScore'>Reading: ${test.readScore}</div><div class='testMathScore' id='${test.id}MathScore'>Math: ${test.mathScore}</div>`;
             if (test.readScore == '' && test.mathScore == '') {
-                document.getElementById(test.id + 'Text').innerText = `${test.species} — ${test.month}/${test.year}`;
+                document.getElementById(test.id + 'Text').innerText = `${test.species} (${test.month} ${test.year})`;
             }
         } else if (test.species == 'Other') {
-            document.getElementById(test.id + 'Text').innerText = `${test.speciesOther} — ${test.month}/${test.year}`;
-            test.name = `${test.speciesOther} — ${test.month}/${test.year}`;
+            document.getElementById(test.id + 'Text').innerText = `${test.speciesOther} (${test.month} ${test.year})`;
+            test.name = `${test.speciesOther} (${test.month} ${test.year})`;
         } else {
-            document.getElementById(test.id + 'Text').innerText = `${test.species} — ${test.month}/${test.year}`;
+            document.getElementById(test.id + 'Text').innerText = `${test.species} (${test.month} ${test.year})`;
         }
 
         if ((test.species == 'SAT' || test.species == 'PSAT') && !(test.readScore == '' && test.mathScore == '')) {
@@ -1597,10 +1602,10 @@ document.getElementById('saveEssayBtn').addEventListener('click', function (even
 document.getElementById('saveDateBtn').addEventListener('click', function (event) {
     event.preventDefault();
 
-    let gradDay = Number(document.getElementById('gradDay').value);
-    let gradMonth = Number(document.getElementById('gradMonth').value);
-    let gradYear = Number(document.getElementById('gradYear').value);
-    let gradDate = new Date(gradYear, gradMonth - 1, gradDay);
+    gradDay = Number(document.getElementById('gradDay').value);
+    gradMonth = Number(document.getElementById('gradMonth').value);
+    gradYear = Number(document.getElementById('gradYear').value);
+    gradDate = new Date(gradYear, gradMonth - 1, gradDay);
 
     if (gradDay == '' && gradMonth == '' && gradYear == '') {
         localStorage.setItem('gradDate', gradDate);

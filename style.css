@@ -971,7 +971,7 @@ video {
 
 :is(.dark .cumAttr:hover) {
   --tw-bg-opacity: 1;
-  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
 }
 
 @media (min-width: 768px) {
@@ -980,6 +980,11 @@ video {
     line-height: 1.5rem;
     --tw-text-opacity: 1;
     color: rgb(55 65 81 / var(--tw-text-opacity));
+  }
+
+  :is(.dark .cumAttr:hover) {
+    --tw-bg-opacity: 1;
+    background-color: rgb(31 41 55 / var(--tw-bg-opacity));
   }
 }
 
