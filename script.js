@@ -841,9 +841,9 @@ document.getElementById('addEssayBtn').addEventListener('click', function (event
     let ePromptInput = document.getElementById('essayPrompt').value.trim();
     let eEssayTextInput = document.getElementById('essayText').value.trim();
 
-    if (ePromptInput.length > 200) {
+    if (ePromptInput.length > 350) {
         alert('Prompt is too long');
-    } else if (eEssayTextInput.length > 50000) {
+    } else if (eEssayTextInput.length > 100000) {
         alert('Essay is too long');
     } else if (ePromptInput == '') {
         alert('Enter the prompt for your essay');
@@ -1534,9 +1534,9 @@ document.getElementById('saveEssayBtn').addEventListener('click', function (even
     let ePromptInput = document.getElementById('essayPromptEdit').value.trim();
     let eEssayTextInput = document.getElementById('essayTextEdit').value.trim();
 
-    if (ePromptInput.length > 200) {
+    if (ePromptInput.length > 350) {
         alert('Prompt is too long');
-    } else if (eEssayTextInput.length > 50000) {
+    } else if (eEssayTextInput.length > 100000) {
         alert('Essay is too long');
     } else if (ePromptInput == '') {
         alert('Enter the prompt for your essay');

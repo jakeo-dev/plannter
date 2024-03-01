@@ -6,7 +6,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Plannter</title>
 
-    <link href='style.css' rel='stylesheet'>
+    <link href='../style.css' rel='stylesheet'>
     <script src='https://kit.fontawesome.com/57c0dd6a0a.js' crossorigin='anonymous'></script>
     <link rel='preconnect' href='https://fonts.googleapis.com'>
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
@@ -677,7 +677,7 @@
                 <label for='essayPrompt' class='text-sm md:text-base text-gray-500 px-2'>Prompt</label>
                 <div class='flex mb-4'>
                     <input id='essayPrompt' class='input flex-1 text-lg p-2 pl-3 m-0' autocomplete='off'
-                        maxlength='200'>
+                        maxlength='350'>
                     <button id='randomPromptBtn'
                         class='text-xl text-center text-gray-100 dark:text-gray-900 border-2 rounded-md bg-gray-500 hover:bg-gray-600 active:bg-gray-700 dark:bg-gray-400 dark:hover:bg-gray-500 dark:active:bg-gray-600 border-transparent transition-all px-2 py-0 ml-2'><i
                             class='fa-solid fa-dice'></i></button>
@@ -718,7 +718,7 @@
                 <label for='essayPromptEdit' class='text-sm md:text-base text-gray-500 px-2'>Prompt</label>
                 <div class='flex mb-4'>
                     <input id='essayPromptEdit' class='input flex-1 text-lg p-2 pl-3 m-0' autocomplete='off'
-                        maxlength='200'>
+                        maxlength='350'>
                 </div>
 
                 <div class='flex'>
@@ -930,22 +930,22 @@
             class='fadeIn md:fadeOut fixed bg-gray-200 dark:bg-gray-800 md:dark:bg-gray-900 font-Calistoga text-lg md:text-xl font-extrabold border-r-2 border-gray-300 dark:border-gray-700 shadow-2xl h-full z-20 w-10/12 pt-8 pr-4 md:sticky md:top-36 md:border-0 md:shadow-none md:bg-transparent md:z-auto md:block md:w-1/3 md:p-0 md:mt-12'>
 
             <button
-                class='planBtns w-full text-left text-gray-600 dark:text-gray-300/80 bg-green-600/30 rounded-r-full px-6 py-3 md:px-8 md:py-4 transition-all'
+                class='planBtns block w-full text-left text-gray-600 dark:text-gray-300/80 bg-green-600/30 rounded-r-full px-6 py-3 md:px-8 md:py-4 transition-all'
                 onclick='showPlan()'>
                 <span class='tracking-wide'>Coursework</span>
             </button>
             <button
-                class='planBtns w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-8 md:py-4 transition-all'
+                class='planBtns block w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-8 md:py-4 transition-all'
                 onclick='showTests()'>
                 <span class='tracking-wide'>Tests</span>
             </button>
             <button
-                class='planBtns w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-8 md:py-4 transition-all'
+                class='planBtns block w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-8 md:py-4 transition-all'
                 onclick='showActs()'>
                 <span class='tracking-wide'>Extracurriculars</span>
             </button>
             <button
-                class='planBtns w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-8 md:py-4 transition-all'
+                class='planBtns block w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-8 md:py-4 transition-all'
                 onclick='showEssays()'>
                 <span class='tracking-wide'>Essays</span>
             </button>
@@ -1124,4 +1124,4 @@
 
 </html>
 
-<script src='script.js'></script>
+<script src='../script.js'></script>
