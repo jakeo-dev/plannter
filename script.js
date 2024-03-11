@@ -1100,7 +1100,6 @@ function clickPenEssay(e) {
 
     document.getElementById('essayPromptEdit').value = essay.prompt;
     document.getElementById('essayTextEdit').value = essay.essayText;
-
     document.getElementById('essayWordCountEdit').innerText = countWords(essay.essayText);
 
     document.getElementById('editEssayModal').classList.remove('fadeIn');
