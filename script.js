@@ -921,7 +921,7 @@ document.getElementById('addEssayBtn').addEventListener('click', function (event
         btn.appendChild(span);
         essay.appendChild(btn);
 
-        essay.wordCount = essay.essayText.split(' ').length;
+        essay.wordCount = countWords(essay.essayText);
         span = document.createElement('span');
         span.className = 'wordCount';
         span.id = essay.id + 'WordCount';
@@ -1101,7 +1101,7 @@ function clickPenEssay(e) {
     document.getElementById('essayPromptEdit').value = essay.prompt;
     document.getElementById('essayTextEdit').value = essay.essayText;
 
-    wordCountEdit()
+    document.getElementById('essayWordCountEdit').innerText = countWords(essay.essayText);
 
     document.getElementById('editEssayModal').classList.remove('fadeIn');
     document.getElementById('editEssayModal').classList.add('fadeOut');
@@ -1547,7 +1547,7 @@ document.getElementById('saveEssayBtn').addEventListener('click', function (even
         essay.name = ePromptInput;
         essay.essayText = eEssayTextInput;
         essay.essayTeaser = eEssayTextInput.substr(0, 150) + '...';
-        essay.wordCount = essay.essayText.split(' ').length;
+        essay.wordCount = countWords(essay.essayText);
 
         document.getElementById(essay.id + 'Prompt').innerText = essay.prompt;
         document.getElementById(essay.id + 'EssayText').innerText = essay.essayText;
@@ -2468,12 +2468,10 @@ function calcECStrength() {
     }
 }
 
-function wordCount() {
-    document.getElementById('essayWordCount').innerText = document.getElementById('essayText').value.split(' ').length;
-}
-
-function wordCountEdit() {
-    document.getElementById('essayWordCountEdit').innerText = document.getElementById('essayTextEdit').value.split(' ').length;
+function countWords(string) {
+    // https://www.mediacollege.com/internet/javascript/text/count-words.html
+    string = string.replace(/(^\s*)|(\s*$)/gi, '').replace(/[ ]{2,}/gi, ' ').replace(/\n /, '\n');
+    return string.split(' ').length;
 }
 
 function toggleEssay(id) {
@@ -2601,7 +2599,7 @@ document.getElementById('advOptEditC').addEventListener('click', function (event
     });
 }); */
 
-window.onclick = function (event) {
+/* window.onclick = function (event) {
     if (event.target == document.getElementById('courseModal')
         || event.target == document.getElementById('editCourseModal')
         || event.target == document.getElementById('actModal')
@@ -2618,7 +2616,7 @@ window.onclick = function (event) {
         || event.target == document.getElementById('deleteModal')) {
         hide();
     }
-}
+} */
 
 function hide() {
     event.preventDefault();

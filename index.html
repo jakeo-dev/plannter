@@ -687,8 +687,9 @@
                     <label for='essayText' class='w-full text-sm md:text-base text-gray-500 px-2'>Essay</label>
                     <span id='essayWordCount' class='text-sm md:text-base text-gray-500 px-2'>0</span>
                 </div>
-                <textarea id='essayText' class='input text-base p-2 pl-3 m-0 mb-4' onkeyup='wordCount()'
-                    autocomplete='off' maxlength='50000' rows='14' required></textarea>
+                <textarea id='essayText' class='input text-base p-2 pl-3 m-0 mb-4'
+                    onkeyup='document.getElementById("essayWordCount").innerText = countWords(document.getElementById("essayText").value)'
+                    autocomplete='off' maxlength='50000' rows='15' required></textarea>
 
                 <button id='addEssayBtn' type='submit'
                     class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent text-left transition-all px-3 py-2 mt-4'><i
@@ -725,8 +726,9 @@
                     <label for='essayTextEdit' class='w-full text-sm md:text-base text-gray-500 px-2'>Essay</label>
                     <span id='essayWordCountEdit' class='text-sm md:text-base text-gray-500 px-2'>0</span>
                 </div>
-                <textarea id='essayTextEdit' class='input text-base p-2 pl-3 m-0 mb-4' onkeyup='wordCountEdit()'
-                    autocomplete='off' maxlength='50000' rows='14' required></textarea>
+                <textarea id='essayTextEdit' class='input text-base p-2 pl-3 m-0 mb-4'
+                    onkeyup='document.getElementById("essayWordCountEdit").innerText = countWords(document.getElementById("essayTextEdit").value)'
+                    autocomplete='off' maxlength='50000' rows='15' required></textarea>
 
                 <button id='saveEssayBtn' type='submit'
                     class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent text-left transition-all px-3 py-2 mt-4'><i
