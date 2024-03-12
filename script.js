@@ -244,7 +244,7 @@ function selTestSpeciesEditFunc() {
         document.getElementById('testSubScoreDivEdit').classList.remove('hidden');
         document.getElementById('testSubScoreDivEdit').classList.add('flex');
     } else if (document.getElementById('selTestSpeciesEdit').value == 'Other') {
-        document.getElementById('testSubSpeciesEdit').classList.remove('hidden');
+        document.getElementById('testSpeciesOtherEdit').classList.remove('hidden');
     }
 }
 
@@ -587,9 +587,9 @@ document.getElementById('addActBtn').addEventListener('click', function (event) 
     let aCategoryInput = document.getElementById('selActCategory').value;
     let aStrengthInput = document.getElementById('selStrength').value;
 
-    if (aTitleInput.length > 120) {
+    if (aTitleInput.length > 180) {
         alert('Actvity title is too long');
-    } else if (aDescInput.length > 350) {
+    } else if (aDescInput.length > 400) {
         alert('Actvity description is too long');
     } else if (aTitleInput == '') {
         alert('Enter the title of your activity');
@@ -707,11 +707,11 @@ document.getElementById('addTestBtn').addEventListener('click', function (event)
         alert('Score not possible');
     } else if (tScoreInput == '' || (tReadScoreInput == '' && tMathScoreInput != '') || (tReadScoreInput != '' && tMathScoreInput == '')) {
         alert('Enter the test score');
-    } else if (tSubSpeciesInput.length > 30) {
+    } else if (tSubSpeciesInput.length > 80) {
         alert('Subject title is too long');
     } else if (tSubSpeciesInput == '' && tSpeciesInput == 'AP') {
         alert('Enter the course');
-    } else if (tSpeciesOtherInput.length > 30) {
+    } else if (tSpeciesOtherInput.length > 80) {
         alert('Test name is too long');
     } else if (tSpeciesOtherInput == '' && tSpeciesInput == 'Other') {
         alert('Enter the test name');
@@ -841,7 +841,7 @@ document.getElementById('addEssayBtn').addEventListener('click', function (event
     let ePromptInput = document.getElementById('essayPrompt').value.trim();
     let eEssayTextInput = document.getElementById('essayText').value.trim();
 
-    if (ePromptInput.length > 350) {
+    if (ePromptInput.length > 400) {
         alert('Prompt is too long');
     } else if (eEssayTextInput.length > 100000) {
         alert('Essay is too long');
@@ -1284,9 +1284,9 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
     let aCategoryInput = document.getElementById('selActCategoryEdit').value;
     let aStrengthInput = document.getElementById('selStrengthEdit').value;
 
-    if (aTitleInput.length > 120) {
+    if (aTitleInput.length > 180) {
         alert('Actvity title is too long');
-    } else if (aDescInput.length > 350) {
+    } else if (aDescInput.length > 400) {
         alert('Actvity description is too long');
     } else if (aTitleInput == '') {
         alert('Enter the title of your activity');
@@ -1403,11 +1403,11 @@ document.getElementById('saveTestBtn').addEventListener('click', function (event
         alert('Score not possible');
     } else if (tScoreInput == '' || (tReadScoreInput == '' && tMathScoreInput != '') || (tReadScoreInput != '' && tMathScoreInput == '')) {
         alert('Enter the test score');
-    } else if (tSubSpeciesInput.length > 30) {
+    } else if (tSubSpeciesInput.length > 80) {
         alert('Subject title is too long');
     } else if (tSubSpeciesInput == '' && tSpeciesInput == 'AP') {
         alert('Enter the course');
-    } else if (tSpeciesOtherInput.length > 30) {
+    } else if (tSpeciesOtherInput.length > 80) {
         alert('Test name is too long');
     } else if (tSpeciesOtherInput == '' && tSpeciesInput == 'Other') {
         alert('Enter the test name');
@@ -1533,7 +1533,7 @@ document.getElementById('saveEssayBtn').addEventListener('click', function (even
     let ePromptInput = document.getElementById('essayPromptEdit').value.trim();
     let eEssayTextInput = document.getElementById('essayTextEdit').value.trim();
 
-    if (ePromptInput.length > 350) {
+    if (ePromptInput.length > 400) {
         alert('Prompt is too long');
     } else if (eEssayTextInput.length > 100000) {
         alert('Essay is too long');

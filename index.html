@@ -369,10 +369,11 @@
                 <h1 class='text-2xl font-medium mb-6'>Add activity</h1>
 
                 <label for='actTitle' class='text-sm md:text-base text-gray-500 px-2'>Activity name</label>
-                <input id='actTitle' class='input md:text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='120' required>
+                <input id='actTitle' class='input md:text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='180' required>
 
                 <label for='actDesc' class='text-sm md:text-base text-gray-500 px-2'>Description</label>
-                <input id='actDesc' class='input md:text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='350'>
+                <textarea id='actDesc' class='input md:text-lg p-2 pl-3 mb-4' autocomplete='off'
+                    maxlength='400'></textarea>
 
                 <label for='selActCategory' class='text-sm md:text-base text-gray-500 px-2'>Category</label>
                 <select id='selActCategory' class='input md:text-lg p-2 mb-4'>
@@ -437,11 +438,12 @@
                 <h1 class='text-2xl font-medium mb-6'>Edit activity</h1>
 
                 <label for='actTitleEdit' class='text-sm md:text-base text-gray-500 px-2'>Activity name</label>
-                <input id='actTitleEdit' class='input md:text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='120'
+                <input id='actTitleEdit' class='input md:text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='180'
                     required>
 
                 <label for='actDescEdit' class='text-sm md:text-base text-gray-500 px-2'>Description</label>
-                <input id='actDescEdit' class='input md:text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='350'>
+                <textarea id='actDescEdit' class='input md:text-lg p-2 pl-3 mb-4' autocomplete='off'
+                    maxlength='400'></textarea>
 
                 <label for='selActCategoryEdit' class='text-sm md:text-base text-gray-500 px-2'>Category</label>
                 <select id='selActCategoryEdit' class='input md:text-lg p-2 mb-4'>
@@ -518,9 +520,9 @@
                     </optgroup>
                 </select>
 
-                <input id='testSubSpecies' class='input hidden text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='40'>
+                <input id='testSubSpecies' class='input hidden text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='80'>
                 <input id='testSpeciesOther' class='input hidden text-lg p-2 pl-3 mb-4' autocomplete='off'
-                    maxlength='40'>
+                    maxlength='80'>
 
                 <label for='testMonth' class='text-sm md:text-base text-gray-500 px-2'>
                     Date taken <p class='inline text-sm'>(MMM/YYYY)</p>
@@ -603,9 +605,9 @@
                 </select>
 
                 <input id='testSubSpeciesEdit' class='input hidden text-lg p-2 pl-3 mb-4' autocomplete='off'
-                    maxlength='30'>
+                    maxlength='80'>
                 <input id='testSpeciesOtherEdit' class='input hidden text-lg p-2 pl-3 mb-4' autocomplete='off'
-                    maxlength='30'>
+                    maxlength='80'>
 
                 <label for='testMonthEdit' class='text-sm md:text-base text-gray-500 px-2'>
                     Date taken <p class='inline text-sm'>(MM/YYYY)</p>
@@ -677,7 +679,7 @@
                 <label for='essayPrompt' class='text-sm md:text-base text-gray-500 px-2'>Prompt</label>
                 <div class='flex mb-4'>
                     <input id='essayPrompt' class='input flex-1 text-lg p-2 pl-3 m-0' autocomplete='off'
-                        maxlength='350'>
+                        maxlength='400'>
                     <button id='randomPromptBtn'
                         class='text-3xl text-center border-2 rounded-md hover:rotate-[15deg] active:rotate-[105deg] text-gray-500 hover:text-gray-600 active:text-gray-700 dark:text-gray-400 dark:hover:text-gray-500 dark:active:text-gray-600 border-transparent transition-all ml-3'><i
                             class='fa-solid fa-dice-five'></i></button>
@@ -719,7 +721,7 @@
                 <label for='essayPromptEdit' class='text-sm md:text-base text-gray-500 px-2'>Prompt</label>
                 <div class='flex mb-4'>
                     <input id='essayPromptEdit' class='input flex-1 text-lg p-2 pl-3 m-0' autocomplete='off'
-                        maxlength='350'>
+                        maxlength='400'>
                 </div>
 
                 <div class='flex'>
