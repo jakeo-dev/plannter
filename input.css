@@ -84,7 +84,7 @@
   }
 
   .optI {
-    @apply text-base md:text-lg;
+    @apply text-base;
   }
 
   .attr {
@@ -112,11 +112,11 @@
   }
 
   .testReadScore {
-    @apply block text-gray-600 dark:text-gray-400 text-base p-0 m-0 mt-1;
+    @apply block text-gray-600 dark:text-gray-400 text-sm md:text-base p-0 m-0 mt-1;
   }
 
   .testMathScore {
-    @apply block text-gray-600 dark:text-gray-400 text-base p-0 m-0 mt-1;
+    @apply block text-gray-600 dark:text-gray-400 text-sm md:text-base p-0 m-0 mt-1;
   }
 
   .grade {
@@ -124,19 +124,19 @@
   }
 
   .desc {
-    @apply block text-gray-600 dark:text-gray-400 break-words mt-1;
+    @apply block text-gray-600 dark:text-gray-400 text-sm md:text-base break-words mt-1;
   }
 
   .essayText {
-    @apply block text-gray-600 dark:text-gray-400 break-words mt-1;
+    @apply block text-gray-600 dark:text-gray-400 text-sm md:text-base break-words mt-1;
   }
 
   .essayTeaser {
-    @apply block text-gray-600 dark:text-gray-400 break-words mt-1;
+    @apply block text-gray-600 dark:text-gray-400 text-sm md:text-base break-words mt-1;
   }
 
   .expEBtn {
-    @apply hover:bg-gray-400 active:bg-gray-500 dark:hover:bg-gray-600 dark:active:bg-gray-500 rounded-full text-sm md:text-base text-left text-sky-800 hover:text-gray-100 dark:text-sky-300/80 transition-all px-3 py-1 mt-3;
+    @apply hover:bg-gray-400 active:bg-gray-500 dark:hover:bg-gray-600 dark:active:bg-gray-500 rounded-full text-sm text-left text-sky-800 hover:text-gray-100 dark:text-sky-300/80 transition-all px-2.5 py-1 mt-3;
   }
 
   .wordCount {

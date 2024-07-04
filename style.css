@@ -989,13 +989,6 @@ video {
   line-height: 1.5rem;
 }
 
-@media (min-width: 768px) {
-  .optI {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-  }
-}
-
 .attr {
   margin-left: 0.5rem;
   margin-top: 0.5rem;
@@ -1136,8 +1129,8 @@ video {
   margin-top: 0.25rem;
   display: block;
   padding: 0px;
-  font-size: 1rem;
-  line-height: 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
 }
@@ -1147,13 +1140,20 @@ video {
   color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
+@media (min-width: 768px) {
+  .testReadScore {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
 .testMathScore {
   margin: 0px;
   margin-top: 0.25rem;
   display: block;
   padding: 0px;
-  font-size: 1rem;
-  line-height: 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
 }
@@ -1161,6 +1161,13 @@ video {
 :is(.dark .testMathScore) {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
+@media (min-width: 768px) {
+  .testMathScore {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
 }
 
 .grade {
@@ -1181,6 +1188,8 @@ video {
   margin-top: 0.25rem;
   display: block;
   overflow-wrap: break-word;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
 }
@@ -1190,10 +1199,19 @@ video {
   color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
+@media (min-width: 768px) {
+  .desc {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
 .essayText {
   margin-top: 0.25rem;
   display: block;
   overflow-wrap: break-word;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
 }
@@ -1203,10 +1221,19 @@ video {
   color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
+@media (min-width: 768px) {
+  .essayText {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
 .essayTeaser {
   margin-top: 0.25rem;
   display: block;
   overflow-wrap: break-word;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
 }
@@ -1216,11 +1243,18 @@ video {
   color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
+@media (min-width: 768px) {
+  .essayTeaser {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
 .expEBtn {
   margin-top: 0.75rem;
   border-radius: 9999px;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
   text-align: left;
@@ -1257,13 +1291,6 @@ video {
 :is(.dark .expEBtn:active) {
   --tw-bg-opacity: 1;
   background-color: rgb(107 114 128 / var(--tw-bg-opacity));
-}
-
-@media (min-width: 768px) {
-  .expEBtn {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
 }
 
 .wordCount {

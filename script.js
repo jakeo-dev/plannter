@@ -2738,7 +2738,7 @@ function toggleEssay(id) {
         document.getElementById(id + 'EssayText').classList.remove('hidden');
         document.getElementById(id + 'EssayTeaser').classList.add('hidden');
 
-        document.getElementById(id + 'ExpandEBtnText').innerText = 'Close essay';
+        document.getElementById(id + 'ExpandEBtnText').innerText = 'Collapse essay';
         document.getElementById(id + 'ExpandEI').classList.remove('fa-chevron-down');
         document.getElementById(id + 'ExpandEI').classList.add('fa-chevron-up');
     } else {
