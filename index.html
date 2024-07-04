@@ -23,19 +23,20 @@
     <meta name='theme-color' content='#16a34a'>
 </head>
 
-<body class='bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-300 text-left pb-16 md:pb-24 font-LexendDeca'>
+<body
+    class='bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-300 text-left selection:bg-emerald-500/40 pb-16 md:pb-24 font-LexendDeca'>
 
     <!-- <button onclick='localStorage.clear()' class='text-3xl border-4 border-red-500 hover:bg-red-300'>CLEAR
-        EVERYTHING</button> -->
+        LOCAL STORAGE</button> -->
 
     <div id='deleteModal'
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
-            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-12 md:py-11'>
+            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
             <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
                     class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
-            <h1 class='text-2xl font-medium mb-6'>It seems like your information is out of date</h1>
+            <h1 class='modalTitle'>It seems like your information is out of date</h1>
             <h2 class='text-lg'>Plannter has been recently updated to be much more efficient, but it seems like your
                 courses, tests, and/or extracurriculars have been added before these updates. You will need delete
                 everything and re-add your information. An update like this one will not happen again.
@@ -55,24 +56,23 @@
     <div id='courseModal'
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
-            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-12 md:py-11'>
+            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
 
             <form>
 
                 <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
-                <h1 class='text-2xl font-medium mb-6'>Add course</h1>
+                <h1 class='modalTitle'>Add course</h1>
 
-                <label for='courseTitle' class='text-sm md:text-base text-gray-500 px-2'>Course name</label>
-                <input id='courseTitle' class='input md:text-lg p-2 pl-3 m-0 mb-4' autocomplete='off' maxlength='80'
-                    required>
+                <label for='courseTitle' class='modalSubtext'>Course name</label>
+                <input id='courseTitle' class='input p-2 pl-3 m-0 mb-4' autocomplete='off' maxlength='80' required>
                 <h2 class='hidden text-sm text-teal-700 px-2 mt-1 mb-4' id='diffTip'><b class='font-semibold'>Tip:</b>
                     Instead of including the advancement level of your course in the name, set it in the Advancement
                     level section</h2>
 
-                <label for='selGradeLev' class='text-sm md:text-base text-gray-500 px-2'>Grade level</label>
-                <select id='selGradeLev' class='input md:text-lg p-2 mb-4'>
+                <label for='selGradeLev' class='modalSubtext'>Grade level</label>
+                <select id='selGradeLev' class='input p-2 mb-4'>
                     <optgroup label='Select a grade level'>
                         <option value='9'>9</option>
                         <option value='10'>10</option>
@@ -82,8 +82,8 @@
                     </optgroup>
                 </select>
 
-                <label for='selSubject' class='hidden text-sm md:text-base text-gray-500 px-2'>Subject</label>
-                <select id='selSubject' class='hidden input md:text-lg p-2 mb-4'>
+                <label for='selSubject' class='hidden modalSubtext'>Subject</label>
+                <select id='selSubject' class='hidden input p-2 mb-4'>
                     <optgroup label='Select a subject'>
                         <option value='History'>History</option>
                         <option value='English'>English</option>
@@ -98,16 +98,15 @@
                     </optgroup>
                 </select>
 
-                <!-- <label for='credits' class='text-sm md:text-base text-gray-500 px-2'>Credits <p class='inline text-sm'>(optional)</p>
+                <!-- <label for='credits' class='modalSubtext'>Credits <p class='inline text-sm'>(optional)</p>
             </label>
             <input placeholder='Number of credits earned' id='credits' type='number'
-                class='input md:text-lg p-2 pl-3 m-0 mb-4' autocomplete='off'> -->
+                class='input p-2 pl-3 m-0 mb-4' autocomplete='off'> -->
 
-                <label for='selLetterGrade' class='text-sm md:text-base text-gray-500 px-2'>Letter grade (Semester
+                <label for='selLetterGrade' class='modalSubtext'>Letter grade (Semester
                     1)</label>
                 <div class='flex h-auto'>
-                    <select id='selLetterGrade' class='input md:text-lg p-2 mb-4 h-full'
-                        onchange='selLetterGradeFunc()'>
+                    <select id='selLetterGrade' class='input p-2 mb-4 h-full' onchange='selLetterGradeFunc()'>
                         <optgroup label='Select a letter grade'>
                             <option value='none'>None</option>
                             <option value='A+'>A+</option>
@@ -131,11 +130,10 @@
                         max='100' autocomplete='off'>
                 </div>
 
-                <label for='selLetterGrade2' class='text-sm md:text-base text-gray-500 px-2'>Letter grade (Semester
+                <label for='selLetterGrade2' class='modalSubtext'>Letter grade (Semester
                     2)</label>
                 <div class='flex h-auto'>
-                    <select id='selLetterGrade2' class='input md:text-lg p-2 mb-4 h-full'
-                        onchange='selLetterGrade2Func()'>
+                    <select id='selLetterGrade2' class='input p-2 mb-4 h-full' onchange='selLetterGrade2Func()'>
                         <optgroup label='Select a letter grade'>
                             <option value='none'>None</option>
                             <option value='A+'>A+</option>
@@ -159,8 +157,8 @@
                         min='0' max='100' autocomplete='off'>
                 </div>
 
-                <label for='selDiff' class='text-sm md:text-base text-gray-500 px-2'>Advancement level</label>
-                <select id='selDiff' class='input md:text-lg p-2 mb-4'>
+                <label for='selDiff' class='modalSubtext'>Advancement level</label>
+                <select id='selDiff' class='input p-2 mb-4'>
                     <optgroup label='Select an advancement level'>
                         <option value='1'>None</option>
                         <option value='2'>Advanced/Accelerated</option>
@@ -176,10 +174,10 @@
                         class='fa-solid fa-chevron-right mr-2 transition-all' id='advOptAddCI'></i>More options</button>
 
                 <div id='advOptionsAddC' class='hidden'>
-                    <label for='selDiff2' class='text-sm md:text-base text-gray-500 px-2'>Specific difficulty <p
-                            class='inline text-sm'>(optional)</p>
+                    <label for='selDiff2' class='modalSubtext'>Specific difficulty <p class='inline text-sm'>(optional)
+                        </p>
                     </label>
-                    <select id='selDiff2' class='input md:text-lg p-2 mb-4'>
+                    <select id='selDiff2' class='input p-2 mb-4'>
                         <optgroup label='Select a difficulty'>
                             <option value='0.25'>Effortless</option>
                             <option value='0.5'>Easy</option>
@@ -190,13 +188,10 @@
                     </select>
                 </div>
 
-                <button id='addCourseBtn' type='submit'
-                    class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent text-left transition-all px-3 py-2 mt-4'><i
-                        class='fa-solid fa-plus mr-1'></i>Add course</button>
+                <button id='addCourseBtn' type='submit' class='buttonPrimary'><i class='fa-solid fa-plus mr-1'></i>Add
+                    course</button>
 
-                <button
-                    class='input active:bg-gray-300 active:border-transparent dark:active:bg-gray-600 w-auto px-3 py-2 ml-2 mb-0'
-                    onclick='hide()'>Cancel</button>
+                <button class='buttonSecondary' onclick='hide()'>Cancel</button>
 
             </form>
 
@@ -206,25 +201,24 @@
     <div id='editCourseModal'
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
-            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-12 md:py-11'>
+            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
 
             <form>
 
                 <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
-                <h1 class='text-2xl font-medium mb-6'>Edit course</h1>
+                <h1 class='modalTitle'>Edit course</h1>
 
-                <label for='courseTitleEdit' class='text-sm md:text-base text-gray-500 px-2'>Course name</label>
-                <input id='courseTitleEdit' class='input md:text-lg p-2 pl-3 m-0 mb-4' autocomplete='off' maxlength='80'
-                    required>
+                <label for='courseTitleEdit' class='modalSubtext'>Course name</label>
+                <input id='courseTitleEdit' class='input p-2 pl-3 m-0 mb-4' autocomplete='off' maxlength='80' required>
                 <h2 class='hidden text-sm text-teal-700 px-2 mt-1 mb-4' id='diffTipEdit'><b
                         class='font-semibold'>Tip:</b>
                     Instead of including the advancement level of your course in the name, set it in the Advancement
                     level section</h2>
 
-                <label for='selGradeLevEdit' class='text-sm md:text-base text-gray-500 px-2'>Grade level</label>
-                <select id='selGradeLevEdit' class='input md:text-lg p-2 mb-4'>
+                <label for='selGradeLevEdit' class='modalSubtext'>Grade level</label>
+                <select id='selGradeLevEdit' class='input p-2 mb-4'>
                     <optgroup label='Select a grade level'>
                         <option value='9'>9</option>
                         <option value='10'>10</option>
@@ -234,8 +228,8 @@
                     </optgroup>
                 </select>
 
-                <label for='selSubjectEdit' class='hidden text-sm md:text-base text-gray-500 px-2'>Subject</label>
-                <select id='selSubjectEdit' class='hidden input md:text-lg p-2 mb-4'>
+                <label for='selSubjectEdit' class='hidden modalSubtext'>Subject</label>
+                <select id='selSubjectEdit' class='hidden input p-2 mb-4'>
                     <optgroup label='Select a subject'>
                         <option value='History'>History</option>
                         <option value='English'>English</option>
@@ -250,16 +244,15 @@
                     </optgroup>
                 </select>
 
-                <!-- <label for='creditsEdit' class='text-sm md:text-base text-gray-500 px-2'>Credits <p class='inline text-sm'>(optional)</p>
+                <!-- <label for='creditsEdit' class='modalSubtext'>Credits <p class='inline text-sm'>(optional)</p>
             </label>
             <input placeholder='Number of credits earned' id='creditsEdit' type='number'
-                class='input md:text-lg p-2 pl-3 m-0 mb-4' autocomplete='off'> -->
+                class='input p-2 pl-3 m-0 mb-4' autocomplete='off'> -->
 
-                <label for='selLetterGradeEdit' class='text-sm md:text-base text-gray-500 px-2'>Letter grade (Semester
+                <label for='selLetterGradeEdit' class='modalSubtext'>Letter grade (Semester
                     1)</label>
                 <div class='flex h-auto'>
-                    <select id='selLetterGradeEdit' class='input md:text-lg p-2 mb-4 h-full'
-                        onchange='selLetterGradeEditFunc()'>
+                    <select id='selLetterGradeEdit' class='input p-2 mb-4 h-full' onchange='selLetterGradeEditFunc()'>
                         <optgroup label='Select a letter grade'>
                             <option value='none'>None</option>
                             <option value='A+'>A+</option>
@@ -283,11 +276,10 @@
                         min='0' max='100' autocomplete='off'>
                 </div>
 
-                <label for='selLetterGrade2Edit' class='text-sm md:text-base text-gray-500 px-2'>Letter grade (Semester
+                <label for='selLetterGrade2Edit' class='modalSubtext'>Letter grade (Semester
                     2)</label>
                 <div class='flex h-auto'>
-                    <select id='selLetterGrade2Edit' class='input md:text-lg p-2 mb-4 h-full'
-                        onchange='selLetterGrade2EditFunc()'>
+                    <select id='selLetterGrade2Edit' class='input p-2 mb-4 h-full' onchange='selLetterGrade2EditFunc()'>
                         <optgroup label='Select a letter grade'>
                             <option value='none'>None</option>
                             <option value='A+'>A+</option>
@@ -311,8 +303,8 @@
                         min='0' max='100' autocomplete='off'>
                 </div>
 
-                <label for='selDiffEdit' class='text-sm md:text-base text-gray-500 px-2'>Advancement level</label>
-                <select id='selDiffEdit' class='input md:text-lg p-2 mb-4'>
+                <label for='selDiffEdit' class='modalSubtext'>Advancement level</label>
+                <select id='selDiffEdit' class='input p-2 mb-4'>
                     <optgroup label='Select an advancement level'>
                         <option value='1'>None</option>
                         <option value='2'>Advanced/Accelerated</option>
@@ -329,10 +321,10 @@
                     options</button>
 
                 <div id='advOptionsEditC' class='hidden'>
-                    <label for='selDiff2Edit' class='text-sm md:text-base text-gray-500 px-2'>Specific difficulty <p
-                            class='inline text-sm'>(optional)</p>
+                    <label for='selDiff2Edit' class='modalSubtext'>Specific difficulty <p class='inline text-sm'>
+                            (optional)</p>
                     </label>
-                    <select id='selDiff2Edit' class='input md:text-lg p-2 mb-4'>
+                    <select id='selDiff2Edit' class='input p-2 mb-4'>
                         <optgroup label='Select a difficulty'>
                             <option value='0.25'>Effortless</option>
                             <option value='0.5'>Easy</option>
@@ -343,13 +335,10 @@
                     </select>
                 </div>
 
-                <button id='saveCourseBtn' type='submit'
-                    class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent text-left transition-all px-3 py-2 mt-4'><i
+                <button id='saveCourseBtn' type='submit' class='buttonPrimary'><i
                         class='fa-solid fa-floppy-disk mr-[0.375rem]'></i>Save course</button>
 
-                <button
-                    class='input active:bg-gray-300 active:border-transparent dark:active:bg-gray-600 w-auto px-3 py-2 ml-2 mb-0'
-                    onclick='hide()'>Cancel</button>
+                <button class='buttonSecondary' onclick='hide()'>Cancel</button>
 
             </form>
 
@@ -359,24 +348,24 @@
     <div id='actModal'
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
-            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-12 md:py-11'>
+            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
 
             <form>
 
                 <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
-                <h1 class='text-2xl font-medium mb-6'>Add activity</h1>
+                <h1 class='modalTitle'>Add activity</h1>
 
-                <label for='actTitle' class='text-sm md:text-base text-gray-500 px-2'>Activity name</label>
-                <input id='actTitle' class='input md:text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='180' required>
+                <label for='actTitle' class='modalSubtext'>Activity name</label>
+                <input id='actTitle' class='input p-2 pl-3 mb-4' autocomplete='off' maxlength='180' required>
 
-                <label for='actDesc' class='text-sm md:text-base text-gray-500 px-2'>Description</label>
-                <textarea id='actDesc' class='input md:text-lg p-2 pl-3 mb-4' autocomplete='off'
-                    maxlength='400'></textarea>
+                <label for='actDesc' class='modalSubtext'>Description</label>
+                <textarea id='actDesc' class='input p-2 pl-3 mb-4' autocomplete='off' maxlength='400'
+                    rows='3'></textarea>
 
-                <label for='selActCategory' class='text-sm md:text-base text-gray-500 px-2'>Category</label>
-                <select id='selActCategory' class='input md:text-lg p-2 mb-4'>
+                <label for='selActCategory' class='modalSubtext'>Category</label>
+                <select id='selActCategory' class='input p-2 mb-4'>
                     <optgroup label='Select a category'>
                         <option value='Athletics'>Athletics</option>
                         <option value='Award'>Award</option>
@@ -397,8 +386,8 @@
                     </optgroup>
                 </select>
 
-                <label for='selStrength' class='text-sm md:text-base text-gray-500 px-2'>Strength</label>
-                <select id='selStrength' class='input md:text-lg p-2 mb-4'>
+                <label for='selStrength' class='modalSubtext'>Strength</label>
+                <select id='selStrength' class='input p-2 mb-4'>
                     <optgroup label='Select activity strength'>
                         <option value='1'>Major</option>
                         <option value='2'>Moderate</option>
@@ -406,19 +395,16 @@
                     </optgroup>
                 </select>
 
-                <!-- <label for='actTime' class='text-sm md:text-base text-gray-500 px-2'>Hours spent per week</label>
-            <input placeholder='Time spent' type='number' id='actTimeH' class='input md:text-lg p-2 pl-3 mb-4' autocomplete='off'>
+                <!-- <label for='actTime' class='modalSubtext'>Hours spent per week</label>
+            <input placeholder='Time spent' type='number' id='actTimeH' class='input p-2 pl-3 mb-4' autocomplete='off'>
 
-            <label for='actTime' class='text-sm md:text-base text-gray-500 px-2'>Weeks spent per year</label>
-            <input placeholder='Time spent' type='number' id='actTimeW' class='input md:text-lg p-2 pl-3 mb-4' autocomplete='off'> -->
+            <label for='actTime' class='modalSubtext'>Weeks spent per year</label>
+            <input placeholder='Time spent' type='number' id='actTimeW' class='input p-2 pl-3 mb-4' autocomplete='off'> -->
 
-                <button id='addActBtn' type='submit'
-                    class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent text-left transition-all px-3 py-2 mt-4'><i
-                        class='fa-solid fa-plus mr-1'></i>Add activity</button>
+                <button id='addActBtn' type='submit' class='buttonPrimary'><i class='fa-solid fa-plus mr-1'></i>Add
+                    activity</button>
 
-                <button
-                    class='input active:bg-gray-300 active:border-transparent dark:active:bg-gray-600 w-auto px-3 py-2 ml-2 mb-0'
-                    onclick='hide()'>Cancel</button>
+                <button class='buttonSecondary' onclick='hide()'>Cancel</button>
 
             </form>
 
@@ -428,25 +414,24 @@
     <div id='editActModal'
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
-            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-12 md:py-11'>
+            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
 
             <form>
 
                 <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
-                <h1 class='text-2xl font-medium mb-6'>Edit activity</h1>
+                <h1 class='modalTitle'>Edit activity</h1>
 
-                <label for='actTitleEdit' class='text-sm md:text-base text-gray-500 px-2'>Activity name</label>
-                <input id='actTitleEdit' class='input md:text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='180'
-                    required>
+                <label for='actTitleEdit' class='modalSubtext'>Activity name</label>
+                <input id='actTitleEdit' class='input p-2 pl-3 mb-4' autocomplete='off' maxlength='180' required>
 
-                <label for='actDescEdit' class='text-sm md:text-base text-gray-500 px-2'>Description</label>
-                <textarea id='actDescEdit' class='input md:text-lg p-2 pl-3 mb-4' autocomplete='off'
-                    maxlength='400'></textarea>
+                <label for='actDescEdit' class='modalSubtext'>Description</label>
+                <textarea id='actDescEdit' class='input p-2 pl-3 mb-4' autocomplete='off' maxlength='400'
+                    rows='3'></textarea>
 
-                <label for='selActCategoryEdit' class='text-sm md:text-base text-gray-500 px-2'>Category</label>
-                <select id='selActCategoryEdit' class='input md:text-lg p-2 mb-4'>
+                <label for='selActCategoryEdit' class='modalSubtext'>Category</label>
+                <select id='selActCategoryEdit' class='input p-2 mb-4'>
                     <optgroup label='Select a category'>
                         <option value='Athletics'>Athletics</option>
                         <option value='Award'>Award</option>
@@ -467,8 +452,8 @@
                     </optgroup>
                 </select>
 
-                <label for='selStrengthEdit' class='text-sm md:text-base text-gray-500 px-2'>Strength</label>
-                <select id='selStrengthEdit' class='input md:text-lg p-2 mb-4'>
+                <label for='selStrengthEdit' class='modalSubtext'>Strength</label>
+                <select id='selStrengthEdit' class='input p-2 mb-4'>
                     <optgroup label='Select activity strength'>
                         <option value='1'>Major</option>
                         <option value='2'>Moderate</option>
@@ -476,19 +461,16 @@
                     </optgroup>
                 </select>
 
-                <!-- <label for='actTimeHEdit' class='text-sm md:text-base text-gray-500 px-2'>Hours spent per week</label>
-            <input placeholder='Time spent' type='number' id='actTimeHEdit' class='input md:text-lg p-2 pl-3 mb-4' autocomplete='off'>
+                <!-- <label for='actTimeHEdit' class='modalSubtext'>Hours spent per week</label>
+            <input placeholder='Time spent' type='number' id='actTimeHEdit' class='input p-2 pl-3 mb-4' autocomplete='off'>
 
-            <label for='actTimeWEdit' class='text-sm md:text-base text-gray-500 px-2'>Weeks spent per year</label>
-            <input placeholder='Time spent' type='number' id='actTimeWEdit' class='input md:text-lg p-2 pl-3 mb-4' autocomplete='off'> -->
+            <label for='actTimeWEdit' class='modalSubtext'>Weeks spent per year</label>
+            <input placeholder='Time spent' type='number' id='actTimeWEdit' class='input p-2 pl-3 mb-4' autocomplete='off'> -->
 
-                <button id='saveActBtn' type='submit'
-                    class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent text-left transition-all px-3 py-2 mt-4'><i
+                <button id='saveActBtn' type='submit' class='buttonPrimary'><i
                         class='fa-solid fa-floppy-disk mr-[0.375rem]'></i>Save activity</button>
 
-                <button
-                    class='input active:bg-gray-300 active:border-transparent dark:active:bg-gray-600 w-auto px-3 py-2 ml-2 mb-0'
-                    onclick='hide()'>Cancel</button>
+                <button class='buttonSecondary' onclick='hide()'>Cancel</button>
 
             </form>
 
@@ -498,17 +480,17 @@
     <div id='testModal'
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
-            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-12 md:py-11'>
+            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
 
             <form>
 
                 <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
-                <h1 class='text-2xl font-medium mb-6'>Add test</h1>
+                <h1 class='modalTitle'>Add test</h1>
 
-                <label for='selTestSpecies' class='text-sm md:text-base text-gray-500 px-2'>Type</label>
-                <select id='selTestSpecies' class='input md:text-lg p-2 mb-4' onchange='selTestSpeciesFunc()'>
+                <label for='selTestSpecies' class='modalSubtext'>Type</label>
+                <select id='selTestSpecies' class='input p-2 mb-4' onchange='selTestSpeciesFunc()'>
                     <optgroup label='Select a type'>
                         <option value='ACT'>ACT</option>
                         <option value='PreACT'>PreACT</option>
@@ -520,15 +502,14 @@
                     </optgroup>
                 </select>
 
-                <input id='testSubSpecies' class='input hidden text-lg p-2 pl-3 mb-4' autocomplete='off' maxlength='80'>
-                <input id='testSpeciesOther' class='input hidden text-lg p-2 pl-3 mb-4' autocomplete='off'
-                    maxlength='80'>
+                <input id='testSubSpecies' class='input hidden p-2 pl-3 mb-4' autocomplete='off' maxlength='80'>
+                <input id='testSpeciesOther' class='input hidden p-2 pl-3 mb-4' autocomplete='off' maxlength='80'>
 
-                <label for='testMonth' class='text-sm md:text-base text-gray-500 px-2'>
-                    Date taken <p class='inline text-sm'>(MMM/YYYY)</p>
+                <label for='testMonth' class='modalSubtext'>
+                    Date taken <p class='inline text-sm'>(MM/YYYY)</p>
                 </label>
                 <div class='flex'>
-                    <select id='testMonth' class='input md:text-lg p-2 mb-4' required>
+                    <select id='testMonth' class='input p-2 mb-4' required>
                         <optgroup label='Select a type'>
                             <option value='Jan'>January</option>
                             <option value='Feb'>February</option>
@@ -544,35 +525,31 @@
                             <option value='Dec'>December</option>
                         </optgroup>
                     </select>
-                    <input id='testYear' type='number' class='input md:text-lg p-2 pl-3 mb-4 ml-2' min='1900'
-                        autocomplete='off' required>
+                    <input id='testYear' type='number' class='input p-2 pl-3 mb-4 ml-2' min='1900' autocomplete='off'
+                        required>
                 </div>
 
-                <label for='testScore' class='text-sm md:text-base text-gray-500 px-2'>Score</label>
-                <input id='testScore' type='number' class='input md:text-lg p-2 pl-3 mb-4' min='0' max='9999'
-                    autocomplete='off' required>
+                <label for='testScore' class='modalSubtext'>Score</label>
+                <input id='testScore' type='number' class='input p-2 pl-3 mb-4' min='0' max='9999' autocomplete='off'
+                    required>
 
                 <div class='hidden w-full' id='testSubScoreDiv'>
                     <div class='w-full'>
-                        <label for='readingTestScore'
-                            class='text-sm md:text-base text-gray-500 px-2'>Reading/Writing</label>
-                        <input id='readingTestScore' type='number' class='input md:text-lg p-2 pl-3 mb-4' min='0'
-                            max='9999' autocomplete='off'>
+                        <label for='readingTestScore' class='modalSubtext'>Reading/Writing</label>
+                        <input id='readingTestScore' type='number' class='input p-2 pl-3 mb-4' min='0' max='9999'
+                            autocomplete='off'>
                     </div>
                     <div class='w-full'>
                         <label for='mathTestScore' class='text-sm md:text-base text-gray-500 px-4'>Math</label>
-                        <input id='mathTestScore' type='number' class='input md:text-lg p-2 pl-3 mb-4 ml-2' min='0'
-                            max='9999' autocomplete='off'>
+                        <input id='mathTestScore' type='number' class='input p-2 pl-3 mb-4 ml-2' min='0' max='9999'
+                            autocomplete='off'>
                     </div>
                 </div>
 
-                <button id='addTestBtn' type='submit'
-                    class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent text-left transition-all px-3 py-2 mt-4'><i
-                        class='fa-solid fa-plus mr-1'></i>Add test</button>
+                <button id='addTestBtn' type='submit' class='buttonPrimary'><i class='fa-solid fa-plus mr-1'></i>Add
+                    test</button>
 
-                <button
-                    class='input active:bg-gray-300 active:border-transparent dark:active:bg-gray-600 w-auto px-3 py-2 ml-2 mb-0'
-                    onclick='hide()'>Cancel</button>
+                <button class='buttonSecondary' onclick='hide()'>Cancel</button>
 
             </form>
 
@@ -582,17 +559,17 @@
     <div id='editTestModal'
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
-            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-12 md:py-11'>
+            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
 
             <form>
 
                 <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
-                <h1 class='text-2xl font-medium mb-6'>Edit test</h1>
+                <h1 class='modalTitle'>Edit test</h1>
 
-                <label for='selTestSpeciesEdit' class='text-sm md:text-base text-gray-500 px-2'>Type</label>
-                <select id='selTestSpeciesEdit' class='input md:text-lg p-2 mb-4' onchange='selTestSpeciesEditFunc()'>
+                <label for='selTestSpeciesEdit' class='modalSubtext'>Type</label>
+                <select id='selTestSpeciesEdit' class='input p-2 mb-4' onchange='selTestSpeciesEditFunc()'>
                     <optgroup label='Select a type'>
                         <option value='ACT'>ACT</option>
                         <option value='PreACT'>PreACT</option>
@@ -604,16 +581,14 @@
                     </optgroup>
                 </select>
 
-                <input id='testSubSpeciesEdit' class='input hidden text-lg p-2 pl-3 mb-4' autocomplete='off'
-                    maxlength='80'>
-                <input id='testSpeciesOtherEdit' class='input hidden text-lg p-2 pl-3 mb-4' autocomplete='off'
-                    maxlength='80'>
+                <input id='testSubSpeciesEdit' class='input hidden p-2 pl-3 mb-4' autocomplete='off' maxlength='80'>
+                <input id='testSpeciesOtherEdit' class='input hidden p-2 pl-3 mb-4' autocomplete='off' maxlength='80'>
 
-                <label for='testMonthEdit' class='text-sm md:text-base text-gray-500 px-2'>
+                <label for='testMonthEdit' class='modalSubtext'>
                     Date taken <p class='inline text-sm'>(MM/YYYY)</p>
                 </label>
                 <div class='flex'>
-                    <select id='testMonthEdit' class='input md:text-lg p-2 mb-4' required>
+                    <select id='testMonthEdit' class='input p-2 mb-4' required>
                         <optgroup label='Select a type'>
                             <option value='Jan'>January</option>
                             <option value='Feb'>February</option>
@@ -629,35 +604,31 @@
                             <option value='Dec'>December</option>
                         </optgroup>
                     </select>
-                    <input id='testYearEdit' type='number' class='input md:text-lg p-2 pl-3 mb-4 ml-1' min='1900'
+                    <input id='testYearEdit' type='number' class='input p-2 pl-3 mb-4 ml-1' min='1900'
                         autocomplete='off' required>
                 </div>
 
-                <label for='testScoreEdit' class='text-sm md:text-base text-gray-500 px-2'>Score</label>
-                <input id='testScoreEdit' type='number' class='input md:text-lg p-2 pl-3 mb-4' min='0' max='9999'
+                <label for='testScoreEdit' class='modalSubtext'>Score</label>
+                <input id='testScoreEdit' type='number' class='input p-2 pl-3 mb-4' min='0' max='9999'
                     autocomplete='off' required>
 
                 <div class='hidden w-full' id='testSubScoreDivEdit'>
                     <div class='w-full'>
-                        <label for='readingTestScoreEdit'
-                            class='text-sm md:text-base text-gray-500 px-2'>Reading/Writing</label>
-                        <input id='readingTestScoreEdit' type='number' class='input md:text-lg p-2 pl-3 mb-4' min='0'
-                            max='9999' autocomplete='off'>
+                        <label for='readingTestScoreEdit' class='modalSubtext'>Reading/Writing</label>
+                        <input id='readingTestScoreEdit' type='number' class='input p-2 pl-3 mb-4' min='0' max='9999'
+                            autocomplete='off'>
                     </div>
                     <div class='w-full'>
                         <label for='mathTestScoreEdit' class='text-sm md:text-base text-gray-500 px-4'>Math</label>
-                        <input id='mathTestScoreEdit' type='number' class='input md:text-lg p-2 pl-3 mb-4 ml-2' min='0'
-                            max='9999' autocomplete='off'>
+                        <input id='mathTestScoreEdit' type='number' class='input p-2 pl-3 mb-4 ml-2' min='0' max='9999'
+                            autocomplete='off'>
                     </div>
                 </div>
 
-                <button id='saveTestBtn' type='submit'
-                    class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent text-left transition-all px-3 py-2 mt-4'><i
+                <button id='saveTestBtn' type='submit' class='buttonPrimary'><i
                         class='fa-solid fa-floppy-disk mr-[0.375rem]'></i>Save test</button>
 
-                <button
-                    class='input active:bg-gray-300 active:border-transparent dark:active:bg-gray-600 w-auto px-3 py-2 ml-2 mb-0'
-                    onclick='hide()'>Cancel</button>
+                <button class='buttonSecondary' onclick='hide()'>Cancel</button>
 
             </form>
 
@@ -667,39 +638,35 @@
     <div id='essayModal'
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
-            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-12 md:py-11'>
+            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
 
             <form>
 
                 <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
-                <h1 class='text-2xl font-medium mb-6'>Write essay</h1>
+                <h1 class='modalTitle'>Write essay</h1>
 
-                <label for='essayPrompt' class='text-sm md:text-base text-gray-500 px-2'>Prompt</label>
+                <label for='essayPrompt' class='modalSubtext'>Prompt</label>
                 <div class='flex mb-4'>
-                    <input id='essayPrompt' class='input flex-1 text-lg p-2 pl-3 m-0' autocomplete='off'
-                        maxlength='400'>
+                    <input id='essayPrompt' class='input flex-1 p-2 pl-3 m-0' autocomplete='off' maxlength='400'>
                     <button id='randomPromptBtn'
                         class='text-3xl text-center border-2 rounded-md hover:rotate-[15deg] active:rotate-[105deg] text-gray-500 hover:text-gray-600 active:text-gray-700 dark:text-gray-400 dark:hover:text-gray-500 dark:active:text-gray-600 border-transparent transition-all ml-3'><i
                             class='fa-solid fa-dice-five'></i></button>
                 </div>
 
                 <div class='flex'>
-                    <label for='essayText' class='w-full text-sm md:text-base text-gray-500 px-2'>Essay</label>
-                    <span id='essayWordCount' class='text-sm md:text-base text-gray-500 px-2'>0</span>
+                    <label for='essayText' class='w-full modalSubtext'>Essay</label>
+                    <span id='essayWordCount' class='modalSubtext'>0</span>
                 </div>
-                <textarea id='essayText' class='input text-base p-2 pl-3 m-0 mb-4'
+                <textarea id='essayText' class='input p-2 pl-3 m-0 mb-4'
                     onkeyup='document.getElementById("essayWordCount").innerText = countWords(document.getElementById("essayText").value)'
                     autocomplete='off' maxlength='100000' rows='16' required></textarea>
 
-                <button id='addEssayBtn' type='submit'
-                    class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent text-left transition-all px-3 py-2 mt-4'><i
+                <button id='addEssayBtn' type='submit' class='buttonPrimary'><i
                         class='fa-solid fa-floppy-disk mr-[0.375rem]'></i>Save essay</button>
 
-                <button
-                    class='input active:bg-gray-300 active:border-transparent dark:active:bg-gray-600 w-auto px-3 py-2 ml-2 mb-0'
-                    onclick='hide()'>Cancel</button>
+                <button class='buttonSecondary' onclick='hide()'>Cancel</button>
 
             </form>
 
@@ -709,36 +676,142 @@
     <div id='editEssayModal'
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
-            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-12 md:py-11'>
+            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
 
             <form>
 
                 <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
-                <h1 class='text-2xl font-medium mb-6'>Edit essay</h1>
+                <h1 class='modalTitle'>Edit essay</h1>
 
-                <label for='essayPromptEdit' class='text-sm md:text-base text-gray-500 px-2'>Prompt</label>
+                <label for='essayPromptEdit' class='modalSubtext'>Prompt</label>
                 <div class='flex mb-4'>
-                    <input id='essayPromptEdit' class='input flex-1 text-lg p-2 pl-3 m-0' autocomplete='off'
-                        maxlength='400'>
+                    <input id='essayPromptEdit' class='input flex-1 p-2 pl-3 m-0' autocomplete='off' maxlength='400'>
                 </div>
 
                 <div class='flex'>
-                    <label for='essayTextEdit' class='w-full text-sm md:text-base text-gray-500 px-2'>Essay</label>
-                    <span id='essayWordCountEdit' class='text-sm md:text-base text-gray-500 px-2'>0</span>
+                    <label for='essayTextEdit' class='w-full modalSubtext'>Essay</label>
+                    <span id='essayWordCountEdit' class='modalSubtext'>0</span>
                 </div>
-                <textarea id='essayTextEdit' class='input text-base p-2 pl-3 m-0 mb-4'
+                <textarea id='essayTextEdit' class='input p-2 pl-3 m-0 mb-4'
                     onkeyup='document.getElementById("essayWordCountEdit").innerText = countWords(document.getElementById("essayTextEdit").value)'
                     autocomplete='off' maxlength='100000' rows='16' required></textarea>
 
-                <button id='saveEssayBtn' type='submit'
-                    class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent text-left transition-all px-3 py-2 mt-4'><i
+                <button id='saveEssayBtn' type='submit' class='buttonPrimary'><i
                         class='fa-solid fa-floppy-disk mr-[0.375rem]'></i>Save essay</button>
 
-                <button
-                    class='input active:bg-gray-300 active:border-transparent dark:active:bg-gray-600 w-auto px-3 py-2 ml-2 mb-0'
-                    onclick='hide()'>Cancel</button>
+                <button class='buttonSecondary' onclick='hide()'>Cancel</button>
+
+            </form>
+
+        </div>
+    </div>
+
+    <div id='connectionModal'
+        class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
+        <div
+            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
+
+            <form>
+
+                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+                        class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
+
+                <h1 class='modalTitle'>Add connection</h1>
+
+                <label for='connectionName' class='modalSubtext'>Name</label>
+                <input id='connectionName' class='input flex-1 p-2 pl-3 mb-4' autocomplete='off' maxlength='100'
+                    required>
+
+                <label for='connectionRelation' class='modalSubtext'>Relation</label>
+                <input id='connectionRelation' class='input flex-1 p-2 pl-3 mb-4' autocomplete='off' maxlength='100'>
+
+                <label for='connectionContactMethod' class='modalSubtext'>Add a method of
+                    contact</label>
+                <div class='flex gap-2 mb-2'>
+                    <select id='connectionContactType' class='input p-2 m-0'>
+                        <optgroup label='Select a type of contact'>
+                            <option value='Personal'>Personal</option>
+                            <option value='Work'>Work</option>
+                            <option value=''>Other</option>
+                        </optgroup>
+                    </select>
+                    <select id='connectionContactMethod' class='input p-2 m-0'>
+                        <optgroup label='Select a method of contact'>
+                            <option value='Email'>Email</option>
+                            <option value='Phone'>Phone</option>
+                            <option value=''>Other</option>
+                        </optgroup>
+                    </select>
+                    <input id='connectionContactInput' class='input p-2 pl-3 m-0' autocomplete='off' maxlength='100'>
+                    <button id='connectionAddContact' onclick='addContactMethod()'
+                        class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-gray-500 hover:bg-gray-600 active:bg-gray-700 border-transparent text-left transition-all px-3'><i
+                            class='fa-solid fa-add'></i></button>
+                </div>
+
+                <ul id='connectionContactMethodsList' class='list-disc pl-4 mb-4'></ul>
+
+                <button id='addConnectionBtn' type='submit' class='buttonPrimary'><i
+                        class='fa-solid fa-plus mr-1'></i>Add connection</button>
+
+                <button class='buttonSecondary' onclick='hide()'>Cancel</button>
+
+            </form>
+
+        </div>
+    </div>
+
+    <div id='editConnectionModal'
+        class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
+        <div
+            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
+
+            <form>
+
+                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+                        class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
+
+                <h1 class='modalTitle'>Add connection</h1>
+
+                <label for='connectionNameEdit' class='modalSubtext'>Name</label>
+                <input id='connectionNameEdit' class='input flex-1 p-2 pl-3 mb-4' autocomplete='off' maxlength='100'
+                    required>
+
+                <label for='connectionRelationEdit' class='modalSubtext'>Relation</label>
+                <input id='connectionRelationEdit' class='input flex-1 p-2 pl-3 mb-4' autocomplete='off'
+                    maxlength='100'>
+
+                <label for='connectionContactMethodEdit' class='modalSubtext'>Add a method of
+                    contact</label>
+                <div class='flex gap-2 mb-2'>
+                    <select id='connectionContactTypeEdit' class='input p-2 m-0'>
+                        <optgroup label='Select a type of contact'>
+                            <option value='Personal'>Personal</option>
+                            <option value='Work'>Work</option>
+                            <option value=''>Other</option>
+                        </optgroup>
+                    </select>
+                    <select id='connectionContactMethodEdit' class='input p-2 m-0'>
+                        <optgroup label='Select a method of contact'>
+                            <option value='Email'>Email</option>
+                            <option value='Phone'>Phone</option>
+                            <option value=''>Other</option>
+                        </optgroup>
+                    </select>
+                    <input id='connectionContactInputEdit' class='input p-2 pl-3 m-0' autocomplete='off'
+                        maxlength='100'>
+                    <button id='connectionAddContactEdit' onclick='addContactMethod()'
+                        class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-gray-500 hover:bg-gray-600 active:bg-gray-700 border-transparent text-left transition-all px-3'><i
+                            class='fa-solid fa-add'></i></button>
+                </div>
+
+                <ul id='connectionContactMethodsListEdit' class='list-disc pl-4 mb-4'></ul>
+
+                <button id='saveConnectionBtn' type='submit' class='buttonPrimary'><i
+                        class='fa-solid fa-plus mr-1'></i>Save connection</button>
+
+                <button class='buttonSecondary' onclick='hide()'>Cancel</button>
 
             </form>
 
@@ -748,12 +821,12 @@
     <div id='diffModal'
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
-            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-12 md:py-11'>
+            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
             <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
                     class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
-            <h1 class='text-2xl font-medium mb-6'>About grade level difficulty</h1>
-            <h2 class='text-lg'>
+            <h1 class='modalTitle'>About grade level difficulty</h1>
+            <h2 class=''>
                 Grade level difficulty is calculated using the advancement level and difficulty of individual courses,
                 the number of courses, and compares it to the average number of courses taken.
             </h2>
@@ -764,19 +837,18 @@
     <div id='gpaModal'
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
-            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-12 md:py-11'>
+            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
             <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
                     class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
-            <h1 class='text-2xl font-medium mb-6'>About grade point average (GPA)</h1>
-            <h2 class='text-lg'>
+            <h1 class='modalTitle'>About grade point average (GPA)</h1>
+            <h2 class=''>
                 Grade point average is the average of the grades from each course. By default, it does not take + or -
                 into account.<br><br>Weighted GPA takes the advancement level of individual courses into account, while
                 unweighted GPA does not. You can change how your GPA is calculated by clicking here:
-                <button onclick='openChangeGPACalc()'
-                    class='block input active:bg-gray-300 active:border-transparent dark:active:bg-gray-600 w-auto px-3 py-2 mt-4 mb-0'>Change
-                    GPA calculation</button>
             </h2>
+            <button onclick='openChangeGPACalc()' class='buttonSecondary ml-0 mt-6'>Change
+                GPA calculation</button>
 
         </div>
     </div>
@@ -784,12 +856,12 @@
     <div id='ecStrengthModal'
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
-            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-12 md:py-11'>
+            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
             <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
                     class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
-            <h1 class='text-2xl font-medium mb-6'>About extracurricular strength</h1>
-            <h2 class='text-lg'>Extracurricular strength is calculated using the strength of each individual activity
+            <h1 class='modalTitle'>About extracurricular strength</h1>
+            <h2 class=''>Extracurricular strength is calculated using the strength of each individual activity
                 and the number of activities. The stronger the activities, and the more there are, the higher the
                 extracurricular strength score.</h2>
 
@@ -799,35 +871,31 @@
     <div id='countdownModal'
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
-            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-12 md:py-11'>
+            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
 
             <form>
 
                 <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
-                <h1 class='text-2xl font-medium mb-6'>Edit graduation countdown</h1>
+                <h1 class='modalTitle'>Edit graduation countdown</h1>
 
-                <label for='gradYear' class='text-sm md:text-base text-gray-500 px-2'>
+                <label for='gradYear' class='modalSubtext'>
                     Graduation date <p class='inline text-sm'>(YYYY/MM/DD)</p>
                 </label>
                 <div class='md:flex'>
-                    <input id='gradYear' type='number' placeholder='YYYY' class='input md:text-lg p-2 pl-3 mb-2 md:mb-4'
+                    <input id='gradYear' type='number' placeholder='YYYY' class='input p-2 pl-3 mb-2 md:mb-4'
                         autocomplete='off' required>
-                    <input id='gradMonth' type='number' placeholder='MM'
-                        class='input md:text-lg p-2 pl-3 mb-2 md:mb-4 md:ml-2' min='1' max='12' autocomplete='off'
-                        required>
-                    <input id='gradDay' type='number' placeholder='DD' class='input md:text-lg p-2 pl-3 mb-4 md:ml-2'
-                        min='1' max='31' autocomplete='off' required>
+                    <input id='gradMonth' type='number' placeholder='MM' class='input p-2 pl-3 mb-2 md:mb-4 md:ml-2'
+                        min='1' max='12' autocomplete='off' required>
+                    <input id='gradDay' type='number' placeholder='DD' class='input p-2 pl-3 mb-4 md:ml-2' min='1'
+                        max='31' autocomplete='off' required>
                 </div>
 
-                <button id='saveDateBtn' type='submit'
-                    class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent text-left transition-all px-3 py-2 mt-4'><i
+                <button id='saveDateBtn' type='submit' class='buttonPrimary'><i
                         class='fa-solid fa-floppy-disk mr-[0.375rem]'></i>Save date</button>
 
-                <button
-                    class='input active:bg-gray-300 active:border-transparent dark:active:bg-gray-600 w-auto px-3 py-2 ml-2 mb-0'
-                    onclick='hide()'>Cancel</button>
+                <button class='buttonSecondary' onclick='hide()'>Cancel</button>
 
             </form>
 
@@ -837,56 +905,53 @@
     <div id='changeGPAModal'
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
-            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-12 md:py-11'>
+            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
 
             <form>
 
                 <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
-                <h1 class='text-2xl font-medium mb-6'>Change GPA calculation</h1>
+                <h1 class='modalTitle'>Change GPA calculation</h1>
 
-                <div class='text-lg mb-4'>
+                <div class='mb-4'>
                     <input id='plusMinusSwitch' type='checkbox' class='hidden'>
                     <label for='plusMinusSwitch' class='relative pl-8 cursor-pointer select-none'>
                         <span
                             class='absolute left-0 top-0 w-6 h-6 bg-gray-100 dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 rounded-md'></span>
                         <span
-                            class='absolute left-0 top-0 w-6 h-6 bg-emerald-500 dark:bg-emerald-600 rounded-md opacity-0 transition-all'></span>
+                            class='absolute left-0 top-0 w-6 h-6 bg-emerald-600 rounded-md opacity-0 transition-all'></span>
                         Use +/- in calculation
                     </label>
                 </div>
 
-                <label for='advWeightInp' class='text-sm md:text-base text-gray-500 px-2'>Advanced/Accelerated
+                <label for='advWeightInp' class='modalSubtext'>Advanced/Accelerated
                     weight</label>
-                <input id='advWeightInp' class='input md:text-lg p-2 pl-3 mb-4' type='number' autocomplete='off'
-                    step='0.5' min='0' max='2' value='0' required>
+                <input id='advWeightInp' class='input p-2 pl-3 mb-4' type='number' autocomplete='off' step='0.5' min='0'
+                    max='2' value='0' required>
 
-                <label for='honWeightInp' class='text-sm md:text-base text-gray-500 px-2'>Honors weight</label>
-                <input id='honWeightInp' class='input md:text-lg p-2 pl-3 mb-4' type='number' autocomplete='off'
-                    step='0.5' min='0' max='2' value='0.5' required>
+                <label for='honWeightInp' class='modalSubtext'>Honors weight</label>
+                <input id='honWeightInp' class='input p-2 pl-3 mb-4' type='number' autocomplete='off' step='0.5' min='0'
+                    max='2' value='0.5' required>
 
-                <label for='colWeightInp' class='text-sm md:text-base text-gray-500 px-2'>College weight</label>
-                <input id='colWeightInp' class='input md:text-lg p-2 pl-3 mb-4' type='number' autocomplete='off'
-                    step='0.5' min='0' max='2' value='0' required>
+                <label for='colWeightInp' class='modalSubtext'>College weight</label>
+                <input id='colWeightInp' class='input p-2 pl-3 mb-4' type='number' autocomplete='off' step='0.5' min='0'
+                    max='2' value='0' required>
 
-                <label for='apWeightInp' class='text-sm md:text-base text-gray-500 px-2'>Advanced Placement (AP)
+                <label for='apWeightInp' class='modalSubtext'>Advanced Placement (AP)
                     weight</label>
-                <input id='apWeightInp' class='input md:text-lg p-2 pl-3 mb-4' type='number' autocomplete='off'
-                    step='0.5' min='0' max='2' value='1' required>
+                <input id='apWeightInp' class='input p-2 pl-3 mb-4' type='number' autocomplete='off' step='0.5' min='0'
+                    max='2' value='1' required>
 
-                <label for='ibWeightInp' class='text-sm md:text-base text-gray-500 px-2'>International Baccalaureate
+                <label for='ibWeightInp' class='modalSubtext'>International Baccalaureate
                     (IB) weight</label>
-                <input id='ibWeightInp' class='input md:text-lg p-2 pl-3 mb-4' type='number' autocomplete='off'
-                    step='0.5' min='0' max='2' value='1' required>
+                <input id='ibWeightInp' class='input p-2 pl-3 mb-4' type='number' autocomplete='off' step='0.5' min='0'
+                    max='2' value='1' required>
 
-                <button id='saveWeightsBtn' type='submit'
-                    class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent text-left transition-all px-3 py-2 mt-4'><i
+                <button id='saveWeightsBtn' type='submit' class='buttonPrimary'><i
                         class='fa-solid fa-floppy-disk mr-[0.375rem]'></i>Save weights</button>
 
-                <button
-                    class='input active:bg-gray-300 active:border-transparent dark:active:bg-gray-600 w-auto px-3 py-2 ml-2 mb-0'
-                    onclick='hide()'>Cancel</button>
+                <button class='buttonSecondary' onclick='hide()'>Cancel</button>
 
             </form>
 
@@ -894,34 +959,38 @@
     </div>
 
     <div
-        class='font-Calistoga text-3xl text-gray-100 dark:text-gray-900 bg-gray-200 dark:bg-gray-800 flex sticky top-0 z-10 border-b-2 border-gray-300 dark:border-gray-700 shadow-sm p-6'>
+        class='font-Calistoga text-2xl text-gray-100 dark:text-gray-900 bg-gray-200 dark:bg-gray-800 flex sticky top-0 z-10 border-b-2 border-gray-300 dark:border-gray-700 shadow-sm px-6 py-4'>
         <button
             class='block md:hidden text-gray-400 hover:text-gray-500 dark:text-gray-600 dark:hover:text-gray-700 transition-all mr-6'
             onclick='toggleMenuSm()'><i class='fa-solid fa-bars'></i></button>
         <h1
-            class='flex items-center tracking-wide text-transparent bg-clip-text font-bold bg-gradient-to-r from-green-600 via-teal-600 to-sky-600 dark:from-green-500 dark:via-teal-500 dark:to-sky-500'>
+            class='flex items-center tracking-wide text-transparent bg-clip-text font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-sky-600 dark:from-emerald-500 dark:via-teal-500 dark:to-sky-500'>
             <i class='fa-solid fa-seedling mr-3'></i>Plannter
         </h1>
         <!-- <h2 class='text-lg mt-1'>Manage and plan the next four years</h2> -->
 
         <div class='hidden md:block font-LexendDeca font-medium ml-auto'>
             <button
-                class='text-xl text-gray-600 hover:bg-gray-300 active:bg-gray-400 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 rounded-md px-3 py-1 transition-all'
+                class='text-lg text-gray-600 hover:bg-gray-300 active:bg-gray-400 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 rounded-md px-3 py-1 transition-all'
                 onclick='openCD()' id='countdown'><i class='fa-solid fa-hourglass-half' aria-label='Edit countdown'
                     title='Edit countdown'></i></button>
 
             <div class='relative inline-block'>
                 <button
-                    class='text-2xl text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 px-2 pt-1 transition-all'
+                    class='text-xl text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 px-2 pt-1 transition-all'
                     onclick='toggleMenu()' id='optionsBtn'><i class='fa-solid fa-ellipsis-vertical' id='optionsBtnI'
-                        aria-label='More options' title='More options'></i></button>
+                        aria-label='More settings' title='More settings'></i></button>
                 <div class='fadeIn absolute right-0 w-80 bg-gray-100 dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 rounded-md shadow-lg p-3 mt-2'
                     id='optionsDiv'>
-                    <button class='optBtn' onclick='toggleDark()' id='toggleDark'><i class='fa-solid fa-sun mr-2'
-                            aria-label='Toggle dark mode'></i>Toggle dark mode</button>
-                    <button class='optBtn' onclick='openChangeGPACalc()' id='changeWeights'><i
-                            class='fa-solid fa-wrench mr-2' aria-label='Change GPA calculation'></i>Change GPA
-                        calculation</button>
+                    <button class='optBtn' onclick='toggleDark()' id='toggleDark'>
+                        <i class='optBtnI fa-solid fa-sun' aria-label='Toggle dark mode'></i>
+                        <span class='optBtnSpan dark:hidden'>Toggle dark mode</span><span
+                            class='optBtnSpan hidden dark:inline'>Toggle light mode</span>
+                    </button>
+                    <button class='optBtn' onclick='openChangeGPACalc()' id='changeWeights'>
+                        <i class='optBtnI fa-solid fa-wrench' aria-label='Change GPA calculation'></i>
+                        <span class='optBtnSpan'>Change GPA calculation</span>
+                    </button>
                 </div>
             </div>
 
@@ -931,32 +1000,37 @@
     <div class='flex h-full md:h-auto'>
 
         <div id='menuDiv'
-            class='fadeIn md:fadeOut fixed bg-gray-200 dark:bg-gray-800 md:dark:bg-gray-900 font-Calistoga text-lg md:text-xl font-extrabold border-r-2 border-gray-300 dark:border-gray-700 shadow-2xl h-full z-20 w-10/12 pt-8 pr-4 md:sticky md:top-36 md:border-0 md:shadow-none md:bg-transparent md:z-auto md:block md:w-1/3 md:p-0 md:mt-12'>
+            class='fadeIn md:fadeOut fixed bg-gray-200 dark:bg-gray-800 md:dark:bg-gray-900 font-Calistoga text-lg font-extrabold border-r-2 border-gray-300 dark:border-gray-700 shadow-2xl h-full z-20 w-10/12 pt-8 pr-4 md:sticky md:top-36 md:border-0 md:shadow-none md:bg-transparent md:z-auto md:block md:w-1/3 md:p-0 md:mt-12'>
 
             <button
-                class='planBtns block w-full text-left text-gray-600 dark:text-gray-300/80 bg-green-600/30 rounded-r-full px-6 py-3 md:px-8 md:py-4 transition-all'
+                class='planBtns block w-full text-left text-gray-600 dark:text-gray-300/80 bg-emerald-600/30 rounded-r-full px-6 py-3 md:px-7 md:py-3 transition'
                 onclick='showPlan()'>
                 <span class='tracking-wide'>Coursework</span>
             </button>
             <button
-                class='planBtns block w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-8 md:py-4 transition-all'
+                class='planBtns block w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 md:py-3 transition'
                 onclick='showTests()'>
                 <span class='tracking-wide'>Tests</span>
             </button>
             <button
-                class='planBtns block w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-8 md:py-4 transition-all'
+                class='planBtns block w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 md:py-3 transition'
                 onclick='showActs()'>
                 <span class='tracking-wide'>Extracurriculars</span>
             </button>
             <button
-                class='planBtns block w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-8 md:py-4 transition-all'
+                class='planBtns block w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 md:py-3 transition'
                 onclick='showEssays()'>
                 <span class='tracking-wide'>Essays</span>
             </button>
+            <!-- <button
+                class='planBtns block w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 md:py-3 transition'
+                onclick='showConnections()'>
+                <span class='tracking-wide'>Connections</span>
+            </button> -->
 
             <div class='border-t-2 border-gray-300 dark:border-gray-700 my-4'></div>
 
-            <div class='font-LexendDeca block w-min font-medium px-8 mt-0'>
+            <div class='font-LexendDeca block w-min font-medium px-6 md:px-7 mt-0'>
                 <button class='cumAttr hidden' id='gpaCum' onclick='openGPA()'></button>
                 <button class='cumAttr hidden' id='wGpaCum' onclick='openGPA()'></button>
                 <button class='cumAttr hidden' id='diffCum' onclick='openDiff()'></button>
@@ -967,25 +1041,25 @@
 
             <div class='font-LexendDeca block md:hidden text-base md:text-lg font-medium'>
                 <button
-                    class='block w-full text-left text-gray-600 dark:text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-8 md:py-4 mt-4 transition-all'
+                    class='block w-full text-left text-gray-600 dark:text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 md:py-3 mt-4 transition-all'
                     onclick='openCD()' id='countdownSm'><i class='fa-solid fa-hourglass-half mr-2'
                         aria-label='Edit countdown'></i>Edit countdown</button>
                 <button
-                    class='block w-full text-left text-gray-600 dark:text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-8 md:py-4 transition-all'
+                    class='block w-full text-left text-gray-600 dark:text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 md:py-3 transition'
                     onclick='toggleDark()' id='toggleDarkSm'><i class='fa-solid fa-sun mr-2'
                         aria-label='Toggle dark mode'></i>Toggle dark mode</button>
                 <button
-                    class='block w-full text-left text-gray-600 dark:text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-8 md:py-4 transition-all'
+                    class='block w-full text-left text-gray-600 dark:text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 md:py-3 transition'
                     onclick='openChangeGPACalc()' id='changeWeightsSm'><i class='fa-solid fa-wrench mr-2'
                         aria-label='Change GPA calculation'></i>Change GPA calculation</button>
             </div>
         </div>
 
-        <div id='planDiv' class='w-full h-min px-4 md:px-12 lg:px-16 xl:px-32 mt-12 md:mt-20'>
+        <div id='planDiv' class='w-full h-min px-4 md:px-12 lg:px-16 xl:px-32 mt-10 md:mt-16'>
 
             <div class='mb-12'>
                 <div class='font-medium px-4'>
-                    <h2 class='text-xl font-Calistoga'>Grade 9 (Freshman)</h2>
+                    <h2 class='text-lg font-Calistoga'>Grade 9 (Freshman)</h2>
                     <div class='block font-medium mb-3'>
                         <button class='attr gpa hidden' id='gpa9' onclick='openGPA()'></button>
                         <button class='attr wGpa hidden' id='wGpa9' onclick='openGPA()'></button>
@@ -995,13 +1069,13 @@
                 <ul id='list9'>
                 </ul>
                 <button
-                    class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent w-full text-left transition-all px-3 py-2'
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'
                     onclick='openAddCourse(9)'><i class='fa-solid fa-plus mr-1'></i>Add a course</button>
             </div>
 
             <div class='mb-12'>
                 <div class='font-medium px-4'>
-                    <h2 class='text-xl font-Calistoga'>Grade 10 (Sophomore)</h2>
+                    <h2 class='text-lg font-Calistoga'>Grade 10 (Sophomore)</h2>
                     <div class='block font-medium mb-3'>
                         <button class='attr gpa hidden' id='gpa10' onclick='openGPA()'></button>
                         <button class='attr wGpa hidden' id='wGpa10' onclick='openGPA()'></button>
@@ -1011,13 +1085,13 @@
                 <ul id='list10'>
                 </ul>
                 <button
-                    class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent w-full text-left transition-all px-3 py-2'
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'
                     onclick='openAddCourse(10)'><i class='fa-solid fa-plus mr-1'></i>Add a course</button>
             </div>
 
             <div class='mb-12'>
                 <div class='font-medium px-4'>
-                    <h2 class='text-xl font-Calistoga'>Grade 11 (Junior)</h2>
+                    <h2 class='text-lg font-Calistoga'>Grade 11 (Junior)</h2>
                     <div class='block font-medium mb-3'>
                         <button class='attr gpa hidden' id='gpa11' onclick='openGPA()'></button>
                         <button class='attr wGpa hidden' id='wGpa11' onclick='openGPA()'></button>
@@ -1027,13 +1101,13 @@
                 <ul id='list11'>
                 </ul>
                 <button
-                    class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent w-full text-left transition-all px-3 py-2'
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'
                     onclick='openAddCourse(11)'><i class='fa-solid fa-plus mr-1'></i>Add a course</button>
             </div>
 
             <div class='mb-12'>
                 <div class='font-medium px-4'>
-                    <h2 class='text-xl font-Calistoga'>Grade 12 (Senior)</h2>
+                    <h2 class='text-lg font-Calistoga'>Grade 12 (Senior)</h2>
                     <div class='block font-medium mb-3'>
                         <button class='attr gpa hidden' id='gpa12' onclick='openGPA()'></button>
                         <button class='attr wGpa hidden' id='wGpa12' onclick='openGPA()'></button>
@@ -1043,13 +1117,13 @@
                 <ul id='list12'>
                 </ul>
                 <button
-                    class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent w-full text-left transition-all px-3 py-2'
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'
                     onclick='openAddCourse(12)'><i class='fa-solid fa-plus mr-1'></i>Add a course</button>
             </div>
 
             <div class='mb-12'>
                 <div class='font-medium px-4'>
-                    <h2 class='text-xl font-Calistoga'>Other Courses</h2>
+                    <h2 class='text-lg font-Calistoga'>Other Courses</h2>
                     <div class='block font-medium mb-3'>
                         <button class='attr gpa hidden' id='gpa13' onclick='openGPA()'></button>
                         <button class='attr wGpa hidden' id='wGpa13' onclick='openGPA()'></button>
@@ -1059,65 +1133,78 @@
                 <ul id='list13'>
                 </ul>
                 <button
-                    class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent w-full text-left transition-all px-3 py-2'
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'
                     onclick='openAddCourse(13)'><i class='fa-solid fa-plus mr-1'></i>Add a course</button>
             </div>
 
         </div>
 
-        <div id='actsDiv' class='hidden w-full h-min px-4 md:px-12 lg:px-16 xl:px-32 mt-12 md:mt-20'>
+        <div id='actsDiv' class='hidden w-full h-min px-4 md:px-12 lg:px-16 xl:px-32 mt-10 md:mt-16'>
 
             <div class='mb-12'>
-                <h2 class='text-xl font-Calistoga font-medium px-4 mb-3'>Major Activities</h2>
+                <h2 class='text-lg font-Calistoga font-medium px-4 mb-3'>Major Activities</h2>
                 <ul id='listActs' class='lg:grid lg:grid-cols-2 gap-3'>
                 </ul>
                 <button
-                    class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent w-full text-left transition-all px-3 py-2'
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'
                     onclick='openAddAct(1)'><i class='fa-solid fa-plus mr-1'></i>Add an activity</button>
             </div>
 
             <div class='mb-12'>
-                <h2 class='text-xl font-Calistoga font-medium px-4 mb-3'>Moderate Activities</h2>
+                <h2 class='text-lg font-Calistoga font-medium px-4 mb-3'>Moderate Activities</h2>
                 <ul id='listActs2' class='lg:grid lg:grid-cols-2 gap-3'>
                 </ul>
                 <button
-                    class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent w-full text-left transition-all px-3 py-2'
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'
                     onclick='openAddAct(2)'><i class='fa-solid fa-plus mr-1'></i>Add an activity</button>
             </div>
 
             <div class='mb-12'>
-                <h2 class='text-xl font-Calistoga font-medium px-4 mb-3'>Minor Activities</h2>
+                <h2 class='text-lg font-Calistoga font-medium px-4 mb-3'>Minor Activities</h2>
                 <ul id='listActs3' class='lg:grid lg:grid-cols-2 gap-3'>
                 </ul>
                 <button
-                    class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent w-full text-left transition-all px-3 py-2'
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'
                     onclick='openAddAct(3)'><i class='fa-solid fa-plus mr-1'></i>Add an activity</button>
             </div>
 
         </div>
 
-        <div id='testsDiv' class='hidden w-full h-min px-4 md:px-12 lg:px-16 xl:px-32 mt-12 md:mt-20'>
+        <div id='testsDiv' class='hidden w-full h-min px-4 md:px-12 lg:px-16 xl:px-32 mt-10 md:mt-16'>
 
             <div class='mb-12'>
-                <h2 class='text-xl font-Calistoga font-medium px-4 mb-3'>Tests</h2>
+                <h2 class='text-lg font-Calistoga font-medium px-4 mb-3'>Tests</h2>
                 <ul id='listTests'> <!-- class='grid grid-cols-2' -->
                 </ul>
                 <button
-                    class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent w-full text-left transition-all px-3 py-2'
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'
                     onclick='openAddTest()'><i class='fa-solid fa-plus mr-1'></i>Add a test</button>
             </div>
 
         </div>
 
-        <div id='essaysDiv' class='hidden w-full h-min px-4 md:px-12 lg:px-16 xl:px-32 mt-12 md:mt-20'>
+        <div id='essaysDiv' class='hidden w-full h-min px-4 md:px-12 lg:px-16 xl:px-32 mt-10 md:mt-16'>
 
             <div class='mb-12'>
-                <h2 class='text-xl font-Calistoga font-medium px-4 mb-3'>Essays</h2>
+                <h2 class='text-lg font-Calistoga font-medium px-4 mb-3'>Essays</h2>
                 <ul id='listEssays'> <!-- class='grid grid-cols-2' -->
                 </ul>
                 <button
-                    class='md:text-lg text-gray-100 dark:text-gray-900 border-2 rounded-md bg-green-600 hover:bg-green-700 active:bg-green-800 border-transparent w-full text-left transition-all px-3 py-2'
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'
                     onclick='openAddEssay()'><i class='fa-solid fa-plus mr-1'></i>Write an essay</button>
+            </div>
+
+        </div>
+
+        <div id='connectionsDiv' class='hidden w-full h-min px-4 md:px-12 lg:px-16 xl:px-32 mt-10 md:mt-16'>
+            <!-- connections, teachers, recommenders, relations, people -->
+            <div class='mb-12'>
+                <h2 class='text-lg font-Calistoga font-medium px-4 mb-3'>Connections</h2>
+                <ul id='listConnections'> <!-- class='grid grid-cols-2' -->
+                </ul>
+                <button
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'
+                    onclick='openAddConnection()'><i class='fa-solid fa-plus mr-1'></i>Add a connection</button>
             </div>
 
         </div>

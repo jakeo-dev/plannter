@@ -4,7 +4,7 @@
 
 @layer components {
   .item {
-    @apply relative md:text-lg hover:bg-gray-300 dark:hover:bg-gray-700 odd:bg-gray-200 dark:odd:bg-gray-800 w-full text-left border-gray-300 dark:border-gray-700 border-t-0 first:border-t-2 border-b-0 last:border-b-2 border-4 border-y-0 first:rounded-t-md last:rounded-b-md break-words transition-all px-3.5 md:px-4 py-3 last:mb-3;
+    @apply relative hover:bg-gray-300 dark:hover:bg-gray-700 odd:bg-gray-200 dark:odd:bg-gray-800 w-full text-left border-gray-300 dark:border-gray-700 border-t-0 first:border-t-2 border-b-0 last:border-b-2 border-4 border-y-0 first:rounded-t-md last:rounded-b-md break-words transition-all px-3.5 md:px-4 py-3 last:mb-3;
   }
 
   /* .over {
@@ -12,19 +12,27 @@
   } */
 
   .activity {
-    @apply lg:bg-gray-100 lg:odd:bg-gray-100 lg:[&:nth-child(4n)]:bg-gray-200 lg:[&:nth-child(4n+1)]:bg-gray-200 lg:hover:bg-gray-300 lg:hover:[&:nth-child(4n)]:bg-gray-300 lg:hover:[&:nth-child(4n+1)]:bg-gray-300 dark:lg:bg-gray-900 dark:lg:odd:bg-gray-900 dark:lg:[&:nth-child(4n)]:bg-gray-800 dark:lg:[&:nth-child(4n+1)]:bg-gray-800 dark:lg:hover:bg-gray-700 dark:lg:hover:odd:bg-gray-700 dark:lg:hover:[&:nth-child(4n)]:bg-gray-700 dark:lg:hover:[&:nth-child(4n+1)]:bg-gray-700 lg:rounded-t-md lg:rounded-b-md lg:border-t-2 lg:border-b-2 last:odd:mb-3 last:even:mb-3 lg:[&:nth-last-child(2)]:odd:mb-3;
+    @apply lg:bg-gray-100 lg:odd:bg-gray-100 lg:[&:nth-child(4n)]:bg-gray-200 lg:[&:nth-child(4n+1)]:bg-gray-200 lg:hover:bg-gray-300 lg:hover:[&:nth-child(4n)]:bg-gray-300 lg:hover:[&:nth-child(4n+1)]:bg-gray-300 dark:lg:bg-gray-900 dark:lg:odd:bg-gray-900 dark:lg:[&:nth-child(4n)]:bg-gray-800 dark:lg:[&:nth-child(4n+1)]:bg-gray-800 dark:lg:hover:bg-gray-700 dark:lg:hover:odd:bg-gray-700 dark:lg:hover:[&:nth-child(4n)]:bg-gray-700 dark:lg:hover:[&:nth-child(4n+1)]:bg-gray-700 lg:rounded-t-md lg:rounded-b-md lg:border-t-2 lg:border-b-2 pr-16 last:odd:mb-3 last:even:mb-3 lg:[&:nth-last-child(2)]:odd:mb-3;
   }
 
-  /* .test {
-    @apply [&:nth-child(4n)]:bg-gray-800 [&:nth-child(4n+1)]:bg-gray-800 odd:border-l-4 even:border-r-4 [&:nth-child(2)]:border-t-2 last:odd:border-r-4 [&:nth-last-child(2)]:[&:nth-child(4n)]:border-b-gray-100 [&:nth-last-child(2)]:even:border-b-gray-200 [&:nth-last-child(2)]:border-b-2 only:rounded-tr-md first:rounded-tl-md [&:nth-child(2)]:rounded-tr-md [&:nth-last-child(2)]:rounded-br-none [&:nth-last-child(2)]:odd:rounded-bl-md last:odd:rounded-bl-md last:odd:[grid-column:1/-1] last:rounded-br-md last:odd:mb-3 last:even:mb-3 [&:nth-last-child(2)]:odd:mb-3;
-  } */
+  .test {
+    @apply pr-16 /* [&:nth-child(4n)]:bg-gray-800 [&:nth-child(4n+1)]:bg-gray-800 odd:border-l-4 even:border-r-4 [&:nth-child(2)]:border-t-2 last:odd:border-r-4 [&:nth-last-child(2)]:[&:nth-child(4n)]:border-b-gray-100 [&:nth-last-child(2)]:even:border-b-gray-200 [&:nth-last-child(2)]:border-b-2 only:rounded-tr-md first:rounded-tl-md [&:nth-child(2)]:rounded-tr-md [&:nth-last-child(2)]:rounded-br-none [&:nth-last-child(2)]:odd:rounded-bl-md last:odd:rounded-bl-md last:odd:[grid-column:1/-1] last:rounded-br-md last:odd:mb-3 last:even:mb-3 [&:nth-last-child(2)]:odd:mb-3 */;
+  }
 
   .essay {
-    @apply border-t-2 rounded-t-md border-b-2 rounded-b-md mb-3;
+    @apply border-t-2 rounded-t-md border-b-2 rounded-b-md pr-16 mb-3;
   }
-  
+
+  .connection {
+    @apply align-middle border-t-2 rounded-t-md border-b-2 rounded-b-md mb-3;
+  }
+
   .optBtn {
-    @apply block w-full text-lg text-left text-gray-600 hover:bg-gray-300 active:bg-gray-400 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 transition-all rounded-md px-4 py-2 mt-1 first:mt-0;
+    @apply block w-full text-base text-left text-gray-600 hover:bg-gray-300 active:bg-gray-400 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 transition-all rounded-md px-3 py-1.5 mt-1 first:mt-0;
+  }
+
+  .optBtnI {
+    @apply mr-1;
   }
 
   .sbjI {
@@ -43,8 +51,28 @@
     @apply mr-2;
   }
 
+  .connectionI {
+    @apply mr-2;
+  }
+
+  .modalTitle {
+    @apply text-xl font-medium mb-6;
+  }
+
+  .modalSubtext {
+    @apply text-xs md:text-sm text-gray-500 px-2;
+  }
+
   .input {
-    @apply md:text-lg bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-600 border-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 w-full text-left transition-all px-3.5 md:px-4 py-2.5 md:py-3 mb-3;
+    @apply bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-600 border-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 w-full text-left transition-all px-3.5 md:px-4 py-2.5 md:py-3 mb-3;
+  }
+
+  .buttonPrimary {
+    @apply text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent text-left transition-all px-3 py-2 mt-4;
+  }
+
+  .buttonSecondary {
+    @apply input active:bg-gray-300 active:border-transparent dark:active:bg-gray-600 w-auto px-3 py-2 ml-2 mb-0;
   }
 
   .optDiv {
@@ -60,19 +88,19 @@
   }
 
   .attr {
-    @apply inline-flex bg-gray-500 dark:bg-gray-400 text-sm md:text-base text-gray-100 dark:text-gray-900 rounded-md break-words px-2 py-[0.055rem] first:ml-0 ml-2 mt-2;
+    @apply inline-flex bg-gray-500 dark:bg-gray-400 text-sm text-gray-100 dark:text-gray-900 rounded-md break-words px-2 py-[0.055rem] first:ml-0 ml-2 mt-2;
   }
 
   .listAttr {
-    @apply text-sm md:text-base text-left bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-md break-words transition-all px-2 py-[0.055rem] mr-2 mt-2;
+    @apply text-sm text-left bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-md break-words transition-all px-2 py-[0.055rem] mr-2 mt-2;
   }
 
   .cumAttr {
-    @apply inline-block whitespace-nowrap w-full text-sm md:text-base text-left bg-transparent hover:bg-gray-300 dark:hover:bg-gray-700 dark:md:hover:bg-gray-800 rounded-md text-gray-600 md:text-gray-700 dark:text-gray-400 transition-all pl-2 pr-4 py-[0.055rem] my-1.5 -ml-2;
+    @apply inline-block whitespace-nowrap w-full text-sm text-left bg-transparent hover:bg-gray-300 dark:hover:bg-gray-700 dark:md:hover:bg-gray-800 rounded-md text-gray-600 md:text-gray-700 dark:text-gray-400 transition-all pl-2 pr-4 py-[0.055rem] my-1.5 -ml-2;
   }
 
   .cumAttrNum {
-    @apply text-base md:text-lg font-bold;
+    @apply text-base font-bold;
   }
 
   .actPos {
@@ -96,15 +124,15 @@
   }
 
   .desc {
-    @apply block text-gray-600 dark:text-gray-400 text-sm md:text-base break-words mt-1;
+    @apply block text-gray-600 dark:text-gray-400 break-words mt-1;
   }
 
   .essayText {
-    @apply block text-gray-600 dark:text-gray-400 text-sm md:text-base break-words mt-1;
+    @apply block text-gray-600 dark:text-gray-400 break-words mt-1;
   }
 
   .essayTeaser {
-    @apply block text-gray-600 dark:text-gray-400 text-sm md:text-base break-words mt-1;
+    @apply block text-gray-600 dark:text-gray-400 break-words mt-1;
   }
 
   .expEBtn {
@@ -112,7 +140,23 @@
   }
 
   .wordCount {
-    @apply absolute bottom-4 right-4 text-gray-600 dark:text-gray-400 text-sm md:text-base;
+    @apply absolute bottom-4 right-4 text-gray-600 dark:text-gray-400 text-sm;
+  }
+
+  .connectionContact {
+    @apply hover:line-through hover:cursor-pointer pb-1.5 last:pb-0;
+  }
+
+  .connectionContactSubtext {
+    @apply text-sm text-gray-600 ml-1.5;
+  }
+
+  .connectionRelation {
+    @apply text-sm text-gray-600 ml-1.5;
+  }
+
+  .connectionContactsList {
+    @apply text-base text-gray-800 mt-0.5;
   }
 
   .ib {

@@ -151,6 +151,7 @@ getCourses();
 getActs();
 getTests();
 getEssays();
+getConnections();
 getCD();
 calcListDiff();
 calcCumDiff();
@@ -184,7 +185,7 @@ function toggleMenu() {
 }
 
 document.onclick = function (e) {
-    if (e.target.id != 'optionsDiv' && !e.target.className.includes('optBtn') && e.target.id != 'optionsBtn' && e.target.id != 'optionsBtnI') {
+    if (e.target.id != 'optionsDiv' && !e.target.className.includes('optBtn') && e.target.id != 'optionsBtn' && e.target.id != 'optionsBtnI' && !e.target.className.includes('optBtnI') && !e.target.className.includes('optBtnSpan')) {
         document.getElementById('optionsDiv').classList.add('fadeIn');
         document.getElementById('optionsDiv').classList.remove('fadeOut');
     }
@@ -312,6 +313,13 @@ function openAddEssay() {
     document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
 }
 
+function openAddConnection() {
+    document.getElementById('connectionModal').classList.remove('fadeIn');
+    document.getElementById('connectionModal').classList.add('fadeOut');
+
+    document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
+}
+
 function openDiff() {
     document.getElementById('diffModal').classList.remove('fadeIn');
     document.getElementById('diffModal').classList.add('fadeOut');
@@ -369,7 +377,7 @@ buttons.forEach((planBtns) => {
     planBtns.addEventListener('click', () => {
         // add/remove classes from all buttons
         buttons.forEach((planBtns) => {
-            planBtns.classList.remove('bg-green-600/30');
+            planBtns.classList.remove('bg-emerald-600/30');
             planBtns.classList.remove('text-gray-600');
             planBtns.classList.remove('dark:text-gray-300/80');
             planBtns.classList.add('text-gray-500');
@@ -380,7 +388,7 @@ buttons.forEach((planBtns) => {
         });
 
         // add/remove classes to the clicked button
-        planBtns.classList.add('bg-green-600/30');
+        planBtns.classList.add('bg-emerald-600/30');
         planBtns.classList.add('text-gray-600');
         planBtns.classList.add('dark:text-gray-300/80');
         planBtns.classList.remove('text-gray-500');
@@ -396,6 +404,7 @@ function showPlan() {
     document.getElementById('actsDiv').classList.add('hidden');
     document.getElementById('testsDiv').classList.add('hidden');
     document.getElementById('essaysDiv').classList.add('hidden');
+    document.getElementById('connectionsDiv').classList.add('hidden');
     toggleMenuSm();
 }
 
@@ -404,6 +413,7 @@ function showActs() {
     document.getElementById('planDiv').classList.add('hidden');
     document.getElementById('testsDiv').classList.add('hidden');
     document.getElementById('essaysDiv').classList.add('hidden');
+    document.getElementById('connectionsDiv').classList.add('hidden');
     toggleMenuSm();
 }
 
@@ -412,6 +422,7 @@ function showTests() {
     document.getElementById('planDiv').classList.add('hidden');
     document.getElementById('actsDiv').classList.add('hidden');
     document.getElementById('essaysDiv').classList.add('hidden');
+    document.getElementById('connectionsDiv').classList.add('hidden');
     toggleMenuSm();
 }
 
@@ -420,6 +431,16 @@ function showEssays() {
     document.getElementById('planDiv').classList.add('hidden');
     document.getElementById('actsDiv').classList.add('hidden');
     document.getElementById('testsDiv').classList.add('hidden');
+    document.getElementById('connectionsDiv').classList.add('hidden');
+    toggleMenuSm();
+}
+
+function showConnections() {
+    document.getElementById('connectionsDiv').classList.remove('hidden');
+    document.getElementById('planDiv').classList.add('hidden');
+    document.getElementById('actsDiv').classList.add('hidden');
+    document.getElementById('testsDiv').classList.add('hidden');
+    document.getElementById('essaysDiv').classList.add('hidden');
     toggleMenuSm();
 }
 
@@ -559,6 +580,8 @@ document.getElementById('addCourseBtn').addEventListener('click', function (even
                     clickPenTest(this.parentElement.parentElement);
                 } else if (this.parentElement.parentElement.id.startsWith('E')) {
                     clickPenEssay(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('O')) {
+                    clickPenConnection(this.parentElement.parentElement);
                 }
             }
         }
@@ -670,6 +693,8 @@ document.getElementById('addActBtn').addEventListener('click', function (event) 
                     clickPenTest(this.parentElement.parentElement);
                 } else if (this.parentElement.parentElement.id.startsWith('E')) {
                     clickPenEssay(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('O')) {
+                    clickPenConnection(this.parentElement.parentElement);
                 }
             }
         }
@@ -819,6 +844,8 @@ document.getElementById('addTestBtn').addEventListener('click', function (event)
                     clickPenTest(this.parentElement.parentElement);
                 } else if (this.parentElement.parentElement.id.startsWith('E')) {
                     clickPenEssay(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('O')) {
+                    clickPenConnection(this.parentElement.parentElement);
                 }
             }
         }
@@ -957,6 +984,136 @@ document.getElementById('addEssayBtn').addEventListener('click', function (event
                     clickPenTest(this.parentElement.parentElement);
                 } else if (this.parentElement.parentElement.id.startsWith('E')) {
                     clickPenEssay(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('O')) {
+                    clickPenConnection(this.parentElement.parentElement);
+                }
+            }
+        }
+
+        let trash = document.getElementsByClassName('trash');
+        for (i = 0; i < trash.length; i++) {
+            trash[i].onclick = function () {
+                clickTrash(this.parentElement.parentElement);
+            }
+        }
+
+        saveLists();
+        hide();
+    }
+})
+
+document.getElementById('addConnectionBtn').addEventListener('click', function (event) {
+    event.preventDefault();
+
+    let oNameInput = document.getElementById('connectionName').value.trim();
+    let oRelationInput = document.getElementById('connectionRelation').value.trim();
+    let oContactMethodsList = [];
+    for (let i = 0; i < document.getElementById('connectionContactMethodsList').getElementsByTagName('li').length; i++) {
+        oContactMethodsList.push(document.getElementById('connectionContactMethodsList').getElementsByTagName('li')[i].getElementsByTagName('span')[0].innerText);
+    }
+
+    if (oNameInput.length > 100) {
+        alert('Name is too long');
+    } else if (oRelationInput.length > 100) {
+        alert('Relation is too long');
+    } else if (oNameInput == '') {
+        alert('Enter the name of this connection');
+    } else if (oRelationInput == '') {
+        alert('Enter the relation of this connection');
+    } else {
+        let connection = document.createElement('li');
+        connection.className = 'item connection';
+        connection.name = oNameInput;
+        connection.relation = oRelationInput;
+        connection.contactsList = oContactMethodsList;
+
+        connection.id = 'O' + Math.floor(100000000 + Math.random() * 900000000);
+
+        let i = document.createElement('i');
+        i.id = connection.id + 'ConnectionI';
+        i.className = 'connectionI fa-solid fa-user-large';
+        i.ariaLabel = 'Connection icon';
+        connection.appendChild(i);
+
+        let t = document.createTextNode(connection.name);
+        let span = document.createElement('span');
+        span.id = connection.id + 'Name';
+        span.className = 'connectionName';
+        span.appendChild(t);
+        connection.appendChild(span);
+
+        t = document.createTextNode(connection.relation);
+        span = document.createElement('span');
+        span.id = connection.id + 'Relation';
+        span.className = 'connectionRelation';
+        span.appendChild(t);
+        connection.appendChild(span);
+
+        div = document.createElement('div');
+        div.className = 'optDiv';
+
+        let btn = document.createElement('button');
+        icon = document.createElement('i');
+        icon.className = 'optI fa-solid fa-pen';
+        btn.className = 'opt pen';
+        btn.ariaLabel = 'Edit connection';
+        btn.title = 'Edit connection';
+        btn.appendChild(icon);
+        div.appendChild(btn);
+
+        btn = document.createElement('button');
+        icon = document.createElement('i');
+        icon.className = 'optI fa-solid fa-trash';
+        btn.className = 'opt trash';
+        btn.ariaLabel = 'Remove connection';
+        btn.title = 'Remove connection';
+        btn.appendChild(icon);
+        div.appendChild(btn);
+
+        connection.appendChild(div);
+
+        let ul = document.createElement('ul');
+        ul.className = 'connectionContactsList';
+        ul.id = connection.id + 'ContactsList';
+        for (i = 0; i < connection.contactsList.length; i++) {
+            console.log(connection.contactsList[i]);
+            li = document.createElement('li');
+            li.className = 'connectionContactItem';
+            li.id = connection.id + 'ContactItem';
+
+            // maybe have icons for phone #s or emails or other
+
+            // put "work" or "personal" next to the contact info, on the right of it in a smaller gray subtext
+
+            span = document.createElement('span');
+            span.className = 'connectionContactItemSpan';
+            span.id = connection.id + 'ContactItemSpan';
+            span.innerText = connection.contactsList[i];
+            li.appendChild(span);
+
+            ul.appendChild(li);
+        }
+        connection.appendChild(ul);
+
+        localStorage.setItem(connection.id + 'Name', connection.name);
+        localStorage.setItem(connection.id + 'Relation', connection.relation);
+        localStorage.setItem(connection.id + 'ContactsList', connection.contactsList);
+
+        document.getElementById('listConnections').appendChild(connection);
+
+        let pen = document.getElementsByClassName('pen');
+        for (i = 0; i < pen.length; i++) {
+            pen[i].onclick = function () {
+                if (this.parentElement.parentElement.id.startsWith('C')) {
+                    clickPen(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('A')) {
+                    clickPenAct(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('T')) {
+                    clickPenTest(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('E')) {
+                    clickPenEssay(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('O')) {
+                    clickPenConnection(this.parentElement.parentElement);
                 }
             }
         }
@@ -991,6 +1148,8 @@ for (i = 0; i < pen.length; i++) {
             clickPenTest(this.parentElement.parentElement);
         } else if (this.parentElement.parentElement.id.startsWith('E')) {
             clickPenEssay(this.parentElement.parentElement);
+        } else if (this.parentElement.parentElement.id.startsWith('O')) {
+            clickPenConnection(this.parentElement.parentElement);
         }
     }
 }
@@ -1104,6 +1263,22 @@ function clickPenEssay(e) {
 
     document.getElementById('editEssayModal').classList.remove('fadeIn');
     document.getElementById('editEssayModal').classList.add('fadeOut');
+
+    document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
+}
+
+function clickPenConnection(o) {
+    getConnections();
+
+    connection = o;
+
+    document.getElementById('connectionNameEdit').value = connection.name;
+    document.getElementById('connectionRelationEdit').value = connection.relation;
+    //document.getElementById('essayWordCountEdit').innerText = connection.contactsList;
+    //CONVERT ARRAY TO THE CONTACTS THING IN THE MODAL
+
+    document.getElementById('editConnectionModal').classList.remove('fadeIn');
+    document.getElementById('editConnectionModal').classList.add('fadeOut');
 
     document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
 }
@@ -1261,6 +1436,8 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
                     clickPenTest(this.parentElement.parentElement);
                 } else if (this.parentElement.parentElement.id.startsWith('E')) {
                     clickPenEssay(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('O')) {
+                    clickPenConnection(this.parentElement.parentElement);
                 }
             }
         }
@@ -1368,6 +1545,8 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
                     clickPenTest(this.parentElement.parentElement);
                 } else if (this.parentElement.parentElement.id.startsWith('E')) {
                     clickPenEssay(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('O')) {
+                    clickPenConnection(this.parentElement.parentElement);
                 }
             }
         }
@@ -1512,6 +1691,8 @@ document.getElementById('saveTestBtn').addEventListener('click', function (event
                     clickPenTest(this.parentElement.parentElement);
                 } else if (this.parentElement.parentElement.id.startsWith('E')) {
                     clickPenEssay(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('O')) {
+                    clickPenConnection(this.parentElement.parentElement);
                 }
             }
         }
@@ -1583,6 +1764,72 @@ document.getElementById('saveEssayBtn').addEventListener('click', function (even
                     clickPenTest(this.parentElement.parentElement);
                 } else if (this.parentElement.parentElement.id.startsWith('E')) {
                     clickPenEssay(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('O')) {
+                    clickPenConnection(this.parentElement.parentElement);
+                }
+            }
+        }
+
+        let trash = document.getElementsByClassName('trash');
+        for (i = 0; i < trash.length; i++) {
+            trash[i].onclick = function () {
+                clickTrash(this.parentElement.parentElement);
+            }
+        }
+
+        hide();
+    }
+})
+
+document.getElementById('saveConnectionBtn').addEventListener('click', function (event) {
+    event.preventDefault();
+
+    let oNameInput = document.getElementById('connectionNameEdit').value.trim();
+    let oRelationInput = document.getElementById('connectionRelationEdit').value.trim();
+    let oContactMethodsList = [];
+    for (let i = 0; i < document.getElementById('connectionContactMethodsListEdit').getElementsByTagName('li').length; i++) {
+        oContactMethodsList.push(document.getElementById('connectionContactMethodsListEdit').getElementsByTagName('li')[i].innerText);
+    }
+
+    if (oNameInput.length > 100) {
+        alert('Name is too long');
+    } else if (oRelationInput.length > 100) {
+        alert('Relation is too long');
+    } else if (oNameInput == '') {
+        alert('Enter the name of this connection');
+    } else if (oRelationInput == '') {
+        alert('Enter the relation of this connection');
+    } else {
+        connection.name = oNameInput;
+        connection.relation = oRelationInput;
+        connection.contactsList = oContactMethodsList;
+
+        document.getElementById(connection.id + 'Name').innerText = connection.name;
+        document.getElementById(connection.id + 'Relation').innerText = connection.relation;
+        //document.getElementById(connection.id + 'ContactsList').innerText = essay.essayTeaser;
+
+
+        localStorage.setItem(essay.id + 'Name', connection.name);
+        localStorage.setItem(essay.id + 'Relation', connection.relation);
+        localStorage.setItem(essay.id + 'ContactsList', connection.contactsList);
+
+        saveLists();
+        getLists();
+        getConnections();
+
+        let pen = document.getElementsByClassName('pen');
+        for (i = 0; i < pen.length; i++) {
+            pen[i].onclick = function () {
+                if (this.parentElement.parentElement.id.startsWith('C')) {
+                    clickPen(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('A')) {
+                    clickPenAct(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('T')) {
+                    clickPenTest(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('E')) {
+                    clickPenEssay(this.parentElement.parentElement);
+                } else if (this.parentElement.parentElement.id.startsWith('O')) {
+                    clickPenConnection(this.parentElement.parentElement);
                 }
             }
         }
@@ -1772,6 +2019,17 @@ function getEssays() { // gets all stored info of each essay
     }
 }
 
+function getConnections() { // gets all stored info of each connection
+    let currentItems = document.getElementById('listConnections').getElementsByTagName('li');
+
+    for (let j = 0; j < currentItems.length; j++) {
+        connection = currentItems[j];
+        connection.name = localStorage.getItem(connection.id + 'Name');
+        connection.relation = localStorage.getItem(connection.id + 'Relation');
+        connection.contactsList = localStorage.getItem(connection.id + 'ContactsList');
+    }
+}
+
 function calcListDiff() { // calcs diffs of ALL lists
     for (let i = 9; i <= 13; i++) {
         let sum = 0;
@@ -1904,6 +2162,7 @@ function saveLists() {
     localStorage.setItem('listActs3', document.getElementById('listActs3').innerHTML);
     localStorage.setItem('listTests', document.getElementById('listTests').innerHTML);
     localStorage.setItem('listEssays', document.getElementById('listEssays').innerHTML);
+    localStorage.setItem('listConnections', document.getElementById('listConnections').innerHTML);
 }
 
 function getLists() {
@@ -1917,6 +2176,7 @@ function getLists() {
     document.getElementById('listActs3').innerHTML = localStorage.getItem('listActs3');
     document.getElementById('listTests').innerHTML = localStorage.getItem('listTests');
     document.getElementById('listEssays').innerHTML = localStorage.getItem('listEssays');
+    document.getElementById('listConnections').innerHTML = localStorage.getItem('listConnections');
 }
 
 function getSubjectIcon(sub) {
@@ -2498,14 +2758,55 @@ document.getElementById('advOptAddC').addEventListener('click', function (event)
 
     document.getElementById('advOptionsAddC').classList.toggle('hidden');
     document.getElementById('advOptAddCI').classList.toggle('rotate-90');
-})
+});
 
 document.getElementById('advOptEditC').addEventListener('click', function (event) {
     event.preventDefault();
 
     document.getElementById('advOptionsEditC').classList.toggle('hidden');
     document.getElementById('advOptEditCI').classList.toggle('rotate-90');
-})
+});
+
+function addContactMethod() {
+    event.preventDefault();
+
+    let contact = document.createElement('li');
+    contact.className = 'connectionContact';
+
+    t = document.createTextNode(document.getElementById('connectionContactInput').value);
+    let span = document.createElement('span');
+    span.className = 'connectionContactText';
+    span.appendChild(t);
+    contact.appendChild(span);
+
+    t = document.createTextNode(document.getElementById('connectionContactType').value);
+    span = document.createElement('span');
+    span.className = 'connectionContactSubtext';
+    span.appendChild(t);
+    contact.appendChild(span);
+
+    document.getElementById('connectionContactMethodsList').appendChild(contact);
+
+    document.getElementById('connectionContactInput').value = '';
+
+    contact.addEventListener('click', deleteContactMethod, false);
+}
+
+// this doesnt work...it removes only part of the text if specifically click that part of the text...idk why.
+function deleteContactMethod(e) {
+    console.log(e.target);
+    if (e.target.className = 'connectionContact') {
+        e.target.remove();
+    } else if (e.target.className = 'connectionContactSubtext') {
+        e.target.parentElement.remove();
+    } else if (e.target.className = 'connectionContactText') {
+        e.target.parentElement.remove();
+    }
+};
+
+for (let i = 0; i < document.getElementsByClassName('connectionContact').length; i++) {
+    document.getElementsByClassName('connectionContact')[i].addEventListener('click', deleteContactMethod, false);
+}
 
 // move elements within and between lists
 /* document.addEventListener('DOMContentLoaded', (event) => {
@@ -2560,8 +2861,10 @@ document.getElementById('advOptEditC').addEventListener('click', function (event
                     } else if (this.parentElement.parentElement.id.startsWith('T')) {
                         clickPenTest(this.parentElement.parentElement);
                     } else if (this.parentElement.parentElement.id.startsWith('E')) {
-                    clickPenEssay(this.parentElement.parentElement);
-                }
+                        clickPenEssay(this.parentElement.parentElement);
+                    } else if (this.parentElement.parentElement.id.startsWith('O')) {
+                        clickPenConnection(this.parentElement.parentElement);
+                    }
                 }
             }
  
@@ -2607,6 +2910,8 @@ document.getElementById('advOptEditC').addEventListener('click', function (event
         || event.target == document.getElementById('editTestModal')
         || event.target == document.getElementById('essayModal')
         || event.target == document.getElementById('editEssayModal')
+        || event.target == document.getElementById('connectionModal')
+        || event.target == document.getElementById('editConnectionModal')
         || event.target == document.getElementById('diffModal')
         || event.target == document.getElementById('gpaModal')
         || event.target == document.getElementById('changeGPAModal')
@@ -2691,6 +2996,12 @@ function hide() {
 
     document.getElementById('editEssayModal').classList.add('fadeIn');
     document.getElementById('editEssayModal').classList.remove('fadeOut');
+
+    document.getElementById('connectionModal').classList.add('fadeIn');
+    document.getElementById('connectionModal').classList.remove('fadeOut');
+
+    document.getElementById('editConnectionModal').classList.add('fadeIn');
+    document.getElementById('editConnectionModal').classList.remove('fadeOut');
 
     document.getElementById('diffModal').classList.add('fadeIn');
     document.getElementById('diffModal').classList.remove('fadeOut');
