@@ -70,7 +70,7 @@ const promptList = ['Share a personal story that illustrates your resilience in 
     'Share a dream or aspiration you have and the steps you are taking to achieve it.',
     'Reflect on a time when you had to step out of your comfort zone to grow.',
     'Describe an experience that made you question the meaning of success.',
-    'Discuss a community organization or initiative you\'d like to create in college.',
+    'Discuss a community organization or initiative you would like to create in college.',
     'Share a time when you had to confront a stereotype and challenge its validity.',
     'Reflect on a time when you had to prioritize your mental or physical well-being.',
     'Discuss a future career path and how it aligns with your personal values.',
@@ -1690,79 +1690,6 @@ document.getElementById('saveTestBtn').addEventListener('click', function (event
     }
 })
 
-document.getElementById('saveEssayBtn').addEventListener('click', function (event) {
-    event.preventDefault();
-
-    let ePromptInput = document.getElementById('essayPromptEdit').value.trim();
-    let eEssayTextInput = document.getElementById('essayTextEdit').value.trim();
-
-    if (ePromptInput.length > 400) {
-        alert('Prompt is too long');
-    } else if (eEssayTextInput.length > 100000) {
-        alert('Essay is too long');
-    } else if (ePromptInput == '') {
-        alert('Enter the prompt for your essay');
-    } else if (eEssayTextInput == '') {
-        alert('Enter your essay');
-    } else {
-        essay.prompt = ePromptInput;
-        essay.name = ePromptInput;
-        essay.essayText = eEssayTextInput;
-        essay.essayTeaser = eEssayTextInput.substr(0, 150) + '...';
-        essay.wordCount = countWords(essay.essayText) + ' words';
-
-        document.getElementById(essay.id + 'Prompt').innerText = essay.prompt;
-        document.getElementById(essay.id + 'EssayText').innerText = essay.essayText;
-        document.getElementById(essay.id + 'EssayTeaser').innerText = essay.essayTeaser;
-        document.getElementById(essay.id + 'WordCount').innerText = essay.wordCount + ' words';
-
-        localStorage.setItem(essay.id + 'Name', essay.name);
-        localStorage.setItem(essay.id + 'Prompt', essay.prompt);
-        localStorage.setItem(essay.id + 'EssayText', essay.essayText);
-        localStorage.setItem(essay.id + 'EssayTeaser', essay.essayTeaser);
-        localStorage.setItem(essay.id + 'WordCount', essay.wordCount);
-
-        saveLists();
-        getLists();
-        getEssays();
-
-        document.getElementById('essayWordCount').innerText = '0 words';
-
-        let expEBtn = document.getElementsByClassName('expEBtn');
-        for (i = 0; i < expEBtn.length; i++) {
-            expEBtn[i].onclick = function () {
-                toggleEssay(this.parentElement.id);
-            }
-        }
-
-        let pen = document.getElementsByClassName('pen');
-        for (i = 0; i < pen.length; i++) {
-            pen[i].onclick = function () {
-                if (this.parentElement.parentElement.id.startsWith('C')) {
-                    clickPen(this.parentElement.parentElement);
-                } else if (this.parentElement.parentElement.id.startsWith('A')) {
-                    clickPenAct(this.parentElement.parentElement);
-                } else if (this.parentElement.parentElement.id.startsWith('T')) {
-                    clickPenTest(this.parentElement.parentElement);
-                } else if (this.parentElement.parentElement.id.startsWith('E')) {
-                    clickPenEssay(this.parentElement.parentElement);
-                } else if (this.parentElement.parentElement.id.startsWith('O')) {
-                    clickPenConnection(this.parentElement.parentElement);
-                }
-            }
-        }
-
-        let trash = document.getElementsByClassName('trash');
-        for (i = 0; i < trash.length; i++) {
-            trash[i].onclick = function () {
-                clickTrash(this.parentElement.parentElement);
-            }
-        }
-
-        hide();
-    }
-})
-
 document.getElementById('saveConnectionBtn').addEventListener('click', function (event) {
     event.preventDefault();
 
@@ -2709,10 +2636,7 @@ function calcECStrength() {
     }
 }
 
-function updateEssay() { // only runs when essay is updated in the editing modal
-
-    console.log("SAVED ESSAY!!");
-
+function saveEssay() {
     let ePromptInput = document.getElementById('essayPromptEdit').value.trim();
     let eEssayTextInput = document.getElementById('essayTextEdit').value.trim();
 
