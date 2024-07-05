@@ -158,6 +158,7 @@ calcCumDiff();
 calcGPA();
 calcCumGPA();
 calcECStrength();
+findBestTests();
 
 let badIcons = document.getElementsByTagName('i');
 for (let l = 0; l < badIcons.length; l++) {
@@ -330,6 +331,20 @@ function openGPA() {
 function openECStrength() {
     document.getElementById('ecStrengthModal').classList.remove('fadeIn');
     document.getElementById('ecStrengthModal').classList.add('fadeOut');
+
+    document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
+}
+
+function openBestSAT() {
+    document.getElementById('bestSATModal').classList.remove('fadeIn');
+    document.getElementById('bestSATModal').classList.add('fadeOut');
+
+    document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
+}
+
+function openBestACT() {
+    document.getElementById('bestACTModal').classList.remove('fadeIn');
+    document.getElementById('bestACTModal').classList.add('fadeOut');
 
     document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
 }
@@ -850,6 +865,7 @@ document.getElementById('addTestBtn').addEventListener('click', function (event)
             }
         }
 
+        findBestTests();
         saveLists();
         hide();
     }
@@ -1278,6 +1294,7 @@ function clickTrash(el) {
         calcCumGPA();
         calcCumDiff();
         calcECStrength();
+        findBestTests();
         saveLists();
     }
 }
@@ -1651,6 +1668,7 @@ document.getElementById('saveTestBtn').addEventListener('click', function (event
         localStorage.setItem(test.id + 'MathScore', test.mathScore);
         localStorage.setItem(test.id + 'Name', test.name);
 
+        findBestTests();
         saveLists();
         getLists();
         getTests();
@@ -1831,12 +1849,12 @@ document.getElementById('saveWeightsBtn').addEventListener('click', function (ev
     }
 })
 
-document.getElementById('randomPromptBtn').addEventListener('click', function (event) {
+/* document.getElementById('randomPromptBtn').addEventListener('click', function (event) {
     event.preventDefault();
 
     randomPrompt = promptList[Math.floor(Math.random() * promptList.length)];
     document.getElementById('essayPrompt').value = randomPrompt;
-})
+}) */
 
 function getCD() {
     gradDay = Number(localStorage.getItem('gradDay', gradDay));
@@ -2005,7 +2023,7 @@ function calcListDiff() { // calcs diffs of ALL lists
             document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Easy Coursework';
             document.getElementById('diff' + i).className = 'listAttr lev1';
         } else if (localStorage.getItem('list' + i + 'Diff') < 2) {
-            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Normal Coursework';
+            document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Regular Coursework';
             document.getElementById('diff' + i).className = 'listAttr lev2';
         } else if (localStorage.getItem('list' + i + 'Diff') < 3) {
             document.getElementById('diff' + i).innerText = localStorage.getItem('list' + i + 'Diff') + ' Hard Coursework';
@@ -2043,7 +2061,7 @@ function calcCumDiff() {
         document.getElementById('diffCum').innerHTML = `<span class='cumAttrNum'>${cumDiff}</span> Easy Coursework`;
         document.getElementById('diffCum').className = 'cumAttr';
     } else if (cumDiff < 2) {
-        document.getElementById('diffCum').innerHTML = `<span class='cumAttrNum'>${cumDiff}</span> Normal Coursework`;
+        document.getElementById('diffCum').innerHTML = `<span class='cumAttrNum'>${cumDiff}</span> Regular Coursework`;
         document.getElementById('diffCum').className = 'cumAttr';
     } else if (cumDiff < 3) {
         document.getElementById('diffCum').innerHTML = `<span class='cumAttrNum'>${cumDiff}</span> Hard Coursework`;
@@ -2578,7 +2596,6 @@ function calcCumGPA() {
         document.getElementById('gpaCum').className = 'cumAttr';
         document.getElementById('wGpaCum').className = 'cumAttr';
     }
-
 }
 
 function calcECStrength() {
@@ -2633,6 +2650,36 @@ function calcECStrength() {
     } else if (ecStrength >= 7.5) {
         document.getElementById('ecStrength').innerHTML = `<span class='cumAttrNum'>${ecStrength}</span> Exceptional Extracurriculars`;
         document.getElementById('ecStrength').className = 'cumAttr';
+    }
+}
+
+function findBestTests() {
+    let allSATs = [];
+    let allACTs = [];
+
+    let currentItems = document.getElementById('listTests').getElementsByTagName('li');
+
+    for (let j = 0; j < currentItems.length; j++) {
+        if (localStorage.getItem(currentItems[j].id + 'Species') == 'SAT') allSATs.push(localStorage.getItem(currentItems[j].id + 'Score'));
+        else if (localStorage.getItem(currentItems[j].id + 'Species') == 'ACT') allACTs.push(localStorage.getItem(currentItems[j].id + 'Score'));
+    }
+
+    let bestSAT = allSATs[indexOfGreatestNumber(allSATs)];
+    let bestACT = allACTs[indexOfGreatestNumber(allACTs)];
+
+    if (allSATs.length < 1) {
+        document.getElementById('bestSAT').innerHTML = '';
+        document.getElementById('bestSAT').className = 'listAttr hidden';
+    } else {
+        document.getElementById('bestSAT').innerHTML = bestSAT + ' SAT';
+        document.getElementById('bestSAT').className = 'listAttr';
+    }
+    if (allACTs.length < 1) {
+        document.getElementById('bestACT').innerHTML = '';
+        document.getElementById('bestACT').className = 'listAttr hidden';
+    } else {
+        document.getElementById('bestACT').innerHTML = bestACT + ' ACT';
+        document.getElementById('bestACT').className = 'listAttr';
     }
 }
 
@@ -2867,6 +2914,19 @@ for (let i = 0; i < document.getElementsByClassName('connectionContact').length;
     }
 } */
 
+function indexOfGreatestNumber(array) {
+    let greatest = -99999;
+    let greatestNumIndex = -1;
+
+    for (i = 0; i < array.length; i++) {
+        if (Number(array[i]) > greatest) {
+            greatest = Number(array[i]);
+            greatestNumIndex = i;
+        }
+    }
+    return greatestNumIndex;
+}
+
 function hide() {
     event.preventDefault();
 
@@ -2953,6 +3013,12 @@ function hide() {
 
     document.getElementById('ecStrengthModal').classList.add('fadeIn');
     document.getElementById('ecStrengthModal').classList.remove('fadeOut');
+
+    document.getElementById('bestSATModal').classList.add('fadeIn');
+    document.getElementById('bestSATModal').classList.remove('fadeOut');
+
+    document.getElementById('bestACTModal').classList.add('fadeIn');
+    document.getElementById('bestACTModal').classList.remove('fadeOut');
 
     document.getElementById('countdownModal').classList.add('fadeIn');
     document.getElementById('countdownModal').classList.remove('fadeOut');
