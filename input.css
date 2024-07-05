@@ -92,7 +92,7 @@
   }
 
   .listAttr {
-    @apply text-sm text-left bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-md break-words transition-all px-2 py-[0.055rem] mr-2 mt-2;
+    @apply text-sm text-left bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-md break-words transition-all px-2 py-[0.055rem] mr-0.5 md:mr-1 mt-2;
   }
 
   .cumAttr {

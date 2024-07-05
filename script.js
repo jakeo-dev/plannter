@@ -306,13 +306,6 @@ function openAddTest() {
     document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
 }
 
-function openAddEssay() {
-    document.getElementById('essayModal').classList.remove('fadeIn');
-    document.getElementById('essayModal').classList.add('fadeOut');
-
-    document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
-}
-
 function openAddConnection() {
     document.getElementById('connectionModal').classList.remove('fadeIn');
     document.getElementById('connectionModal').classList.add('fadeOut');
@@ -865,141 +858,130 @@ document.getElementById('addTestBtn').addEventListener('click', function (event)
 document.getElementById('addEssayBtn').addEventListener('click', function (event) {
     event.preventDefault();
 
-    let ePromptInput = document.getElementById('essayPrompt').value.trim();
-    let eEssayTextInput = document.getElementById('essayText').value.trim();
+    let essay = document.createElement('li');
+    essay.className = 'item essay';
+    essay.prompt = 'Enter a prompt';
+    essay.name = 'Enter a prompt';
 
-    if (ePromptInput.length > 400) {
-        alert('Prompt is too long');
-    } else if (eEssayTextInput.length > 100000) {
-        alert('Essay is too long');
-    } else if (ePromptInput == '') {
-        alert('Enter the prompt for your essay');
-    } else if (eEssayTextInput == '') {
-        alert('Enter your essay');
-    } else {
-        let essay = document.createElement('li');
-        essay.className = 'item essay';
-        essay.prompt = ePromptInput;
-        essay.name = ePromptInput;
+    essay.id = 'E' + Math.floor(100000000 + Math.random() * 900000000);
 
-        essay.id = 'E' + Math.floor(100000000 + Math.random() * 900000000);
+    let i = document.createElement('i');
+    i.id = essay.id + 'EssayI';
+    i.className = 'essayI fa-solid fa-paperclip';
+    i.ariaLabel = 'Essay icon';
+    essay.appendChild(i);
 
-        let i = document.createElement('i');
-        i.id = essay.id + 'EssayI';
-        i.className = 'essayI fa-solid fa-paperclip';
-        i.ariaLabel = 'Essay icon';
-        essay.appendChild(i);
+    let t = document.createTextNode(essay.prompt);
+    let span = document.createElement('span');
+    span.id = essay.id + 'Prompt';
+    span.appendChild(t);
+    essay.appendChild(span);
 
-        let t = document.createTextNode(essay.prompt);
-        let span = document.createElement('span');
-        span.id = essay.id + 'Prompt';
-        span.appendChild(t);
-        essay.appendChild(span);
+    div = document.createElement('div');
+    div.className = 'optDiv';
 
-        div = document.createElement('div');
-        div.className = 'optDiv';
+    let btn = document.createElement('button');
+    icon = document.createElement('i');
+    icon.className = 'optI fa-solid fa-pen';
+    btn.className = 'opt pen';
+    btn.ariaLabel = 'Edit essay';
+    btn.title = 'Edit essay';
+    btn.id = essay.id + 'EditBtn';
+    btn.appendChild(icon);
+    div.appendChild(btn);
 
-        let btn = document.createElement('button');
-        icon = document.createElement('i');
-        icon.className = 'optI fa-solid fa-pen';
-        btn.className = 'opt pen';
-        btn.ariaLabel = 'Edit essay';
-        btn.title = 'Edit essay';
-        btn.appendChild(icon);
-        div.appendChild(btn);
+    btn = document.createElement('button');
+    icon = document.createElement('i');
+    icon.className = 'optI fa-solid fa-trash';
+    btn.className = 'opt trash';
+    btn.ariaLabel = 'Remove essay';
+    btn.title = 'Remove essay';
+    btn.id = essay.id + 'TrashBtn';
+    btn.appendChild(icon);
+    div.appendChild(btn);
 
-        btn = document.createElement('button');
-        icon = document.createElement('i');
-        icon.className = 'optI fa-solid fa-trash';
-        btn.className = 'opt trash';
-        btn.ariaLabel = 'Remove essay';
-        btn.title = 'Remove essay';
-        btn.appendChild(icon);
-        div.appendChild(btn);
+    essay.appendChild(div);
 
-        essay.appendChild(div);
+    essay.essayTeaser = 'Start writing your essay here...';
+    span = document.createElement('span');
+    span.className = 'essayTeaser';
+    span.id = essay.id + 'EssayTeaser';
+    t = document.createTextNode(essay.essayTeaser);
+    span.appendChild(t);
+    essay.appendChild(span);
 
-        essay.essayTeaser = eEssayTextInput.substr(0, 100) + '...';
-        span = document.createElement('span');
-        span.className = 'essayTeaser';
-        span.id = essay.id + 'EssayTeaser';
-        t = document.createTextNode(essay.essayTeaser);
-        span.appendChild(t);
-        essay.appendChild(span);
+    essay.essayText = 'Start writing your essay here';
+    span = document.createElement('span');
+    span.className = 'essayText hidden';
+    span.id = essay.id + 'EssayText';
+    span.innerText = essay.essayText;
+    essay.appendChild(span);
 
-        essay.essayText = eEssayTextInput;
-        span = document.createElement('span');
-        span.className = 'essayText hidden';
-        span.id = essay.id + 'EssayText';
-        span.innerText = essay.essayText;
-        essay.appendChild(span);
+    btn = document.createElement('button');
+    icon = document.createElement('i');
+    icon.className = 'fa-solid fa-chevron-down mr-2';
+    icon.id = essay.id + 'ExpandEI'
+    btn.className = 'expEBtn';
+    btn.id = essay.id + 'ExpandEBtn';
+    btn.appendChild(icon);
+    span = document.createElement('span');
+    span.id = essay.id + 'ExpandEBtnText';
+    t = document.createTextNode('Expand essay');
+    span.appendChild(t);
+    btn.appendChild(span);
+    essay.appendChild(btn);
 
-        btn = document.createElement('button');
-        icon = document.createElement('i');
-        icon.className = 'fa-solid fa-chevron-down mr-2';
-        icon.id = essay.id + 'ExpandEI'
-        btn.className = 'expEBtn';
-        btn.id = essay.id + 'ExpandEBtn';
-        btn.appendChild(icon);
-        span = document.createElement('span');
-        span.id = essay.id + 'ExpandEBtnText';
-        t = document.createTextNode('Expand essay');
-        span.appendChild(t);
-        btn.appendChild(span);
-        essay.appendChild(btn);
+    essay.wordCount = countWords(essay.essayText) + ' words';
+    span = document.createElement('span');
+    span.className = 'wordCount';
+    span.id = essay.id + 'WordCount';
+    t = document.createTextNode(essay.wordCount);
+    span.appendChild(t);
+    essay.appendChild(span);
 
-        essay.wordCount = countWords(essay.essayText);
-        span = document.createElement('span');
-        span.className = 'wordCount';
-        span.id = essay.id + 'WordCount';
-        t = document.createTextNode(essay.wordCount + ' words');
-        span.appendChild(t);
-        essay.appendChild(span);
+    localStorage.setItem(essay.id + 'Name', essay.name);
+    localStorage.setItem(essay.id + 'Prompt', essay.prompt);
+    localStorage.setItem(essay.id + 'EssayText', essay.essayText);
+    localStorage.setItem(essay.id + 'EssayTeaser', essay.essayTeaser);
+    localStorage.setItem(essay.id + 'WordCount', essay.wordCount);
 
-        localStorage.setItem(essay.id + 'Name', essay.name);
-        localStorage.setItem(essay.id + 'Prompt', essay.prompt);
-        localStorage.setItem(essay.id + 'EssayText', essay.essayText);
-        localStorage.setItem(essay.id + 'EssayTeaser', essay.essayTeaser);
-        localStorage.setItem(essay.id + 'WordCount', essay.wordCount);
+    document.getElementById('listEssays').appendChild(essay);
 
-        document.getElementById('listEssays').appendChild(essay);
-
-        document.getElementById('essayWordCount').innerText = '0';
-
-        let expEBtn = document.getElementsByClassName('expEBtn');
-        for (i = 0; i < expEBtn.length; i++) {
-            expEBtn[i].onclick = function () {
-                toggleEssay(this.parentElement.id);
-            }
+    let expEBtn = document.getElementsByClassName('expEBtn');
+    for (i = 0; i < expEBtn.length; i++) {
+        expEBtn[i].onclick = function () {
+            toggleEssay(this.parentElement.id);
         }
-
-        let pen = document.getElementsByClassName('pen');
-        for (i = 0; i < pen.length; i++) {
-            pen[i].onclick = function () {
-                if (this.parentElement.parentElement.id.startsWith('C')) {
-                    clickPen(this.parentElement.parentElement);
-                } else if (this.parentElement.parentElement.id.startsWith('A')) {
-                    clickPenAct(this.parentElement.parentElement);
-                } else if (this.parentElement.parentElement.id.startsWith('T')) {
-                    clickPenTest(this.parentElement.parentElement);
-                } else if (this.parentElement.parentElement.id.startsWith('E')) {
-                    clickPenEssay(this.parentElement.parentElement);
-                } else if (this.parentElement.parentElement.id.startsWith('O')) {
-                    clickPenConnection(this.parentElement.parentElement);
-                }
-            }
-        }
-
-        let trash = document.getElementsByClassName('trash');
-        for (i = 0; i < trash.length; i++) {
-            trash[i].onclick = function () {
-                clickTrash(this.parentElement.parentElement);
-            }
-        }
-
-        saveLists();
-        hide();
     }
+
+    let pen = document.getElementsByClassName('pen');
+    for (i = 0; i < pen.length; i++) {
+        pen[i].onclick = function () {
+            if (this.parentElement.parentElement.id.startsWith('C')) {
+                clickPen(this.parentElement.parentElement);
+            } else if (this.parentElement.parentElement.id.startsWith('A')) {
+                clickPenAct(this.parentElement.parentElement);
+            } else if (this.parentElement.parentElement.id.startsWith('T')) {
+                clickPenTest(this.parentElement.parentElement);
+            } else if (this.parentElement.parentElement.id.startsWith('E')) {
+                clickPenEssay(this.parentElement.parentElement);
+            } else if (this.parentElement.parentElement.id.startsWith('O')) {
+                clickPenConnection(this.parentElement.parentElement);
+            }
+        }
+    }
+
+    let trash = document.getElementsByClassName('trash');
+    for (i = 0; i < trash.length; i++) {
+        trash[i].onclick = function () {
+            clickTrash(this.parentElement.parentElement);
+        }
+    }
+
+    saveLists();
+    hide();
+
+    document.getElementById(essay.id + 'EditBtn').click();
 })
 
 document.getElementById('addConnectionBtn').addEventListener('click', function (event) {
@@ -1259,7 +1241,7 @@ function clickPenEssay(e) {
 
     document.getElementById('essayPromptEdit').value = essay.prompt;
     document.getElementById('essayTextEdit').value = essay.essayText;
-    document.getElementById('essayWordCountEdit').innerText = countWords(essay.essayText);
+    document.getElementById('essayWordCountEdit').innerText = countWords(essay.essayText) + ' words';
 
     document.getElementById('editEssayModal').classList.remove('fadeIn');
     document.getElementById('editEssayModal').classList.add('fadeOut');
@@ -1727,7 +1709,7 @@ document.getElementById('saveEssayBtn').addEventListener('click', function (even
         essay.name = ePromptInput;
         essay.essayText = eEssayTextInput;
         essay.essayTeaser = eEssayTextInput.substr(0, 150) + '...';
-        essay.wordCount = countWords(essay.essayText);
+        essay.wordCount = countWords(essay.essayText) + ' words';
 
         document.getElementById(essay.id + 'Prompt').innerText = essay.prompt;
         document.getElementById(essay.id + 'EssayText').innerText = essay.essayText;
@@ -1744,7 +1726,7 @@ document.getElementById('saveEssayBtn').addEventListener('click', function (even
         getLists();
         getEssays();
 
-        document.getElementById('essayWordCount').innerText = '0';
+        document.getElementById('essayWordCount').innerText = '0 words';
 
         let expEBtn = document.getElementsByClassName('expEBtn');
         for (i = 0; i < expEBtn.length; i++) {
@@ -2727,6 +2709,45 @@ function calcECStrength() {
     }
 }
 
+function updateEssay() { // only runs when essay is updated in the editing modal
+
+    console.log("SAVED ESSAY!!");
+
+    let ePromptInput = document.getElementById('essayPromptEdit').value.trim();
+    let eEssayTextInput = document.getElementById('essayTextEdit').value.trim();
+
+    if (ePromptInput.length > 400) {
+        alert('Prompt is too long');
+    } else if (eEssayTextInput.length > 100000) {
+        alert('Essay is too long');
+    } else if (ePromptInput == '') {
+        alert('Enter the prompt for your essay');
+    } else if (eEssayTextInput == '') {
+        alert('Enter your essay');
+    } else {
+        essay.prompt = ePromptInput;
+        essay.name = ePromptInput;
+        essay.essayText = eEssayTextInput;
+        essay.essayTeaser = eEssayTextInput.substr(0, 150) + '...';
+        essay.wordCount = countWords(essay.essayText) + ' words';
+
+        document.getElementById(essay.id + 'Prompt').innerText = essay.prompt;
+        document.getElementById(essay.id + 'EssayText').innerText = essay.essayText;
+        document.getElementById(essay.id + 'EssayTeaser').innerText = essay.essayTeaser;
+        document.getElementById(essay.id + 'WordCount').innerText = essay.wordCount;
+        document.getElementById('essayWordCountEdit').innerText = essay.wordCount;
+
+        localStorage.setItem(essay.id + 'Name', essay.name);
+        localStorage.setItem(essay.id + 'Prompt', essay.prompt);
+        localStorage.setItem(essay.id + 'EssayText', essay.essayText);
+        localStorage.setItem(essay.id + 'EssayTeaser', essay.essayTeaser);
+        localStorage.setItem(essay.id + 'WordCount', essay.wordCount);
+
+        saveLists();
+    }
+
+}
+
 function countWords(string) {
     // https://www.mediacollege.com/internet/javascript/text/count-words.html
     string = string.replace(/(^\s*)|(\s*$)/gi, '').replace(/[ ]{2,}/gi, ' ').replace(/\n /, '\n');
@@ -2987,12 +3008,6 @@ function hide() {
     document.getElementById('testSpeciesOtherEdit').classList.add('hidden');
     document.getElementById('testSubScoreDivEdit').classList.add('hidden');
     document.getElementById('testSubScoreDivEdit').classList.remove('flex');
-
-    document.getElementById('essayModal').classList.add('fadeIn');
-    document.getElementById('essayModal').classList.remove('fadeOut');
-    document.getElementById('essayPrompt').value = '';
-    document.getElementById('essayText').value = '';
-    document.getElementById('essayWordCount').innerText = '0';
 
     document.getElementById('editEssayModal').classList.add('fadeIn');
     document.getElementById('editEssayModal').classList.remove('fadeOut');
