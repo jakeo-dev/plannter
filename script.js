@@ -395,6 +395,7 @@ buttons.forEach((planBtns) => {
             planBtns.classList.remove('bg-emerald-600/30');
             planBtns.classList.remove('text-gray-600');
             planBtns.classList.remove('dark:text-gray-300/80');
+            planBtns.classList.add('dark:text-gray-400/80');
             planBtns.classList.add('text-gray-500');
             planBtns.classList.add('hover:bg-gray-400/30');
             planBtns.classList.add('dark:hover:bg-gray-600/30');
@@ -406,6 +407,7 @@ buttons.forEach((planBtns) => {
         planBtns.classList.add('bg-emerald-600/30');
         planBtns.classList.add('text-gray-600');
         planBtns.classList.add('dark:text-gray-300/80');
+        planBtns.classList.remove('dark:text-gray-400/80');
         planBtns.classList.remove('text-gray-500');
         planBtns.classList.remove('hover:bg-gray-400/30');
         planBtns.classList.remove('dark:hover:bg-gray-600/30');

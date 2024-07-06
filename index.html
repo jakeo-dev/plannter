@@ -25,7 +25,7 @@
 </head>
 
 <body
-    class='bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-300 text-left selection:bg-emerald-500/40 pb-16 md:pb-24 font-LexendDeca'>
+    class='bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-300 text-left selection:bg-emerald-500/40 pb-16 md:pb-0 font-LexendDeca'>
 
     <!-- <button onclick='localStorage.clear()' class='text-3xl border-4 border-red-500 hover:bg-red-300'>CLEAR LOCAL STORAGE</button> -->
 
@@ -33,7 +33,7 @@
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
             class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
-            <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+            <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition' onclick='hide()'><i
                     class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
             <h1 class='modalTitle'>It seems like your information is out of date</h1>
@@ -60,7 +60,7 @@
 
             <div>
 
-                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
                 <h1 class='modalTitle'>Add course</h1>
@@ -170,8 +170,8 @@
                 </select>
 
                 <button id='advOptAddC'
-                    class='block w-full text-sm md:text-base text-left text-gray-600 hover:text-gray-500 active:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 dark:active:text-gray-600 transition-all px-2 mt-2 mb-4'><i
-                        class='fa-solid fa-chevron-right mr-2 transition-all' id='advOptAddCI'></i>More options</button>
+                    class='block w-full text-sm md:text-base text-left text-gray-600 hover:text-gray-500 active:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 dark:active:text-gray-600 transition px-2 mt-2 mb-4'><i
+                        class='fa-solid fa-chevron-right mr-2 transition' id='advOptAddCI'></i>More options</button>
 
                 <div id='advOptionsAddC' class='hidden'>
                     <label for='selDiff2' class='modalSubtext'>Specific difficulty <p class='inline text-sm'>(optional)
@@ -205,7 +205,7 @@
 
             <div>
 
-                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
                 <h1 class='modalTitle'>Edit course</h1>
@@ -316,8 +316,8 @@
                 </select>
 
                 <button id='advOptEditC'
-                    class='block w-full text-sm md:text-base text-left text-gray-600 hover:text-gray-500 active:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 dark:active:text-gray-600 transition-all px-2 mt-2 mb-4'><i
-                        class='fa-solid fa-chevron-right mr-2 transition-all' id='advOptEditCI'></i>More
+                    class='block w-full text-sm md:text-base text-left text-gray-600 hover:text-gray-500 active:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 dark:active:text-gray-600 transition px-2 mt-2 mb-4'><i
+                        class='fa-solid fa-chevron-right mr-2 transition' id='advOptEditCI'></i>More
                     options</button>
 
                 <div id='advOptionsEditC' class='hidden'>
@@ -352,7 +352,7 @@
 
             <div>
 
-                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
                 <h1 class='modalTitle'>Add activity</h1>
@@ -418,7 +418,7 @@
 
             <div>
 
-                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
                 <h1 class='modalTitle'>Edit activity</h1>
@@ -484,7 +484,7 @@
 
             <div>
 
-                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
                 <h1 class='modalTitle'>Add test</h1>
@@ -563,7 +563,7 @@
 
             <div>
 
-                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
                 <h1 class='modalTitle'>Edit test</h1>
@@ -642,7 +642,7 @@
 
             <div>
 
-                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
                 <h1 class='modalTitle'>Write essay</h1>
@@ -652,7 +652,7 @@
                     <input id='essayPromptEdit' class='input flex-1 p-2 pl-3 m-0' autocomplete='off' maxlength='400'
                         onkeyup='saveEssay()'>
                     <button id='randomPromptBtn'
-                        class='text-3xl text-center border-2 rounded-md hover:rotate-[15deg] active:rotate-[105deg] text-gray-500 hover:text-gray-600 active:text-gray-700 dark:text-gray-400 dark:hover:text-gray-500 dark:active:text-gray-600 border-transparent transition-all ml-3'><i
+                        class='text-3xl text-center border-2 rounded-md hover:rotate-[15deg] active:rotate-[105deg] text-gray-500 hover:text-gray-600 active:text-gray-700 dark:text-gray-400 dark:hover:text-gray-500 dark:active:text-gray-600 border-transparent transition ml-3'><i
                             class='fa-solid fa-dice-five' aria-label='Generate random essay prompt'
                             title='Generate random essay prompt'></i></button>
                 </div>
@@ -682,7 +682,7 @@
 
             <div>
 
-                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
                 <h1 class='modalTitle'>Add connection</h1>
@@ -713,7 +713,7 @@
                     </select>
                     <input id='connectionContactInput' class='input p-2 pl-3 m-0' autocomplete='off' maxlength='100'>
                     <button id='connectionAddContact' onclick='addContactMethod()'
-                        class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-gray-500 hover:bg-gray-600 active:bg-gray-700 border-transparent text-left transition-all px-3'><i
+                        class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-gray-500 hover:bg-gray-600 active:bg-gray-700 border-transparent text-left transition px-3'><i
                             class='fa-solid fa-add'></i></button>
                 </div>
 
@@ -736,7 +736,7 @@
 
             <div>
 
-                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
                 <h1 class='modalTitle'>Add connection</h1>
@@ -769,7 +769,7 @@
                     <input id='connectionContactInputEdit' class='input p-2 pl-3 m-0' autocomplete='off'
                         maxlength='100'>
                     <button id='connectionAddContactEdit' onclick='addContactMethod()'
-                        class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-gray-500 hover:bg-gray-600 active:bg-gray-700 border-transparent text-left transition-all px-3'><i
+                        class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-gray-500 hover:bg-gray-600 active:bg-gray-700 border-transparent text-left transition px-3'><i
                             class='fa-solid fa-add'></i></button>
                 </div>
 
@@ -789,7 +789,7 @@
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
             class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
-            <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+            <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition' onclick='hide()'><i
                     class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
             <h1 class='modalTitle'>About grade level difficulty</h1>
@@ -805,7 +805,7 @@
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
             class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
-            <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+            <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition' onclick='hide()'><i
                     class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
             <h1 class='modalTitle'>About grade point average (GPA)</h1>
@@ -824,7 +824,7 @@
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
             class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
-            <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+            <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition' onclick='hide()'><i
                     class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
             <h1 class='modalTitle'>About extracurricular strength</h1>
@@ -839,7 +839,7 @@
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
             class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
-            <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+            <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition' onclick='hide()'><i
                     class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
             <h1 class='modalTitle'>About best SAT</h1>
@@ -852,7 +852,7 @@
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
             class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
-            <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+            <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition' onclick='hide()'><i
                     class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
             <h1 class='modalTitle'>About best ACT</h1>
@@ -865,7 +865,7 @@
         class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
         <div
             class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
-            <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+            <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition' onclick='hide()'><i
                     class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
             <h1 class='modalTitle'>About test favorability</h1>
@@ -884,7 +884,7 @@
 
             <div>
 
-                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
                 <h1 class='modalTitle'>Edit graduation countdown</h1>
@@ -918,7 +918,7 @@
 
             <div>
 
-                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+                <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition' onclick='hide()'><i
                         class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
                 <h1 class='modalTitle'>Change GPA calculation</h1>
@@ -929,7 +929,7 @@
                         <span
                             class='absolute left-0 top-0 w-6 h-6 bg-gray-100 dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 rounded-md'></span>
                         <span
-                            class='absolute left-0 top-0 w-6 h-6 bg-emerald-600 rounded-md opacity-0 transition-all'></span>
+                            class='absolute left-0 top-0 w-6 h-6 bg-emerald-600 rounded-md opacity-0 transition'></span>
                         Use +/- in calculation
                     </label>
                 </div>
@@ -968,25 +968,24 @@
     </div>
 
     <div
-        class='font-Calistoga text-2xl text-gray-100 dark:text-gray-900 bg-gray-200 dark:bg-gray-800 flex sticky top-0 z-10 border-b-2 border-gray-300 dark:border-gray-700 shadow-sm px-6 py-4'>
+        class='font-Calistoga text-2xl text-gray-100 dark:text-gray-900 bg-gray-200 dark:bg-gray-800 flex sticky md:absolute w-full top-0 z-10 border-b-2 border-gray-300 dark:border-gray-700 shadow-sm px-6 py-4'>
         <button
-            class='block md:hidden text-gray-400 hover:text-gray-500 dark:text-gray-600 dark:hover:text-gray-700 transition-all mr-6'
+            class='block md:hidden text-gray-400 hover:text-gray-500 dark:text-gray-600 dark:hover:text-gray-700 transition mr-6'
             onclick='toggleMenuSm()'><i class='fa-solid fa-bars'></i></button>
         <h1
             class='flex items-center tracking-wide text-transparent bg-clip-text font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-sky-600 dark:from-emerald-500 dark:via-teal-500 dark:to-sky-500'>
             <i class='fa-solid fa-seedling mr-3'></i>Plannter
         </h1>
-        <!-- <h2 class='text-lg mt-1'>Manage and plan the next four years</h2> -->
 
         <div class='hidden md:block font-LexendDeca font-medium ml-auto'>
             <button
-                class='text-lg text-gray-600 hover:bg-gray-300 active:bg-gray-400 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 rounded-md px-3 py-1 transition-all'
+                class='text-lg text-gray-600 hover:bg-gray-300 active:bg-gray-400 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 rounded-md px-3 py-1 transition'
                 onclick='openCD()' id='countdown'><i class='fa-solid fa-hourglass-half' aria-label='Edit countdown'
                     title='Edit countdown'></i></button>
 
             <div class='relative inline-block'>
                 <button
-                    class='text-xl text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 px-2 pt-1 transition-all'
+                    class='text-xl text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 px-2 pt-1 transition'
                     onclick='toggleMenu()' id='optionsBtn'><i class='fa-solid fa-ellipsis-vertical' id='optionsBtnI'
                         aria-label='More settings' title='More settings'></i></button>
                 <div class='fadeIn absolute right-0 w-80 bg-gray-100 dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 rounded-md shadow-lg p-3 mt-2'
@@ -1006,51 +1005,57 @@
         </div>
     </div>
 
-    <div class='flex h-full md:h-auto'>
+    <div class='flex h-full md:h-screen'>
 
         <div id='menuDiv'
-            class='fadeIn md:fadeOut fixed bg-gray-200 dark:bg-gray-800 md:dark:bg-gray-900 font-Calistoga text-lg font-extrabold border-r-2 border-gray-300 dark:border-gray-700 shadow-2xl h-full z-20 w-10/12 pt-8 pr-4 md:sticky md:top-28 md:border-0 md:shadow-none md:bg-transparent md:z-auto md:block md:w-1/3 md:p-0'>
+            class='fadeIn md:fadeOut fixed bg-gray-200 dark:bg-gray-800 md:dark:bg-gray-900 text-lg font-extrabold border-r-2 border-gray-300 md:border-gray-200 dark:border-gray-700 md:dark:border-gray-800 shadow-2xl h-full z-20 w-5/6 pt-8 md:static md:top-28 md:bg-transparent md:shadow-sm md:z-auto md:block md:w-[29%] md:pt-28'>
 
-            <button
-                class='planBtns block w-full text-left text-gray-600 dark:text-gray-300/80 bg-emerald-600/30 rounded-r-full px-6 py-3 md:px-7 md:py-3 transition'
-                onclick='showPlan()'>
-                <span class='tracking-wide'>Coursework</span>
-            </button>
-            <button
-                class='planBtns block w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 md:py-3 transition'
-                onclick='showTests()'>
-                <span class='tracking-wide'>Tests</span>
-            </button>
-            <button
-                class='planBtns block w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 md:py-3 transition'
-                onclick='showActs()'>
-                <span class='tracking-wide'>Extracurriculars</span>
-            </button>
-            <button
-                class='planBtns block w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 md:py-3 transition'
-                onclick='showEssays()'>
-                <span class='tracking-wide'>Essays</span>
-            </button>
-            <!-- <button
+            <div class='font-Calistoga pr-4'>
+                <button
+                    class='planBtns block w-full text-left text-gray-600 dark:text-gray-300/80 bg-emerald-600/30 rounded-r-full px-6 py-3 md:px-7 md:py-3 transition'
+                    onclick='showPlan()'>
+                    <span class='tracking-wide'>Coursework</span>
+                </button>
+                <button
+                    class='planBtns block w-full text-left text-gray-500 dark:text-gray-400/80 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 md:py-3 transition'
+                    onclick='showTests()'>
+                    <span class='tracking-wide'>Tests</span>
+                </button>
+                <button
+                    class='planBtns block w-full text-left text-gray-500 dark:text-gray-400/80 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 md:py-3 transition'
+                    onclick='showActs()'>
+                    <span class='tracking-wide'>Extracurriculars</span>
+                </button>
+                <button
+                    class='planBtns block w-full text-left text-gray-500 dark:text-gray-400/80 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 md:py-3 transition'
+                    onclick='showEssays()'>
+                    <span class='tracking-wide'>Essays</span>
+                </button>
+                <!-- <button
                 class='planBtns block w-full text-left text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 md:py-3 transition'
                 onclick='showConnections()'>
                 <span class='tracking-wide'>Connections</span>
             </button> -->
+            </div>
 
-            <div class='border-t-2 border-gray-300 dark:border-gray-700 my-4'></div>
+            <div
+                class='border-t-2 border-gray-300 md:border-gray-200 dark:border-gray-700 md:dark:border-gray-800 my-4'>
+            </div>
 
-            <div class='font-LexendDeca block w-min font-medium px-6 md:px-7 mt-0'>
+            <div class='block w-min font-medium px-6 md:px-7 mt-0'>
                 <button class='cumAttr hidden' id='gpaCum' onclick='openGPA()'></button>
                 <button class='cumAttr hidden' id='wGpaCum' onclick='openGPA()'></button>
                 <button class='cumAttr hidden' id='diffCum' onclick='openDiff()'></button>
                 <button class='cumAttr hidden' id='ecStrength' onclick='openECStrength()'></button>
             </div>
 
-            <div class='block md:hidden border-t-2 border-gray-300 dark:border-gray-700 my-4'></div>
+            <div
+                class='block md:hidden border-t-2 border-gray-300 md:border-gray-200 dark:border-gray-700 md:dark:border-gray-800 my-4'>
+            </div>
 
-            <div class='font-LexendDeca block md:hidden text-base md:text-lg font-medium'>
+            <div class='block md:hidden text-base md:text-lg font-medium'>
                 <button
-                    class='block w-full text-left text-gray-600 dark:text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 md:py-3 mt-4 transition-all'
+                    class='block w-full text-left text-gray-600 dark:text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 md:py-3 mt-4 transition'
                     onclick='openCD()' id='countdownSm'><i class='fa-solid fa-hourglass-half mr-2'
                         aria-label='Edit countdown'></i>Edit countdown</button>
                 <button
@@ -1064,7 +1069,8 @@
             </div>
         </div>
 
-        <div id='planDiv' class='w-full h-min px-4 md:px-12 lg:px-16 xl:px-32 mt-8 md:mt-12'>
+        <div id='planDiv'
+            class='w-full overflow-y-scroll px-4 md:px-8 lg:px-16 xl:px-32 md:pt-28 md:pb-14 mt-8 md:mt-0'>
 
             <div class='mb-12'>
                 <div class='font-medium px-4'>
@@ -1078,7 +1084,7 @@
                 <ul id='list9'>
                 </ul>
                 <button
-                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2'
                     onclick='openAddCourse(9)'><i class='fa-solid fa-plus mr-1'></i>Add a course</button>
             </div>
 
@@ -1094,7 +1100,7 @@
                 <ul id='list10'>
                 </ul>
                 <button
-                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2'
                     onclick='openAddCourse(10)'><i class='fa-solid fa-plus mr-1'></i>Add a course</button>
             </div>
 
@@ -1110,7 +1116,7 @@
                 <ul id='list11'>
                 </ul>
                 <button
-                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2'
                     onclick='openAddCourse(11)'><i class='fa-solid fa-plus mr-1'></i>Add a course</button>
             </div>
 
@@ -1126,7 +1132,7 @@
                 <ul id='list12'>
                 </ul>
                 <button
-                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2'
                     onclick='openAddCourse(12)'><i class='fa-solid fa-plus mr-1'></i>Add a course</button>
             </div>
 
@@ -1142,20 +1148,21 @@
                 <ul id='list13'>
                 </ul>
                 <button
-                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2'
                     onclick='openAddCourse(13)'><i class='fa-solid fa-plus mr-1'></i>Add a course</button>
             </div>
 
         </div>
 
-        <div id='actsDiv' class='hidden w-full h-min px-4 md:px-12 lg:px-16 xl:px-32 mt-12'>
+        <div id='actsDiv'
+            class='hidden w-full overflow-y-scroll px-4 md:px-8 lg:px-16 xl:px-32 md:pt-28 md:pb-14 mt-8 md:mt-0'>
 
             <div class='mb-12'>
                 <h2 class='text-lg font-Calistoga font-medium px-4 mb-3'>Major Activities</h2>
                 <ul id='listActs' class='lg:grid lg:grid-cols-2 gap-3'>
                 </ul>
                 <button
-                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2'
                     onclick='openAddAct(1)'><i class='fa-solid fa-plus mr-1'></i>Add an activity</button>
             </div>
 
@@ -1164,7 +1171,7 @@
                 <ul id='listActs2' class='lg:grid lg:grid-cols-2 gap-3'>
                 </ul>
                 <button
-                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2'
                     onclick='openAddAct(2)'><i class='fa-solid fa-plus mr-1'></i>Add an activity</button>
             </div>
 
@@ -1173,13 +1180,14 @@
                 <ul id='listActs3' class='lg:grid lg:grid-cols-2 gap-3'>
                 </ul>
                 <button
-                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2'
                     onclick='openAddAct(3)'><i class='fa-solid fa-plus mr-1'></i>Add an activity</button>
             </div>
 
         </div>
 
-        <div id='testsDiv' class='hidden w-full h-min px-4 md:px-12 lg:px-16 xl:px-32 mt-12'>
+        <div id='testsDiv'
+            class='hidden w-full overflow-y-scroll px-4 md:px-8 lg:px-16 xl:px-32 md:pt-28 md:pb-14 mt-8 md:mt-0'>
 
             <div class='mb-12'>
                 <div class='font-medium px-4'>
@@ -1193,33 +1201,35 @@
                 <ul id='listTests'> <!-- class='grid grid-cols-2' -->
                 </ul>
                 <button
-                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2'
                     onclick='openAddTest()'><i class='fa-solid fa-plus mr-1'></i>Add a test</button>
             </div>
 
         </div>
 
-        <div id='essaysDiv' class='hidden w-full h-min px-4 md:px-12 lg:px-16 xl:px-32 mt-12'>
+        <div id='essaysDiv'
+            class='hidden w-full overflow-y-scroll px-4 md:px-8 lg:px-16 xl:px-32 md:pt-28 md:pb-14 mt-8 md:mt-0'>
 
             <div class='mb-12'>
                 <h2 class='text-lg font-Calistoga font-medium px-4 mb-3'>Essays</h2>
                 <ul id='listEssays'> <!-- class='grid grid-cols-2' -->
                 </ul>
                 <button id='addEssayBtn'
-                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'><i
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2'><i
                         class='fa-solid fa-plus mr-1'></i>Write an essay</button>
             </div>
 
         </div>
 
-        <div id='connectionsDiv' class='hidden w-full h-min px-4 md:px-12 lg:px-16 xl:px-32 mt-12'>
+        <div id='connectionsDiv'
+            class='hidden w-full overflow-y-scroll px-4 md:px-8 lg:px-16 xl:px-32 md:pt-28 md:pb-14 mt-8 md:mt-0'>
             <!-- connections, teachers, recommenders, relations, people -->
             <div class='mb-12'>
                 <h2 class='text-lg font-Calistoga font-medium px-4 mb-3'>Connections</h2>
                 <ul id='listConnections'> <!-- class='grid grid-cols-2' -->
                 </ul>
                 <button
-                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition-all px-3 py-2'
+                    class='text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2'
                     onclick='openAddConnection()'><i class='fa-solid fa-plus mr-1'></i>Add a connection</button>
             </div>
 
