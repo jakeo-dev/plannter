@@ -128,15 +128,15 @@
   }
 
   .desc {
-    @apply block text-gray-600 dark:text-gray-400 text-sm md:text-base break-words mt-1;
+    @apply block text-gray-600 dark:text-gray-400 text-sm md:text-sm break-words mt-1;
   }
 
   .essayText {
-    @apply block text-gray-600 dark:text-gray-400 text-sm md:text-base break-words mt-1;
+    @apply block text-gray-600 dark:text-gray-400 text-sm md:text-sm break-words mt-1;
   }
 
   .essayTeaser {
-    @apply block text-gray-600 dark:text-gray-400 text-sm md:text-base break-words mt-1;
+    @apply block text-gray-600 dark:text-gray-400 text-sm md:text-sm break-words mt-1;
   }
 
   .expEBtn {

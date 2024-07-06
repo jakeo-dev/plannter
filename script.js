@@ -2697,7 +2697,7 @@ function saveEssay() {
 
     if (ePromptInput.length > 400) {
         alert('Prompt is too long');
-    } else if (eEssayTextInput.length > 100000) {
+    } else if (eEssayTextInput.length > 1000000) {
         alert('Essay is too long');
     } else if (ePromptInput == '') {
         alert('Enter the prompt for your essay');
