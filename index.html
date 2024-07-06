@@ -649,7 +649,11 @@
 
                 <label for='essayPromptEdit' class='modalSubtext'>Prompt</label>
                 <div class='flex mb-4'>
-                    <input id='essayPromptEdit' class='input flex-1 p-2 pl-3 m-0' autocomplete='off' maxlength='400'>
+                    <input id='essayPromptEdit' class='input flex-1 p-2 pl-3 m-0' autocomplete='off' maxlength='400'
+                        onkeyup='saveEssay()'>
+                    <button id='randomPromptBtn'
+                        class='text-3xl text-center border-2 rounded-md hover:rotate-[15deg] active:rotate-[105deg] text-gray-500 hover:text-gray-600 active:text-gray-700 dark:text-gray-400 dark:hover:text-gray-500 dark:active:text-gray-600 border-transparent transition-all ml-3'><i
+                            class='fa-solid fa-dice-five'></i></button>
                 </div>
 
                 <div class='flex'>

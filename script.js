@@ -452,9 +452,7 @@ function showConnections() {
     toggleMenuSm();
 }
 
-document.getElementById('addCourseBtn').addEventListener('click', function (event) {
-    event.preventDefault();
-
+document.getElementById('addCourseBtn').addEventListener('click', function () {
     let cTitleInput = document.getElementById('courseTitle').value.trim();
     let cGradeLevInput = document.getElementById('selGradeLev').value;
     let cSubInput = document.getElementById('selSubject').value;
@@ -610,9 +608,7 @@ document.getElementById('addCourseBtn').addEventListener('click', function (even
     }
 })
 
-document.getElementById('addActBtn').addEventListener('click', function (event) {
-    event.preventDefault();
-
+document.getElementById('addActBtn').addEventListener('click', function () {
     let aTitleInput = document.getElementById('actTitle').value.trim();
     let aDescInput = document.getElementById('actDesc').value.trim();
     let aCategoryInput = document.getElementById('selActCategory').value;
@@ -720,9 +716,7 @@ document.getElementById('addActBtn').addEventListener('click', function (event) 
     }
 })
 
-document.getElementById('addTestBtn').addEventListener('click', function (event) {
-    event.preventDefault();
-
+document.getElementById('addTestBtn').addEventListener('click', function () {
     let tSpeciesInput = document.getElementById('selTestSpecies').value;
     let tSubSpeciesInput = document.getElementById('testSubSpecies').value.trim();
     let tSpeciesOtherInput = document.getElementById('testSpeciesOther').value.trim();
@@ -871,9 +865,7 @@ document.getElementById('addTestBtn').addEventListener('click', function (event)
     }
 })
 
-document.getElementById('addEssayBtn').addEventListener('click', function (event) {
-    event.preventDefault();
-
+document.getElementById('addEssayBtn').addEventListener('click', function () {
     let essay = document.createElement('li');
     essay.className = 'item essay';
     essay.prompt = 'Enter a prompt';
@@ -1000,9 +992,7 @@ document.getElementById('addEssayBtn').addEventListener('click', function (event
     document.getElementById(essay.id + 'EditBtn').click();
 })
 
-document.getElementById('addConnectionBtn').addEventListener('click', function (event) {
-    event.preventDefault();
-
+document.getElementById('addConnectionBtn').addEventListener('click', function () {
     let oNameInput = document.getElementById('connectionName').value.trim();
     let oRelationInput = document.getElementById('connectionRelation').value.trim();
     let oContactMethodsList = [];
@@ -1299,9 +1289,7 @@ function clickTrash(el) {
     }
 }
 
-document.getElementById('saveCourseBtn').addEventListener('click', function (event) {
-    event.preventDefault();
-
+document.getElementById('saveCourseBtn').addEventListener('click', function () {
     let cTitleInput = document.getElementById('courseTitleEdit').value.trim();
     let cLetterGradeInput = document.getElementById('selLetterGradeEdit').value;
     let cPercentGradeInput = document.getElementById('percentGradeEdit').value;
@@ -1452,9 +1440,7 @@ document.getElementById('saveCourseBtn').addEventListener('click', function (eve
     }
 })
 
-document.getElementById('saveActBtn').addEventListener('click', function (event) {
-    event.preventDefault();
-
+document.getElementById('saveActBtn').addEventListener('click', function () {
     let aTitleInput = document.getElementById('actTitleEdit').value.trim();
     let aDescInput = document.getElementById('actDescEdit').value.trim();
     let aCategoryInput = document.getElementById('selActCategoryEdit').value;
@@ -1561,9 +1547,7 @@ document.getElementById('saveActBtn').addEventListener('click', function (event)
     }
 })
 
-document.getElementById('saveTestBtn').addEventListener('click', function (event) {
-    event.preventDefault();
-
+document.getElementById('saveTestBtn').addEventListener('click', function () {
     let tSpeciesInput = document.getElementById('selTestSpeciesEdit').value;
     let tSubSpeciesInput = document.getElementById('testSubSpeciesEdit').value.trim();
     let tSpeciesOtherInput = document.getElementById('testSpeciesOtherEdit').value.trim();
@@ -1708,9 +1692,7 @@ document.getElementById('saveTestBtn').addEventListener('click', function (event
     }
 })
 
-document.getElementById('saveConnectionBtn').addEventListener('click', function (event) {
-    event.preventDefault();
-
+document.getElementById('saveConnectionBtn').addEventListener('click', function () {
     let oNameInput = document.getElementById('connectionNameEdit').value.trim();
     let oRelationInput = document.getElementById('connectionRelationEdit').value.trim();
     let oContactMethodsList = [];
@@ -1772,9 +1754,7 @@ document.getElementById('saveConnectionBtn').addEventListener('click', function 
     }
 })
 
-document.getElementById('saveDateBtn').addEventListener('click', function (event) {
-    event.preventDefault();
-
+document.getElementById('saveDateBtn').addEventListener('click', function () {
     gradDay = Number(document.getElementById('gradDay').value);
     gradMonth = Number(document.getElementById('gradMonth').value);
     gradYear = Number(document.getElementById('gradYear').value);
@@ -1817,9 +1797,7 @@ document.getElementById('saveDateBtn').addEventListener('click', function (event
     }
 })
 
-document.getElementById('saveWeightsBtn').addEventListener('click', function (event) {
-    event.preventDefault();
-
+document.getElementById('saveWeightsBtn').addEventListener('click', function () {
     advWeight = Number(document.getElementById('advWeightInp').value);
     colWeight = Number(document.getElementById('colWeightInp').value);
     honWeight = Number(document.getElementById('honWeightInp').value);
@@ -1849,12 +1827,12 @@ document.getElementById('saveWeightsBtn').addEventListener('click', function (ev
     }
 })
 
-/* document.getElementById('randomPromptBtn').addEventListener('click', function (event) {
-    event.preventDefault();
-
+document.getElementById('randomPromptBtn').addEventListener('click', function () {
     randomPrompt = promptList[Math.floor(Math.random() * promptList.length)];
-    document.getElementById('essayPrompt').value = randomPrompt;
-}) */
+    document.getElementById('essayPromptEdit').value = randomPrompt;
+
+    saveEssay();
+})
 
 function getCD() {
     gradDay = Number(localStorage.getItem('gradDay', gradDay));
@@ -2745,23 +2723,17 @@ function toggleEssay(id) {
     saveLists();
 }
 
-document.getElementById('advOptAddC').addEventListener('click', function (event) {
-    event.preventDefault();
-
+document.getElementById('advOptAddC').addEventListener('click', function () {
     document.getElementById('advOptionsAddC').classList.toggle('hidden');
     document.getElementById('advOptAddCI').classList.toggle('rotate-90');
 });
 
-document.getElementById('advOptEditC').addEventListener('click', function (event) {
-    event.preventDefault();
-
+document.getElementById('advOptEditC').addEventListener('click', function () {
     document.getElementById('advOptionsEditC').classList.toggle('hidden');
     document.getElementById('advOptEditCI').classList.toggle('rotate-90');
 });
 
 function addContactMethod() {
-    event.preventDefault();
-
     let contact = document.createElement('li');
     contact.className = 'connectionContact';
 
@@ -2893,7 +2865,7 @@ for (let i = 0; i < document.getElementsByClassName('connectionContact').length;
     });
 }); */
 
-/* window.onclick = function (event) {
+/* window.onclick = function () {
     if (event.target == document.getElementById('courseModal')
         || event.target == document.getElementById('editCourseModal')
         || event.target == document.getElementById('actModal')
@@ -2928,8 +2900,6 @@ function indexOfGreatestNumber(array) {
 }
 
 function hide() {
-    event.preventDefault();
-
     document.getElementById('courseModal').classList.add('fadeIn');
     document.getElementById('courseModal').classList.remove('fadeOut');
     document.getElementById('courseTitle').value = '';
