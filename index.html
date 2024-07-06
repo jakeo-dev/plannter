@@ -653,7 +653,8 @@
                         onkeyup='saveEssay()'>
                     <button id='randomPromptBtn'
                         class='text-3xl text-center border-2 rounded-md hover:rotate-[15deg] active:rotate-[105deg] text-gray-500 hover:text-gray-600 active:text-gray-700 dark:text-gray-400 dark:hover:text-gray-500 dark:active:text-gray-600 border-transparent transition-all ml-3'><i
-                            class='fa-solid fa-dice-five'></i></button>
+                            class='fa-solid fa-dice-five' aria-label='Generate random essay prompt'
+                            title='Generate random essay prompt'></i></button>
                 </div>
 
                 <div class='flex'>
@@ -856,6 +857,22 @@
 
             <h1 class='modalTitle'>About best ACT</h1>
             <h2 class=''>This shows your highest ACT score out of every ACT you have taken.</h2>
+
+        </div>
+    </div>
+
+    <div id='favoredTestModal'
+        class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
+        <div
+            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
+            <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition-all' onclick='hide()'><i
+                    class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
+
+            <h1 class='modalTitle'>About test favorability</h1>
+            <h2 class=''>Test favorability recommends which test, the SAT or ACT, you should send your score to
+                colleges. It is calculated by converting one of the scores to the equivalent score for the other test,
+                then comparing which one is higher. In some cases, either test could be considered better, but it will
+                still recommend favoring one over the other.</h2>
 
         </div>
     </div>
@@ -1170,6 +1187,7 @@
                     <div class='block mb-3'>
                         <button class='listAttr hidden' id='bestSAT' onclick='openBestSAT()'></button>
                         <button class='listAttr hidden' id='bestACT' onclick='openBestACT()'></button>
+                        <button class='listAttr hidden' id='favoredTest' onclick='openFavoredTest()'></button>
                     </div>
                 </div>
                 <ul id='listTests'> <!-- class='grid grid-cols-2' -->
