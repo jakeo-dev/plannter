@@ -1169,13 +1169,6 @@ video {
   color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
-@media (min-width: 768px) {
-  .testReadScore {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-}
-
 .testMathScore {
   margin: 0px;
   margin-top: 0.25rem;
@@ -1190,13 +1183,6 @@ video {
 :is(.dark .testMathScore) {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
-}
-
-@media (min-width: 768px) {
-  .testMathScore {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
 }
 
 .grade {

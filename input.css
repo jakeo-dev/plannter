@@ -116,11 +116,11 @@
   }
 
   .testReadScore {
-    @apply block text-gray-600 dark:text-gray-400 text-sm md:text-base p-0 m-0 mt-1;
+    @apply block text-gray-600 dark:text-gray-400 text-sm p-0 m-0 mt-1;
   }
 
   .testMathScore {
-    @apply block text-gray-600 dark:text-gray-400 text-sm md:text-base p-0 m-0 mt-1;
+    @apply block text-gray-600 dark:text-gray-400 text-sm p-0 m-0 mt-1;
   }
 
   .grade {

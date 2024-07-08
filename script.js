@@ -31,7 +31,6 @@ const promptList = ['Share a personal story that illustrates your resilience in 
     'Describe a moment when you challenged a deeply held belief and how it affected your perspective.',
     'Describe an experience that sparked your passion for a cause or interest that is meaningful to you.',
     'Reflect on a time when you had to navigate cultural differences and what you learned from it.',
-    'Describe a volunteering experience that changed your outlook on community service.',
     'Discuss a fictional character or historical figure who inspires you and why.',
     'Share a challenge you encountered while pursuing a creative project and how you overcame it.',
     'Reflect on an experience that prompted you to explore your cultural heritage.',
@@ -39,32 +38,20 @@ const promptList = ['Share a personal story that illustrates your resilience in 
     'Discuss a time when you had to advocate for someone else or a cause you believe in.',
     'Share a moment when you learned the importance of self-care and balance.',
     'Reflect on a book that significantly influenced your intellectual growth.',
-    'Describe a time when you had to mediate a conflict and facilitate understanding.',
     'Discuss a mentor or teacher who played a pivotal role in your personal development.',
-    'Share a project or organization you started that impacted your school or community.',
-    'Reflect on a time when you had to make a difficult ethical decision.',
-    'Describe an experience that changed your perspective on global issues.',
     'Discuss an unconventional hobby or interest and how it shaped your identity.',
     'Share a moment when you embraced vulnerability and its impact on your relationships.',
     'Reflect on a time when you learned a valuable lesson through failure.',
     'Describe a scientific discovery or technological advancement that fascinates you.',
-    'Discuss an experience that challenged your understanding of privilege and inequality.',
     'Share a personal experience that influenced your academic or career aspirations.',
-    'Describe a time when you used storytelling to create meaningful change.',
-    'Discuss a historical event that made you contemplate your role as a global citizen.',
     'Share a piece of art, music, or writing that deeply resonates with you and why.',
     'Reflect on a time when you mentored or supported someone to achieve their goals.',
     'Describe an experience that led you to pursue a non-traditional academic interest.',
-    'Share an impactful project where your expertise addressed a societal issue.',
     'Share a humorous incident that taught you an essential life lesson.',
     'Reflect on a time when you had to advocate for your own rights or beliefs.',
-    'Discuss an initiative you took to promote diversity and inclusion in your community.',
     'Share a cultural tradition or celebration that holds significant meaning for you.',
     'Reflect on a time when you had to adapt to a new environment or circumstance.',
-    'Describe a person you would invite to a dinner party and the conversation you\'d have.',
-    'Discuss an experience that made you rethink your approach to time management.',
-    'Share a moment when you used your artistic talents to convey a powerful message.',
-    'Reflect on a time when you had to address a misunderstanding or miscommunication.',
+    'Describe a person you would invite to a dinner party and the conversation you would have.',
     'Describe a social issue you are passionate about and your efforts to address it.',
     'Discuss an experience that made you appreciate the value of teamwork and collaboration.',
     'Share a dream or aspiration you have and the steps you are taking to achieve it.',
@@ -72,7 +59,6 @@ const promptList = ['Share a personal story that illustrates your resilience in 
     'Describe an experience that made you question the meaning of success.',
     'Discuss a community organization or initiative you would like to create in college.',
     'Share a time when you had to confront a stereotype and challenge its validity.',
-    'Reflect on a time when you had to prioritize your mental or physical well-being.',
     'Discuss a future career path and how it aligns with your personal values.',
     'Share a significant childhood memory that shaped your personality.',
     'Reflect on a time when you had to overcome a fear or phobia.',
@@ -88,28 +74,20 @@ const promptList = ['Share a personal story that illustrates your resilience in 
     'Share an experience that made you question traditional societal norms.',
     'Reflect on a time when you encountered a language barrier and how you overcame it.',
     'Describe an event or activity that exemplifies your sense of curiosity.',
-    'Discuss a time when you faced a financial challenge and how you managed it.',
-    'Share a moment when you demonstrated empathy and understanding towards others.',
     'Reflect on a time when you utilized critical thinking to solve a complex problem.',
     'Describe a skill you possess and how you plan to further develop it in college.',
-    'Discuss an experience that deepened your appreciation for nature and the environment.',
     'Share a piece of advice you received that significantly impacted your life choices.',
     'Reflect on a time when you took the initiative to bring positive change in your community.',
     'Describe an experience that showcased your ability to work well under pressure.',
-    'Discuss a historical figure or social activist who inspires your commitment to change.',
     'Share a moment when you successfully persuaded others to support a cause.',
     'Reflect on a time when you sought feedback and used it to improve yourself.',
-    'Describe a hobby or interest that connects you with a diverse group of people.',
     'Discuss an experience that challenged your understanding of ethics and morality.',
     'Share a time when you successfully bridged a cultural or generational gap.',
     'Reflect on a moment when you had to make a decision that challenged your values.',
-    'Discuss an experience that inspired your commitment to global citizenship.',
     'Share a moment when you faced an unexpected obstacle and how you handled it.',
     'Reflect on a time when you organized an event or initiative to benefit others.',
     'Describe a historical event or period that fascinates you and its relevance today.',
     'Discuss a time when you collaborated with a team to overcome a significant challenge.',
-    'Share a moment when you advocated for inclusive practices in your school or community.',
-    'Reflect on an experience that taught you the importance of time management.',
     'Describe a future innovation or technology you would like to see developed.',
     'Discuss an experience that changed your perception of your own cultural identity.',
     'Share a significant achievement that resulted from your perseverance and dedication.',
@@ -119,10 +97,19 @@ const promptList = ['Share a personal story that illustrates your resilience in 
     'Share a moment when you took initiative to address an issue in your school or community.',
     'Reflect on a time when you took a different approach to problem-solving.',
     'Describe an event or activity that rekindled your passion for learning and growth.',
-    'Discuss an experience that influenced your understanding of social justice and equality.',
     'Share a piece of art, literature, or music that profoundly impacted your perspective.',
-    'Reflect on a personal growth experience that changed your outlook on life.']
-// prompts generated by chatgpt
+    'Reflect on a personal growth experience that changed your outlook on life.',
+    'Imagine you are stranded on a deserted island. What three things would you bring and why?',
+    'What is your favorite quote or motto? Why does it resonate with you?',
+    'Discuss a time you felt misunderstood. How did you handle the situation?',
+    'Imagine you could invent something to solve a problem in the world. What would it be?',
+    'If you could travel anywhere in the world, where would you go and why?',
+    'Reflect on an ethical dilemma you have faced. How did you approach it?',
+    'Share a time you failed. What did you learn from the experience?',
+    'Imagine you are writing a letter to your future college self. What advice would you offer?',
+    'Describe your approach to writing a children\'s book that explains a complex concept in a fun and engaging way.'
+]
+// prompts generated by chatgpt & gemini
 
 input = document.getElementById('courseTitle');
 input.addEventListener('keyup', function () {
@@ -2701,8 +2688,6 @@ function saveEssay() {
         alert('Essay is too long');
     } else if (ePromptInput == '') {
         alert('Enter the prompt for your essay');
-    } else if (eEssayTextInput == '') {
-        alert('Enter your essay');
     } else {
         essay.prompt = ePromptInput;
         essay.name = ePromptInput;
