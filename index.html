@@ -814,8 +814,7 @@
                 into account.<br><br>Weighted GPA takes the advancement level of individual courses into account, while
                 unweighted GPA does not. You can change how your GPA is calculated by clicking here:
             </h2>
-            <button onclick='openChangeGPACalc()' class='buttonSecondary ml-0 mt-6'>Change
-                GPA calculation</button>
+            <button onclick='openChangeGPACalc()' class='buttonSecondary ml-0 mt-6'>Change GPA calculation</button>
 
         </div>
     </div>
@@ -967,6 +966,22 @@
         </div>
     </div>
 
+    <div id='doesGPANotLookRightModal'
+        class='fadeIn bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto'>
+        <div
+            class='bg-gray-100 dark:bg-gray-800 relative rounded-lg w-11/12 md:max-w-xl shadow-md px-8 py-8 md:px-11 md:py-10'>
+            <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition' onclick='hide()'><i
+                    class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
+
+            <h1 class='modalTitle'>Does your GPA not look right?</h1>
+            <h2 class=''>It's possible that your school uses different weights for advanced classes or takes the + and -
+                on grades into account. You can change how your GPA is calculated by here:
+            </h2>
+            <button onclick='openChangeGPACalc()' class='buttonSecondary ml-0 mt-6'>Change GPA calculation</button>
+
+        </div>
+    </div>
+
     <div
         class='font-Calistoga text-2xl text-gray-100 dark:text-gray-900 bg-gray-200 dark:bg-gray-800 flex sticky md:absolute w-full top-0 z-10 border-b-2 border-gray-300 dark:border-gray-700 shadow-sm px-6 py-4'>
         <button
@@ -1047,13 +1062,17 @@
                 <button class='cumAttr hidden' id='wGpaCum' onclick='openGPA()'></button>
                 <button class='cumAttr hidden' id='diffCum' onclick='openDiff()'></button>
                 <button class='cumAttr hidden' id='ecStrength' onclick='openECStrength()'></button>
+                <button
+                    class='hidden font-normal text-xs bg-gray-300 md:bg-gray-300/70 hover:bg-gray-300 hover:shadow-sm active:shadow-none rounded-md px-2 py-1 mt-2 md:mt-3 transition'
+                    onclick='openDoesGPANotLookRight()' id='doesGPANotLookRightBtn'>Does your GPA not look
+                    right?</button>
             </div>
 
             <div
                 class='block md:hidden border-t-2 border-gray-300 md:border-gray-200 dark:border-gray-700 md:dark:border-gray-800 my-4'>
             </div>
 
-            <div class='block md:hidden text-base md:text-lg font-medium'>
+            <div class='block md:hidden text-base md:text-lg font-medium pr-4'>
                 <button
                     class='block w-full text-left text-gray-600 dark:text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 md:py-3 mt-4 transition'
                     onclick='openCD()' id='countdownSm'><i class='fa-solid fa-hourglass-half mr-2'
@@ -1061,7 +1080,8 @@
                 <button
                     class='block w-full text-left text-gray-600 dark:text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 md:py-3 transition'
                     onclick='toggleDark()' id='toggleDarkSm'><i class='fa-solid fa-sun mr-2'
-                        aria-label='Toggle dark mode'></i>Toggle dark mode</button>
+                        aria-label='Toggle dark mode'></i><span class='dark:hidden'>Toggle dark mode</span><span
+                        class='hidden dark:inline'>Toggle light mode</span></button>
                 <button
                     class='block w-full text-left text-gray-600 dark:text-gray-500 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 md:py-3 transition'
                     onclick='openChangeGPACalc()' id='changeWeightsSm'><i class='fa-solid fa-wrench mr-2'

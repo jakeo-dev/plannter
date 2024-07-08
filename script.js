@@ -51,7 +51,7 @@ const promptList = ['Share a personal story that illustrates your resilience in 
     'Reflect on a time when you had to advocate for your own rights or beliefs.',
     'Share a cultural tradition or celebration that holds significant meaning for you.',
     'Reflect on a time when you had to adapt to a new environment or circumstance.',
-    'Describe a person you would invite to a dinner party and the conversation you would have.',
+    'Discuss a person you would invite to a dinner party and the conversation you would have.',
     'Describe a social issue you are passionate about and your efforts to address it.',
     'Discuss an experience that made you appreciate the value of teamwork and collaboration.',
     'Share a dream or aspiration you have and the steps you are taking to achieve it.',
@@ -364,6 +364,12 @@ function openChangeGPACalc() {
     document.getElementById('changeGPAModal').classList.remove('fadeIn');
     document.getElementById('changeGPAModal').classList.add('fadeOut');
 
+    document.getElementById('gpaModal').classList.add('fadeIn');
+    document.getElementById('gpaModal').classList.remove('fadeOut');
+
+    document.getElementById('doesGPANotLookRightModal').classList.add('fadeIn');
+    document.getElementById('doesGPANotLookRightModal').classList.remove('fadeOut');
+
     document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
 
     document.getElementById('plusMinusSwitch').checked = plusMinus;
@@ -372,6 +378,13 @@ function openChangeGPACalc() {
     document.getElementById('honWeightInp').value = honWeight;
     document.getElementById('apWeightInp').value = apWeight;
     document.getElementById('ibWeightInp').value = ibWeight;
+}
+
+function openDoesGPANotLookRight() {
+    document.getElementById('doesGPANotLookRightModal').classList.remove('fadeIn');
+    document.getElementById('doesGPANotLookRightModal').classList.add('fadeOut');
+
+    document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
 }
 
 let buttons = document.querySelectorAll('.planBtns');
@@ -2564,11 +2577,13 @@ function calcCumGPA() {
         document.getElementById('wGpaCum').innerHTML = '';
         document.getElementById('gpaCum').className = 'cumAttr hidden';
         document.getElementById('wGpaCum').className = 'cumAttr hidden';
+        document.getElementById('doesGPANotLookRightBtn').classList.add('hidden');
     } else {
         document.getElementById('gpaCum').innerHTML = `<span class='cumAttrNum'>${cumGpa}</span> GPA (Cumulative)`;
         document.getElementById('wGpaCum').innerHTML = `<span class='cumAttrNum'>${cumWGpa}</span> Weighted GPA (Cumulative)`;
         document.getElementById('gpaCum').className = 'cumAttr';
         document.getElementById('wGpaCum').className = 'cumAttr';
+        document.getElementById('doesGPANotLookRightBtn').classList.remove('hidden');
     }
 }
 
@@ -3010,6 +3025,9 @@ function hide() {
 
     document.getElementById('countdownModal').classList.add('fadeIn');
     document.getElementById('countdownModal').classList.remove('fadeOut');
+
+    document.getElementById('doesGPANotLookRightModal').classList.add('fadeIn');
+    document.getElementById('doesGPANotLookRightModal').classList.remove('fadeOut');
 
     document.getElementById('deleteModal').classList.add('fadeIn');
     document.getElementById('deleteModal').classList.remove('fadeOut');
