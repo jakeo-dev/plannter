@@ -5,6 +5,7 @@
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Plannter</title>
+    <link rel='icon' type='image/png' href='plannter-favicon.png'>
 
     <link href='../style.css' rel='stylesheet'>
     <script src='https://kit.fontawesome.com/57c0dd6a0a.js' crossorigin='anonymous'></script>
@@ -670,7 +671,7 @@
                 </div>
                 <textarea id='essayTextEdit' class='input text-sm md:text-base m-0' onkeyup='saveEssay()'
                     autocomplete='off' maxlength='1000000' rows='16'></textarea>
-                <div class='-mt-1 mb-4 md:mb-6'>
+                <div class='mb-4 md:mb-6'>
                     <span id='autoSavedSpan' class='modalSubtext'>Automatically saved<i
                             class='fa-solid fa-check ml-1.5'></i></span>
                 </div>
@@ -1028,7 +1029,8 @@
             onclick='toggleMenuSm()'><i class='fa-solid fa-bars'></i></button>
         <h1
             class='flex items-center text-transparent bg-clip-text font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-sky-600 dark:from-emerald-500 dark:via-teal-500 dark:to-sky-500'>
-            <i class='fa-solid fa-seedling mr-3'></i>Plannter
+            <img src='plannter-icon-dark.png' class='w-7 inline dark:hidden mr-2.5' />
+            <img src='plannter-icon-light.png' class='w-7 hidden dark:inline mr-2.5' />Plannter
         </h1>
 
         <div class='hidden md:block font-LexendDeca font-medium ml-auto'>
