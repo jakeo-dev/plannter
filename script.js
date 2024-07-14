@@ -1896,6 +1896,8 @@ document.getElementById('saveCollegeBtn').addEventListener('click', function () 
         document.getElementById(college.id + 'Status').value = college.status;
         document.getElementById(college.id + 'Status').className = 'collegeStatus ' + college.status;
         document.getElementById(college.id + 'Location').innerText = college.location;
+        if (college.location == '') document.getElementById(college.id + 'Location').classList.add('hidden');
+        else document.getElementById(college.id + 'Location').classList.remove('hidden');
 
         if (college.dueYear != '' && college.dueMonth != '' && college.dueDay != '') {
             document.getElementById(college.id + 'Deadline').classList.remove('hidden');
