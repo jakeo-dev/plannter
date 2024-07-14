@@ -1134,7 +1134,7 @@ video {
   font-size: 0.875rem;
   line-height: 1.25rem;
   --tw-text-opacity: 1;
-  color: rgb(75 85 99 / var(--tw-text-opacity));
+  color: rgb(55 65 81 / var(--tw-text-opacity));
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
@@ -1154,19 +1154,7 @@ video {
 
 :is(.dark .cumAttr:hover) {
   --tw-bg-opacity: 1;
-  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
-}
-
-@media (min-width: 768px) {
-  .cumAttr {
-    --tw-text-opacity: 1;
-    color: rgb(55 65 81 / var(--tw-text-opacity));
-  }
-
-  :is(.dark .cumAttr:hover) {
-    --tw-bg-opacity: 1;
-    background-color: rgb(31 41 55 / var(--tw-bg-opacity));
-  }
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
 
 .cumAttrNum {
@@ -1950,10 +1938,6 @@ video {
   margin-bottom: 1rem;
 }
 
-.-mt-1 {
-  margin-top: -0.25rem;
-}
-
 .mb-0 {
   margin-bottom: 0px;
 }
@@ -2241,9 +2225,8 @@ video {
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 
-.bg-gray-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+.bg-gray-300\/70 {
+  background-color: rgb(209 213 219 / 0.7);
 }
 
 .bg-gradient-to-r {
@@ -2330,6 +2313,10 @@ video {
 
 .pb-16 {
   padding-bottom: 4rem;
+}
+
+.pb-36 {
+  padding-bottom: 9rem;
 }
 
 .pl-8 {
@@ -2708,8 +2695,8 @@ video {
   border-color: rgb(239 68 68 / var(--tw-border-opacity));
 }
 
-:is(.dark .dark\:bg-gray-700\/80) {
-  background-color: rgb(55 65 81 / 0.8);
+:is(.dark .dark\:bg-gray-700\/60) {
+  background-color: rgb(55 65 81 / 0.6);
 }
 
 :is(.dark .dark\:bg-gray-800) {
@@ -2883,13 +2870,13 @@ video {
     gap: 0.5rem;
   }
 
+  .md\:overflow-y-clip {
+    overflow-y: clip;
+  }
+
   .md\:border-gray-200 {
     --tw-border-opacity: 1;
     border-color: rgb(229 231 235 / var(--tw-border-opacity));
-  }
-
-  .md\:bg-gray-300\/70 {
-    background-color: rgb(209 213 219 / 0.7);
   }
 
   .md\:bg-transparent {
@@ -2947,10 +2934,6 @@ video {
   :is(.dark .md\:dark\:border-gray-800) {
     --tw-border-opacity: 1;
     border-color: rgb(31 41 55 / var(--tw-border-opacity));
-  }
-
-  :is(.dark .dark\:md\:bg-gray-700\/60) {
-    background-color: rgb(55 65 81 / 0.6);
   }
 }
 

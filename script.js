@@ -2966,9 +2966,32 @@ function findBestTests() {
     } else if (favored == 0) { // SAT favored
         document.getElementById('favoredTest').innerHTML = 'Favor SAT';
         document.getElementById('favoredTest').className = 'listAttr';
+
+        document.getElementById('bestScore').innerHTML = `<span class='cumAttrNum'>${bestSAT}</span> SAT`;
+        document.getElementById('bestScore').className = 'cumAttr';
     } else if (favored == 1) { // ACT favored
         document.getElementById('favoredTest').innerHTML = 'Favor ACT';
         document.getElementById('favoredTest').className = 'listAttr';
+
+        document.getElementById('bestScore').innerHTML = `<span class='cumAttrNum'>${bestACT}</span> ACT`;
+        document.getElementById('bestScore').className = 'cumAttr';
+    }
+
+    if (favored == 0) { // SAT favored
+        document.getElementById('bestScore').innerHTML = `<span class='cumAttrNum'>${bestSAT}</span> SAT`;
+        document.getElementById('bestScore').className = 'cumAttr';
+    } else if (favored == 1) { // ACT favored
+        document.getElementById('bestScore').innerHTML = `<span class='cumAttrNum'>${bestACT}</span> ACT`;
+        document.getElementById('bestScore').className = 'cumAttr';
+    } else if (!document.getElementById('bestSAT').className.includes('hidden')) { // SAT favored
+        document.getElementById('bestScore').innerHTML = `<span class='cumAttrNum'>${bestSAT}</span> SAT`;
+        document.getElementById('bestScore').className = 'cumAttr';
+    } else if (!document.getElementById('bestACT').className.includes('hidden')) { // ACT favored
+        document.getElementById('bestScore').innerHTML = `<span class='cumAttrNum'>${bestACT}</span> ACT`;
+        document.getElementById('bestScore').className = 'cumAttr';
+    } else {
+        document.getElementById('bestScore').innerHTML = '';
+        document.getElementById('bestScore').className = 'cumAttr hidden';
     }
 }
 
