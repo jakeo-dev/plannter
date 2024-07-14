@@ -2418,8 +2418,8 @@ function getActIcon(act) {
         return 'actI fa-solid fa-briefcase';
     } else if (act == 'Event') {
         return 'actI fa-solid fa-calendar-day';
-    } else if (act == 'Writing') {
-        return 'actI fa-solid fa-pencil';
+    } else if (act == 'Internship') {
+        return 'actI fa-solid fa-wrench';
     } else if (act == 'Math') {
         return 'actI fa-solid fa-plus-minus';
     } else if (act == 'Music') {
@@ -2429,13 +2429,21 @@ function getActIcon(act) {
     } else if (act == 'Summer Class') {
         return 'actI fa-solid fa-umbrella-beach';
     } else if (act == 'Technology') {
-        return 'actI fa-solid fa-compass-drafting';
+        return 'actI fa-solid fa-desktop';
     } else if (act == 'Visual Arts') {
         return 'actI fa-solid fa-palette';
     } else if (act == 'Performing Arts') {
         return 'actI fa-solid fa-masks-theater';
+    } else if (act == 'Personal Responsibility') {
+        return 'actI fa-solid fa-house-user';
+    } else if (act == 'Politics') {
+        return 'actI fa-solid fa-landmark-flag';
+    } else if (act == 'Research') {
+        return 'actI fa-solid fa-magnifying-glass';
     } else if (act == 'Volunteering') {
-        return 'actI fa-solid fa-hand-holding-hand';
+        return 'actI fa-solid fa-handshake-angle';
+    } else if (act == 'Writing') {
+        return 'actI fa-solid fa-pencil';
     } else if (act == 'Other') {
         return 'actI fa-solid fa-graduation-cap';
     }
