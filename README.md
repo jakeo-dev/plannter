@@ -17,6 +17,9 @@
 
 
 ### Practice writing essays using unique or custom prompts
-##### *Prompts displayed in the image below are not representative of the prompts available on the website.
 
 ![image](https://www.jakeo.dev/images/plannter-ss-4.png)
+
+### Keep track of the different colleges you're applying to
+
+![image](https://www.jakeo.dev/images/plannter-ss-5.png)
