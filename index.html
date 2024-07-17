@@ -19,10 +19,11 @@
     </script>
     <script defer src='/_vercel/insights/script.js'></script>
 
-    <meta property='og:title' content='Plannter'>
-    <meta property='og:description'
-        content='Plan and keep track of all your high school courses, activities, tests, and essays.'>
-    <meta name='theme-color' content='#16a34a'>
+    <meta property="og:title" content="Plannter" />
+    <meta property="og:description"
+        content="Plan courses, keep track of extracurriculars, prepare for college applications, and more" />
+    <meta name="theme-color" content="#16a34a" />
+    <meta property="og:image" content="plannter-favicon.png" />
 </head>
 
 <body
@@ -841,7 +842,7 @@
             <button class='absolute top-6 right-7 text-lg hover:text-gray-500 transition' onclick='hide()'><i
                     class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
-            <h1 class='modalTitle'>About grade level difficulty</h1>
+            <h1 class='modalTitle'>About grade level difficulty & cumulative difficulty</h1>
             <h2 class=''>
                 Grade level difficulty is calculated using the advancement level and difficulty of individual courses,
                 the number of courses, and compares it to the average number of courses taken.
@@ -1026,6 +1027,8 @@
                 on grades into account. You can change how your GPA is calculated here:
             </h2>
             <button onclick='openChangeGPACalc()' class='buttonSecondary ml-0 mt-6'>Change GPA calculation</button>
+            <button onclick='dontShowNotLookRightAgain()' class='buttonSecondary ml-2 mt-6'>Don't show this
+                again</button>
 
         </div>
     </div>
