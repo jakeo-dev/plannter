@@ -20,8 +20,8 @@
     <script defer src='/_vercel/insights/script.js'></script>
 
     <meta name="keywords"
-        content="plannter, planter, high school, college, application, college application, college app, common app, school, course, extracurricular, activity, activities, test, exam, essay">
-    <meta property="description"
+        content="plannter, planter, high school, college, colleges, application, applications, college application, college applications, college app, college apps, common app, school, schools, course, courses, extracurricular, extracurriculars, activity, activities, test, tests, exam, exams, essay, essays, college app help, college application help, course tracker, manage courses, college tracker, extracurricular tracker, manage extracurriculars">
+    <meta property=" description"
         content="Plan courses, keep track of extracurriculars, prepare for college applications, and more." />
 
     <meta property="og:title" content="Plannter" />
@@ -760,9 +760,58 @@
                 </label>
                 <div class='md:flex md:gap-2 mb-4 md:mb-6'>
                     <input id='collegeDueYear' type='number' class='input mb-2 md:m-0' min='1900' autocomplete='off'>
-                    <input id='collegeDueMonth' type='number' class='input mb-2 md:m-0' min='1' max='12'
-                        autocomplete='off'>
-                    <input id='collegeDueDay' type='number' class='input m-0' min='1' max='31' autocomplete='off'>
+                    <select id='collegeDueMonth' class='input darkArrowsSelect dark:lightArrowsSelect mb-2 md:m-0'
+                        required>
+                        <optgroup label='Select a month'>
+                            <option value='1'>January</option>
+                            <option value='2'>February</option>
+                            <option value='3'>March</option>
+                            <option value='4'>April</option>
+                            <option value='5'>May</option>
+                            <option value='6'>June</option>
+                            <option value='7'>July</option>
+                            <option value='8'>August</option>
+                            <option value='9'>September</option>
+                            <option value='10'>October</option>
+                            <option value='11'>November</option>
+                            <option value='12'>December</option>
+                        </optgroup>
+                    </select>
+                    <select id='collegeDueDay' class='input darkArrowsSelect dark:lightArrowsSelect m-0' required>
+                        <optgroup label='Select a day'>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='4'>4</option>
+                            <option value='5'>5</option>
+                            <option value='6'>6</option>
+                            <option value='7'>7</option>
+                            <option value='8'>8</option>
+                            <option value='9'>9</option>
+                            <option value='10'>10</option>
+                            <option value='11'>11</option>
+                            <option value='12'>12</option>
+                            <option value='13'>13</option>
+                            <option value='14'>14</option>
+                            <option value='15'>15</option>
+                            <option value='16'>16</option>
+                            <option value='17'>17</option>
+                            <option value='18'>18</option>
+                            <option value='19'>19</option>
+                            <option value='20'>20</option>
+                            <option value='21'>21</option>
+                            <option value='22'>22</option>
+                            <option value='23'>23</option>
+                            <option value='24'>24</option>
+                            <option value='25'>25</option>
+                            <option value='26'>26</option>
+                            <option value='27'>27</option>
+                            <option value='28'>28</option>
+                            <option value='29'>29</option>
+                            <option value='30'>30</option>
+                            <option value='31'>31</option>
+                        </optgroup>
+                    </select>
                 </div>
 
                 <label for='selStatus' class='modalSubtext'>Status<span class='text-red-500'>*<span></label>
@@ -832,9 +881,57 @@
                 <div class='md:flex md:gap-2 mb-4 md:mb-6'>
                     <input id='collegeDueYearEdit' type='number' class='input mb-2 md:m-0' min='1900'
                         autocomplete='off'>
-                    <input id='collegeDueMonthEdit' type='number' class='input mb-2 md:m-0' min='1' max='12'
-                        autocomplete='off'>
-                    <input id='collegeDueDayEdit' type='number' class='input m-0' min='1' max='31' autocomplete='off'>
+                    <select id='collegeDueMonthEdit' class='input darkArrowsSelect dark:lightArrowsSelect mb-2 md:m-0'>
+                        <optgroup label='Select a month'>
+                            <option value='1'>January</option>
+                            <option value='2'>February</option>
+                            <option value='3'>March</option>
+                            <option value='4'>April</option>
+                            <option value='5'>May</option>
+                            <option value='6'>June</option>
+                            <option value='7'>July</option>
+                            <option value='8'>August</option>
+                            <option value='9'>September</option>
+                            <option value='10'>October</option>
+                            <option value='11'>November</option>
+                            <option value='12'>December</option>
+                        </optgroup>
+                    </select>
+                    <select id='collegeDueDayEdit' class='input darkArrowsSelect dark:lightArrowsSelect m-0'>
+                        <optgroup label='Select a day'>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='4'>4</option>
+                            <option value='5'>5</option>
+                            <option value='6'>6</option>
+                            <option value='7'>7</option>
+                            <option value='8'>8</option>
+                            <option value='9'>9</option>
+                            <option value='10'>10</option>
+                            <option value='11'>11</option>
+                            <option value='12'>12</option>
+                            <option value='13'>13</option>
+                            <option value='14'>14</option>
+                            <option value='15'>15</option>
+                            <option value='16'>16</option>
+                            <option value='17'>17</option>
+                            <option value='18'>18</option>
+                            <option value='19'>19</option>
+                            <option value='20'>20</option>
+                            <option value='21'>21</option>
+                            <option value='22'>22</option>
+                            <option value='23'>23</option>
+                            <option value='24'>24</option>
+                            <option value='25'>25</option>
+                            <option value='26'>26</option>
+                            <option value='27'>27</option>
+                            <option value='28'>28</option>
+                            <option value='29'>29</option>
+                            <option value='30'>30</option>
+                            <option value='31'>31</option>
+                        </optgroup>
+                    </select>
                 </div>
 
                 <label for='selStatusEdit' class='modalSubtext'>Status<span class='text-red-500'>*<span></label>
@@ -967,12 +1064,58 @@
                     Graduation date <span class='modalSubtext inline text-xs p-0'>(YYYY/MM/DD)</span>
                 </label>
                 <div class='md:flex md:gap-2 mb-4 md:mb-6'>
-                    <input id='gradYear' type='number' placeholder='YYYY' class='input mb-2 md:m-0' autocomplete='off'
-                        required>
-                    <input id='gradMonth' type='number' placeholder='MM' class='input mb-2 md:m-0' min='1' max='12'
-                        autocomplete='off' required>
-                    <input id='gradDay' type='number' placeholder='DD' class='input m-0' min='1' max='31'
-                        autocomplete='off' required>
+                    <input id='gradYear' type='number' class='input mb-2 md:m-0' autocomplete='off' required>
+                    <select id='gradMonth' class='input darkArrowsSelect dark:lightArrowsSelect mb-2 md:m-0' required>
+                        <optgroup label='Select a month'>
+                            <option value='1'>January</option>
+                            <option value='2'>February</option>
+                            <option value='3'>March</option>
+                            <option value='4'>April</option>
+                            <option value='5'>May</option>
+                            <option value='6'>June</option>
+                            <option value='7'>July</option>
+                            <option value='8'>August</option>
+                            <option value='9'>September</option>
+                            <option value='10'>October</option>
+                            <option value='11'>November</option>
+                            <option value='12'>December</option>
+                        </optgroup>
+                    </select>
+                    <select id='gradDay' class='input darkArrowsSelect dark:lightArrowsSelect m-0' required>
+                        <optgroup label='Select a day'>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='4'>4</option>
+                            <option value='5'>5</option>
+                            <option value='6'>6</option>
+                            <option value='7'>7</option>
+                            <option value='8'>8</option>
+                            <option value='9'>9</option>
+                            <option value='10'>10</option>
+                            <option value='11'>11</option>
+                            <option value='12'>12</option>
+                            <option value='13'>13</option>
+                            <option value='14'>14</option>
+                            <option value='15'>15</option>
+                            <option value='16'>16</option>
+                            <option value='17'>17</option>
+                            <option value='18'>18</option>
+                            <option value='19'>19</option>
+                            <option value='20'>20</option>
+                            <option value='21'>21</option>
+                            <option value='22'>22</option>
+                            <option value='23'>23</option>
+                            <option value='24'>24</option>
+                            <option value='25'>25</option>
+                            <option value='26'>26</option>
+                            <option value='27'>27</option>
+                            <option value='28'>28</option>
+                            <option value='29'>29</option>
+                            <option value='30'>30</option>
+                            <option value='31'>31</option>
+                        </optgroup>
+                    </select>
                 </div>
 
                 <button id='saveDateBtn' class='buttonPrimary'><i class='fa-solid fa-floppy-disk mr-[0.375rem]'></i>Save
@@ -1031,7 +1174,7 @@
                     value='1' required>
 
                 <button id='saveWeightsBtn' class='buttonPrimary'><i
-                        class='fa-solid fa-floppy-disk mr-[0.375rem]'></i>Save weights</button>
+                        class='fa-solid fa-floppy-disk mr-[0.375rem]'></i>Save calculation</button>
 
                 <button class='buttonSecondary' onclick='hide()'>Cancel</button>
 

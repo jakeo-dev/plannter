@@ -750,9 +750,7 @@ document.getElementById('addTestBtn').addEventListener('click', function () {
     let tReadScoreInput = document.getElementById('readingTestScore').value;
     let tMathScoreInput = document.getElementById('mathTestScore').value;
 
-    if (tMonthInput < 1 || tMonthInput > 12) {
-        alert('Enter a valid month 1-12');
-    } else if (tYearInput < 1900 || tYearInput > currentYear + 10) {
+    if (tYearInput < 1900 || tYearInput > currentYear + 10) {
         alert('Enter a valid year');
     } else if (tScoreInput < 0 || tScoreInput > 9999 || tReadScoreInput < 0 || tMathScoreInput < 0 || ((tSpeciesInput == 'SAT' || tSpeciesInput == 'PSAT') && (tReadScoreInput != '' && tMathScoreInput != '' && +tReadScoreInput + +tMathScoreInput != +tScoreInput))) {
         alert('Score not possible');
@@ -1040,10 +1038,6 @@ document.getElementById('addCollegeBtn').addEventListener('click', function () {
         alert('Enter the name of this college');
     } else if (oChancesInput > 100 || oChancesInput < 0) {
         alert('Enter a percentage between 0 and 100');
-    } else if (oDueDayInput != '' && (Number(oDueDayInput) < 1 || Number(oDueDayInput) > 31)) {
-        alert('Enter a valid day 1-31');
-    } else if (oDueMonthInput != '' && (Number(oDueMonthInput) < 1 || Number(oDueMonthInput) > 12)) {
-        alert('Enter a valid month 1-12');
     } else if (oDueYearInput != '' && (Number(oDueYearInput) > currentYear + 8 || Number(oDueYearInput) < currentYear - 8)) {
         alert('Enter a valid year');
     } else {
@@ -1717,9 +1711,7 @@ document.getElementById('saveTestBtn').addEventListener('click', function () {
     let tReadScoreInput = document.getElementById('readingTestScoreEdit').value;
     let tMathScoreInput = document.getElementById('mathTestScoreEdit').value;
 
-    if (tMonthInput < 1 || tMonthInput > 12) {
-        alert('Enter a valid month 1-12');
-    } else if (tYearInput < 1900 || tYearInput > currentYear + 10) {
+    if (tYearInput < 1900 || tYearInput > currentYear + 10) {
         alert('Enter a valid year');
     } else if (tScoreInput < 0 || tScoreInput > 9999 || tReadScoreInput < 0 || tMathScoreInput < 0 || ((tSpeciesInput == 'SAT' || tSpeciesInput == 'PSAT') && (tReadScoreInput != '' && tMathScoreInput != '' && +tReadScoreInput + +tMathScoreInput != +tScoreInput))) {
         alert('Score not possible');
@@ -1873,10 +1865,6 @@ document.getElementById('saveCollegeBtn').addEventListener('click', function () 
         alert('Enter the name of this college');
     } else if (oChancesInput > 100 || oChancesInput < 0) {
         alert('Enter a percentage between 0 and 100');
-    } else if (oDueDayInput != '' && (Number(oDueDayInput) < 1 || Number(oDueDayInput) > 31)) {
-        alert('Enter a valid day 1-31');
-    } else if (oDueMonthInput != '' && (Number(oDueMonthInput) < 1 || Number(oDueMonthInput) > 12)) {
-        alert('Enter a valid month 1-12');
     } else if (oDueYearInput != '' && (Number(oDueYearInput) > currentYear + 8 || Number(oDueYearInput) < currentYear - 8)) {
         alert('Enter a valid year');
     } else {
@@ -2020,10 +2008,6 @@ document.getElementById('saveDateBtn').addEventListener('click', function () {
 
         hide();
 
-    } else if (gradDay < 1 || gradDay > 31) {
-        alert('Enter a valid day 1-31');
-    } else if (gradMonth < 1 || gradMonth > 12) {
-        alert('Enter a valid month 1-12');
     } else if (gradYear > currentYear + 8) {
         alert('Enter a valid year');
     } else if (gradDate < currentDate) {
