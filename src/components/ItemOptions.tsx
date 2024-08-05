@@ -1,12 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-type CourseProps = {
+type ItemOptionsProps = {
   onEdit: () => void;
   onTrash: () => void;
 };
 
-export default function Course(props: CourseProps) {
+export default function ItemOptions(props: ItemOptionsProps) {
   return (
     <div className="flex gap-2.5 absolute top-3 right-4 text-right float-right">
       <button
@@ -17,7 +17,7 @@ export default function Course(props: CourseProps) {
       >
         <FontAwesomeIcon
           icon={faPen}
-          className="text-black/30 hover:text-black/50 active:text-black/70 transition"
+          className="text-black/30 dark:text-white/30 hover:text-black/50 dark:hover:text-white/50 active:text-black/70 dark:active:text-white/70 transition"
         />
       </button>
       <button
@@ -28,7 +28,7 @@ export default function Course(props: CourseProps) {
       >
         <FontAwesomeIcon
           icon={faTrash}
-          className="text-black/30 hover:text-red-500 active:text-red-600 transition"
+          className="text-black/30 dark:text-white/30 hover:text-red-500 dark:hover:text-red-400 active:text-red-600 dark:active:text-red-500 transition"
         />
       </button>
     </div>

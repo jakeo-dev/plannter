@@ -1,4 +1,4 @@
-// home page; maybe something should be added here instead of just going to the coursework section...like and overview of everything maybe or a tutorial on how to use the website idk
+// home page; maybe something should be added here instead of just going to the coursework section...like an overview of everything maybe or a tutorial on how to use the website or some other landing page thing idk
 
 import CommonHead from "@/components/CommonHead";
 import { useEffect } from "react";

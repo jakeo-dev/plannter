@@ -1,20 +1,30 @@
 import CommonHead from "@/components/CommonHead";
 import Header from "@/components/Header";
-import LargeSideMenu from "@/components/LargeSideMenu";
+import SideMenu from "@/components/SideMenu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 export default function Essays() {
+  const [smallScreenMenuVis, setSmallScreenMenuVis] = useState("invisibleFade");
+
   return (
     <>
       <CommonHead>
         <title>Plannter: Essays</title>
       </CommonHead>
 
-      <Header />
+      <Header
+        onSmallScreenMenuClick={() => {
+          if (smallScreenMenuVis == "invisibleFade")
+            setSmallScreenMenuVis("visibleFade");
+          else if (smallScreenMenuVis == "visibleFade")
+            setSmallScreenMenuVis("invisibleFade");
+        }}
+      />
 
       <div className="flex h-full md:h-screen">
-        <LargeSideMenu />
+        <SideMenu smallScreenMenuVis={smallScreenMenuVis} />
 
         <div
           id="essaysDiv"

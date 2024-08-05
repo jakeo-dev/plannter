@@ -1,18 +1,34 @@
 import CommonHead from "@/components/CommonHead";
 import Header from "@/components/Header";
-import LargeSideMenu from "@/components/LargeSideMenu";
+import SideMenu from "@/components/SideMenu";
 import Course from "@/components/Course";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faAdd,
+  faPlus,
   faChevronRight,
   faFloppyDisk,
-  faPlus,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 
 export default function Coursework() {
+  // set theme on page load
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (
+        localStorage.getItem("theme") === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+      }
+    }
+  }, []);
+
   const [nameInput, setNameInput] = useState("");
   const [grade1Input, setGrade1Input] = useState("none");
   const [grade2Input, setGrade2Input] = useState("none");
@@ -23,9 +39,10 @@ export default function Coursework() {
   const [difficultyInput, setDifficultyInput] = useState("1");
   const [subjectInput, setSubjectInput] = useState("history");
 
-  const [moreOptionsVis, setMoreOptionsVis] = useState("hidden");
   const [addModalVis, setAddModalVis] = useState("invisibleFade");
   const [editModalVis, setEditModalVis] = useState("invisibleFade");
+  const [smallScreenMenuVis, setSmallScreenMenuVis] = useState("invisibleFade");
+  const [moreOptionsVis, setMoreOptionsVis] = useState("hidden");
 
   const [gpa09, setGpa09] = useState(-1);
   const [weightedGpa09, setWeightedGpa09] = useState(-1);
@@ -107,7 +124,7 @@ export default function Coursework() {
     // remember to account for the different and adjustable weights of the different advancement levels, and the potential for + and - on grades to be accounted for
   }
 
-  function handleEscape() {
+  function handleEscapeClick() {
     setAddModalVis("invisibleFade");
     setEditModalVis("invisibleFade");
     setNameInput("");
@@ -123,7 +140,7 @@ export default function Coursework() {
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") handleEscape();
+      if (event.key === "Escape") handleEscapeClick();
     }
 
     window.addEventListener("keydown", handleKeyDown);
@@ -138,10 +155,17 @@ export default function Coursework() {
         <title>Plannter: Coursework</title>
       </CommonHead>
 
-      <Header />
+      <Header
+        onSmallScreenMenuClick={() => {
+          if (smallScreenMenuVis == "invisibleFade")
+            setSmallScreenMenuVis("visibleFade");
+          else if (smallScreenMenuVis == "visibleFade")
+            setSmallScreenMenuVis("invisibleFade");
+        }}
+      />
 
       <div className="flex h-full md:h-screen">
-        <LargeSideMenu />
+        <SideMenu smallScreenMenuVis={smallScreenMenuVis} />
 
         <div className="w-full overflow-y-scroll px-4 md:px-8 lg:px-16 xl:px-40 md:pt-28 md:pb-14 mt-8 md:mt-0">
           <div className="mb-12">
@@ -512,7 +536,7 @@ export default function Coursework() {
       >
         <div className="bg-gray-100 dark:bg-gray-800 relative rounded-xl w-11/12 md:max-w-2xl shadow-md px-8 py-8 md:px-11 md:py-10">
           <button
-            className="absolute top-6 right-7 text-base hover:text-gray-500 transition"
+            className="absolute top-6 right-7 text-lg hover:text-gray-500 transition"
             onClick={() => {
               setAddModalVis("invisibleFade");
               setNameInput("");
@@ -578,10 +602,10 @@ export default function Coursework() {
             required
           >
             <optgroup label="Select a grade level">
-              <option value="09">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
+              <option value="09">Grade 9</option>
+              <option value="10">Grade 10</option>
+              <option value="11">Grade 11</option>
+              <option value="12">Grade 12</option>
               <option value="13">Other</option>
             </optgroup>
           </select>
@@ -742,7 +766,7 @@ export default function Coursework() {
               if (nameInput == "") {
                 alert("Enter the name of this course");
               } else {
-                const newItem = {
+                const newCourse = {
                   id: Math.floor(Math.random() * 10000000000),
                   name: nameInput,
                   grade1: grade1Input,
@@ -759,11 +783,11 @@ export default function Coursework() {
                   subject: subjectInput,
                 };
 
-                if (gradeLevelInput == "09") courses09.push(newItem);
-                else if (gradeLevelInput == "10") courses10.push(newItem);
-                else if (gradeLevelInput == "11") courses11.push(newItem);
-                else if (gradeLevelInput == "12") courses12.push(newItem);
-                else if (gradeLevelInput == "13") courses13.push(newItem);
+                if (gradeLevelInput == "09") courses09.push(newCourse);
+                else if (gradeLevelInput == "10") courses10.push(newCourse);
+                else if (gradeLevelInput == "11") courses11.push(newCourse);
+                else if (gradeLevelInput == "12") courses12.push(newCourse);
+                else if (gradeLevelInput == "13") courses13.push(newCourse);
 
                 localStorage.setItem("courseList09", JSON.stringify(courses09));
                 localStorage.setItem("courseList10", JSON.stringify(courses10));
@@ -785,7 +809,7 @@ export default function Coursework() {
               e.preventDefault();
             }}
           >
-            <FontAwesomeIcon icon={faAdd} className="mr-1 md:mr-1.5" />
+            <FontAwesomeIcon icon={faPlus} className="mr-1 md:mr-1.5" />
             Add course
           </button>
 
@@ -815,7 +839,7 @@ export default function Coursework() {
       >
         <div className="bg-gray-100 dark:bg-gray-800 relative rounded-xl w-11/12 md:max-w-2xl shadow-md px-8 py-8 md:px-11 md:py-10">
           <button
-            className="absolute top-6 right-7 text-base hover:text-gray-500 transition"
+            className="absolute top-6 right-7 text-lg hover:text-gray-500 transition"
             onClick={() => {
               setEditModalVis("invisibleFade");
               setNameInput("");
@@ -832,7 +856,7 @@ export default function Coursework() {
             <FontAwesomeIcon icon={faXmark} />
           </button>
 
-          <h1 className="text-xl font-medium mb-6">Add course</h1>
+          <h1 className="text-xl font-medium mb-6">Edit course</h1>
 
           <div className="md:flex gap-2 mb-4 md:mb-6">
             <div className="flex-1">
@@ -881,10 +905,10 @@ export default function Coursework() {
             required
           >
             <optgroup label="Select a grade level">
-              <option value="09">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
+              <option value="09">Grade 9</option>
+              <option value="10">Grade 10</option>
+              <option value="11">Grade 11</option>
+              <option value="12">Grade 12</option>
               <option value="13">Other</option>
             </optgroup>
           </select>
