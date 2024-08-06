@@ -118,15 +118,15 @@ export default function Tests() {
               <div className="block mb-3">
                 <button // best sat score
                   className="listAttr hidden"
-                  /* onclick="openBestSAT()" */
+                  /* onClick="openBestSAT()" */
                 ></button>
                 <button // best act score
                   className="listAttr hidden"
-                  /* onclick="openBestACT()" */
+                  /* onClick="openBestACT()" */
                 ></button>
                 <button // which test to favor
                   className="listAttr hidden"
-                  /* onclick="openFavoredTest()" */
+                  /* onClick="openFavoredTest()" */
                 ></button>
               </div>
             </div>

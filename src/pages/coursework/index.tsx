@@ -33,29 +33,28 @@ export default function Coursework() {
 
   const [smallScreenMenuVis, setSmallScreenMenuVis] = useState("invisibleFade");
 
-  const [stages, setStages] = useState({
+  const [stages, setStages] = useState<Stages>({
     Freshman: {
       name: "Freshman",
       gradeLevel: 9,
-      gpa: { weighted: 4, unweighted: 4 },
     },
     Sophomore: { name: "Sophomore", gradeLevel: 10 },
     Junior: { name: "Junior", gradeLevel: 11 },
     Senior: { name: "Senior", gradeLevel: 12 },
     Other: { name: "Other", gradeLevel: null },
-  } as Stages);
+  });
 
-  const [gpaSettings, setGpaSettings] = useState({
+  const [gpaSettings, setGpaSettings] = useState<GPASettings>({
     usePlusMinus: true,
     advancedWeight: 0,
     honorsWeight: 0.5,
     collegeWeight: 0,
     apWeight: 1,
     ibWeight: 1,
-  } as GPASettings);
+  });
 
-  const [activeStage, setActiveStage] = useState(null as Stage | null);
-  const [activeCourse, setActiveCourse] = useState(null as Course | null);
+  const [activeStage, setActiveStage] = useState<Stage | null>(null);
+  const [activeCourse, setActiveCourse] = useState<Course | null>(null);
 
   const [addCourseVisible, setAddCourseVisible] = useState(false);
   const [editCourseVisible, setEditCourseVisible] = useState(false);
@@ -109,7 +108,7 @@ export default function Coursework() {
             if (!currentStage.courses) {
               return;
             }
-            
+
             currentStage.courses[activeCourse.uuid] = course;
             setStages(newStages);
             localStorage.setItem("stages", JSON.stringify(newStages));
