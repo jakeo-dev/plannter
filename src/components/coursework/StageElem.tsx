@@ -155,6 +155,7 @@ export default function StageElem({
     } else {
       setUnweightedGPA(0);
       setWeightedGPA(0);
+      setDifficulty(0);
     }
   }, [stage.courses, gpaSettings]);
 
