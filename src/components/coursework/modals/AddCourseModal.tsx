@@ -1,5 +1,9 @@
 import { AddCourseModalProps, Course } from "@/types";
-import { faChevronRight, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronRight,
+  faPlus,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
@@ -16,7 +20,7 @@ export default function AddCourseModal({
   const [advLevelInput, setAdvLevelInput] = useState("1");
   const [difficultyInput, setDifficultyInput] = useState("1");
   const [subjectInput, setSubjectInput] = useState("history");
-  const [moreOptionsVis, setMoreOptionsVis] = useState("hidden");
+  const [moreOptionsVis, setMoreOptionsVis] = useState(false);
 
   function revertToDefault() {
     setNameInput("");
@@ -27,7 +31,7 @@ export default function AddCourseModal({
     setAdvLevelInput("1");
     setDifficultyInput("1");
     setSubjectInput("history");
-    setMoreOptionsVis("hidden");
+    setMoreOptionsVis(false);
   }
 
   return (
@@ -204,20 +208,17 @@ export default function AddCourseModal({
         <button
           className="block w-full text-sm md:text-base text-left text-gray-600 hover:text-gray-500 active:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 dark:active:text-gray-600 transition px-2 mb-4"
           onClick={() => {
-            if (moreOptionsVis == "hidden") setMoreOptionsVis("");
-            else if (moreOptionsVis == "") setMoreOptionsVis("hidden");
+            setMoreOptionsVis(!moreOptionsVis);
           }}
         >
           <FontAwesomeIcon
             icon={faChevronRight}
-            className={`${
-              moreOptionsVis == "" ? "rotate-90" : ""
-            } mr-2 transition`}
+            className={`${moreOptionsVis ? "rotate-90" : ""} mr-2 transition`}
           />
           More options
         </button>
 
-        <div className={moreOptionsVis}>
+        <div className={moreOptionsVis ? "" : "hidden"}>
           <label className="modalSubtext">Specific difficulty</label>
           <select
             onChange={(e) => setDifficultyInput(e.currentTarget.value)}
@@ -227,9 +228,7 @@ export default function AddCourseModal({
             <optgroup label="Select a difficulty">
               <option value="0.25">Effortless</option>
               <option value="0.5">Easy</option>
-              <option value="1">
-                Regular (default)
-              </option>
+              <option value="1">Regular (default)</option>
               <option value="1.5">Difficult</option>
               <option value="1.75">Challenging</option>
             </optgroup>
@@ -257,7 +256,7 @@ export default function AddCourseModal({
                     letterGrade: grade2Input,
                     percentGrade: Number(percentGrade2Input),
                   },
-                }
+                },
               };
 
               addCourse(newCourse);

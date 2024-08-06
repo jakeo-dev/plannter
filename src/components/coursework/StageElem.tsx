@@ -166,16 +166,15 @@ export default function StageElem({
     }
   }, [stage.courses, gpaSettings]);
 
-
   return (
-    <div className="mb-12">
+    <div>
       <div className="font-medium px-4">
         <h2 className="text-lg font-Calistoga">
           Grade {stage.gradeLevel} ({stage.name})
         </h2>
         <div className="block mb-3">
           {unweightedGPA ? (
-            <button className="text-sm text-left bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-md break-words transition px-2 py-[0.055rem] mr-0.5 md:mr-1 mt-2">
+            <button className="text-sm text-left bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-md break-words transition px-2 py-[0.055rem] mr-1 md:mr-2 mt-2">
               {unweightedGPA.toFixed(2)} GPA
             </button>
           ) : (
@@ -183,7 +182,7 @@ export default function StageElem({
           )}
 
           {weightedGPA ? (
-            <button className="text-sm text-left bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-md break-words transition px-2 py-[0.055rem] mr-0.5 md:mr-1 mt-2">
+            <button className="text-sm text-left bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-md break-words transition px-2 py-[0.055rem] mr-1 md:mr-2 mt-2">
               {weightedGPA.toFixed(2)} Weighted GPA
             </button>
           ) : (
@@ -191,7 +190,7 @@ export default function StageElem({
           )}
 
           {stage?.difficulty ? (
-            <button className="text-sm text-left bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-md break-words transition px-2 py-[0.055rem] mr-0.5 md:mr-1 mt-2">
+            <button className="text-sm text-left bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-md break-words transition px-2 py-[0.055rem] mr-1 md:mr-2 mt-2">
               {stage?.difficulty.toFixed(2)} Difficulty
             </button>
           ) : (

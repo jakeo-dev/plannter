@@ -64,8 +64,8 @@ export default function CourseElem({
     <li className="item">
       <div
         className={`attr ${
-          !course.scores?.firstSemester ? "hidden" : ""
-        }bg-gray-500 text-gray-100 rounded-md px-2 mx-0 mr-2 mt-0`}
+          course.scores?.firstSemester.letterGrade == "none" ? "hidden" : ""
+        } bg-gray-500 text-gray-100 rounded-md px-2 mx-0 mr-2 mt-0`}
       >
         {course.scores?.firstSemester.letterGrade == "Use percent"
           ? course.scores?.firstSemester.percentGrade + "%"
@@ -73,7 +73,7 @@ export default function CourseElem({
       </div>
       <div
         className={`attr ${
-          !course.scores?.secondSemester ? "hidden" : ""
+          course.scores?.secondSemester.letterGrade == "none" ? "hidden" : ""
         } bg-gray-500 text-gray-100 rounded-md px-2 mx-0 mr-2 mt-0`}
       >
         {course.scores?.secondSemester.letterGrade == "Use percent"

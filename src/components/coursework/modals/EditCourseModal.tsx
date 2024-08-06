@@ -219,12 +219,12 @@ export default function EditCourseModal({
         >
           <FontAwesomeIcon
             icon={faChevronRight}
-            className={`${!moreOptionsVis ? "rotate-90" : ""} mr-2 transition`}
+            className={`${moreOptionsVis ? "rotate-90" : ""} mr-2 transition`}
           />
           More options
         </button>
 
-        <div className={moreOptionsVis ? "visibleFade" : "invisibleFade"}>
+        <div className={moreOptionsVis ? "" : "hidden"}>
           <label className="modalSubtext">Specific difficulty</label>
           <select
             onChange={(e) => setDifficultyInput(e.currentTarget.value)}

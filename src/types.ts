@@ -37,6 +37,7 @@ export interface AddCourseModalProps {
   setAddCourseVisible: Dispatch<SetStateAction<boolean>>;
   addCourse: (course: Course) => void;
 }
+
 export interface EditCourseModalProps {
   editCourseVisible: boolean;
   setEditCourseVisible: Dispatch<SetStateAction<boolean>>;
