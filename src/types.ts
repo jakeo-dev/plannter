@@ -12,7 +12,6 @@ export interface Stage {
   gradeLevel: number | null;
   name: "Freshman" | "Sophomore" | "Junior" | "Senior" | "Other";
   courses?: { [key: string]: Course };
-  difficulty?: number;
 }
 
 export interface Course {
