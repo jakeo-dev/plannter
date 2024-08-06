@@ -267,7 +267,7 @@ export default function AddCourseModal({
           }}
         >
           <FontAwesomeIcon icon={faPlus} className="mr-1 md:mr-1.5" />
-          Add Course
+          Add course
         </button>
 
         <button

@@ -56,28 +56,38 @@ function getLetter(percentGrade: number) {
   }
 }
 
-function getDifficultyText(difficulty: string) {
-  if (difficulty == "0.25") {
-    return "Effortless";
-  } else if (difficulty == "0.50") {
-    return "Easy";
-  } else if (difficulty == "1.00") {
-    return "Normal";
-  } else if (difficulty == "1.50") {
-    return "Difficult";
-  } else if (difficulty == "1.75") {
-    return "Challenging";
+function getDifficultyText(difficulty: number) {
+  if (difficulty < 0.5) {
+    return "Effortless Coursework";
+  } else if (difficulty < 1) {
+    return "Easy Coursework";
+  } else if (difficulty < 2) {
+    return "Regular Coursework";
+  } else if (difficulty < 3) {
+    return "Hard Coursework";
+  } else if (difficulty < 4) {
+    return "Difficult Coursework";
+  } else if (difficulty < 5) {
+    return "Challenging Coursework";
+  } else if (difficulty < 6) {
+    return "Extreme Coursework";
   } else {
     return "";
   }
 }
 
-function GPADisplay({name, gpa}: { name: string, gpa: number | undefined }) {
-  if (!gpa) return <></>
+function ListAttribute({
+  name,
+  calculation,
+}: {
+  name: string;
+  calculation: number | undefined;
+}) {
+  if (!calculation) return <></>;
 
   return (
     <button className="text-sm text-left bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-md break-words transition px-2 py-[0.055rem] mr-1 md:mr-2 mt-2">
-      {gpa.toFixed(2)} {name}
+      {calculation.toFixed(2)} {name}
     </button>
   );
 }
@@ -106,11 +116,12 @@ export default function StageElem({
   useEffect(() => {
     function calculateWeights(advancementLevel: number) {
       const weights: { [key: string]: keyof GPASettings } = {
+        "1.00": "noneWeight",
         "2.00": "advancedWeight",
-        "2.01": "advancedWeight",
+        "2.01": "acceleratedWeight",
         "3.00": "honorsWeight",
         "3.50": "collegeWeight",
-        "3.51": "collegeWeight",
+        "3.51": "dualWeight",
         "4.00": "apWeight",
         "5.00": "ibWeight",
       };
@@ -121,26 +132,29 @@ export default function StageElem({
     if (stage.courses && Object.keys(stage.courses).length > 0) {
       let unweightedSum = 0;
       let weightedSum = 0;
-      let difficultyProduct = 1;
+      let difficultySum = 0;
+      let numGrades = 0;
       let numSemesters = 0;
 
       const processSemester = (course: Course, semester: Grade | undefined) => {
-        if (!semester?.letterGrade) return;
+        if (semester?.letterGrade && semester.letterGrade != "none") {
+          const letterGrade =
+            semester.letterGrade === "Use percent"
+              ? getLetter(semester.percentGrade || 0)
+              : semester.letterGrade;
 
-        const letterGrade =
-          semester.letterGrade === "Use percent"
-            ? getLetter(semester.percentGrade || 0)
-            : semester.letterGrade;
+          const gpa = calculateGPAForGrade(
+            letterGrade,
+            gpaSettings["usePlusMinus"]
+          );
 
-        const gpa = calculateGPAForGrade(
-          letterGrade,
-          gpaSettings["usePlusMinus"]
-        );
-
-        unweightedSum += gpa;
-        weightedSum += gpa + calculateWeights(course.advancementLevel);
-        difficultyProduct *= Math.sqrt(course.difficulty);
-
+          unweightedSum += gpa;
+          weightedSum += gpa + calculateWeights(course.advancementLevel);
+          numGrades++;
+        }
+        if (numSemesters % 2 == 0) {
+          difficultySum += course.advancementLevel * course.difficulty;
+        }
         numSemesters++;
       };
 
@@ -149,9 +163,11 @@ export default function StageElem({
         processSemester(course, course.scores?.secondSemester);
       }
 
-      setUnweightedGPA(unweightedSum / numSemesters);
-      setWeightedGPA(weightedSum / numSemesters);
-      setDifficulty(difficultyProduct);
+      setUnweightedGPA(unweightedSum / numGrades);
+      setWeightedGPA(weightedSum / numGrades);
+      setDifficulty(
+        (difficultySum + 1.175 ** Object.keys(stage.courses).length) / 6
+      );
     } else {
       setUnweightedGPA(0);
       setWeightedGPA(0);
@@ -166,11 +182,11 @@ export default function StageElem({
           Grade {stage.gradeLevel} ({stage.name})
         </h2>
         <div className="block mb-3">
-          <GPADisplay name="Unweighted" gpa={unweightedGPA} />
-          <GPADisplay name="Weighted" gpa={weightedGPA} />
-          <GPADisplay
-            name={`${getDifficultyText(difficulty.toFixed(2))} Coursework`}
-            gpa={difficulty}
+          <ListAttribute name="Unweighted GPA" calculation={unweightedGPA} />
+          <ListAttribute name="Weighted GPA" calculation={weightedGPA} />
+          <ListAttribute
+            name={getDifficultyText(Number(difficulty.toFixed(2)))}
+            calculation={difficulty}
           />
         </div>
       </div>

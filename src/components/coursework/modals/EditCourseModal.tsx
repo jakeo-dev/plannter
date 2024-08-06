@@ -1,5 +1,9 @@
 import { Course, EditCourseModalProps } from "@/types";
-import { faChevronRight, faFloppyDisk, faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronRight,
+  faFloppyDisk,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 
@@ -22,9 +26,15 @@ export default function EditCourseModal({
   const [percentGrade2Input, setPercentGrade2Input] = useState(
     course?.scores?.secondSemester.percentGrade || ""
   );
-  const [advLevelInput, setAdvLevelInput] = useState(String(course?.advancementLevel));
-  const [difficultyInput, setDifficultyInput] = useState(String(course?.difficulty));
-  const [subjectInput, setSubjectInput] = useState(course?.subject || "History");
+  const [advLevelInput, setAdvLevelInput] = useState(
+    String(course?.advancementLevel)
+  );
+  const [difficultyInput, setDifficultyInput] = useState(
+    String(course?.difficulty)
+  );
+  const [subjectInput, setSubjectInput] = useState(
+    course?.subject || "History"
+  );
   const [moreOptionsVis, setMoreOptionsVis] = useState(false);
 
   useEffect(() => {
@@ -36,8 +46,9 @@ export default function EditCourseModal({
     setAdvLevelInput(String(course?.advancementLevel));
     setDifficultyInput(String(course?.difficulty));
     setSubjectInput(course?.subject || "History");
-    setMoreOptionsVis(false);
-  }, [course])
+    if (course?.difficulty != 1) setMoreOptionsVis(true);
+    else setMoreOptionsVis(false);
+  }, [course]);
 
   if (course === null) return <></>;
 
@@ -234,9 +245,7 @@ export default function EditCourseModal({
             <optgroup label="Select a difficulty">
               <option value="0.25">Effortless</option>
               <option value="0.5">Easy</option>
-              <option value="1">
-                Regular (default)
-              </option>
+              <option value="1">Regular (default)</option>
               <option value="1.5">Difficult</option>
               <option value="1.75">Challenging</option>
             </optgroup>

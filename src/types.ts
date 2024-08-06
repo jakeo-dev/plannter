@@ -46,9 +46,12 @@ export interface EditCourseModalProps {
 
 export interface GPASettings {
   usePlusMinus: boolean;
+  noneWeight: number;
   advancedWeight: number;
+  acceleratedWeight: number;
   honorsWeight: number;
   collegeWeight: number;
+  dualWeight: number;
   apWeight: number;
   ibWeight: number;
 }
