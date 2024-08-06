@@ -45,7 +45,7 @@ export default function Coursework() {
   });
 
   const [gpaSettings, setGpaSettings] = useState<GPASettings>({
-    usePlusMinus: true,
+    usePlusMinus: false,
     advancedWeight: 0,
     honorsWeight: 0.5,
     collegeWeight: 0,

@@ -234,7 +234,7 @@ export default function EditCourseModal({
             <optgroup label="Select a difficulty">
               <option value="0.25">Effortless</option>
               <option value="0.5">Easy</option>
-              <option value="1" selected>
+              <option value="1">
                 Regular (default)
               </option>
               <option value="1.5">Difficult</option>
