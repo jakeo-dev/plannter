@@ -28,44 +28,44 @@ export default function Colleges() {
 
         <div
           id="collegesDiv"
-          class="w-full overflow-y-scroll px-4 md:px-8 lg:px-16 xl:px-40 md:pt-28 md:pb-14 mt-8 md:mt-0"
+          className="w-full overflow-y-scroll px-4 md:px-8 lg:px-16 xl:px-40 md:pt-28 md:pb-14 mt-8 md:mt-0"
         >
-          <div class="mb-12">
-            <h2 class="text-lg font-Calistoga font-medium px-4 mb-3">
+          <div className="mb-12">
+            <h2 className="text-lg font-Calistoga font-medium px-4 mb-3">
               Reach Colleges
             </h2>
             <ul id="listColleges"></ul>
             <button
-              class="text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2"
-              onclick="openAddCollege(1)"
+              className="text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2"
+              // onClick="openAddCollege(1)"
             >
               <FontAwesomeIcon icon={faPlus} className="mr-1" />
               Add a reach college
             </button>
           </div>
 
-          <div class="mb-12">
-            <h2 class="text-lg font-Calistoga font-medium px-4 mb-3">
+          <div className="mb-12">
+            <h2 className="text-lg font-Calistoga font-medium px-4 mb-3">
               Target Colleges
             </h2>
             <ul id="listColleges2"></ul>
             <button
-              class="text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2"
-              onclick="openAddCollege(2)"
+              className="text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2"
+              // onClick="openAddCollege(2)"
             >
               <FontAwesomeIcon icon={faPlus} className="mr-1" />
               Add a target college
             </button>
           </div>
 
-          <div class="mb-12">
-            <h2 class="text-lg font-Calistoga font-medium px-4 mb-3">
+          <div className="mb-12">
+            <h2 className="text-lg font-Calistoga font-medium px-4 mb-3">
               Safety Colleges
             </h2>
             <ul id="listColleges3"></ul>
             <button
-              class="text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2"
-              onclick="openAddCollege(3)"
+              className="text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2"
+              // onClick="openAddCollege(3)"
             >
               <FontAwesomeIcon icon={faPlus} className="mr-1" />
               Add a safety college

@@ -1,21 +1,15 @@
 import ItemOptions from "@/components/ItemOptions";
+import { Course } from "@/types";
 
-type CourseProps = {
-  id: number;
-  name: string;
-  grade1: string;
-  grade2: string;
-  percentGrade1: string;
-  percentGrade2: string;
-  advLevel: string;
-  gradeLevel: string;
-  difficulty: string;
-  subject: string;
+export default function CourseElem({
+  course,
+  onEdit,
+  onTrash,
+}: {
+  course: Course;
   onEdit: () => void;
   onTrash: () => void;
-};
-
-export default function Course(props: CourseProps) {
+}) {
   function getAdvLevelClass(advLevel: string) {
     if (advLevel == "2" || advLevel == "2.01") {
       return "text-indigo-800/80 dark:text-indigo-300";
@@ -70,38 +64,38 @@ export default function Course(props: CourseProps) {
     <li className="item">
       <div
         className={`attr ${
-          props.grade1 == "none" || props.grade1 == "" ? "hidden" : ""
-        } bg-gray-500 text-gray-100 rounded-md px-2 mx-0 mr-2 mt-0`}
+          !course.scores?.firstSemester ? "hidden" : ""
+        }bg-gray-500 text-gray-100 rounded-md px-2 mx-0 mr-2 mt-0`}
       >
-        {props.grade1 == "Use percent"
-          ? props.percentGrade1 + "%"
-          : props.grade1}
+        {course.scores?.firstSemester.letterGrade == "Use percent"
+          ? course.scores?.firstSemester.percentGrade + "%"
+          : course.scores?.firstSemester.letterGrade}
       </div>
       <div
         className={`attr ${
-          props.grade2 == "none" || props.grade2 == "" ? "hidden" : ""
+          !course.scores?.secondSemester ? "hidden" : ""
         } bg-gray-500 text-gray-100 rounded-md px-2 mx-0 mr-2 mt-0`}
       >
-        {props.grade2 == "Use percent"
-          ? props.percentGrade2 + "%"
-          : props.grade2}
+        {course.scores?.secondSemester.letterGrade == "Use percent"
+          ? course.scores?.secondSemester.percentGrade + "%"
+          : course.scores?.secondSemester.letterGrade}
       </div>
-      <span className="">{props.name}</span>
+      <span className="">{course.name}</span>
       <div
         className={`attr bg-transparent dark:bg-transparent ${getAdvLevelClass(
-          props.advLevel
+          String(course.advancementLevel)
         )} p-0 mt-0`}
       >
-        {getAdvLevelText(props.advLevel)}
+        {getAdvLevelText(String(course.advancementLevel))}
       </div>
       {/* <div className="attr block bg-transparent dark:bg-transparent text-gray-700 dark:text-gray-400 p-0 ml-0 mt-1">
         {props.subject.charAt(0).toUpperCase() + props.subject.slice(1)}
       </div> */}
       <div className="attr bg-transparent dark:bg-transparent text-gray-700 dark:text-gray-400 p-0 mt-0">
-        {getDifficultyText(props.difficulty)}
+        {getDifficultyText(String(course.difficulty))}
       </div>
 
-      <ItemOptions onEdit={props.onEdit} onTrash={props.onTrash} />
+      <ItemOptions onEdit={onEdit} onTrash={onTrash} />
     </li>
   );
 }
