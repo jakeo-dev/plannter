@@ -5,12 +5,42 @@ import {
   faWrench,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import ChangeGPAModal from "@/components/ChangeGPAModal";
+import { useEffect, useState } from "react";
+import { GPASettings } from "@/types";
 
 type SideMenuProps = {
   smallScreenMenuVis: string;
+  onGPASettingsChange: () => void;
 };
 
 export default function SideMenu(props: SideMenuProps) {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (typeof localStorage.getItem("gpaWeights") === "string") {
+        setGPASettings(
+          JSON.parse(localStorage.getItem("gpaWeights") as string)
+        );
+      } else {
+        localStorage.setItem("gpaWeights", JSON.stringify(gpaSettings));
+      }
+    }
+  }, []);
+
+  const [gpaSettings, setGPASettings] = useState<GPASettings>({
+    usePlusMinus: false,
+    noneWeight: 0,
+    advancedWeight: 0,
+    acceleratedWeight: 0,
+    honorsWeight: 0.5,
+    collegeWeight: 0,
+    dualWeight: 0,
+    apWeight: 1,
+    ibWeight: 1,
+  });
+
+  const [changeGPAVis, setChangeGPAVis] = useState(false);
+
   return (
     <>
       <div
@@ -115,13 +145,26 @@ export default function SideMenu(props: SideMenuProps) {
           </button>
           <button
             className="block w-full text-left text-gray-600 dark:text-gray-400/80 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 transition"
-            /* onClick="openChangeGPACalc()" */
+            onClick={() => {
+              setChangeGPAVis(true);
+            }}
           >
             <FontAwesomeIcon icon={faWrench} className="mr-2" />
             <span>Change GPA calculation</span>
           </button>
         </div>
       </div>
+
+      <ChangeGPAModal
+        changeGPAVisible={changeGPAVis}
+        setChangeGPAVisible={setChangeGPAVis}
+        gpaSettings={gpaSettings}
+        saveGPASettings={(newGPASettings: GPASettings) => {
+          setGPASettings(newGPASettings);
+          localStorage.setItem("gpaWeights", JSON.stringify(newGPASettings));
+          props.onGPASettingsChange();
+        }}
+      />
     </>
   );
 }

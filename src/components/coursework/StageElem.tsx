@@ -6,23 +6,26 @@ import { Course, GPASettings, Grade, Stage } from "@/types";
 import CourseElem from "./CourseElem";
 
 // Utility Functions
-function calculateGPAForGrade(grade: string, usePlusMinus: boolean): number {
+function letterToGPA(grade: string, usePlusMinus: boolean): number {
   if (usePlusMinus) {
     if (["A+", "A"].includes(grade)) return 4;
-    if (grade === "A-") return 3.7;
-    if (["B+", "B"].includes(grade)) return 3;
-    if (grade === "B-") return 2.7;
-    if (["C+", "C"].includes(grade)) return 2;
-    if (grade === "C-") return 1.7;
-    if (["D+", "D"].includes(grade)) return 1;
-    if (grade === "D-") return 0.7;
-    if (grade === "F") return 0;
+    else if (grade === "A-") return 3.7;
+    else if (grade === "B+") return 3.3;
+    else if (grade === "B") return 3;
+    else if (grade === "B-") return 2.7;
+    else if (grade === "C+") return 2.3;
+    else if (grade === "C") return 2;
+    else if (grade === "C-") return 1.7;
+    else if (grade === "D+") return 1.3;
+    else if (grade === "D") return 1;
+    else if (grade === "D-") return 0;
+    else if (grade === "F") return 0;
   } else {
     if (grade.includes("A")) return 4;
-    if (grade.includes("B")) return 3;
-    if (grade.includes("C")) return 2;
-    if (grade.includes("D")) return 1;
-    if (grade.includes("F")) return 0;
+    else if (grade.includes("B")) return 3;
+    else if (grade.includes("C")) return 2;
+    else if (grade.includes("D")) return 1;
+    else if (grade.includes("F")) return 0;
   }
 
   return 0;
@@ -76,17 +79,37 @@ function getDifficultyText(difficulty: number) {
   }
 }
 
+function getDifficultyColor(difficulty: number) {
+  if (difficulty < 2) {
+    return "bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 transition";
+  } else if (difficulty < 3) {
+    return "bg-yellow-300 hover:bg-yellow-400 dark:bg-yellow-700/80 dark:hover:bg-yellow-600/80 text-gray-700 dark:text-gray-300 transition";
+  } else if (difficulty < 4) {
+    return "bg-orange-300 hover:bg-orange-400 dark:bg-orange-700/80 dark:hover:bg-orange-600/80 text-gray-700 dark:text-gray-300 transition";
+  } else if (difficulty < 5) {
+    return "bg-red-300 hover:bg-red-400 dark:bg-red-700/80 dark:hover:bg-red-600/80 text-gray-700 dark:text-gray-300 transition";
+  } else if (difficulty < 6) {
+    return "bg-pink-300 hover:bg-pink-400 dark:bg-pink-700/80 dark:hover:bg-pink-600/80 text-gray-700 dark:text-gray-300 transition";
+  } else {
+    return "";
+  }
+}
+
 function ListAttribute({
   name,
   calculation,
+  classN,
 }: {
   name: string;
   calculation: number | undefined;
+  classN: string;
 }) {
   if (!calculation) return <></>;
 
   return (
-    <button className="text-sm text-left bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-md break-words transition px-2 py-[0.055rem] mr-1 md:mr-2 mt-2">
+    <button
+      className={`${classN} text-sm text-left bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-md break-words transition px-2 py-[0.055rem] mr-1 md:mr-2 mt-2`}
+    >
       {calculation.toFixed(2)} {name}
     </button>
   );
@@ -143,18 +166,14 @@ export default function StageElem({
               ? getLetter(semester.percentGrade || 0)
               : semester.letterGrade;
 
-          const gpa = calculateGPAForGrade(
-            letterGrade,
-            gpaSettings["usePlusMinus"]
-          );
+          const gpa = letterToGPA(letterGrade, gpaSettings["usePlusMinus"]);
 
           unweightedSum += gpa;
           weightedSum += gpa + calculateWeights(course.advancementLevel);
           numGrades++;
         }
-        if (numSemesters % 2 == 0) {
+        if (numSemesters % 2 == 0)
           difficultySum += course.advancementLevel * course.difficulty;
-        }
         numSemesters++;
       };
 
@@ -179,14 +198,27 @@ export default function StageElem({
     <div>
       <div className="font-medium px-4">
         <h2 className="text-lg font-Calistoga">
-          Grade {stage.gradeLevel} ({stage.name})
+          {`${
+            stage.gradeLevel
+              ? `Grade ${stage.gradeLevel} (${stage.name})`
+              : "Other Courses"
+          }`}
         </h2>
         <div className="block mb-3">
-          <ListAttribute name="Unweighted GPA" calculation={unweightedGPA} />
-          <ListAttribute name="Weighted GPA" calculation={weightedGPA} />
+          <ListAttribute
+            name="Unweighted GPA"
+            calculation={unweightedGPA}
+            classN=""
+          />
+          <ListAttribute
+            name="Weighted GPA"
+            calculation={weightedGPA}
+            classN=""
+          />
           <ListAttribute
             name={getDifficultyText(Number(difficulty.toFixed(2)))}
             calculation={difficulty}
+            classN={getDifficultyColor(difficulty)}
           />
         </div>
       </div>

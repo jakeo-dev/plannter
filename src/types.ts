@@ -31,19 +31,6 @@ export interface Grade {
   percentGrade: number;
 }
 
-export interface AddCourseModalProps {
-  addCourseVisible: boolean;
-  setAddCourseVisible: Dispatch<SetStateAction<boolean>>;
-  addCourse: (course: Course) => void;
-}
-
-export interface EditCourseModalProps {
-  editCourseVisible: boolean;
-  setEditCourseVisible: Dispatch<SetStateAction<boolean>>;
-  editCourse: (course: Course) => void;
-  course: Course | null
-}
-
 export interface GPASettings {
   usePlusMinus: boolean;
   noneWeight: number;
@@ -54,4 +41,24 @@ export interface GPASettings {
   dualWeight: number;
   apWeight: number;
   ibWeight: number;
+}
+
+export interface AddCourseModalProps {
+  addCourseVisible: boolean;
+  setAddCourseVisible: Dispatch<SetStateAction<boolean>>;
+  addCourse: (course: Course) => void;
+}
+
+export interface EditCourseModalProps {
+  editCourseVisible: boolean;
+  setEditCourseVisible: Dispatch<SetStateAction<boolean>>;
+  course: Course | null;
+  saveCourse: (course: Course) => void;
+}
+
+export interface ChangeGPAModalProps {
+  changeGPAVisible: boolean;
+  setChangeGPAVisible: Dispatch<SetStateAction<boolean>>;
+  gpaSettings: GPASettings | null;
+  saveGPASettings: (newGPASettings: GPASettings) => void;
 }

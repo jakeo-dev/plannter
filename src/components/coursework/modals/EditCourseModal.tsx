@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 export default function EditCourseModal({
   editCourseVisible,
   setEditCourseVisible,
-  editCourse,
+  saveCourse,
   course,
 }: EditCourseModalProps) {
   const [nameInput, setNameInput] = useState(course?.name || "");
@@ -276,7 +276,7 @@ export default function EditCourseModal({
                 },
               };
 
-              editCourse(newCourse);
+              saveCourse(newCourse);
               setEditCourseVisible(false);
             }
             e.preventDefault();
