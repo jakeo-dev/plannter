@@ -1,11 +1,8 @@
 import CommonHead from "@/components/CommonHead";
-import Header from "@/components/Header";
-import SideMenu from "@/components/SideMenu";
 import Test from "@/components/Test";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
-  faChevronRight,
   faFloppyDisk,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
@@ -39,7 +36,6 @@ export default function Tests() {
 
   const [addModalVis, setAddModalVis] = useState("invisibleFade");
   const [editModalVis, setEditModalVis] = useState("invisibleFade");
-  const [smallScreenMenuVis, setSmallScreenMenuVis] = useState("invisibleFade");
 
   const [selectedTest, setSelectedTest] = useState({
     id: -1,
@@ -99,93 +95,81 @@ export default function Tests() {
         <title>Plannter: Tests</title>
       </CommonHead>
 
-      <Header
-        onSmallScreenMenuClick={() => {
-          if (smallScreenMenuVis == "invisibleFade")
-            setSmallScreenMenuVis("visibleFade");
-          else if (smallScreenMenuVis == "visibleFade")
-            setSmallScreenMenuVis("invisibleFade");
-        }}
-      />
-
-      <div className="flex h-full md:h-screen">
-        <SideMenu smallScreenMenuVis={smallScreenMenuVis} />
-
-        <div className="w-full overflow-y-scroll px-4 md:px-8 lg:px-16 xl:px-40 md:pt-28 md:pb-14 mt-8 md:mt-0">
-          <div className="mb-12">
-            <div className="font-medium px-4">
-              <h2 className="text-lg font-Calistoga">Tests</h2>
-              <div className="block mb-3">
-                <button // best sat score
-                  className="listAttr hidden"
-                  /* onClick="openBestSAT()" */
-                ></button>
-                <button // best act score
-                  className="listAttr hidden"
-                  /* onClick="openBestACT()" */
-                ></button>
-                <button // which test to favor
-                  className="listAttr hidden"
-                  /* onClick="openFavoredTest()" */
-                ></button>
-              </div>
+      <div className="w-full overflow-y-scroll px-4 md:px-8 lg:px-16 xl:px-40 md:pt-28 md:pb-14 mt-8 md:mt-0">
+        <div className="mb-12">
+          <div className="font-medium px-4">
+            <h2 className="text-lg font-Calistoga">Tests</h2>
+            <div className="block mb-3">
+              <button // best sat score
+                className="listAttr hidden"
+                /* onClick="openBestSAT()" */
+              ></button>
+              <button // best act score
+                className="listAttr hidden"
+                /* onClick="openBestACT()" */
+              ></button>
+              <button // which test to favor
+                className="listAttr hidden"
+                /* onClick="openFavoredTest()" */
+              ></button>
             </div>
-            <ul>
-              {tests.map((test: Test) => (
-                <Test
-                  id={test.id}
-                  type={test.type}
-                  subType={test.subType}
-                  month={test.month}
-                  year={test.year}
-                  score={test.score}
-                  readScore={test.readScore}
-                  mathScore={test.mathScore}
-                  onEdit={() => {
-                    setEditModalVis("visibleFade");
-                    setSelectedTest(test);
-                    setTypeInput(test.type);
-                    setSubTypeInput(test.subType);
-                    setMonthInput(String(test.month));
-                    setYearInput(String(test.year));
-                    setScoreInput(String(test.score));
-                    setReadScoreInput(String(test.readScore));
-                    setMathScoreInput(String(test.mathScore));
-                  }}
-                  onTrash={() => {
-                    if (
-                      confirm(
-                        "Delete " +
-                          test.type +
-                          " " +
-                          test.subType +
-                          " (" +
-                          test.month +
-                          test.year +
-                          ") ?"
-                      )
-                    ) {
-                      const updatedTests = [...tests];
-                      updatedTests.splice(tests.indexOf(test), 1);
-                      setTests(updatedTests);
-
-                      localStorage.setItem(
-                        "testList",
-                        JSON.stringify(updatedTests)
-                      );
-                    }
-                  }}
-                />
-              ))}
-            </ul>
-            <button
-              className="text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2"
-              onClick={() => setAddModalVis("visibleFade")}
-            >
-              <FontAwesomeIcon icon={faPlus} className="mr-1" />
-              Add a test
-            </button>
           </div>
+          <ul>
+            {tests.map((test: Test) => (
+              <Test
+                key={test.id}
+                id={test.id}
+                type={test.type}
+                subType={test.subType}
+                month={test.month}
+                year={test.year}
+                score={test.score}
+                readScore={test.readScore}
+                mathScore={test.mathScore}
+                onEdit={() => {
+                  setEditModalVis("visibleFade");
+                  setSelectedTest(test);
+                  setTypeInput(test.type);
+                  setSubTypeInput(test.subType);
+                  setMonthInput(String(test.month));
+                  setYearInput(String(test.year));
+                  setScoreInput(String(test.score));
+                  setReadScoreInput(String(test.readScore));
+                  setMathScoreInput(String(test.mathScore));
+                }}
+                onTrash={() => {
+                  if (
+                    confirm(
+                      "Delete " +
+                        test.type +
+                        " " +
+                        test.subType +
+                        " (" +
+                        test.month +
+                        test.year +
+                        ") ?"
+                    )
+                  ) {
+                    const updatedTests = [...tests];
+                    updatedTests.splice(tests.indexOf(test), 1);
+                    setTests(updatedTests);
+
+                    localStorage.setItem(
+                      "testList",
+                      JSON.stringify(updatedTests)
+                    );
+                  }
+                }}
+              />
+            ))}
+          </ul>
+          <button
+            className="text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2"
+            onClick={() => setAddModalVis("visibleFade")}
+          >
+            <FontAwesomeIcon icon={faPlus} className="mr-1" />
+            Add a test
+          </button>
         </div>
       </div>
 
