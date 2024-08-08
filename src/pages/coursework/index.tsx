@@ -8,6 +8,7 @@ import StageElem from "@/components/coursework/StageElem";
 import { Course, GPASettings, Stage, Stages } from "@/types";
 import AddCourseModal from "@/components/coursework/modals/AddCourseModal";
 import EditCourseModal from "@/components/coursework/modals/EditCourseModal";
+import ChangeGPAModal from "@/components/ChangeGPAModal";
 
 export default function Coursework() {
   const [smallScreenMenuVis, setSmallScreenMenuVis] = useState("invisibleFade");
@@ -35,6 +36,8 @@ export default function Coursework() {
     ibWeight: 1,
   });
 
+  const [changeGPAVis, setChangeGPAVis] = useState(false);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       // set theme on page load
@@ -53,17 +56,11 @@ export default function Coursework() {
       if (typeof localStorage.getItem("stages") === "string") {
         setStages(JSON.parse(localStorage.getItem("stages") as string));
       }
-    }
-  }, [gpaSettings]);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
       if (typeof localStorage.getItem("gpaWeights") === "string") {
         setGPASettings(
           JSON.parse(localStorage.getItem("gpaWeights") as string)
         );
-      } else {
-        localStorage.setItem("gpaWeights", JSON.stringify(gpaSettings));
       }
     }
   }, []);
@@ -87,35 +84,19 @@ export default function Coursework() {
           else if (smallScreenMenuVis == "visibleFade")
             setSmallScreenMenuVis("invisibleFade");
         }}
-        onGPASettingsChange={() => {
-          if (typeof localStorage.getItem("gpaWeights") === "string") {
-            setGPASettings(
-              JSON.parse(localStorage.getItem("gpaWeights") as string)
-            );
-          } else {
-            localStorage.setItem("gpaWeights", JSON.stringify(gpaSettings));
-          }
-        }}
+        setChangeGPAVis={setChangeGPAVis}
       />
 
       <div className="flex h-full md:h-screen">
         <SideMenu
           smallScreenMenuVis={smallScreenMenuVis}
-          onGPASettingsChange={() => {
-            if (typeof localStorage.getItem("gpaWeights") === "string") {
-              setGPASettings(
-                JSON.parse(localStorage.getItem("gpaWeights") as string)
-              );
-            } else {
-              localStorage.setItem("gpaWeights", JSON.stringify(gpaSettings));
-            }
-          }}
+          setChangeGPAVis={setChangeGPAVis}
         />
 
         <AddCourseModal
           addCourseVisible={addCourseVisible}
           setAddCourseVisible={setAddCourseVisible}
-          addCourse={(course: Course) => {
+          addCourse={(newCourse: Course) => {
             if (!activeStage) return;
 
             const newStages = JSON.parse(JSON.stringify(stages)) as Stages; // make a deep copy
@@ -124,7 +105,7 @@ export default function Coursework() {
             if (!currentStage.courses) {
               currentStage.courses = {};
             }
-            currentStage.courses[course.uuid] = course;
+            currentStage.courses[newCourse.uuid] = newCourse;
 
             setStages(newStages);
             localStorage.setItem("stages", JSON.stringify(newStages));
@@ -135,7 +116,7 @@ export default function Coursework() {
           editCourseVisible={editCourseVisible}
           setEditCourseVisible={setEditCourseVisible}
           course={activeCourse}
-          saveCourse={(course: Course) => {
+          saveCourse={(updatedCourse: Course) => {
             if (!activeStage) return;
             if (!activeCourse) return;
 
@@ -143,9 +124,21 @@ export default function Coursework() {
             const currentStage = newStages[activeStage.name];
             if (!currentStage.courses) return;
 
-            currentStage.courses[activeCourse.uuid] = course;
+            currentStage.courses[activeCourse.uuid] = updatedCourse;
             setStages(newStages);
             localStorage.setItem("stages", JSON.stringify(newStages));
+          }}
+        />
+
+        <ChangeGPAModal
+          changeGPAVisible={changeGPAVis}
+          setChangeGPAVisible={setChangeGPAVis}
+          gpaSettings={gpaSettings}
+          saveGPASettings={(updatedGPASettings: GPASettings) => {
+            const newGPASettings = JSON.parse(JSON.stringify(updatedGPASettings)) as GPASettings; // make a deep copy
+
+            localStorage.setItem("gpaWeights", JSON.stringify(newGPASettings));
+            setGPASettings(newGPASettings);
           }}
         />
 

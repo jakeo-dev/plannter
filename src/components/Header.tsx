@@ -7,46 +7,18 @@ import {
   faWrench,
 } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import ChangeGPAModal from "@/components/ChangeGPAModal";
-import { GPASettings } from "@/types";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 
 type HeaderProps = {
   onSmallScreenMenuClick: () => void;
-  onGPASettingsChange: () => void;
+  setChangeGPAVis: Dispatch<SetStateAction<boolean>>;
 };
 
 export default function Header(props: HeaderProps) {
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (typeof localStorage.getItem("gpaWeights") === "string") {
-        setGPASettings(
-          JSON.parse(localStorage.getItem("gpaWeights") as string)
-        );
-      } else {
-        localStorage.setItem("gpaWeights", JSON.stringify(gpaSettings));
-      }
-    }
-  }, []);
-
   const [settingsVis, setSettingsVis] = useState("invisibleFade");
 
   const settingsDivRef = useRef<HTMLDivElement>(null);
   const settingsBtnRef = useRef<HTMLButtonElement>(null);
-
-  const [gpaSettings, setGPASettings] = useState<GPASettings>({
-    usePlusMinus: false,
-    noneWeight: 0,
-    advancedWeight: 0,
-    acceleratedWeight: 0,
-    honorsWeight: 0.5,
-    collegeWeight: 0,
-    dualWeight: 0,
-    apWeight: 1,
-    ibWeight: 1,
-  });
-
-  const [changeGPAVis, setChangeGPAVis] = useState(false);
 
   function handleOutsideClick(event: MouseEvent) {
     if (
@@ -142,7 +114,7 @@ export default function Header(props: HeaderProps) {
               <button
                 className="block w-full text-base text-left text-gray-600 hover:bg-gray-300 active:bg-gray-400 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 transition rounded-md px-3 py-2 mt-1 first:mt-0"
                 onClick={() => {
-                  setChangeGPAVis(true);
+                  props.setChangeGPAVis(true);
                 }}
               >
                 <FontAwesomeIcon icon={faWrench} className="mr-2" />
@@ -152,17 +124,6 @@ export default function Header(props: HeaderProps) {
           </div>
         </div>
       </div>
-
-      <ChangeGPAModal
-        changeGPAVisible={changeGPAVis}
-        setChangeGPAVisible={setChangeGPAVis}
-        gpaSettings={gpaSettings}
-        saveGPASettings={(newGPASettings: GPASettings) => {
-          setGPASettings(newGPASettings);
-          localStorage.setItem("gpaWeights", JSON.stringify(newGPASettings));
-          props.onGPASettingsChange();
-        }}
-      />
     </>
   );
 }
