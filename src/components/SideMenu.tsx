@@ -5,41 +5,127 @@ import {
   faWrench,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import ChangeGPAModal from "@/components/ChangeGPAModal";
-import { useEffect, useState } from "react";
-import { GPASettings } from "@/types";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { Course, GPASettings, Grade, Stages } from "@/types";
+import {
+  calculateWeights,
+  getLetter,
+  getOverallDifficultyText,
+  letterToGPA,
+} from "@/utility";
 
 type SideMenuProps = {
+  stages: Stages;
+  gpaSettings: GPASettings;
   smallScreenMenuVis: string;
-  onGPASettingsChange: () => void;
+  setChangeGPAVis: Dispatch<SetStateAction<boolean>>;
 };
 
+function Statistic({
+  number,
+  title,
+  decimal = true,
+}: {
+  number: number;
+  title: string;
+  decimal?: boolean;
+}) {
+  if (!number) return <></>;
+
+  return (
+    <button className="mt-1.5 mb-1.5 -ml-2 inline-block w-full whitespace-nowrap rounded-lg bg-transparent pt-[0.055rem] pb-[0.055rem] pl-2 pr-4 text-left text-sm leading-5 text-gray-700 transition duration-150 ease-in-out">
+      <span className="text-base font-bold">
+        {decimal ? number.toFixed(2) : number}
+      </span>
+      {` ${title}`}
+    </button>
+  );
+}
+
 export default function SideMenu(props: SideMenuProps) {
+  const router = useRouter();
+  const [unweightedGPA, setUnweightedGPA] = useState(0);
+  const [weightedGPA, setWeightedGPA] = useState(0);
+  const [difficulty, setDifficulty] = useState(0);
+
+  function Tab(props: { name: string; url: string }) {
+    const styles =
+      router.pathname === props.url
+        ? "bg-emerald-600/30"
+        : "hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50";
+
+    return (
+      <Link
+        className={
+          "planBtns block w-full text-left text-gray-600 dark:text-gray-400 rounded-r-full px-6 py-3 md:px-7 transition " +
+          styles
+        }
+        href={props.url}
+      >
+        <span>{props.name}</span>
+      </Link>
+    );
+  }
+
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (typeof localStorage.getItem("gpaWeights") === "string") {
-        setGPASettings(
-          JSON.parse(localStorage.getItem("gpaWeights") as string)
-        );
-      } else {
-        localStorage.setItem("gpaWeights", JSON.stringify(gpaSettings));
+    if (!props.stages || Object.keys(props.stages).length == 0) {
+      setUnweightedGPA(0);
+      setWeightedGPA(0);
+      setDifficulty(0);
+      return;
+    }
+
+    let unweightedSum = 0;
+    let weightedSum = 0;
+    let difficultySum = 0;
+    let numGrades = 0;
+    let numSemesters = 0;
+    let numCourses = 0;
+    for (const stageKey in props.stages) {
+      const stage = props.stages[stageKey as keyof Stages];
+
+      if (stage.courses && Object.keys(stage.courses).length > 0) {
+        const processSemester = (
+          course: Course,
+          semester: Grade | undefined
+        ) => {
+          if (semester?.letterGrade && semester.letterGrade != "none") {
+            const letterGrade =
+              semester.letterGrade === "Use percent"
+                ? getLetter(semester.percentGrade || 0)
+                : semester.letterGrade;
+
+            const gpa = letterToGPA(
+              letterGrade,
+              props.gpaSettings["usePlusMinus"]
+            );
+
+            unweightedSum += gpa;
+            weightedSum +=
+              gpa +
+              calculateWeights(props.gpaSettings, course.advancementLevel);
+            numGrades++;
+          }
+          if (numSemesters % 2 == 0)
+            difficultySum += course.advancementLevel * course.difficulty;
+          numSemesters++;
+        };
+
+        for (const course of Object.values(stage.courses)) {
+          processSemester(course, course.scores?.firstSemester);
+          processSemester(course, course.scores?.secondSemester);
+        }
+
+        numCourses += Object.keys(stage.courses).length;
       }
     }
-  }, []);
 
-  const [gpaSettings, setGPASettings] = useState<GPASettings>({
-    usePlusMinus: false,
-    noneWeight: 0,
-    advancedWeight: 0,
-    acceleratedWeight: 0,
-    honorsWeight: 0.5,
-    collegeWeight: 0,
-    dualWeight: 0,
-    apWeight: 1,
-    ibWeight: 1,
-  });
-
-  const [changeGPAVis, setChangeGPAVis] = useState(false);
+    console.log(difficultySum);
+    setUnweightedGPA(unweightedSum / numGrades);
+    setWeightedGPA(weightedSum / numGrades);
+    setDifficulty((difficultySum + 1.175 ** numCourses) / 6);
+  }, [props.gpaSettings, props.stages]);
 
   return (
     <>
@@ -51,64 +137,28 @@ export default function SideMenu(props: SideMenuProps) {
           <h2 className="text-sm text-gray-500 px-6 md:px-7 mb-2">
             High School
           </h2>
-          <Link
-            className="planBtns block w-full text-left text-gray-700 dark:text-gray-300 bg-emerald-600/30 rounded-r-full px-6 py-3 md:px-7 transition"
-            href="/coursework"
-          >
-            <span>Coursework</span>
-          </Link>
-          <Link
-            className="planBtns block w-full text-left text-gray-600 dark:text-gray-400 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 transition"
-            href="/tests"
-          >
-            <span>Tests</span>
-          </Link>
-          <Link
-            className="planBtns block w-full text-left text-gray-600 dark:text-gray-400 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 transition"
-            href="/extracurriculars"
-          >
-            <span>Extracurriculars</span>
-          </Link>
+          <Tab name="Coursework" url="/coursework" />
+          <Tab name="Tests" url="/tests" />
+          <Tab name="Extracurriculars" url="/extracurriculars" />
           <h2 className="text-sm text-gray-500 px-6 md:px-7 mb-2 mt-6">
             Application
           </h2>
-          <Link
-            className="planBtns block w-full text-left text-gray-600 dark:text-gray-400 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 transition"
-            href="/essays"
-          >
-            <span>Essays</span>
-          </Link>
-          <Link
-            className="planBtns block w-full text-left text-gray-600 dark:text-gray-400 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 transition"
-            href="/colleges"
-          >
-            <span>Colleges</span>
-          </Link>
+          <Tab name="Essays" url="/essays" />
+          <Tab name="Colleges" url="/colleges" />
         </div>
 
         <div className="border-t-2 border-gray-300 md:border-gray-200 dark:border-gray-700 md:dark:border-gray-800 my-4"></div>
 
         <div className="block w-min font-medium px-6 md:px-7 mt-0">
-          <button
-            className="cumAttr hidden"
-            /* onClick="openGPA()" */
-          ></button>
-          <button
-            className="cumAttr hidden"
-            /* onClick="openGPA()" */
-          ></button>
-          <button
-            className="cumAttr hidden"
-            /* onClick="openDiff()" */
-          ></button>
-          <button
-            className="cumAttr hidden"
-            /* onClick="openECStrength()" */
-          ></button>
-          <button
-            className="cumAttr hidden"
-            /* onClick="openFavoredTest()" */
-          ></button>
+          <Statistic number={unweightedGPA} title="GPA (Cumulative)" />
+          <Statistic number={weightedGPA} title="Weighted GPA (Cumulative)" />
+          <Statistic
+            number={difficulty}
+            title={getOverallDifficultyText(difficulty)}
+          />
+
+          {/* <Statistic number={} title="Extracurriculars" />
+          <Statistic number={} title="Test Scores" /> */}
           <button
             className="hidden font-normal text-xs bg-gray-300/70 hover:bg-gray-300 dark:bg-gray-700/60 dark:hover:bg-gray-700 hover:shadow-sm active:shadow-none rounded-md px-2 py-1 mt-2 md:mt-3 transition"
             /* onClick="openDoesGPANotLookRight()" */
@@ -146,7 +196,7 @@ export default function SideMenu(props: SideMenuProps) {
           <button
             className="block w-full text-left text-gray-600 dark:text-gray-400/80 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 transition"
             onClick={() => {
-              setChangeGPAVis(true);
+              props.setChangeGPAVis(true);
             }}
           >
             <FontAwesomeIcon icon={faWrench} className="mr-2" />
@@ -154,17 +204,6 @@ export default function SideMenu(props: SideMenuProps) {
           </button>
         </div>
       </div>
-
-      <ChangeGPAModal
-        changeGPAVisible={changeGPAVis}
-        setChangeGPAVisible={setChangeGPAVis}
-        gpaSettings={gpaSettings}
-        saveGPASettings={(newGPASettings: GPASettings) => {
-          setGPASettings(newGPASettings);
-          localStorage.setItem("gpaWeights", JSON.stringify(newGPASettings));
-          props.onGPASettingsChange();
-        }}
-      />
     </>
   );
 }
