@@ -78,12 +78,15 @@ export default function SideMenu(props: SideMenuProps) {
 
     let unweightedSum = 0;
     let weightedSum = 0;
-    let difficultySum = 0;
     let numGrades = 0;
     let numSemesters = 0;
-    let numCourses = 0;
+    let numFilledStages = 0;
+    let cumStageDifficultySum = 0;
+
     for (const stageKey in props.stages) {
       const stage = props.stages[stageKey as keyof Stages];
+
+      let difficultySum = 0;
 
       if (stage.courses && Object.keys(stage.courses).length > 0) {
         const processSemester = (
@@ -117,14 +120,16 @@ export default function SideMenu(props: SideMenuProps) {
           processSemester(course, course.scores?.secondSemester);
         }
 
-        numCourses += Object.keys(stage.courses).length;
+        if (Object.keys(stage.courses).length != 0) numFilledStages++;
+
+        cumStageDifficultySum +=
+          (difficultySum + 1.175 ** Object.keys(stage.courses).length) / 6;
       }
     }
 
-    console.log(difficultySum);
     setUnweightedGPA(unweightedSum / numGrades);
     setWeightedGPA(weightedSum / numGrades);
-    setDifficulty((difficultySum + 1.175 ** numCourses) / 6);
+    setDifficulty(cumStageDifficultySum / numFilledStages);
   }, [props.gpaSettings, props.stages]);
 
   return (
