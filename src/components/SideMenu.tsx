@@ -6,11 +6,31 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
+import { router } from "next/client";
 
 type SideMenuProps = {
   smallScreenMenuVis: string;
   setChangeGPAVis: Dispatch<SetStateAction<boolean>>;
 };
+
+function Tab(props: { name: string; url: string }) {
+  const styles =
+    router.pathname === props.url
+      ? "bg-emerald-600/30"
+      : "hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50";
+
+  return (
+    <Link
+      className={
+        "planBtns block w-full text-left text-gray-600 dark:text-gray-400 rounded-r-full px-6 py-3 md:px-7 transition " +
+        styles
+      }
+      href={props.url}
+    >
+      <span>{props.name}</span>
+    </Link>
+  );
+}
 
 export default function SideMenu(props: SideMenuProps) {
   return (
@@ -23,39 +43,14 @@ export default function SideMenu(props: SideMenuProps) {
           <h2 className="text-sm text-gray-500 px-6 md:px-7 mb-2">
             High School
           </h2>
-          <Link
-            className="planBtns block w-full text-left text-gray-700 dark:text-gray-300 bg-emerald-600/30 rounded-r-full px-6 py-3 md:px-7 transition"
-            href="/coursework"
-          >
-            <span>Coursework</span>
-          </Link>
-          <Link
-            className="planBtns block w-full text-left text-gray-600 dark:text-gray-400 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 transition"
-            href="/tests"
-          >
-            <span>Tests</span>
-          </Link>
-          <Link
-            className="planBtns block w-full text-left text-gray-600 dark:text-gray-400 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 transition"
-            href="/extracurriculars"
-          >
-            <span>Extracurriculars</span>
-          </Link>
+          <Tab name="Coursework" url="/coursework" />
+          <Tab name="Tests" url="/tests" />
+          <Tab name="Extracurriculars" url="/extracurriculars" />
           <h2 className="text-sm text-gray-500 px-6 md:px-7 mb-2 mt-6">
             Application
           </h2>
-          <Link
-            className="planBtns block w-full text-left text-gray-600 dark:text-gray-400 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 transition"
-            href="/essays"
-          >
-            <span>Essays</span>
-          </Link>
-          <Link
-            className="planBtns block w-full text-left text-gray-600 dark:text-gray-400 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 transition"
-            href="/colleges"
-          >
-            <span>Colleges</span>
-          </Link>
+          <Tab name="Essays" url="/essays" />
+          <Tab name="Colleges" url="/colleges" />
         </div>
 
         <div className="border-t-2 border-gray-300 md:border-gray-200 dark:border-gray-700 md:dark:border-gray-800 my-4"></div>
