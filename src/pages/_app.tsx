@@ -5,7 +5,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { useEffect, useState } from "react";
 
-import { GPASettings } from "@/types";
+import { GPASettings, Stages } from "@/types";
 import Header from "@/components/Header";
 import SideMenu from "@/components/SideMenu";
 import ChangeGPAModal from "@/components/ChangeGPAModal";
@@ -17,27 +17,35 @@ export default function App({ Component, pageProps }: AppProps) {
   const [smallScreenMenuVis, setSmallScreenMenuVis] = useState("invisibleFade");
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      // set theme on page load
-      if (
-        localStorage.getItem("theme") === "dark" ||
-        (!("theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-        localStorage.setItem("theme", "dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("theme", "light");
-      }
+    if (typeof window === "undefined") return;
 
-      if (typeof localStorage.getItem("gpaWeights") === "string") {
-        setGPASettings(
-          JSON.parse(localStorage.getItem("gpaWeights") as string)
-        );
-      }
+    const isDarkMode =
+      localStorage.getItem("theme") === "dark" ||
+      (!localStorage.getItem("theme") &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+    document.documentElement.classList.toggle("dark", isDarkMode);
+    localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+
+    if (typeof localStorage.getItem("gpaWeights") === "string") {
+      setGPASettings(JSON.parse(localStorage.getItem("gpaWeights") as string));
+    }
+
+    if (typeof localStorage.getItem("stages") === "string") {
+      setStages(JSON.parse(localStorage.getItem("stages") as string));
     }
   }, []);
+
+  const [stages, setStages] = useState<Stages>({
+    Freshman: {
+      name: "Freshman",
+      gradeLevel: 9,
+    },
+    Sophomore: { name: "Sophomore", gradeLevel: 10 },
+    Junior: { name: "Junior", gradeLevel: 11 },
+    Senior: { name: "Senior", gradeLevel: 12 },
+    Other: { name: "Other", gradeLevel: null },
+  });
 
   const [gpaSettings, setGPASettings] = useState<GPASettings>({
     usePlusMinus: false,
@@ -82,9 +90,16 @@ export default function App({ Component, pageProps }: AppProps) {
       <div className="flex h-full md:h-screen">
         <SideMenu
           smallScreenMenuVis={smallScreenMenuVis}
+          stages={stages}
+          gpaSettings={gpaSettings}
           setChangeGPAVis={setChangeGPAVis}
         />
-        <Component {...pageProps} gpaSettings={gpaSettings} />
+        <Component
+          {...pageProps}
+          stages={stages}
+          setStages={setStages}
+          gpaSettings={gpaSettings}
+        />
       </div>
     </main>
   );

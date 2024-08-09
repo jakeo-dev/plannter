@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 import CommonHead from "@/components/CommonHead";
 
@@ -9,26 +9,13 @@ import EditCourseModal from "@/components/coursework/modals/EditCourseModal";
 
 export default function Coursework({
   gpaSettings,
+  stages,
+  setStages,
 }: {
   gpaSettings: GPASettings;
+  stages: Stages;
+  setStages: Dispatch<SetStateAction<Stages>>;
 }) {
-  const [stages, setStages] = useState<Stages>({
-    Freshman: {
-      name: "Freshman",
-      gradeLevel: 9,
-    },
-    Sophomore: { name: "Sophomore", gradeLevel: 10 },
-    Junior: { name: "Junior", gradeLevel: 11 },
-    Senior: { name: "Senior", gradeLevel: 12 },
-    Other: { name: "Other", gradeLevel: null },
-  });
-
-  useEffect(() => {
-    if (typeof localStorage.getItem("stages") === "string") {
-      setStages(JSON.parse(localStorage.getItem("stages") as string));
-    }
-  }, []);
-
   const [activeStage, setActiveStage] = useState<Stage | null>(null);
   const [activeCourse, setActiveCourse] = useState<Course | null>(null);
 
