@@ -125,7 +125,7 @@ export default function EditActivityModal({
         </button>
 
         <button
-          className="border-2 border-gray-300 hover:bg-gray-200 active:bg-gray-300 text-left rounded-md px-3 py-2 transition ml-3"
+          className="buttonSecondary"
           onClick={() => {
             setEditActivityVisible(false);
           }}

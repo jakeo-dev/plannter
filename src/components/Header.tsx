@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
   faEllipsisVertical,
+  faFileImport,
   faHourglassHalf,
   faSun,
   faWrench,
@@ -119,6 +120,13 @@ export default function Header(props: HeaderProps) {
               >
                 <FontAwesomeIcon icon={faWrench} className="mr-2" />
                 <span>Change GPA calculation</span>
+              </button>
+              <button
+                className="block w-full text-base text-left text-gray-600 hover:bg-gray-300 active:bg-gray-400 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 transition rounded-md px-3 py-2 mt-1 first:mt-0"
+                /* onClick={} */
+              >
+                <FontAwesomeIcon icon={faFileImport} className="mr-2" />
+                <span>Import data from old Plannter</span>
               </button>
             </div>
           </div>

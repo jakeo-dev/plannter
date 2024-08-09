@@ -42,7 +42,7 @@ function Statistic({
   if (!number) return <></>;
 
   return (
-    <button className="mt-1.5 mb-1.5 -ml-2 inline-block w-full whitespace-nowrap rounded-lg bg-transparent pt-[0.055rem] pb-[0.055rem] pl-2 pr-4 text-left text-sm leading-5 text-gray-700 transition duration-150 ease-in-out">
+    <button className="inline-block whitespace-nowrap w-full text-sm text-left bg-transparent hover:bg-gray-300 dark:hover:bg-gray-800 rounded-md text-gray-700 dark:text-gray-400 transition pl-2 pr-4 py-[0.055rem] my-1.5 -ml-2">
       <span className="text-base font-bold">
         {decimal ? number.toFixed(2) : number}
       </span>
