@@ -7,7 +7,14 @@ import {
 import Link from "next/link";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Course, GPASettings, Grade, Stages } from "@/types";
+import {
+  Course,
+  GPASettings,
+  Grade,
+  Stages,
+  Activity,
+  Strengths,
+} from "@/types";
 import {
   calculateWeights,
   getLetter,
@@ -17,6 +24,7 @@ import {
 
 type SideMenuProps = {
   stages: Stages;
+  strengths: Strengths;
   gpaSettings: GPASettings;
   smallScreenMenuVis: string;
   setChangeGPAVis: Dispatch<SetStateAction<boolean>>;
@@ -130,13 +138,13 @@ export default function SideMenu(props: SideMenuProps) {
     setUnweightedGPA(unweightedSum / numGrades);
     setWeightedGPA(weightedSum / numGrades);
     setDifficulty(cumStageDifficultySum / numFilledStages);
-  }, [props.gpaSettings, props.stages]);
+  }, [props.gpaSettings, props.stages, props.strengths]);
 
   return (
     <>
       <div
         id="menuDiv"
-        className={`${props.smallScreenMenuVis} md:visibleFade fixed overflow-y-scroll md:overflow-y-clip bg-gray-100 dark:bg-gray-900 text-lg font-extrabold border-r-2 border-gray-300 md:border-gray-200 dark:border-gray-700 md:dark:border-gray-800 shadow-2xl h-full z-20 pt-8 pb-36 md:pb-0 md:static md:top-28 md:bg-transparent md:shadow-none md:z-auto md:block w-3/4 md:w-[29%] md:pt-28`}
+        className={`${props.smallScreenMenuVis} md:visibleFade fixed overflow-y-scroll md:overflow-y-clip bg-gray-100 dark:bg-gray-900 text-lg font-extrabold border-r-2 border-gray-300 md:border-gray-200 dark:border-gray-700 md:dark:border-gray-800 shadow-2xl h-full z-20 pt-8 pb-36 md:pb-0 md:static md:top-28 md:bg-transparent md:shadow-none md:z-auto md:block w-3/4 md:w-1/3 md:pt-28`}
       >
         <div className="font-Calistoga pr-4">
           <h2 className="text-sm text-gray-500 px-6 md:px-7 mb-2">

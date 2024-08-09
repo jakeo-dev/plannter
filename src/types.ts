@@ -1,5 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
+// course types
+
 export interface Stages {
   "Freshman": Stage;
   "Sophomore": Stage;
@@ -61,4 +63,38 @@ export interface ChangeGPAModalProps {
   setChangeGPAVisible: Dispatch<SetStateAction<boolean>>;
   gpaSettings: GPASettings | null;
   saveGPASettings: (newGPASettings: GPASettings) => void;
+}
+
+// activity types
+
+export interface Strengths {
+  "Major": Strength;
+  "Moderate": Strength;
+  "Minor": Strength;
+}
+
+export interface Strength {
+  level: number | null;
+  name: "Major" | "Moderate" | "Minor";
+  activities?: { [key: string]: Activity };
+}
+
+export interface Activity {
+  uuid: string,
+  name: string;
+  description: string;
+  category: string;
+}
+
+export interface AddActivityModalProps {
+  addActivityVisible: boolean;
+  setAddActivityVisible: Dispatch<SetStateAction<boolean>>;
+  addActivity: (activity: Activity) => void;
+}
+
+export interface EditActivityModalProps {
+  editActivityVisible: boolean;
+  setEditActivityVisible: Dispatch<SetStateAction<boolean>>;
+  activity: Activity | null;
+  saveActivity: (activity: Activity) => void;
 }

@@ -71,7 +71,8 @@ export default function StageElem({
           const gpa = letterToGPA(letterGrade, gpaSettings["usePlusMinus"]);
 
           unweightedSum += gpa;
-          weightedSum += gpa + calculateWeights(gpaSettings, course.advancementLevel);
+          weightedSum +=
+            gpa + calculateWeights(gpaSettings, course.advancementLevel);
           numGrades++;
         }
         if (numSemesters % 2 == 0)
@@ -107,11 +108,7 @@ export default function StageElem({
           }`}
         </h2>
         <div className="block mb-3">
-          <ListAttribute
-            name="Unweighted GPA"
-            calculation={unweightedGPA}
-            classN=""
-          />
+          <ListAttribute name="GPA" calculation={unweightedGPA} classN="" />
           <ListAttribute
             name="Weighted GPA"
             calculation={weightedGPA}
@@ -147,7 +144,7 @@ export default function StageElem({
                 setStage(newStage);
               }
             }}
-          ></CourseElem>
+          />
         ))}
       </ul>
       <button
@@ -158,7 +155,9 @@ export default function StageElem({
         }}
       >
         <FontAwesomeIcon icon={faPlus} className="mr-1" />
-        Add a {stage.name.toLocaleLowerCase()} course
+        {stage.gradeLevel
+          ? `Add a ${stage.name.toLocaleLowerCase()} course`
+          : "Add another course"}
       </button>
     </div>
   );

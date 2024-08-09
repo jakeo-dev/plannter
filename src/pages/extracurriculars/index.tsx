@@ -1,59 +1,92 @@
-import CommonHead from "@/components/CommonHead";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { Dispatch, SetStateAction, useState } from "react";
 
-export default function Extracurriculars() {
+import CommonHead from "@/components/CommonHead";
+
+import StrengthElem from "@/components/activities/StrengthElem";
+import { Activity, Strength, Strengths } from "@/types";
+import AddActivityModal from "@/components/activities/modals/AddActivityModal";
+import EditActivityModal from "@/components/activities/modals/EditActivityModal";
+
+export default function Extracurriculars({
+  strengths,
+  setStrengths,
+}: {
+  strengths: Strengths;
+  setStrengths: Dispatch<SetStateAction<Strengths>>;
+}) {
+  const [activeStrength, setActiveStrength] = useState<Strength | null>(null);
+  const [activeActivity, setActiveActivity] = useState<Activity | null>(null);
+
+  const [addActivityVisible, setAddActivityVisible] = useState(false);
+  const [editActivityVisible, setEditActivityVisible] = useState(false);
+
   return (
     <>
       <CommonHead>
         <title>Plannter: Extracurriculars</title>
       </CommonHead>
 
-      <div
-        id="actsDiv"
-        className="w-full overflow-y-scroll px-4 md:px-8 lg:px-16 xl:px-40 md:pt-28 md:pb-14 mt-8 md:mt-0"
-      >
-        <div className="mb-12">
-          <h2 className="text-lg font-Calistoga font-medium px-4 mb-3">
-            Major Activities
-          </h2>
-          <ul id="listActs" className="lg:grid lg:grid-cols-2 gap-3"></ul>
-          <button
-            className="text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2"
-            // onClick="openAddAct(1)"
-          >
-            <FontAwesomeIcon icon={faPlus} className="mr-1" />
-            Add a major activity
-          </button>
-        </div>
+      <AddActivityModal
+        addActivityVisible={addActivityVisible}
+        setAddActivityVisible={setAddActivityVisible}
+        addActivity={(newActivity: Activity) => {
+          if (!activeStrength) return;
 
-        <div className="mb-12">
-          <h2 className="text-lg font-Calistoga font-medium px-4 mb-3">
-            Moderate Activities
-          </h2>
-          <ul id="listActs2" className="lg:grid lg:grid-cols-2 gap-3"></ul>
-          <button
-            className="text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2"
-            // onClick="openAddAct(2)"
-          >
-            <FontAwesomeIcon icon={faPlus} className="mr-1" />
-            Add a moderate activity
-          </button>
-        </div>
+          const newStrengths = JSON.parse(
+            JSON.stringify(strengths)
+          ) as Strengths; // make a deep copy
+          const currentStrength = newStrengths[activeStrength.name];
 
-        <div className="mb-12">
-          <h2 className="text-lg font-Calistoga font-medium px-4 mb-3">
-            Minor Activities
-          </h2>
-          <ul id="listActs3" className="lg:grid lg:grid-cols-2 gap-3"></ul>
-          <button
-            className="text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2"
-            // onClick="openAddAct(3)"
-          >
-            <FontAwesomeIcon icon={faPlus} className="mr-1" />
-            Add a minor activity
-          </button>
-        </div>
+          if (!currentStrength.activities) {
+            currentStrength.activities = {};
+          }
+          currentStrength.activities[newActivity.uuid] = newActivity;
+
+          setStrengths(newStrengths);
+          localStorage.setItem("strengths", JSON.stringify(newStrengths));
+        }}
+      />
+
+      <EditActivityModal
+        editActivityVisible={editActivityVisible}
+        setEditActivityVisible={setEditActivityVisible}
+        activity={activeActivity}
+        saveActivity={(updatedActivity: Activity) => {
+          if (!activeStrength) return;
+          if (!activeActivity) return;
+
+          const newStrengths = JSON.parse(
+            JSON.stringify(strengths)
+          ) as Strengths; // make a deep copy
+          const currentStrength = newStrengths[activeStrength.name];
+          if (!currentStrength.activities) return;
+
+          currentStrength.activities[activeActivity.uuid] = updatedActivity;
+          setStrengths(newStrengths);
+          localStorage.setItem("strengths", JSON.stringify(newStrengths));
+        }}
+      />
+
+      <div className="w-full overflow-y-scroll px-4 md:px-8 lg:px-16 xl:px-40 md:pt-28 md:pb-14 mt-8 md:mt-0 flex flex-col gap-12">
+        {(Object.values(strengths) as Strength[]).map((strength) => (
+          <StrengthElem
+            key={strength.name}
+            strength={strength}
+            setActiveStrength={setActiveStrength}
+            setActiveActivity={setActiveActivity}
+            setAddActivityVisible={setAddActivityVisible}
+            setEditActivityVisible={setEditActivityVisible}
+            setStrength={(strength: Strength) => {
+              const newStrengths = JSON.parse(
+                JSON.stringify(strengths)
+              ) as Strengths; // make a deep copy
+
+              newStrengths[strength.name] = strength;
+              setStrengths(newStrengths);
+              localStorage.setItem("strengths", JSON.stringify(newStrengths));
+            }}
+          />
+        ))}
       </div>
     </>
   );

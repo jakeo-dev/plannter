@@ -82,7 +82,7 @@ export default function Coursework({
               setStages(newStages);
               localStorage.setItem("stages", JSON.stringify(newStages));
             }}
-          ></StageElem>
+          />
         ))}
       </div>
     </>

@@ -1,0 +1,134 @@
+import { AddActivityModalProps, Activity } from "@/types";
+import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
+
+export default function AddActivityModal({
+  addActivityVisible,
+  setAddActivityVisible,
+  addActivity,
+}: AddActivityModalProps) {
+  const [nameInput, setNameInput] = useState("");
+  const [descriptionInput, setDescriptionInput] = useState("");
+  const [categoryInput, setCategoryInput] = useState("Athletics");
+
+  function revertToDefault() {
+    setNameInput("");
+    setDescriptionInput("");
+    setCategoryInput("Athletics");
+  }
+
+  return (
+    <div
+      className={`bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto ${
+        addActivityVisible ? "visibleFade" : "invisibleFade"
+      }`}
+    >
+      <div className="bg-gray-100 dark:bg-gray-800 relative rounded-xl w-11/12 md:max-w-2xl shadow-md px-8 py-8 md:px-11 md:py-10">
+        <button
+          className="absolute top-6 right-7 text-lg hover:text-gray-500 transition"
+          onClick={() => {
+            setAddActivityVisible(false);
+            revertToDefault();
+          }}
+        >
+          <FontAwesomeIcon icon={faXmark} />
+        </button>
+
+        <h1 className="text-xl font-medium mb-6">Add activity</h1>
+
+        <label className="modalSubtext">
+          Activity name<span className="text-red-500">*</span>
+        </label>
+        <input
+          type="text"
+          className="input"
+          value={nameInput}
+          onInput={(e) => setNameInput(e.currentTarget.value)}
+          autoComplete="off"
+          maxLength={100}
+          required
+        />
+
+        <label className="modalSubtext">Description</label>
+        <textarea
+          rows={4}
+          className="input"
+          value={descriptionInput}
+          onInput={(e) => setDescriptionInput(e.currentTarget.value)}
+          autoComplete="off"
+          maxLength={300}
+        />
+
+        <label className="modalSubtext">
+          Type<span className="text-red-500">*</span>
+        </label>
+        <select
+          onChange={(e) => setCategoryInput(e.currentTarget.value)}
+          value={categoryInput}
+          className="input darkArrowsSelect dark:lightArrowsSelect"
+          required
+        >
+          <optgroup label="Select a category">
+            <option value="Athletics">Athletics</option>
+            <option value="Award">Award</option>
+            <option value="Club">Club</option>
+            <option value="Competition">Competition</option>
+            <option value="Event">Event</option>
+            <option value="Internship">Internship</option>
+            <option value="Math">Math</option>
+            <option value="Music">Music</option>
+            <option value="Employment">Paid Work</option>
+            <option value="Performing Arts">Performing Arts</option>
+            <option value="Personal Responsibility">
+              Personal Responsibility
+            </option>
+            <option value="Politics">Politics</option>
+            <option value="Research">Research</option>
+            <option value="Science">Science</option>
+            <option value="Summer Class">Summer Class</option>
+            <option value="Technology">Technology</option>
+            <option value="Visual Arts">Visual Arts</option>
+            <option value="Volunteering">Volunteering</option>
+            <option value="Writing">Writing</option>
+            <option value="Other">Other</option>
+          </optgroup>
+        </select>
+
+        <button
+          className="buttonPrimary"
+          onClick={(e) => {
+            if (nameInput == "") {
+              alert("Enter the name of this activity");
+            } else {
+              const newActivity: Activity = {
+                uuid: crypto.randomUUID(),
+                name: nameInput,
+                description: descriptionInput,
+                category: categoryInput,
+              };
+
+              addActivity(newActivity);
+              setAddActivityVisible(false);
+              revertToDefault();
+            }
+            e.preventDefault();
+          }}
+        >
+          <FontAwesomeIcon icon={faPlus} className="mr-1 md:mr-1.5" />
+          Add activity
+        </button>
+
+        <button
+          className="buttonSecondary"
+          onClick={() => {
+            setAddActivityVisible(false);
+            revertToDefault();
+          }}
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  );
+}

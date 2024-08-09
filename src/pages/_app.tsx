@@ -5,7 +5,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { useEffect, useState } from "react";
 
-import { GPASettings, Stages } from "@/types";
+import { GPASettings, Stages, Strengths } from "@/types";
 import Header from "@/components/Header";
 import SideMenu from "@/components/SideMenu";
 import ChangeGPAModal from "@/components/ChangeGPAModal";
@@ -34,6 +34,10 @@ export default function App({ Component, pageProps }: AppProps) {
     if (typeof localStorage.getItem("stages") === "string") {
       setStages(JSON.parse(localStorage.getItem("stages") as string));
     }
+
+    if (typeof localStorage.getItem("strengths") === "string") {
+      setStrengths(JSON.parse(localStorage.getItem("strengths") as string));
+    }
   }, []);
 
   const [stages, setStages] = useState<Stages>({
@@ -45,6 +49,15 @@ export default function App({ Component, pageProps }: AppProps) {
     Junior: { name: "Junior", gradeLevel: 11 },
     Senior: { name: "Senior", gradeLevel: 12 },
     Other: { name: "Other", gradeLevel: null },
+  });
+
+  const [strengths, setStrengths] = useState<Strengths>({
+    Major: {
+      name: "Major",
+      level: 1,
+    },
+    Moderate: { name: "Moderate", level: 2 },
+    Minor: { name: "Minor", level: 3 },
   });
 
   const [gpaSettings, setGPASettings] = useState<GPASettings>({
@@ -91,6 +104,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <SideMenu
           smallScreenMenuVis={smallScreenMenuVis}
           stages={stages}
+          strengths={strengths}
           gpaSettings={gpaSettings}
           setChangeGPAVis={setChangeGPAVis}
         />
@@ -98,6 +112,8 @@ export default function App({ Component, pageProps }: AppProps) {
           {...pageProps}
           stages={stages}
           setStages={setStages}
+          strengths={strengths}
+          setStrengths={setStrengths}
           gpaSettings={gpaSettings}
         />
       </div>

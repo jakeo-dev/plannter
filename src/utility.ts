@@ -1,4 +1,5 @@
 import { GPASettings } from "./types";
+import { faAtom, faAward, faBriefcase, faCalendarDay, faDesktop, faDumbbell, faGraduationCap, faHandshakeAngle, faHouseUser, faLandmarkFlag, faMagnifyingGlass, faMasksTheater, faMusic, faPalette, faPencil, faPlusMinus, faPuzzlePiece, faRankingStar, faUmbrellaBeach, faWrench, IconDefinition } from "@fortawesome/free-solid-svg-icons";
 
 /**
  * Converts a letter grade to its corresponding GPA value.
@@ -85,10 +86,8 @@ export function getOverallDifficultyText(difficulty: number) {
     return "Difficult Coursework";
   } else if (difficulty < 5) {
     return "Challenging Coursework";
-  } else if (difficulty < 6) {
-    return "Extreme Coursework";
   } else {
-    return "";
+    return "Extreme Coursework";
   }
 }
 
@@ -205,4 +204,33 @@ export function getAdvLevelColor(advLevel: string) {
   } else {
     return "hidden";
   }
+}
+
+/**
+ * Returns the CSS class for the advancement level based on the provided level.
+ *
+ * @param category - The activity category
+ * @returns The corresponding icon for the given category.
+ */
+export function getActivityIcon(category: string): IconDefinition {
+  if (category == "Athletics") return faDumbbell;
+  else if (category == "Award") return faAward;
+  else if (category == "Club") return faPuzzlePiece;
+  else if (category == "Competition") return faRankingStar;
+  else if (category == "Employment") return faBriefcase;
+  else if (category == "Event") return faCalendarDay;
+  else if (category == "Internship") return faWrench;
+  else if (category == "Math") return faPlusMinus;
+  else if (category == "Music") return faMusic;
+  else if (category == "Science") return faAtom;
+  else if (category == "Summer Class") return faUmbrellaBeach;
+  else if (category == "Technology") return faDesktop;
+  else if (category == "Visual Arts") return faPalette;
+  else if (category == "Performing Arts") return faMasksTheater;
+  else if (category == "Personal Responsibility") return faHouseUser;
+  else if (category == "Politics") return faLandmarkFlag;
+  else if (category == "Research") return faMagnifyingGlass;
+  else if (category == "Volunteering") return faHandshakeAngle;
+  else if (category == "Writing") return faPencil;
+  else return faGraduationCap;
 }

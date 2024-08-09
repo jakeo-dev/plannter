@@ -1,5 +1,5 @@
 import CommonHead from "@/components/CommonHead";
-import Test from "@/components/Test";
+import Test from "@/components/tests/Test";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
