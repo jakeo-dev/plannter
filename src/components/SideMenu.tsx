@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faFileImport,
   faHourglassHalf,
   faSun,
   faWrench,
@@ -14,6 +15,8 @@ import {
   Stages,
   Activity,
   Strengths,
+  Test,
+  Groups,
 } from "@/types";
 import {
   calculateWeights,
@@ -25,6 +28,7 @@ import {
 type SideMenuProps = {
   stages: Stages;
   strengths: Strengths;
+  groups: Groups;
   gpaSettings: GPASettings;
   smallScreenMenuVis: string;
   setChangeGPAVis: Dispatch<SetStateAction<boolean>>;
@@ -138,7 +142,7 @@ export default function SideMenu(props: SideMenuProps) {
     setUnweightedGPA(unweightedSum / numGrades);
     setWeightedGPA(weightedSum / numGrades);
     setDifficulty(cumStageDifficultySum / numFilledStages);
-  }, [props.gpaSettings, props.stages, props.strengths]);
+  }, [props.gpaSettings, props.stages, props.strengths, props.groups]);
 
   return (
     <>
@@ -214,6 +218,13 @@ export default function SideMenu(props: SideMenuProps) {
           >
             <FontAwesomeIcon icon={faWrench} className="mr-2" />
             <span>Change GPA calculation</span>
+          </button>
+          <button
+            className="block w-full text-left text-gray-600 dark:text-gray-400/80 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 transition"
+            /* onClick={} */
+          >
+            <FontAwesomeIcon icon={faFileImport} className="mr-2" />
+            <span>Import data from old Plannter</span>
           </button>
         </div>
       </div>

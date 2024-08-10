@@ -16,7 +16,7 @@ export default function CourseElem({
   onTrash: () => void;
 }) {
   return (
-    <li className="item">
+    <li className="item pr-16">
       <div
         className={`attr ${
           course.scores?.firstSemester.letterGrade == "none" ? "hidden" : ""

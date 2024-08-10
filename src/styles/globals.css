@@ -4,7 +4,7 @@
 
 @layer components {
   .item {
-    @apply relative hover:bg-gray-300 dark:hover:bg-gray-700 odd:bg-gray-200 dark:odd:bg-gray-800 w-full text-left border-gray-300 dark:border-gray-700 border-t-0 first:border-t-2 border-b-0 last:border-b-2 border-4 border-y-0 first:rounded-t-md last:rounded-b-md break-words transition-all px-3.5 md:px-4 py-3 pr-14 md:pr-16 last:mb-3;
+    @apply relative hover:bg-gray-300 dark:hover:bg-gray-700 odd:bg-gray-200 dark:odd:bg-gray-800 w-full text-left border-gray-300 dark:border-gray-700 border-t-0 first:border-t-2 border-b-0 last:border-b-2 border-4 border-y-0 first:rounded-t-md last:rounded-b-md break-words transition-all px-3.5 md:px-4 py-3 last:mb-3;
   }
 
   .attr {

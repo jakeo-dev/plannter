@@ -98,3 +98,40 @@ export interface EditActivityModalProps {
   activity: Activity | null;
   saveActivity: (activity: Activity) => void;
 }
+
+// test types
+
+export interface Groups {
+  "All": Group;
+}
+
+export interface Group {
+  level: number | null;
+  name: "All";
+  tests?: { [key: string]: Test };
+}
+
+export interface Test {
+  uuid: string,
+  name: string;
+  type: string;
+  subType: string;
+  month: string;
+  year: number;
+  score: number;
+  readScore: number;
+  mathScore: number;
+}
+
+export interface AddTestModalProps {
+  addTestVisible: boolean;
+  setAddTestVisible: Dispatch<SetStateAction<boolean>>;
+  addTest: (test: Test) => void;
+}
+
+export interface EditTestModalProps {
+  editTestVisible: boolean;
+  setEditTestVisible: Dispatch<SetStateAction<boolean>>;
+  test: Test | null;
+  saveTest: (test: Test) => void;
+}

@@ -258,7 +258,7 @@ export default function EditCourseModal({
             if (nameInput == "") {
               alert("Enter the name of this course");
             } else {
-              const newCourse: Course = {
+              const updatedCourse: Course = {
                 uuid: course.uuid,
                 name: nameInput,
                 advancementLevel: Number(advLevelInput),
@@ -276,7 +276,7 @@ export default function EditCourseModal({
                 },
               };
 
-              saveCourse(newCourse);
+              saveCourse(updatedCourse);
               setEditCourseVisible(false);
             }
             e.preventDefault();

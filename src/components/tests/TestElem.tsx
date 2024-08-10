@@ -1,52 +1,48 @@
 import ItemOptions from "@/components/ItemOptions";
+import { Test } from "@/types";
 
-type CourseProps = {
-  id: number;
-  type: string;
-  subType: string;
-  month: string;
-  year: number;
-  score: number;
-  readScore: number;
-  mathScore: number;
+export default function TestElem({
+  test,
+  onEdit,
+  onTrash,
+}: {
+  test: Test;
   onEdit: () => void;
   onTrash: () => void;
-};
-
-export default function Course(props: CourseProps) {
+}) {
   return (
     <li className="item">
       <div
         className={`attr ${
-          props.score != -1 ? "" : "hidden"
+          test.score != -1 ? "" : "hidden"
         } bg-gray-500 text-gray-100 rounded-md px-2 mr-2 mt-0`}
       >
-        {props.score}
+        {test.score}
       </div>
       <span>
-        {props.type != "Other" ? props.type : ""}
+        {test.type != "Other" ? test.type : ""}
         {/* if type isn't other, show the type */}
-        {props.type != "Other" && props.subType != "" ? " " : ""}
+        {test.type != "Other" && test.subType != "" ? " " : ""}
         {/* if type isn't other and a sub type exists, put a space between them */}
-        {props.subType != "" ? props.subType : ""} ({props.month} {props.year})
+        {test.subType != "" ? test.subType : ""} ({test.month} {test.year})
         {/* if a sub type exists, show the sub type; also show the month and year */}
       </span>
       <div
         className={`${
-          props.readScore != -1 ? "block" : "hidden"
+          test.readScore != -1 ? "block" : "hidden"
         } text-gray-600 dark:text-gray-400 text-sm p-0 m-0 mt-1`}
       >
-        Reading: {props.readScore}
+        Reading: {test.readScore}
       </div>
       <div
         className={`${
-          props.mathScore != -1 ? "block" : "hidden"
+          test.mathScore != -1 ? "block" : "hidden"
         } text-gray-600 dark:text-gray-400 text-sm p-0 m-0 mt-1`}
       >
-        Math: {props.mathScore}
+        Math: {test.mathScore}
       </div>
 
-      <ItemOptions onEdit={props.onEdit} onTrash={props.onTrash} />
+      <ItemOptions onEdit={onEdit} onTrash={onTrash} />
     </li>
   );
 }

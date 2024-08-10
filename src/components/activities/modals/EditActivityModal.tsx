@@ -107,14 +107,14 @@ export default function EditActivityModal({
             if (nameInput == "") {
               alert("Enter the name of this course");
             } else {
-              const newActivity: Activity = {
+              const updatedActivity: Activity = {
                 uuid: activity.uuid,
                 name: nameInput,
                 description: descriptionInput,
                 category: categoryInput,
               };
 
-              saveActivity(newActivity);
+              saveActivity(updatedActivity);
               setEditActivityVisible(false);
             }
             e.preventDefault();
