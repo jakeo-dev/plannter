@@ -12,6 +12,7 @@ export default function EditCourseModal({
   setEditCourseVisible,
   saveCourse,
   course,
+  currentStageName,
 }: EditCourseModalProps) {
   const [nameInput, setNameInput] = useState(course?.name || "");
   const [grade1Input, setGrade1Input] = useState(
@@ -283,7 +284,7 @@ export default function EditCourseModal({
           }}
         >
           <FontAwesomeIcon icon={faFloppyDisk} className="mr-1.5 md:mr-2" />
-          Save course
+          Save {currentStageName.toLocaleLowerCase()} course
         </button>
 
         <button

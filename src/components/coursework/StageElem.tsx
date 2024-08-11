@@ -38,6 +38,7 @@ export default function StageElem({
   setActiveStage,
   setActiveCourse,
   setStage,
+  setCurrentStageName,
   setAddCourseVisible,
   setEditCourseVisible,
 }: {
@@ -46,6 +47,7 @@ export default function StageElem({
   setActiveStage: Dispatch<SetStateAction<Stage | null>>;
   setActiveCourse: Dispatch<SetStateAction<Course | null>>;
   setStage: (stage: Stage) => void;
+  setCurrentStageName: Dispatch<SetStateAction<string>>;
   setAddCourseVisible: Dispatch<SetStateAction<boolean>>;
   setEditCourseVisible: Dispatch<SetStateAction<boolean>>;
 }) {
@@ -152,6 +154,7 @@ export default function StageElem({
         onClick={() => {
           setActiveStage(stage);
           setAddCourseVisible(true);
+          setCurrentStageName(stage.name || "");
         }}
       >
         <FontAwesomeIcon icon={faPlus} className="mr-1" />

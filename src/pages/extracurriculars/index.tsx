@@ -17,6 +17,8 @@ export default function Extracurriculars({
   const [activeStrength, setActiveStrength] = useState<Strength | null>(null);
   const [activeActivity, setActiveActivity] = useState<Activity | null>(null);
 
+  const [currentStrengthName, setCurrentStrengthName] = useState("");
+
   const [addActivityVisible, setAddActivityVisible] = useState(false);
   const [editActivityVisible, setEditActivityVisible] = useState(false);
 
@@ -29,6 +31,7 @@ export default function Extracurriculars({
       <AddActivityModal
         addActivityVisible={addActivityVisible}
         setAddActivityVisible={setAddActivityVisible}
+        currentStrengthName={currentStrengthName}
         addActivity={(newActivity: Activity) => {
           if (!activeStrength) return;
 
@@ -50,6 +53,7 @@ export default function Extracurriculars({
       <EditActivityModal
         editActivityVisible={editActivityVisible}
         setEditActivityVisible={setEditActivityVisible}
+        currentStrengthName={currentStrengthName}
         activity={activeActivity}
         saveActivity={(updatedActivity: Activity) => {
           if (!activeStrength) return;
@@ -76,6 +80,7 @@ export default function Extracurriculars({
             setActiveActivity={setActiveActivity}
             setAddActivityVisible={setAddActivityVisible}
             setEditActivityVisible={setEditActivityVisible}
+            setCurrentStrengthName={setCurrentStrengthName}
             setStrength={(strength: Strength) => {
               const newStrengths = JSON.parse(
                 JSON.stringify(strengths)

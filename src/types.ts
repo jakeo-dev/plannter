@@ -48,12 +48,14 @@ export interface GPASettings {
 export interface AddCourseModalProps {
   addCourseVisible: boolean;
   setAddCourseVisible: Dispatch<SetStateAction<boolean>>;
+  currentStageName: string;
   addCourse: (course: Course) => void;
 }
 
 export interface EditCourseModalProps {
   editCourseVisible: boolean;
   setEditCourseVisible: Dispatch<SetStateAction<boolean>>;
+  currentStageName: string;
   course: Course | null;
   saveCourse: (course: Course) => void;
 }
@@ -89,12 +91,14 @@ export interface Activity {
 export interface AddActivityModalProps {
   addActivityVisible: boolean;
   setAddActivityVisible: Dispatch<SetStateAction<boolean>>;
+  currentStrengthName: string;
   addActivity: (activity: Activity) => void;
 }
 
 export interface EditActivityModalProps {
   editActivityVisible: boolean;
   setEditActivityVisible: Dispatch<SetStateAction<boolean>>;
+  currentStrengthName: string;
   activity: Activity | null;
   saveActivity: (activity: Activity) => void;
 }

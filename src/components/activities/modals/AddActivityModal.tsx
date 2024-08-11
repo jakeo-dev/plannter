@@ -6,6 +6,7 @@ import { useState } from "react";
 export default function AddActivityModal({
   addActivityVisible,
   setAddActivityVisible,
+  currentStrengthName,
   addActivity,
 }: AddActivityModalProps) {
   const [nameInput, setNameInput] = useState("");
@@ -116,7 +117,7 @@ export default function AddActivityModal({
           }}
         >
           <FontAwesomeIcon icon={faPlus} className="mr-1 md:mr-1.5" />
-          Add activity
+          Add {currentStrengthName.toLocaleLowerCase()} activity
         </button>
 
         <button

@@ -8,6 +8,7 @@ export default function EditActivityModal({
   setEditActivityVisible,
   saveActivity,
   activity,
+  currentStrengthName,
 }: EditActivityModalProps) {
   const [nameInput, setNameInput] = useState(activity?.name || "");
   const [descriptionInput, setDescriptionInput] = useState(
@@ -121,7 +122,7 @@ export default function EditActivityModal({
           }}
         >
           <FontAwesomeIcon icon={faFloppyDisk} className="mr-1.5 md:mr-2" />
-          Save activity
+          Save {currentStrengthName.toLocaleLowerCase()} activity
         </button>
 
         <button

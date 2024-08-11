@@ -92,6 +92,26 @@ export function getOverallDifficultyText(difficulty: number) {
 }
 
 /**
+ * Converts an **OVERALL** difficulty rating to a corresponding color class.
+ *
+ * @param difficulty - The difficulty level (0-6).
+ * @returns The CSS classes corresponding to the difficulty level.
+ */
+export function getDifficultyColor(difficulty: number) {
+  if (difficulty < 2) {
+    return "bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 transition";
+  } else if (difficulty < 3) {
+    return "bg-yellow-300 hover:bg-yellow-400 dark:bg-yellow-700/80 dark:hover:bg-yellow-600/80 text-gray-700 dark:text-gray-300 transition";
+  } else if (difficulty < 4) {
+    return "bg-orange-300 hover:bg-orange-400 dark:bg-orange-700/80 dark:hover:bg-orange-600/80 text-gray-700 dark:text-gray-300 transition";
+  } else if (difficulty < 5) {
+    return "bg-red-300 hover:bg-red-400 dark:bg-red-700/80 dark:hover:bg-red-600/80 text-gray-700 dark:text-gray-300 transition";
+  } else {
+    return "bg-pink-300 hover:bg-pink-400 dark:bg-pink-700/80 dark:hover:bg-pink-600/80 text-gray-700 dark:text-gray-300 transition";
+  }
+}
+
+/**
  * Converts an **INDIVIDUAL** difficulty rating to a descriptive text.
  *
  * @param difficulty - The difficulty level (e.g., "0.25", "1.5").
@@ -160,28 +180,6 @@ export function calculateWeights(
   };
 
   return (gpaSettings[weights[advancementLevel.toFixed(2)]] || 0) as number;
-}
-
-/**
- * Converts an **OVERALL** difficulty rating to a corresponding color class.
- *
- * @param difficulty - The difficulty level (0-6).
- * @returns The CSS classes corresponding to the difficulty level.
- */
-export function getDifficultyColor(difficulty: number) {
-  if (difficulty < 2) {
-    return "bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 transition";
-  } else if (difficulty < 3) {
-    return "bg-yellow-300 hover:bg-yellow-400 dark:bg-yellow-700/80 dark:hover:bg-yellow-600/80 text-gray-700 dark:text-gray-300 transition";
-  } else if (difficulty < 4) {
-    return "bg-orange-300 hover:bg-orange-400 dark:bg-orange-700/80 dark:hover:bg-orange-600/80 text-gray-700 dark:text-gray-300 transition";
-  } else if (difficulty < 5) {
-    return "bg-red-300 hover:bg-red-400 dark:bg-red-700/80 dark:hover:bg-red-600/80 text-gray-700 dark:text-gray-300 transition";
-  } else if (difficulty < 6) {
-    return "bg-pink-300 hover:bg-pink-400 dark:bg-pink-700/80 dark:hover:bg-pink-600/80 text-gray-700 dark:text-gray-300 transition";
-  } else {
-    return "";
-  }
 }
 
 /**

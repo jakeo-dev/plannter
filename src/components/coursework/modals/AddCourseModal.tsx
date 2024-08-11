@@ -10,6 +10,7 @@ import { useState } from "react";
 export default function AddCourseModal({
   addCourseVisible,
   setAddCourseVisible,
+  currentStageName,
   addCourse,
 }: AddCourseModalProps) {
   const [nameInput, setNameInput] = useState("");
@@ -267,7 +268,7 @@ export default function AddCourseModal({
           }}
         >
           <FontAwesomeIcon icon={faPlus} className="mr-1 md:mr-1.5" />
-          Add course
+          Add {currentStageName.toLocaleLowerCase()} course
         </button>
 
         <button

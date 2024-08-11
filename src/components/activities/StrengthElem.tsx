@@ -10,6 +10,7 @@ export default function StrengthElem({
   setActiveStrength,
   setActiveActivity,
   setStrength,
+  setCurrentStrengthName,
   setAddActivityVisible,
   setEditActivityVisible,
 }: {
@@ -17,6 +18,7 @@ export default function StrengthElem({
   setActiveStrength: Dispatch<SetStateAction<Strength | null>>;
   setActiveActivity: Dispatch<SetStateAction<Activity | null>>;
   setStrength: (strength: Strength) => void;
+  setCurrentStrengthName: Dispatch<SetStateAction<string>>;
   setAddActivityVisible: Dispatch<SetStateAction<boolean>>;
   setEditActivityVisible: Dispatch<SetStateAction<boolean>>;
 }) {
@@ -67,6 +69,7 @@ export default function StrengthElem({
         onClick={() => {
           setActiveStrength(strength);
           setAddActivityVisible(true);
+          setCurrentStrengthName(strength.name || "");
         }}
       >
         <FontAwesomeIcon icon={faPlus} className="mr-1" />

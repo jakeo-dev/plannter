@@ -19,6 +19,8 @@ export default function Coursework({
   const [activeStage, setActiveStage] = useState<Stage | null>(null);
   const [activeCourse, setActiveCourse] = useState<Course | null>(null);
 
+  const [currentStageName, setCurrentStageName] = useState("");
+
   const [addCourseVisible, setAddCourseVisible] = useState(false);
   const [editCourseVisible, setEditCourseVisible] = useState(false);
 
@@ -31,6 +33,7 @@ export default function Coursework({
       <AddCourseModal
         addCourseVisible={addCourseVisible}
         setAddCourseVisible={setAddCourseVisible}
+        currentStageName={currentStageName}
         addCourse={(newCourse: Course) => {
           if (!activeStage) return;
 
@@ -50,6 +53,7 @@ export default function Coursework({
       <EditCourseModal
         editCourseVisible={editCourseVisible}
         setEditCourseVisible={setEditCourseVisible}
+        currentStageName={currentStageName}
         course={activeCourse}
         saveCourse={(updatedCourse: Course) => {
           if (!activeStage) return;
@@ -75,6 +79,7 @@ export default function Coursework({
             setActiveCourse={setActiveCourse}
             setAddCourseVisible={setAddCourseVisible}
             setEditCourseVisible={setEditCourseVisible}
+            setCurrentStageName={setCurrentStageName}
             setStage={(stage: Stage) => {
               const newStages = JSON.parse(JSON.stringify(stages)) as Stages; // make a deep copy
 
