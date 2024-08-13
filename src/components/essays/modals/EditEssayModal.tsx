@@ -1,4 +1,5 @@
 import { EditEssayModalProps, Essay } from "@/types";
+import { wordCount } from "@/utility";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
@@ -73,7 +74,13 @@ export default function EditEssayModal({
           required
         />
 
-        <label className="modalSubtext">Essay</label>
+        <label className="modalSubtext">
+          Essay{" "}
+          <span className="float-right">
+            {wordCount(paperInput)} word
+            {wordCount(paperInput) != 1 ? "s" : ""}
+          </span>
+        </label>
         <textarea
           rows={16}
           className="input text-sm md:text-base mb-0"
