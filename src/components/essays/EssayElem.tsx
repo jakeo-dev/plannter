@@ -24,15 +24,23 @@ export default function EssayElem({
     <li className="item border-t-2 rounded-t-md border-b-2 rounded-b-md mb-3">
       <span className="block pr-12 md:pr-11">
         <FontAwesomeIcon icon={faPaperclip} className="mr-2" />
-        {expanded ? essay.name : `${essay.name.substring(0, 150).trim()}...`}
+        {expanded ? essay.name : `${essay.name.substring(0, 150).trim()}`}
+        {essay.name.length > 150 && !expanded ? "..." : ""}
       </span>
-      <span className="block whitespace-pre-wrap text-gray-600 dark:text-gray-400 text-sm md:text-sm break-words mt-1">
-        {expanded ? essay.paper : `${essay.paper.substring(0, 150).trim()}...`}
+      <span
+        className={`${
+          essay.name.length > 150 || essay.paper.length > 150 ? "" : "pr-16"
+        } block whitespace-pre-wrap text-gray-600 dark:text-gray-400 text-sm md:text-sm break-words mt-1`}
+      >
+        {expanded ? essay.paper : `${essay.paper.substring(0, 150).trim()}`}
+        {essay.paper.length > 150 && !expanded ? "..." : ""}
       </span>
 
       <button
         onClick={() => (expanded ? setExpanded(false) : setExpanded(true))}
-        className="hover:bg-gray-400 active:bg-gray-500 dark:hover:bg-gray-600 dark:active:bg-gray-500 rounded-full text-sm text-left text-sky-800 hover:text-gray-100 dark:text-sky-300/80 transition px-2.5 py-1 mt-3"
+        className={`${
+          essay.name.length > 150 || essay.paper.length > 150 ? "" : "hidden"
+        } hover:bg-gray-400 active:bg-gray-500 dark:hover:bg-gray-600 dark:active:bg-gray-500 rounded-full text-sm text-left text-sky-800 hover:text-gray-100 dark:text-sky-300/80 transition px-2.5 py-1 mt-3`}
       >
         <FontAwesomeIcon
           icon={expanded ? faChevronUp : faChevronDown}
@@ -41,7 +49,13 @@ export default function EssayElem({
         {expanded ? "Collapse essay" : "Expand essay"}
       </button>
 
-      <span className="absolute bottom-4 right-4 text-sm text-gray-600 mt-3">
+      <span
+        className={`absolute ${
+          essay.name.length > 150 || essay.paper.length > 150
+            ? "bottom-4"
+            : "bottom-3"
+        } right-4 text-sm text-gray-600 mt-3`}
+      >
         {wordCount(essay.paper)} word{wordCount(essay.paper) != 1 ? "s" : ""}
       </span>
 
