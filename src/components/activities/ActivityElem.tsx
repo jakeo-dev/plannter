@@ -23,7 +23,11 @@ export default function ActivityElem({
         />
         {activity.name}
       </span>
-      <span className="block text-gray-600 dark:text-gray-400 text-sm md:text-sm break-words mt-1">
+      <span
+        className={`block text-gray-600 dark:text-gray-400 text-sm md:text-sm break-words ${
+          activity.description != "" ? "mt-1" : ""
+        }`}
+      >
         {activity.description}
       </span>
 

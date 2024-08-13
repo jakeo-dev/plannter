@@ -146,7 +146,6 @@ export default function AddTestModal({
           onInput={(e) => setScoreInput(e.currentTarget.value)}
           autoComplete="off"
           max={9999}
-          required
         />
 
         <div
@@ -163,7 +162,6 @@ export default function AddTestModal({
               onInput={(e) => setReadScoreInput(e.currentTarget.value)}
               autoComplete="off"
               min={0}
-              required
             />
           </div>
 
@@ -176,7 +174,6 @@ export default function AddTestModal({
               onInput={(e) => setMathScoreInput(e.currentTarget.value)}
               autoComplete="off"
               min={0}
-              required
             />
           </div>
         </div>

@@ -139,3 +139,28 @@ export interface EditTestModalProps {
   test: Test | null;
   saveTest: (test: Test) => void;
 }
+
+// essay types
+
+export interface Folders {
+  "All": Folder;
+}
+
+export interface Folder {
+  level: number | null;
+  name: "All";
+  essays?: { [key: string]: Essay };
+}
+
+export interface Essay {
+  uuid: string,
+  name: string;
+  paper: string;
+}
+
+export interface EditEssayModalProps {
+  editEssayVisible: boolean;
+  setEditEssayVisible: Dispatch<SetStateAction<boolean>>;
+  essay: Essay | null;
+  saveEssay: (essay: Essay) => void;
+}

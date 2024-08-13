@@ -17,6 +17,7 @@ import {
   Strengths,
   Test,
   Groups,
+  Folders,
 } from "@/types";
 import {
   calculateWeights,
@@ -29,6 +30,7 @@ type SideMenuProps = {
   stages: Stages;
   strengths: Strengths;
   groups: Groups;
+  folders: Folders;
   gpaSettings: GPASettings;
   smallScreenMenuVis: string;
   setChangeGPAVis: Dispatch<SetStateAction<boolean>>;
@@ -142,7 +144,7 @@ export default function SideMenu(props: SideMenuProps) {
     setUnweightedGPA(unweightedSum / numGrades);
     setWeightedGPA(weightedSum / numGrades);
     setDifficulty(cumStageDifficultySum / numFilledStages);
-  }, [props.gpaSettings, props.stages, props.strengths, props.groups]);
+  }, [props.gpaSettings, props.stages, props.strengths, props.groups, props.folders]);
 
   return (
     <>
