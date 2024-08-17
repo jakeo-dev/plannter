@@ -14,6 +14,9 @@ export default function EditEssayModal({
   const [paperInput, setPaperInput] = useState(
     essay?.paper || "Start writing your essay here"
   );
+  const [statusInput, setStatusInput] = useState(
+    essay?.status || "Not started"
+  );
   const [currentDate, setCurrentDate] = useState(new Date());
   const [lastEditedSpan, setLastEditedSpan] = useState(`Edited ${monthName(
     essay?.lastEdited?.month || -1
@@ -23,6 +26,7 @@ export default function EditEssayModal({
   useEffect(() => {
     setNameInput(essay?.name || "Enter a prompt");
     setPaperInput(essay?.paper || "Start writing your essay here");
+    setStatusInput(essay?.status || "Not started");
     setCurrentDate(new Date());
     setLastEditedSpan(`Edited ${monthName(
       essay?.lastEdited?.month || -1
@@ -30,8 +34,9 @@ export default function EditEssayModal({
   ${essay?.lastEdited?.day}, ${essay?.lastEdited?.year}`);
   }, [essay]);
 
-  // IMPORTANT BUG THAT IS NOT FIXED YET:
-  // MOST RECENT CHANGE IS NOT SAVED, ONLY THE 2ND MOST RECENT AND BEFORE
+  useEffect(() => {
+    updateSavedEssay();
+  }, [nameInput, paperInput, statusInput]);
 
   function updateSavedEssay() {
     setCurrentDate(new Date());
@@ -43,6 +48,7 @@ export default function EditEssayModal({
         uuid: essay?.uuid || crypto.randomUUID(),
         name: nameInput,
         paper: paperInput,
+        status: statusInput,
         lastEdited: {
           year: currentDate.getFullYear(),
           month: currentDate.getMonth(),
@@ -52,6 +58,7 @@ export default function EditEssayModal({
           second: currentDate.getSeconds(),
         },
       };
+      console.log(updatedEssay);
 
       setLastEditedSpan(`Edited ${monthName(
         currentDate.getMonth() || -1
@@ -80,45 +87,63 @@ export default function EditEssayModal({
           <FontAwesomeIcon icon={faXmark} />
         </button>
 
-        <h1 className="text-xl font-medium mb-6">Write essay</h1>
+        <h1 className="text-xl font-medium mb-6 hidden md:block">Write essay</h1>
+
+        <div className="md:flex gap-2">
+          <div className="flex-1">
+            <label className="modalSubtext">
+              Prompt<span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              className="input"
+              value={nameInput}
+              onInput={(e) => setNameInput(e.currentTarget.value)}
+              autoComplete="off"
+              maxLength={400}
+              required
+            />
+          </div>
+          <div>
+            <label className="modalSubtext">
+              Status<span className="text-red-500">*</span>
+            </label>
+            <select
+              onChange={(e) => setStatusInput(e.currentTarget.value)}
+              value={statusInput}
+              className="input darkArrowsSelect dark:lightArrowsSelect md:w-min mb-4 md:mb-0"
+              required
+            >
+              <optgroup label="Select a status">
+                <option value="Not started">Not started</option>
+                <option value="Pre-writing">Pre-writing</option>
+                <option value="Outlining">Outlining</option>
+                <option value="Drafting">Drafting</option>
+                <option value="Revising">Revising</option>
+                <option value="Editing">Editing</option>
+                <option value="Proofreading">Proofreading</option>
+                <option value="Finished">Finished</option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
 
         <label className="modalSubtext">
-          Prompt<span className="text-red-500">*</span>
-        </label>
-        <input
-          type="text"
-          className="input"
-          value={nameInput}
-          onInput={(e) => {
-            setNameInput(e.currentTarget.value);
-            updateSavedEssay();
-            e.preventDefault();
-          }}
-          autoComplete="off"
-          maxLength={400}
-          required
-        />
-
-        <label className="modalSubtext">
-          Essay{" "}
+          Essay
           <span className="float-right">
             {wordCount(paperInput)} word
             {wordCount(paperInput) != 1 ? "s" : ""}
           </span>
         </label>
         <textarea
-          rows={16}
+          rows={18}
           className="input text-sm md:text-base mb-0"
           value={paperInput}
-          onInput={(e) => {
-            setPaperInput(e.currentTarget.value);
-            updateSavedEssay();
-            e.preventDefault();
-          }}
+          onInput={(e) => setPaperInput(e.currentTarget.value)}
           autoComplete="off"
           maxLength={1000000}
         />
-        <div className="flex gap-2 modalSubtext mb-4 md:mb-6">
+        <div className="flex gap-2 modalSubtext mb-0 md:mb-6">
           <span>{lastEditedSpan}</span>
           <span>•</span>
           <span>
@@ -128,7 +153,7 @@ export default function EditEssayModal({
         </div>
 
         <button
-          className="buttonSecondary ml-0"
+          className="buttonSecondary ml-0 hidden md:inline"
           onClick={() => {
             setEditEssayVisible(false);
           }}

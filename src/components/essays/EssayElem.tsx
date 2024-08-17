@@ -56,6 +56,8 @@ export default function EssayElem({
             : "bottom-3"
         }  flex text-xs text-gray-600 dark:text-gray-400 gap-2 mt-3`}
       >
+        <span>{essay.status}</span>
+        <span>•</span>
         <span>
           {wordCount(essay.paper)} word{wordCount(essay.paper) != 1 ? "s" : ""}
         </span>

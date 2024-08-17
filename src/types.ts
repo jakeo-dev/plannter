@@ -156,6 +156,7 @@ export interface Essay {
   uuid: string,
   name: string;
   paper: string;
+  status: string;
   lastEdited?: {
     year: number;
     month: number;

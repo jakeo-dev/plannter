@@ -62,6 +62,7 @@ export default function FolderElem({
             uuid: crypto.randomUUID(),
             name: "Enter a prompt",
             paper: "Start writing your essay here",
+            status: "Not started",
             lastEdited: {
               year: currentDate.getFullYear(),
               month: currentDate.getMonth(),
