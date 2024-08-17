@@ -15,11 +15,19 @@ export default function EditEssayModal({
     essay?.paper || "Start writing your essay here"
   );
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [lastEditedSpan, setLastEditedSpan] = useState(`Edited ${monthName(
+    essay?.lastEdited?.month || -1
+  )?.substring(0, 3)}
+  ${essay?.lastEdited?.day}, ${essay?.lastEdited?.year}`);
 
   useEffect(() => {
     setNameInput(essay?.name || "Enter a prompt");
     setPaperInput(essay?.paper || "Start writing your essay here");
     setCurrentDate(new Date());
+    setLastEditedSpan(`Edited ${monthName(
+      essay?.lastEdited?.month || -1
+    )?.substring(0, 3)}
+  ${essay?.lastEdited?.day}, ${essay?.lastEdited?.year}`);
   }, [essay]);
 
   // IMPORTANT BUG THAT IS NOT FIXED YET:
@@ -44,6 +52,11 @@ export default function EditEssayModal({
           second: currentDate.getSeconds(),
         },
       };
+
+      setLastEditedSpan(`Edited ${monthName(
+        currentDate.getMonth() || -1
+      )?.substring(0, 3)}
+    ${currentDate.getDate()}, ${currentDate.getFullYear()}`);
 
       saveEssay(updatedEssay);
     }
@@ -106,10 +119,7 @@ export default function EditEssayModal({
           maxLength={1000000}
         />
         <div className="flex gap-2 modalSubtext mb-4 md:mb-6">
-          <span>
-            Edited {monthName(currentDate.getMonth() || -1)?.substring(0, 3)}{" "}
-            {currentDate.getDate()}, {currentDate.getFullYear()}
-          </span>
+          <span>{lastEditedSpan}</span>
           <span>•</span>
           <span>
             Automatically saved

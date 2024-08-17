@@ -60,7 +60,7 @@ export default function EssayElem({
           {wordCount(essay.paper)} word{wordCount(essay.paper) != 1 ? "s" : ""}
         </span>
         <span>•</span>
-        <span className={essay.lastEdited?.day ? "" : "hidden"}>
+        <span>
           {`Edited ${monthName(essay.lastEdited?.month || -1)?.substring(0, 3)} 
         ${essay.lastEdited?.day}, 
         ${essay.lastEdited?.year}`}
