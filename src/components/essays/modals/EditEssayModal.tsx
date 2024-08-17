@@ -1,5 +1,5 @@
 import { EditEssayModalProps, Essay } from "@/types";
-import { wordCount } from "@/utility";
+import { monthName, wordCount } from "@/utility";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
@@ -14,16 +14,20 @@ export default function EditEssayModal({
   const [paperInput, setPaperInput] = useState(
     essay?.paper || "Start writing your essay here"
   );
+  const [currentDate, setCurrentDate] = useState(new Date());
 
   useEffect(() => {
     setNameInput(essay?.name || "Enter a prompt");
     setPaperInput(essay?.paper || "Start writing your essay here");
+    setCurrentDate(new Date());
   }, [essay]);
 
   // IMPORTANT BUG THAT IS NOT FIXED YET:
   // MOST RECENT CHANGE IS NOT SAVED, ONLY THE 2ND MOST RECENT AND BEFORE
 
   function updateSavedEssay() {
+    setCurrentDate(new Date());
+
     if (nameInput == "") {
       alert("Enter the prompt for this essay");
     } else {
@@ -31,6 +35,14 @@ export default function EditEssayModal({
         uuid: essay?.uuid || crypto.randomUUID(),
         name: nameInput,
         paper: paperInput,
+        lastEdited: {
+          year: currentDate.getFullYear(),
+          month: currentDate.getMonth(),
+          day: currentDate.getDate(),
+          hour: currentDate.getHours(),
+          minute: currentDate.getMinutes(),
+          second: currentDate.getSeconds(),
+        },
       };
 
       saveEssay(updatedEssay);
@@ -93,8 +105,13 @@ export default function EditEssayModal({
           autoComplete="off"
           maxLength={1000000}
         />
-        <div className="mb-4 md:mb-6">
-          <span className="modalSubtext">
+        <div className="flex gap-2 modalSubtext mb-4 md:mb-6">
+          <span>
+            Edited {monthName(currentDate.getMonth() || -1)?.substring(0, 3)}{" "}
+            {currentDate.getDate()}, {currentDate.getFullYear()}
+          </span>
+          <span>•</span>
+          <span>
             Automatically saved
             <FontAwesomeIcon icon={faCheck} className="ml-1.5" />
           </span>

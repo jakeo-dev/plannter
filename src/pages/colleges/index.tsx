@@ -11,7 +11,7 @@ export default function Colleges() {
 
       <div
         id="collegesDiv"
-        className="w-full overflow-y-scroll px-4 md:px-8 lg:px-16 xl:px-40 md:pt-28 md:pb-14 mt-8 md:mt-0"
+        className="w-full overflow-y-scroll px-4 md:px-8 lg:px-16 xl:px-32 md:pt-28 md:pb-14 mt-8 md:mt-0"
       >
         <div className="mb-12">
           <h2 className="text-lg font-Calistoga font-medium px-4 mb-3">

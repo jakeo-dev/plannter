@@ -56,10 +56,20 @@ export default function FolderElem({
         onClick={() => {
           setActiveFolder(folder);
 
+          let currentDate = new Date();
+
           const newEssay: Essay = {
             uuid: crypto.randomUUID(),
             name: "Enter a prompt",
             paper: "Start writing your essay here",
+            lastEdited: {
+              year: currentDate.getFullYear(),
+              month: currentDate.getMonth(),
+              day: currentDate.getDate(),
+              hour: currentDate.getHours(),
+              minute: currentDate.getMinutes(),
+              second: currentDate.getSeconds(),
+            },
           };
 
           addEssay(newEssay, folder);

@@ -12,21 +12,23 @@ export default function TestElem({
 }) {
   return (
     <li className="item">
-      <div
-        className={`attr ${
-          test.score != -1 ? "" : "hidden"
-        } bg-gray-500 text-gray-100 rounded-md px-2 mr-2 mt-0`}
-      >
-        {test.score}
+      <div className="block pr-12">
+        <div
+          className={`attr ${
+            test.score != -1 ? "" : "hidden"
+          } bg-gray-500 text-gray-100 rounded-md px-2 mr-2 mt-0`}
+        >
+          {test.score}
+        </div>
+        <span>
+          {test.type != "Other" ? test.type : ""}
+          {/* if type isn't other, show the type */}
+          {test.type != "Other" && test.subType != "" ? " " : ""}
+          {/* if type isn't other and a sub type exists, put a space between them */}
+          {test.subType != "" ? test.subType : ""} ({test.month} {test.year})
+          {/* if a sub type exists, show the sub type; also show the month and year */}
+        </span>
       </div>
-      <span>
-        {test.type != "Other" ? test.type : ""}
-        {/* if type isn't other, show the type */}
-        {test.type != "Other" && test.subType != "" ? " " : ""}
-        {/* if type isn't other and a sub type exists, put a space between them */}
-        {test.subType != "" ? test.subType : ""} ({test.month} {test.year})
-        {/* if a sub type exists, show the sub type; also show the month and year */}
-      </span>
       <div
         className={`${
           test.readScore != -1 ? "block" : "hidden"

@@ -1,6 +1,6 @@
 import ItemOptions from "@/components/ItemOptions";
 import { Essay } from "@/types";
-import { wordCount } from "@/utility";
+import { wordCount, monthName } from "@/utility";
 import {
   faChevronDown,
   faChevronUp,
@@ -29,35 +29,43 @@ export default function EssayElem({
       </span>
       <span
         className={`${
-          essay.name.length > 150 || essay.paper.length > 150 ? "" : "pr-16"
+          essay.name.length > 150 || essay.paper.length > 300 ? "" : "pr-16"
         } block whitespace-pre-wrap text-gray-600 dark:text-gray-400 text-sm md:text-sm break-words mt-1`}
       >
-        {expanded ? essay.paper : `${essay.paper.substring(0, 150).trim()}`}
-        {essay.paper.length > 150 && !expanded ? "..." : ""}
+        {expanded ? essay.paper : `${essay.paper.substring(0, 300).trim()}`}
+        {essay.paper.length > 300 && !expanded ? "..." : ""}
       </span>
 
-      <button
+      {/* <button
         onClick={() => (expanded ? setExpanded(false) : setExpanded(true))}
         className={`${
-          essay.name.length > 150 || essay.paper.length > 150 ? "" : "hidden"
-        } hover:bg-gray-400 active:bg-gray-500 dark:hover:bg-gray-600 dark:active:bg-gray-500 rounded-full text-sm text-left text-sky-800 hover:text-gray-100 dark:text-sky-300/80 transition px-2.5 py-1 mt-3`}
+          essay.name.length > 150 || essay.paper.length > 300 ? "" : "hidden"
+        } hover:bg-gray-400 active:bg-gray-500 dark:hover:bg-gray-600 dark:active:bg-gray-500 rounded-full text-sm text-left text-sky-800 hover:text-gray-100 active:text-gray-100 dark:text-sky-300/80 transition px-2.5 py-1 mt-3`}
       >
         <FontAwesomeIcon
           icon={expanded ? faChevronUp : faChevronDown}
           className="mr-1.5"
         />
         {expanded ? "Collapse essay" : "Expand essay"}
-      </button>
+      </button> */}
 
-      <span
-        className={`absolute ${
-          essay.name.length > 150 || essay.paper.length > 150
+      <div
+        className={` ${
+          essay.name.length > 150 || essay.paper.length > 300
             ? "bottom-4"
             : "bottom-3"
-        } right-4 text-sm text-gray-600 mt-3`}
+        }  flex text-xs text-gray-600 dark:text-gray-400 gap-2 mt-3`}
       >
-        {wordCount(essay.paper)} word{wordCount(essay.paper) != 1 ? "s" : ""}
-      </span>
+        <span>
+          {wordCount(essay.paper)} word{wordCount(essay.paper) != 1 ? "s" : ""}
+        </span>
+        <span>•</span>
+        <span className={essay.lastEdited?.day ? "" : "hidden"}>
+          {`Edited ${monthName(essay.lastEdited?.month || -1)?.substring(0, 3)} 
+        ${essay.lastEdited?.day}, 
+        ${essay.lastEdited?.year}`}
+        </span>
+      </div>
 
       <ItemOptions onEdit={onEdit} onTrash={onTrash} />
     </li>

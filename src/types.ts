@@ -156,6 +156,14 @@ export interface Essay {
   uuid: string,
   name: string;
   paper: string;
+  lastEdited?: {
+    year: number;
+    month: number;
+    day: number;
+    hour: number;
+    minute: number;
+    second: number;
+  };
 }
 
 export interface EditEssayModalProps {

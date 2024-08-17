@@ -71,7 +71,7 @@ export default function Extracurriculars({
         }}
       />
 
-      <div className="w-full overflow-y-scroll px-4 md:px-8 lg:px-16 xl:px-40 md:pt-28 md:pb-20 mt-8 md:mt-0 flex flex-col gap-12">
+      <div className="w-full overflow-y-scroll px-4 md:px-8 lg:px-16 xl:px-32 md:pt-28 md:pb-20 mt-8 md:mt-0 flex flex-col gap-12">
         {(Object.values(strengths) as Strength[]).map((strength) => (
           <StrengthElem
             key={strength.name}
