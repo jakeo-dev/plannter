@@ -49,7 +49,11 @@ export default function CollegeElem({
           daysTilDeadline,
           deadline.getTime(),
           currentDate.getTime()
-        )} block text-gray-600 dark:text-gray-400 text-sm p-0 m-0 mt-1`}
+        )} ${
+          college.status == "Considering" || college.status == "Applying"
+            ? "block"
+            : "hidden"
+        } text-gray-600 dark:text-gray-400 text-sm p-0 m-0 mt-1`}
       >
         {deadlineText(
           daysTilDeadline,
