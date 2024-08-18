@@ -18,6 +18,7 @@ import {
   Test,
   Groups,
   Folders,
+  Ranks,
 } from "@/types";
 import {
   calculateWeights,
@@ -31,6 +32,7 @@ type SideMenuProps = {
   strengths: Strengths;
   groups: Groups;
   folders: Folders;
+  ranks: Ranks;
   gpaSettings: GPASettings;
   smallScreenMenuVis: string;
   setChangeGPAVis: Dispatch<SetStateAction<boolean>>;
@@ -144,7 +146,14 @@ export default function SideMenu(props: SideMenuProps) {
     setUnweightedGPA(unweightedSum / numGrades);
     setWeightedGPA(weightedSum / numGrades);
     setDifficulty(cumStageDifficultySum / numFilledStages);
-  }, [props.gpaSettings, props.stages, props.strengths, props.groups, props.folders]);
+  }, [
+    props.gpaSettings,
+    props.stages,
+    props.strengths,
+    props.groups,
+    props.folders,
+    props.ranks,
+  ]);
 
   return (
     <>
@@ -179,8 +188,10 @@ export default function SideMenu(props: SideMenuProps) {
           {/* <Statistic number={} title="Extracurriculars" />
           <Statistic number={} title="Test Scores" /> */}
           <button
-            className="hidden font-normal text-xs bg-gray-300/70 hover:bg-gray-300 dark:bg-gray-700/60 dark:hover:bg-gray-700 hover:shadow-sm active:shadow-none rounded-md px-2 py-1 mt-2 md:mt-3 transition"
-            /* onClick="openDoesGPANotLookRight()" */
+            className={`${
+              unweightedGPA ? "" : "hidden "
+            } font-normal text-xs bg-gray-300/70 hover:bg-gray-300 dark:bg-gray-700/60 dark:hover:bg-gray-700 hover:shadow-sm active:shadow-none rounded-md px-2 py-1 mt-2 md:mt-3 transition`}
+            onClick={() => props.setChangeGPAVis(true)}
           >
             Does your GPA not look right?
           </button>

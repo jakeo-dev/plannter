@@ -5,7 +5,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { useEffect, useState } from "react";
 
-import { GPASettings, Stages, Strengths, Groups, Folders } from "@/types";
+import { GPASettings, Stages, Strengths, Groups, Folders, Ranks } from "@/types";
 import Header from "@/components/Header";
 import SideMenu from "@/components/SideMenu";
 import ChangeGPAModal from "@/components/ChangeGPAModal";
@@ -46,6 +46,10 @@ export default function App({ Component, pageProps }: AppProps) {
     if (typeof localStorage.getItem("folders") === "string") {
       setFolders(JSON.parse(localStorage.getItem("folders") as string));
     }
+
+    if (typeof localStorage.getItem("ranks") === "string") {
+      setRanks(JSON.parse(localStorage.getItem("ranks") as string));
+    }
   }, []);
 
   const [stages, setStages] = useState<Stages>({
@@ -80,6 +84,15 @@ export default function App({ Component, pageProps }: AppProps) {
       name: "All",
       level: 1,
     },
+  });
+
+  const [ranks, setRanks] = useState<Ranks>({
+    Reach: {
+      name: "Reach",
+      level: 1,
+    },
+    Target: { name: "Target", level: 2 },
+    Safety: { name: "Safety", level: 3 },
   });
 
   const [gpaSettings, setGPASettings] = useState<GPASettings>({
@@ -129,6 +142,7 @@ export default function App({ Component, pageProps }: AppProps) {
           strengths={strengths}
           groups={groups}
           folders={folders}
+          ranks={ranks}
           gpaSettings={gpaSettings}
           setChangeGPAVis={setChangeGPAVis}
         />
@@ -142,6 +156,8 @@ export default function App({ Component, pageProps }: AppProps) {
           setGroups={setGroups}
           folders={folders}
           setFolders={setFolders}
+          ranks={ranks}
+          setRanks={setRanks}
           gpaSettings={gpaSettings}
         />
       </div>

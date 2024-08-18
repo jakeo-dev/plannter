@@ -266,3 +266,50 @@ export function monthName(num: number) {
   else if (num == 11) return "December";
   else return "";
 }
+
+/**
+ * Get class name for deadline text from days until deadline, deadline date, and current date
+ *
+ * @param daysTil - Days until deadline
+ * @param deadlineDate - Deadline date
+ * @param currentDate - Current date
+ * @returns Deadline class name
+ */
+export function deadlineClassName(daysTil: number, deadlineDate: number, currentDate: number) {
+  if (deadlineDate < currentDate) return "hidden"; // deadline passed
+  else if (deadlineDate == currentDate) return "text-red-700"; // deadline today
+  else if (daysTil < 7) return "text-orange-700"; // deadline super soon
+  else if (daysTil < 14) return "text-yellow-700"; // deadline soon
+  else return ""; // deadline far
+}
+
+/**
+ * Get deadline text from days until deadline, deadline date, and current date
+ *
+ * @param daysTil - Days until deadline
+ * @param deadlineDate - Deadline date
+ * @param currentDate - Current date
+ * @returns Deadline text
+ */
+export function deadlineText(daysTil: number, deadlineDate: number, currentDate: number) {
+  if (deadlineDate < currentDate) return "Deadline passed"; // deadline passed
+  else if (deadlineDate == currentDate) return "Deadline today"; // deadline today
+  else if (daysTil < 2) return "Deadline tomorrow"; // deadline tomorrow
+  else return daysTil + " days until deadline"; // deadline far
+}
+
+/**
+ * Get color class name college app status
+ *
+ * @param status - College application status
+ * @returns Status color class name
+ */
+export function statusColor(status: string) {
+  if (status == "Considering") return "bg-gray-500 hover:bg-gray-400 dark:bg-gray-400 dark:hover:bg-gray-500";
+  else if (status == "Applying") return "bg-gray-500 hover:bg-gray-400 dark:bg-gray-400 dark:hover:bg-gray-500";
+  else if (status == "Applied") return "bg-sky-700/80 hover:bg-sky-600/80 dark:bg-sky-400/80 dark:hover:bg-sky-500/80";
+  else if (status == "Accepted") return "bg-emerald-700/80 hover:bg-emerald-600/80 dark:bg-emerald-400/80 dark:hover:bg-emerald-500/80";
+  else if (status == "Deferred") return "bg-violet-700/80 hover:bg-violet-600/80 dark:bg-violet-400/80 dark:hover:bg-violet-500/80";
+  else if (status == "Waitlisted") return "bg-violet-700/80 hover:bg-violet-600/80 dark:bg-violet-400/80 dark:hover:bg-violet-500/80";
+  else if (status == "Denied") return "bg-red-700/80 hover:bg-red-600/80 dark:bg-red-400/80 dark:hover:bg-red-500/80";
+}

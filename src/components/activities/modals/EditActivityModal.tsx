@@ -106,7 +106,7 @@ export default function EditActivityModal({
           className="buttonPrimary"
           onClick={(e) => {
             if (nameInput == "") {
-              alert("Enter the name of this course");
+              alert("Enter the name of this activity");
             } else {
               const updatedActivity: Activity = {
                 uuid: activity.uuid,

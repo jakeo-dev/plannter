@@ -173,3 +173,45 @@ export interface EditEssayModalProps {
   essay: Essay | null;
   saveEssay: (essay: Essay) => void;
 }
+
+// college types
+
+export interface Ranks {
+  "Reach": Rank;
+  "Target": Rank;
+  "Safety": Rank;
+}
+
+export interface Rank {
+  level: number | null;
+  name: "Reach" | "Target" | "Safety";
+  colleges?: { [key: string]: College };
+}
+
+export interface College {
+  uuid: string,
+  name: string,
+  location: string,
+  chance: number,
+  deadline: {
+    day: number,
+    month: number,
+    year: number,
+  },
+  status: string,
+}
+
+export interface AddCollegeModalProps {
+  addCollegeVisible: boolean;
+  setAddCollegeVisible: Dispatch<SetStateAction<boolean>>;
+  currentRankName: string;
+  addCollege: (college: College) => void;
+}
+
+export interface EditCollegeModalProps {
+  editCollegeVisible: boolean;
+  setEditCollegeVisible: Dispatch<SetStateAction<boolean>>;
+  currentRankName: string;
+  college: College | null;
+  saveCollege: (college: College) => void;
+}
