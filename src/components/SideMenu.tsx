@@ -179,8 +179,8 @@ export default function SideMenu(props: SideMenuProps) {
           {/* <Statistic number={} title="Extracurriculars" />
           <Statistic number={} title="Test Scores" /> */}
           <button
-            className="hidden font-normal text-xs bg-gray-300/70 hover:bg-gray-300 dark:bg-gray-700/60 dark:hover:bg-gray-700 hover:shadow-sm active:shadow-none rounded-md px-2 py-1 mt-2 md:mt-3 transition"
-            /* onClick="openDoesGPANotLookRight()" */
+            className={`${unweightedGPA ? "" : "hidden "}font-normal text-xs bg-gray-300/70 hover:bg-gray-300 dark:bg-gray-700/60 dark:hover:bg-gray-700 hover:shadow-sm active:shadow-none rounded-md px-2 py-1 mt-2 md:mt-3 transition`}
+            onClick={() => props.setChangeGPAVis(true)}
           >
             Does your GPA not look right?
           </button>

@@ -58,7 +58,6 @@ export default function EditEssayModal({
           second: currentDate.getSeconds(),
         },
       };
-      console.log(updatedEssay);
 
       setLastEditedSpan(`Edited ${monthName(
         currentDate.getMonth() || -1
