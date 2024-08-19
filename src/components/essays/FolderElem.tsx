@@ -61,7 +61,7 @@ export default function FolderElem({
           const newEssay: Essay = {
             uuid: crypto.randomUUID(),
             name: "Enter a prompt",
-            paper: "Start writing your essay here",
+            paper: "",
             status: "Not started",
             lastEdited: {
               year: currentDate.getFullYear(),

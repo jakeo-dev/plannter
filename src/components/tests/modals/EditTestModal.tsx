@@ -25,10 +25,10 @@ export default function EditTestModal({
     setTypeInput(test?.type || "ACT");
     setSubTypeInput(test?.subType || "");
     setMonthInput(test?.month || "Jan");
-    setYearInput(String(test?.year) || "");
-    setScoreInput(String(test?.score) || "");
-    setReadScoreInput(String(test?.readScore) || "");
-    setMathScoreInput(String(test?.mathScore) || "");
+    setYearInput(test?.year != -1 ? String(test?.year) : "");
+    setScoreInput(test?.score != -1 ? String(test?.score) : "");
+    setReadScoreInput(test?.readScore != -1 ? String(test?.readScore) : "");
+    setMathScoreInput(test?.mathScore != -1 ? String(test?.mathScore) : "");
   }, [test]);
 
   if (test === null) return <></>;

@@ -1,3 +1,4 @@
+
 import { EditEssayModalProps, Essay } from "@/types";
 import { monthName, wordCount } from "@/utility";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -11,9 +12,8 @@ export default function EditEssayModal({
   saveEssay,
 }: EditEssayModalProps) {
   const [nameInput, setNameInput] = useState(essay?.name || "Enter a prompt");
-  const [paperInput, setPaperInput] = useState(
-    essay?.paper || "Start writing your essay here"
-  );
+  const [paperInput, setPaperInput] = useState(essay?.paper || "");
+  const [TESTinput, setTESTInput] = useState(essay?.paper || "");
   const [statusInput, setStatusInput] = useState(
     essay?.status || "Not started"
   );
@@ -25,7 +25,7 @@ export default function EditEssayModal({
 
   useEffect(() => {
     setNameInput(essay?.name || "Enter a prompt");
-    setPaperInput(essay?.paper || "Start writing your essay here");
+    setPaperInput(essay?.paper || "");
     setStatusInput(essay?.status || "Not started");
     setCurrentDate(new Date());
     setLastEditedSpan(`Edited ${monthName(
@@ -86,7 +86,10 @@ export default function EditEssayModal({
           <FontAwesomeIcon icon={faXmark} />
         </button>
 
-        <h1 className="text-xl font-medium mb-6 hidden md:block">Write essay</h1>
+        <h1 className="text-xl font-medium mb-6 hidden md:block">
+          Write essay
+        </h1>
+
 
         <div className="md:flex gap-2">
           <div className="flex-1">
@@ -140,6 +143,7 @@ export default function EditEssayModal({
           value={paperInput}
           onInput={(e) => setPaperInput(e.currentTarget.value)}
           autoComplete="off"
+          placeholder="Start writing your essay here"
           maxLength={1000000}
         />
         <div className="flex gap-2 modalSubtext mb-0 md:mb-6">

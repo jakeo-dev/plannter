@@ -12,12 +12,14 @@ export default function EditCollegeModal({
 }: EditCollegeModalProps) {
   const [nameInput, setNameInput] = useState(college?.name || "");
   const [locationInput, setLocationInput] = useState(college?.location || "");
-  const [chanceInput, setChanceInput] = useState(college?.chance || "");
-  const [dayInput, setDayInput] = useState(college?.deadline?.day || "1");
-  const [monthInput, setMonthInput] = useState(
-    college?.deadline?.month || "Jan"
+  const [chanceInput, setChanceInput] = useState(String(college?.chance) || "");
+  const [dayInput, setDayInput] = useState(
+    String(college?.deadline?.day) || "1"
   );
-  const [yearInput, setYearInput] = useState(college?.deadline?.year || "");
+  const [monthInput, setMonthInput] = useState(college?.deadline?.month || "0");
+  const [yearInput, setYearInput] = useState(
+    String(college?.deadline?.year) || ""
+  );
   const [statusInput, setStatusInput] = useState(
     college?.status || "Considering"
   );
@@ -25,10 +27,14 @@ export default function EditCollegeModal({
   useEffect(() => {
     setNameInput(college?.name || "");
     setLocationInput(college?.location || "");
-    setChanceInput(college?.chance || "");
-    setDayInput(college?.deadline?.day || "1");
-    setMonthInput(college?.deadline?.month || "Jan");
-    setYearInput(college?.deadline?.year || "");
+    setChanceInput(college?.chance != -1 ? String(college?.chance) : "");
+    setDayInput(
+      college?.deadline?.day != -1 ? String(college?.deadline?.day) : "1"
+    );
+    setMonthInput(college?.deadline?.month || "0");
+    setYearInput(
+      college?.deadline?.year != -1 ? String(college?.deadline?.year) : ""
+    );
     setStatusInput(college?.status || "Considering");
   }, [college]);
 

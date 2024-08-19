@@ -13,7 +13,7 @@ export default function AddCollegeModal({
   const [locationInput, setLocationInput] = useState("");
   const [chanceInput, setChanceInput] = useState("");
   const [dayInput, setDayInput] = useState("1");
-  const [monthInput, setMonthInput] = useState("Jan");
+  const [monthInput, setMonthInput] = useState("0");
   const [yearInput, setYearInput] = useState("");
   const [statusInput, setStatusInput] = useState("Considering");
 
@@ -22,7 +22,7 @@ export default function AddCollegeModal({
     setLocationInput("");
     setChanceInput("");
     setDayInput("1");
-    setMonthInput("Jan");
+    setMonthInput("0");
     setYearInput("");
     setStatusInput("Considering");
   }
