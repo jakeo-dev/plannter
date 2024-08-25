@@ -40,6 +40,8 @@ export default function Coursework({
           const newStages = JSON.parse(JSON.stringify(stages)) as Stages; // make a deep copy
           const currentStage = newStages[activeStage.name];
 
+          console.log(newStages);
+
           if (!currentStage.courses) {
             currentStage.courses = {};
           }

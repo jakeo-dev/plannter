@@ -22,18 +22,20 @@ export default function CourseElem({
           course.scores?.firstSemester.letterGrade == "none" ? "hidden" : ""
         } bg-gray-500 text-gray-100 rounded-md px-2 mx-0 mr-2 mt-0`}
       >
-        {course.scores?.firstSemester.letterGrade == "Use percent"
+        {course.scores?.firstSemester.letterGrade}{" "}
+        {course.scores?.firstSemester.percentGrade != 0
           ? course.scores?.firstSemester.percentGrade + "%"
-          : course.scores?.firstSemester.letterGrade}
+          : ""}
       </div>
       <div
         className={`attr ${
           course.scores?.secondSemester.letterGrade == "none" ? "hidden" : ""
         } bg-gray-500 text-gray-100 rounded-md px-2 mx-0 mr-2 mt-0`}
       >
-        {course.scores?.secondSemester.letterGrade == "Use percent"
+        {course.scores?.secondSemester.letterGrade}{" "}
+        {course.scores?.secondSemester.percentGrade != 0
           ? course.scores?.secondSemester.percentGrade + "%"
-          : course.scores?.secondSemester.letterGrade}
+          : ""}
       </div>
       <span className="">{course.name}</span>
       <div

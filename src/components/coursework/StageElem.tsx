@@ -66,7 +66,7 @@ export default function StageElem({
       const processSemester = (course: Course, semester: Grade | undefined) => {
         if (semester?.letterGrade && semester.letterGrade != "none") {
           const letterGrade =
-            semester.letterGrade === "Use percent"
+            semester.percentGrade !== 0
               ? getLetter(semester.percentGrade || 0)
               : semester.letterGrade;
 

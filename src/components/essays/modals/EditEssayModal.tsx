@@ -1,4 +1,3 @@
-
 import { EditEssayModalProps, Essay } from "@/types";
 import { monthName, wordCount } from "@/utility";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -89,7 +88,6 @@ export default function EditEssayModal({
         <h1 className="text-xl font-medium mb-6 hidden md:block">
           Write essay
         </h1>
-
 
         <div className="md:flex gap-2">
           <div className="flex-1">

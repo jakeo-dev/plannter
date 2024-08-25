@@ -1,4 +1,5 @@
 import { AddCourseModalProps, Course } from "@/types";
+import { getLetter } from "@/utility";
 import {
   faChevronRight,
   faPlus,
@@ -250,12 +251,20 @@ export default function AddCourseModal({
                 subject: subjectInput,
                 scores: {
                   firstSemester: {
-                    letterGrade: grade1Input,
-                    percentGrade: Number(percentGrade1Input),
+                    letterGrade:
+                      grade1Input == "Use percent"
+                        ? getLetter(Number(percentGrade1Input))
+                        : grade1Input,
+                    percentGrade:
+                      Math.round(Number(percentGrade1Input) * 100) / 100,
                   },
                   secondSemester: {
-                    letterGrade: grade2Input,
-                    percentGrade: Number(percentGrade2Input),
+                    letterGrade:
+                      grade2Input == "Use percent"
+                        ? getLetter(Number(percentGrade2Input))
+                        : grade2Input,
+                    percentGrade:
+                      Math.round(Number(percentGrade2Input) * 100) / 100,
                   },
                 },
               };

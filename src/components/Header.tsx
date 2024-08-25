@@ -55,7 +55,7 @@ export default function Header(props: HeaderProps) {
           />
           <Image
             src="/plannter-icon-light.png"
-            alt="Planter icon"
+            alt="Plannter icon"
             width={500}
             height={500}
             className="w-7 hidden dark:inline mr-2.5"

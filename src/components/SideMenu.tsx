@@ -111,7 +111,7 @@ export default function SideMenu(props: SideMenuProps) {
         ) => {
           if (semester?.letterGrade && semester.letterGrade != "none") {
             const letterGrade =
-              semester.letterGrade === "Use percent"
+              semester.percentGrade !== 0
                 ? getLetter(semester.percentGrade || 0)
                 : semester.letterGrade;
 
