@@ -66,8 +66,8 @@ export default function StageElem({
       const processSemester = (course: Course, semester: Grade | undefined) => {
         if (semester?.letterGrade && semester.letterGrade != "none") {
           const letterGrade =
-            semester.percentGrade !== 0
-              ? getLetter(semester.percentGrade || 0)
+            semester.percentGrade !== -1
+              ? getLetter(semester.percentGrade)
               : semester.letterGrade;
 
           const gpa = letterToGPA(letterGrade, gpaSettings["usePlusMinus"]);

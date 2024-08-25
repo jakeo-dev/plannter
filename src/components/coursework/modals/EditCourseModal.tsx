@@ -17,16 +17,16 @@ export default function EditCourseModal({
 }: EditCourseModalProps) {
   const [nameInput, setNameInput] = useState(course?.name || "");
   const [grade1Input, setGrade1Input] = useState(
-    course?.scores?.firstSemester.letterGrade || ""
+    course?.scores?.firstSemester.letterGrade || "none"
   );
   const [grade2Input, setGrade2Input] = useState(
-    course?.scores?.secondSemester.letterGrade || ""
+    course?.scores?.secondSemester.letterGrade || "none"
   );
   const [percentGrade1Input, setPercentGrade1Input] = useState(
-    course?.scores?.firstSemester.percentGrade || ""
+    String(course?.scores?.firstSemester.percentGrade) || ""
   );
   const [percentGrade2Input, setPercentGrade2Input] = useState(
-    course?.scores?.secondSemester.percentGrade || ""
+    String(course?.scores?.secondSemester.percentGrade) || ""
   );
   const [advLevelInput, setAdvLevelInput] = useState(
     String(course?.advancementLevel)
@@ -41,10 +41,26 @@ export default function EditCourseModal({
 
   useEffect(() => {
     setNameInput(course?.name || "");
-    setGrade1Input(course?.scores?.firstSemester.letterGrade || "");
-    setGrade2Input(course?.scores?.secondSemester.letterGrade || "");
-    setPercentGrade1Input(course?.scores?.firstSemester.percentGrade || "");
-    setPercentGrade2Input(course?.scores?.secondSemester.percentGrade || "");
+    setGrade1Input(
+      course?.scores?.firstSemester.percentGrade == -1
+        ? course?.scores?.firstSemester.letterGrade || ""
+        : "Use percent"
+    );
+    setGrade2Input(
+      course?.scores?.secondSemester.percentGrade == -1
+        ? course?.scores?.secondSemester.letterGrade || ""
+        : "Use percent"
+    );
+    setPercentGrade1Input(
+      course?.scores?.firstSemester.percentGrade == -1
+        ? ""
+        : String(course?.scores?.firstSemester.percentGrade) || ""
+    );
+    setPercentGrade2Input(
+      course?.scores?.secondSemester.percentGrade == -1
+        ? ""
+        : String(course?.scores?.secondSemester.percentGrade) || ""
+    );
     setAdvLevelInput(String(course?.advancementLevel));
     setDifficultyInput(String(course?.difficulty));
     setSubjectInput(course?.subject || "History");
@@ -186,6 +202,9 @@ export default function EditCourseModal({
                   setGrade2Input(e.currentTarget.value);
                   if (e.currentTarget.value != "Use percent")
                     setPercentGrade2Input("");
+
+                  console.log(grade2Input);
+                  console.log(percentGrade2Input);
                 }}
                 value={grade2Input}
                 className="input darkArrowsSelect dark:lightArrowsSelect m-0"
@@ -224,18 +243,20 @@ export default function EditCourseModal({
           </div>
         </div>
 
-        <button
-          className="block w-full text-sm md:text-base text-left text-gray-600 hover:text-gray-500 active:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 dark:active:text-gray-600 transition px-2 mb-4"
-          onClick={() => {
-            setMoreOptionsVis(!moreOptionsVis);
-          }}
-        >
-          <FontAwesomeIcon
-            icon={faChevronRight}
-            className={`${moreOptionsVis ? "rotate-90" : ""} mr-2 transition`}
-          />
-          More options
-        </button>
+        <div className="block w-full">
+          <button
+            className="text-sm md:text-base text-left text-gray-600 hover:text-gray-500 active:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 dark:active:text-gray-600 transition px-2 mb-4"
+            onClick={() => {
+              setMoreOptionsVis(!moreOptionsVis);
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              className={`${moreOptionsVis ? "rotate-90" : ""} mr-2 transition`}
+            />
+            More options
+          </button>
+        </div>
 
         <div className={moreOptionsVis ? "" : "hidden"}>
           <label className="modalSubtext">Specific difficulty</label>
@@ -259,6 +280,22 @@ export default function EditCourseModal({
           onClick={(e) => {
             if (nameInput == "") {
               alert("Enter the name of this course");
+            } else if (
+              grade1Input == "Use percent" &&
+              (Number(percentGrade1Input) > 100 ||
+                Number(percentGrade1Input) < 0)
+            ) {
+              alert(
+                "Enter a number between 0 and 100 for your first semester grade"
+              );
+            } else if (
+              grade2Input == "Use percent" &&
+              (Number(percentGrade2Input) > 100 ||
+                Number(percentGrade2Input) < 0)
+            ) {
+              alert(
+                "Enter a number between 0 and 100 for your second semester grade"
+              );
             } else {
               const updatedCourse: Course = {
                 uuid: course.uuid,
@@ -273,7 +310,9 @@ export default function EditCourseModal({
                         ? getLetter(Number(percentGrade1Input))
                         : grade1Input,
                     percentGrade:
-                      Math.round(Number(percentGrade1Input) * 100) / 100,
+                      percentGrade1Input != ""
+                        ? Math.round(Number(percentGrade1Input) * 100) / 100
+                        : -1,
                   },
                   secondSemester: {
                     letterGrade:
@@ -281,7 +320,9 @@ export default function EditCourseModal({
                         ? getLetter(Number(percentGrade2Input))
                         : grade2Input,
                     percentGrade:
-                      Math.round(Number(percentGrade2Input) * 100) / 100,
+                      percentGrade2Input != ""
+                        ? Math.round(Number(percentGrade2Input) * 100) / 100
+                        : -1,
                   },
                 },
               };

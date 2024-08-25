@@ -207,18 +207,20 @@ export default function AddCourseModal({
           </div>
         </div>
 
-        <button
-          className="block w-full text-sm md:text-base text-left text-gray-600 hover:text-gray-500 active:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 dark:active:text-gray-600 transition px-2 mb-4"
-          onClick={() => {
-            setMoreOptionsVis(!moreOptionsVis);
-          }}
-        >
-          <FontAwesomeIcon
-            icon={faChevronRight}
-            className={`${moreOptionsVis ? "rotate-90" : ""} mr-2 transition`}
-          />
-          More options
-        </button>
+        <div className="block w-full">
+          <button
+            className="text-sm md:text-base text-left text-gray-600 hover:text-gray-500 active:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 dark:active:text-gray-600 transition px-2 mb-4"
+            onClick={() => {
+              setMoreOptionsVis(!moreOptionsVis);
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              className={`${moreOptionsVis ? "rotate-90" : ""} mr-2 transition`}
+            />
+            More options
+          </button>
+        </div>
 
         <div className={moreOptionsVis ? "" : "hidden"}>
           <label className="modalSubtext">Specific difficulty</label>
@@ -242,6 +244,22 @@ export default function AddCourseModal({
           onClick={(e) => {
             if (nameInput == "") {
               alert("Enter the name of this course");
+            } else if (
+              grade1Input == "Use percent" &&
+              (Number(percentGrade1Input) > 100 ||
+                Number(percentGrade1Input) < 0)
+            ) {
+              alert(
+                "Enter a number between 0 and 100 for your first semester grade"
+              );
+            } else if (
+              grade2Input == "Use percent" &&
+              (Number(percentGrade2Input) > 100 ||
+                Number(percentGrade2Input) < 0)
+            ) {
+              alert(
+                "Enter a number between 0 and 100 for your second semester grade"
+              );
             } else {
               const newCourse: Course = {
                 uuid: crypto.randomUUID(),
@@ -256,7 +274,9 @@ export default function AddCourseModal({
                         ? getLetter(Number(percentGrade1Input))
                         : grade1Input,
                     percentGrade:
-                      Math.round(Number(percentGrade1Input) * 100) / 100,
+                      percentGrade1Input != ""
+                        ? Math.round(Number(percentGrade1Input) * 100) / 100
+                        : -1,
                   },
                   secondSemester: {
                     letterGrade:
@@ -264,7 +284,9 @@ export default function AddCourseModal({
                         ? getLetter(Number(percentGrade2Input))
                         : grade2Input,
                     percentGrade:
-                      Math.round(Number(percentGrade2Input) * 100) / 100,
+                      percentGrade2Input != ""
+                        ? Math.round(Number(percentGrade2Input) * 100) / 100
+                        : -1,
                   },
                 },
               };

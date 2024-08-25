@@ -23,7 +23,7 @@ export default function CourseElem({
         } bg-gray-500 text-gray-100 rounded-md px-2 mx-0 mr-2 mt-0`}
       >
         {course.scores?.firstSemester.letterGrade}{" "}
-        {course.scores?.firstSemester.percentGrade != 0
+        {course.scores?.firstSemester.percentGrade != -1
           ? course.scores?.firstSemester.percentGrade + "%"
           : ""}
       </div>
@@ -33,7 +33,7 @@ export default function CourseElem({
         } bg-gray-500 text-gray-100 rounded-md px-2 mx-0 mr-2 mt-0`}
       >
         {course.scores?.secondSemester.letterGrade}{" "}
-        {course.scores?.secondSemester.percentGrade != 0
+        {course.scores?.secondSemester.percentGrade != -1
           ? course.scores?.secondSemester.percentGrade + "%"
           : ""}
       </div>

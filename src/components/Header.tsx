@@ -48,7 +48,7 @@ export default function Header(props: HeaderProps) {
         <h1 className="font-Calistoga flex items-center text-transparent bg-clip-text font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-sky-600 dark:from-emerald-500 dark:via-teal-500 dark:to-sky-500">
           <Image
             src="/plannter-icon-dark.png"
-            alt="Planter icon"
+            alt="Plannter icon"
             width={500}
             height={500}
             className="w-7 inline dark:hidden mr-2.5"

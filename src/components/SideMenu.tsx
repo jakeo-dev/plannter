@@ -111,8 +111,8 @@ export default function SideMenu(props: SideMenuProps) {
         ) => {
           if (semester?.letterGrade && semester.letterGrade != "none") {
             const letterGrade =
-              semester.percentGrade !== 0
-                ? getLetter(semester.percentGrade || 0)
+              semester.percentGrade !== -1
+                ? getLetter(semester.percentGrade)
                 : semester.letterGrade;
 
             const gpa = letterToGPA(
