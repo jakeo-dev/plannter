@@ -45,12 +45,18 @@ export default function CourseElem({
       >
         {getAdvLevelText(String(course.advancementLevel))}
       </div>
-      {/* <div className="attr block bg-transparent dark:bg-transparent text-gray-700 dark:text-gray-400 p-0 ml-0 mt-1">
-        {props.subject.charAt(0).toUpperCase() + props.subject.slice(1)}
-      </div> */}
       <div className="attr bg-transparent dark:bg-transparent text-gray-700 dark:text-gray-400 p-0 mt-0">
         {getIndividualDifficultyText(String(course.difficulty))}
       </div>
+      {/* <div
+        className={`attr ${
+          course.subject ? "block" : "hidden"
+        } bg-transparent dark:bg-transparent text-gray-700 dark:text-gray-400 p-0 ml-0 mt-1`}
+      >
+        {course.subject
+          ? course.subject.charAt(0).toUpperCase() + course.subject.slice(1)
+          : ""}
+      </div> */}
 
       <ItemOptions onEdit={onEdit} onTrash={onTrash} />
     </li>

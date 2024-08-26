@@ -202,9 +202,6 @@ export default function EditCourseModal({
                   setGrade2Input(e.currentTarget.value);
                   if (e.currentTarget.value != "Use percent")
                     setPercentGrade2Input("");
-
-                  console.log(grade2Input);
-                  console.log(percentGrade2Input);
                 }}
                 value={grade2Input}
                 className="input darkArrowsSelect dark:lightArrowsSelect m-0"

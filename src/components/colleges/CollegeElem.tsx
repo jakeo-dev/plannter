@@ -39,7 +39,7 @@ export default function CollegeElem({
       </span>
       <span
         className={`${
-          college.chance >= 0 ? "block" : "hidden"
+          college.chance && college.chance >= 0 ? "block" : "hidden"
         } text-gray-600 dark:text-gray-400 text-sm p-0 m-0 mt-1`}
       >
         {college.chance}% chance

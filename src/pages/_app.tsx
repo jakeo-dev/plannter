@@ -60,7 +60,7 @@ export default function App({ Component, pageProps }: AppProps) {
     Sophomore: { name: "Sophomore", gradeLevel: 10 },
     Junior: { name: "Junior", gradeLevel: 11 },
     Senior: { name: "Senior", gradeLevel: 12 },
-    Other: { name: "Other", gradeLevel: null },
+    Other: { name: "Other", gradeLevel: 13 },
   });
 
   const [strengths, setStrengths] = useState<Strengths>({

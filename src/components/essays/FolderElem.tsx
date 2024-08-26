@@ -25,7 +25,7 @@ export default function FolderElem({
       <div className="font-medium px-4">
         <h2 className="text-lg font-Calistoga mb-3">Essays</h2>
       </div>
-      <ul>
+      <ul className="lg:grid lg:grid-cols-2 gap-3">
         {(Object.values(folder?.essays || {}) as Essay[]).map((essay) => (
           <EssayElem
             key={essay.uuid}

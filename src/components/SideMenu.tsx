@@ -159,7 +159,7 @@ export default function SideMenu(props: SideMenuProps) {
     <>
       <div
         id="menuDiv"
-        className={`${props.smallScreenMenuVis} md:visibleFade fixed overflow-y-scroll md:overflow-y-clip bg-gray-100 dark:bg-gray-900 text-lg font-extrabold border-r-2 border-gray-300 md:border-gray-200 dark:border-gray-700 md:dark:border-gray-800 shadow-2xl h-full z-20 pt-8 pb-36 md:pb-0 md:static md:top-28 md:bg-transparent md:shadow-none md:z-auto md:block w-3/4 md:w-1/3 md:pt-28`}
+        className={`${props.smallScreenMenuVis} md:visibleFade fixed overflow-y-scroll md:overflow-y-clip bg-gray-100 dark:bg-gray-900 text-lg font-extrabold border-r-2 border-gray-300 md:border-gray-200 dark:border-gray-700 md:dark:border-gray-800 shadow-2xl h-full z-20 pt-8 pb-36 md:pb-0 md:static md:top-28 md:bg-transparent md:shadow-none md:z-auto md:block w-3/4 md:w-1/3 lg:w-[29%] md:pt-28`}
       >
         <div className="font-Calistoga pr-4">
           <h2 className="text-sm text-gray-500 px-6 md:px-7 mb-2">
@@ -190,7 +190,7 @@ export default function SideMenu(props: SideMenuProps) {
           <button
             className={`${
               unweightedGPA ? "" : "hidden "
-            } font-normal text-xs bg-gray-300/70 hover:bg-gray-300 dark:bg-gray-700/60 dark:hover:bg-gray-700 hover:shadow-sm active:shadow-none rounded-md px-2 py-1 mt-2 md:mt-3 transition`}
+            } font-normal text-xs text-left bg-gray-300/70 hover:bg-gray-300 dark:bg-gray-700/60 dark:hover:bg-gray-700 hover:shadow-sm active:shadow-none rounded-md px-2 py-1 mt-2 md:mt-3 transition`}
             onClick={() => props.setChangeGPAVis(true)}
           >
             Does your GPA not look right?

@@ -14,39 +14,29 @@ export default function EssayElem({
   onTrash: () => void;
 }) {
   return (
-    <li className="item border-t-2 rounded-t-md border-b-2 rounded-b-md mb-3">
-      <span className="block pr-12 md:pr-11">
+    <li className="item h-56 lg:bg-gray-100 lg:odd:bg-gray-100 lg:[&:nth-child(4n)]:bg-gray-200 lg:[&:nth-child(4n+1)]:bg-gray-200 lg:hover:bg-gray-300 lg:hover:[&:nth-child(4n)]:bg-gray-300 lg:hover:[&:nth-child(4n+1)]:bg-gray-300 dark:lg:bg-gray-900 dark:lg:odd:bg-gray-900 dark:lg:[&:nth-child(4n)]:bg-gray-800 dark:lg:[&:nth-child(4n+1)]:bg-gray-800 dark:lg:hover:bg-gray-700 dark:lg:hover:odd:bg-gray-700 dark:lg:hover:[&:nth-child(4n)]:bg-gray-700 dark:lg:hover:[&:nth-child(4n+1)]:bg-gray-700 rounded-t-md rounded-b-md border-t-2 border-b-2 last:odd:mb-3 last:even:mb-3 mb-3 lg:mb-0 lg:[&:nth-last-child(2)]:odd:mb-3">
+      <span className="line-clamp-2 overflow-ellipsis pr-12 md:pr-11">
         <FontAwesomeIcon icon={faPaperclip} className="mr-2" />
-        {essay.name.substring(0, 150).trim()}
-        {essay.name.length > 150 ? "..." : ""}
+        {essay.name.trim()}
       </span>
       <span
-        className={`${
-          essay.name.length > 150 || essay.paper.length > 300 ? "" : "pr-16"
-        } ${
+        className={`line-clamp-6 overflow-ellipsis ${
           essay.paper.trim().length < 1 ? "italic" : ""
-        } block whitespace-pre-wrap text-gray-600 dark:text-gray-400 text-sm md:text-sm break-words mt-1`}
+        } text-gray-600 dark:text-gray-400 text-sm md:text-sm break-words mt-1`}
       >
         {essay.paper.trim().length > 0
-          ? essay.paper.substring(0, 300).trim()
+          ? essay.paper.trim()
           : "You haven't written anything yet"}
-        {essay.paper.length > 300 ? "..." : ""}
       </span>
 
-      <div
-        className={`${
-          essay.name.length > 150 || essay.paper.length > 300
-            ? "bottom-4"
-            : "bottom-3"
-        }  flex text-xs text-gray-600 dark:text-gray-400 gap-2 mt-3`}
-      >
-        <span>{essay.status}</span>
-        <span>•</span>
+      <div className="absolute bottom-3 flex text-xs text-gray-600 dark:text-gray-400 gap-2 mt-3">
+        <span className={essay.status ? "" : "hidden"}>{essay.status}</span>
+        <span className={essay.status ? "" : "hidden"}>•</span>
         <span>
           {wordCount(essay.paper)} word{wordCount(essay.paper) != 1 ? "s" : ""}
         </span>
-        <span>•</span>
-        <span>
+        <span className={essay.lastEdited ? "" : "hidden"}>•</span>
+        <span className={essay.lastEdited ? "" : "hidden"}>
           {`Edited ${monthName(essay.lastEdited?.month || -1)?.substring(0, 3)} 
         ${essay.lastEdited?.day}, 
         ${essay.lastEdited?.year}`}

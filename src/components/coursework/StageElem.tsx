@@ -104,7 +104,7 @@ export default function StageElem({
       <div className="font-medium px-4">
         <h2 className="text-lg font-Calistoga">
           {`${
-            stage.gradeLevel
+            stage.gradeLevel != 13
               ? `Grade ${stage.gradeLevel} (${stage.name})`
               : "Other Courses"
           }`}
@@ -158,7 +158,7 @@ export default function StageElem({
         }}
       >
         <FontAwesomeIcon icon={faPlus} className="mr-1" />
-        {stage.gradeLevel
+        {stage.gradeLevel != 13
           ? `Add a ${stage.name.toLocaleLowerCase()} course`
           : "Add another course"}
       </button>

@@ -58,7 +58,7 @@ export default function AddActivityModal({
           value={descriptionInput}
           onInput={(e) => setDescriptionInput(e.currentTarget.value)}
           autoComplete="off"
-          maxLength={300}
+          maxLength={250}
         />
 
         <label className="modalSubtext">

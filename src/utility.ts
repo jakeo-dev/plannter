@@ -276,7 +276,7 @@ export function monthName(num: number) {
  * @returns Deadline class name
  */
 export function deadlineClassName(daysTil: number, deadlineDate: number, currentDate: number) {
-  if (deadlineDate < currentDate) return "hidden"; // deadline passed
+  if (deadlineDate < currentDate) return ""; // deadline passed
   else if (deadlineDate == currentDate) return "text-red-700"; // deadline today
   else if (daysTil < 7) return "text-orange-700"; // deadline super soon
   else if (daysTil < 14) return "text-yellow-700"; // deadline soon

@@ -17,7 +17,7 @@ export interface Stage {
 }
 
 export interface Course {
-  uuid: string,
+  uuid: string;
   name: string;
   advancementLevel: number;
   difficulty: number;
@@ -82,7 +82,7 @@ export interface Strength {
 }
 
 export interface Activity {
-  uuid: string,
+  uuid: string;
   name: string;
   description: string;
   category: string;
@@ -116,7 +116,7 @@ export interface Group {
 }
 
 export interface Test {
-  uuid: string,
+  uuid: string;
   name: string;
   type: string;
   subType: string;
@@ -153,7 +153,7 @@ export interface Folder {
 }
 
 export interface Essay {
-  uuid: string,
+  uuid: string;
   name: string;
   paper: string;
   status: string;
@@ -189,16 +189,16 @@ export interface Rank {
 }
 
 export interface College {
-  uuid: string,
-  name: string,
-  location: string,
-  chance: number,
+  uuid: string;
+  name: string;
+  location: string;
+  chance: number;
   deadline: {
-    day: number,
-    month: number,
-    year: number,
-  },
-  status: string,
+    day: number;
+    month: number;
+    year: number;
+  };
+  status: string;
 }
 
 export interface AddCollegeModalProps {
