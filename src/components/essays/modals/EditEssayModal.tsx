@@ -12,7 +12,6 @@ export default function EditEssayModal({
 }: EditEssayModalProps) {
   const [nameInput, setNameInput] = useState(essay?.name || "Enter a prompt");
   const [paperInput, setPaperInput] = useState(essay?.paper || "");
-  const [TESTinput, setTESTInput] = useState(essay?.paper || "");
   const [statusInput, setStatusInput] = useState(
     essay?.status || "Not started"
   );
@@ -75,7 +74,7 @@ export default function EditEssayModal({
         editEssayVisible ? "visibleFade" : "invisibleFade"
       }`}
     >
-      <div className="bg-gray-100 dark:bg-gray-800 relative rounded-xl w-11/12 md:max-w-4xl shadow-md px-8 py-8 md:px-11 md:py-10">
+      <div className="flex flex-col bg-gray-100 dark:bg-gray-800 relative w-full h-full px-8 py-8 md:px-11 md:py-10">
         <button
           className="absolute top-6 right-7 text-lg hover:text-gray-500 transition"
           onClick={() => {
@@ -89,72 +88,89 @@ export default function EditEssayModal({
           Write essay
         </h1>
 
-        <div className="md:flex gap-2">
-          <div className="flex-1">
-            <label className="modalSubtext">
-              Prompt<span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              className="input"
-              value={nameInput}
-              onInput={(e) => setNameInput(e.currentTarget.value)}
-              autoComplete="off"
-              maxLength={400}
-              required
-            />
-          </div>
-          <div>
-            <label className="modalSubtext">
-              Status<span className="text-red-500">*</span>
-            </label>
-            <select
-              onChange={(e) => setStatusInput(e.currentTarget.value)}
-              value={statusInput}
-              className="input darkArrowsSelect dark:lightArrowsSelect md:w-min mb-4 md:mb-0"
-              required
-            >
-              <optgroup label="Select a status">
-                <option value="Not started">Not started</option>
-                <option value="Pre-writing">Pre-writing</option>
-                <option value="Outlining">Outlining</option>
-                <option value="Drafting">Drafting</option>
-                <option value="Revising">Revising</option>
-                <option value="Editing">Editing</option>
-                <option value="Proofreading">Proofreading</option>
-                <option value="Finished">Finished</option>
-              </optgroup>
-            </select>
-          </div>
+        <div>
+          <label className="modalSubtext">
+            Prompt<span className="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            className="input"
+            value={nameInput}
+            onInput={(e) => setNameInput(e.currentTarget.value)}
+            autoComplete="off"
+            maxLength={400}
+            required
+          />
         </div>
 
-        <label className="modalSubtext">
-          Essay
-          <span className="float-right">
-            {wordCount(paperInput)} word
-            {wordCount(paperInput) != 1 ? "s" : ""}
-          </span>
-        </label>
-        <textarea
-          rows={18}
-          className="input text-sm md:text-base mb-0"
-          value={paperInput}
-          onInput={(e) => setPaperInput(e.currentTarget.value)}
-          autoComplete="off"
-          placeholder="Start writing your essay here"
-          maxLength={1000000}
-        />
-        <div className="flex gap-2 modalSubtext mb-0 md:mb-6">
-          <span>{lastEditedSpan}</span>
-          <span>•</span>
-          <span>
-            Automatically saved
-            <FontAwesomeIcon icon={faCheck} className="ml-1.5" />
-          </span>
+        <div className="flex flex-grow">
+          <div className="flex flex-col flex-grow w-full">
+            <textarea
+              autoFocus
+              className="input text-sm md:text-base mb-0 flex-grow resize-none"
+              value={paperInput}
+              onInput={(e) => setPaperInput(e.currentTarget.value)}
+              autoComplete="off"
+              placeholder="Start writing your essay here"
+              maxLength={1000000}
+            />
+            <div className="flex gap-2 modalSubtext mb-0 md:mb-6">
+              <span>{lastEditedSpan}</span>
+              <span>•</span>
+              <span>
+                Automatically saved
+                <FontAwesomeIcon icon={faCheck} className="ml-1.5" />
+              </span>
+            </div>
+          </div>
+
+          <div className="flex flex-col flex-grow w-1/4 px-6">
+            <div className="mb-4">
+              <label className="modalSubtext px-0">Word count</label>
+              <span className="">
+                {wordCount(paperInput)} word
+                {wordCount(paperInput) != 1 ? "s" : ""}
+              </span>
+            </div>
+            <div className="mb-4">
+              <label className="modalSubtext px-0">Character count</label>
+              <span className="">
+                {paperInput.length} character
+                {paperInput.length != 1 ? "s" : ""}
+              </span>
+            </div>
+            <div className="mb-4">
+              <label className="modalSubtext">Status</label>
+              <select
+                onChange={(e) => setStatusInput(e.currentTarget.value)}
+                value={statusInput}
+                className="input darkArrowsSelect dark:lightArrowsSelect mb-0"
+              >
+                <optgroup label="Select a status">
+                  <option value="Not started">Not started</option>
+                  <option value="Pre-writing">Pre-writing</option>
+                  <option value="Outlining">Outlining</option>
+                  <option value="Drafting">Drafting</option>
+                  <option value="Revising">Revising</option>
+                  <option value="Editing">Editing</option>
+                  <option value="Proofreading">Proofreading</option>
+                  <option value="Finished">Finished</option>
+                </optgroup>
+              </select>
+            </div>
+            <div className="mb-4">
+              <label className="modalSubtext">Colleges</label>
+              <select className="input darkArrowsSelect dark:lightArrowsSelect mb-0">
+                <optgroup label="Select a college">
+                  <option value="Not started">not implemented yet!!!!</option>
+                </optgroup>
+              </select>
+            </div>
+          </div>
         </div>
 
         <button
-          className="buttonSecondary ml-0 hidden md:inline"
+          className="buttonSecondary ml-0 hidden md:inline w-min"
           onClick={() => {
             setEditEssayVisible(false);
           }}
