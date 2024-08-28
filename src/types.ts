@@ -1,5 +1,17 @@
 import { Dispatch, SetStateAction } from "react";
 
+export interface ChangeGPAModalProps {
+  changeGPAVisible: boolean;
+  setChangeGPAVisible: Dispatch<SetStateAction<boolean>>;
+  gpaSettings: GPASettings | null;
+  saveGPASettings: (newGPASettings: GPASettings) => void;
+}
+
+export interface ImportDataModalProps {
+  importDataVisible: boolean;
+  setImportDataVisible: Dispatch<SetStateAction<boolean>>;
+}
+
 // course types
 
 export interface Stages {
@@ -58,13 +70,6 @@ export interface EditCourseModalProps {
   currentStageName: string;
   course: Course | null;
   saveCourse: (course: Course) => void;
-}
-
-export interface ChangeGPAModalProps {
-  changeGPAVisible: boolean;
-  setChangeGPAVisible: Dispatch<SetStateAction<boolean>>;
-  gpaSettings: GPASettings | null;
-  saveGPASettings: (newGPASettings: GPASettings) => void;
 }
 
 // activity types
@@ -157,6 +162,7 @@ export interface Essay {
   name: string;
   paper: string;
   status: string;
+  notes: string;
   lastEdited?: {
     year: number;
     month: number;

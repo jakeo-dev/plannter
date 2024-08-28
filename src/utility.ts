@@ -241,7 +241,7 @@ export function getActivityIcon(category: string): IconDefinition {
  */
 export function wordCount(string: string) {
   // https://www.mediacollege.com/internet/javascript/text/count-words.html
-  string = string.replace(/(^\s*)|(\s*$)/gi, "").replace(/[ ]{2,}/gi, " ").replace(/\n /, "\n");
+  string = string.replaceAll("\n", " ").replace(/(^\s*)|(\s*$)/gi, "").replace(/[ ]{2,}/gi, " ").replace(/\n /, "\n");
   return string.split(" ").length;
 }
 

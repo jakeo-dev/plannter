@@ -15,6 +15,7 @@ export default function EditEssayModal({
   const [statusInput, setStatusInput] = useState(
     essay?.status || "Not started"
   );
+  const [notesInput, setNotesInput] = useState(essay?.notes || "");
   const [currentDate, setCurrentDate] = useState(new Date());
   const [lastEditedSpan, setLastEditedSpan] = useState(`Edited ${monthName(
     essay?.lastEdited?.month || -1
@@ -25,6 +26,7 @@ export default function EditEssayModal({
     setNameInput(essay?.name || "Enter a prompt");
     setPaperInput(essay?.paper || "");
     setStatusInput(essay?.status || "Not started");
+    setNotesInput(essay?.notes || "");
     setCurrentDate(new Date());
     setLastEditedSpan(`Edited ${monthName(
       essay?.lastEdited?.month || -1
@@ -34,7 +36,7 @@ export default function EditEssayModal({
 
   useEffect(() => {
     updateSavedEssay();
-  }, [nameInput, paperInput, statusInput]);
+  }, [nameInput, paperInput, statusInput, notesInput]);
 
   function updateSavedEssay() {
     setCurrentDate(new Date());
@@ -47,6 +49,7 @@ export default function EditEssayModal({
         name: nameInput,
         paper: paperInput,
         status: statusInput,
+        notes: notesInput,
         lastEdited: {
           year: currentDate.getFullYear(),
           month: currentDate.getMonth(),
@@ -89,9 +92,7 @@ export default function EditEssayModal({
         </h1>
 
         <div>
-          <label className="modalSubtext">
-            Prompt<span className="text-red-500">*</span>
-          </label>
+          <label className="modalSubtext">Prompt</label>
           <input
             type="text"
             className="input"
@@ -103,7 +104,7 @@ export default function EditEssayModal({
           />
         </div>
 
-        <div className="flex flex-grow">
+        <div className="flex flex-grow gap-x-6">
           <div className="flex flex-col flex-grow w-full">
             <textarea
               autoFocus
@@ -114,17 +115,9 @@ export default function EditEssayModal({
               placeholder="Start writing your essay here"
               maxLength={1000000}
             />
-            <div className="flex gap-2 modalSubtext mb-0 md:mb-6">
-              <span>{lastEditedSpan}</span>
-              <span>•</span>
-              <span>
-                Automatically saved
-                <FontAwesomeIcon icon={faCheck} className="ml-1.5" />
-              </span>
-            </div>
           </div>
 
-          <div className="flex flex-col flex-grow w-1/4 px-6">
+          <div className="flex flex-col flex-grow w-1/4">
             <div className="mb-4">
               <label className="modalSubtext px-0">Word count</label>
               <span className="">
@@ -135,8 +128,8 @@ export default function EditEssayModal({
             <div className="mb-4">
               <label className="modalSubtext px-0">Character count</label>
               <span className="">
-                {paperInput.length} character
-                {paperInput.length != 1 ? "s" : ""}
+                {paperInput.replaceAll("\n", "").length} character
+                {paperInput.replaceAll("\n", "").length != 1 ? "s" : ""}
               </span>
             </div>
             <div className="mb-4">
@@ -166,7 +159,25 @@ export default function EditEssayModal({
                 </optgroup>
               </select>
             </div>
+            <div className="flex flex-col flex-grow">
+              <label className="modalSubtext">Notes</label>
+              <textarea
+                className="input text-sm md:text-base mb-0 flex-grow resize-none"
+                value={notesInput}
+                onInput={(e) => setNotesInput(e.currentTarget.value)}
+                autoComplete="off"
+                maxLength={10000}
+              />
+            </div>
           </div>
+        </div>
+        <div className="flex gap-2 modalSubtext mb-0 md:mb-6">
+          <span>{lastEditedSpan}</span>
+          <span>•</span>
+          <span>
+            Automatically saved
+            <FontAwesomeIcon icon={faCheck} className="ml-1.5" />
+          </span>
         </div>
 
         <button

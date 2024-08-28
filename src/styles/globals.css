@@ -16,7 +16,7 @@
   }
 
   .modalSubtext {
-    @apply text-xs md:text-sm block text-gray-500 px-2;
+    @apply text-xs md:text-sm block text-gray-500 dark:text-gray-400 px-2;
   }
 
   .input {

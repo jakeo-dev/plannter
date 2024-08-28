@@ -13,6 +13,7 @@ import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 type HeaderProps = {
   onSmallScreenMenuClick: () => void;
   setChangeGPAVis: Dispatch<SetStateAction<boolean>>;
+  setImportDataVis: Dispatch<SetStateAction<boolean>>;
 };
 
 export default function Header(props: HeaderProps) {
@@ -123,10 +124,12 @@ export default function Header(props: HeaderProps) {
               </button>
               <button
                 className="block w-full text-base text-left text-gray-600 hover:bg-gray-300 active:bg-gray-400 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 transition rounded-md px-3 py-2 mt-1 first:mt-0"
-                /* onClick={} */
+                onClick={() => {
+                  props.setImportDataVis(true);
+                }}
               >
                 <FontAwesomeIcon icon={faFileImport} className="mr-2" />
-                <span>Import data from old Plannter</span>
+                <span>Import data</span>
               </button>
             </div>
           </div>

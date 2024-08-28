@@ -97,7 +97,7 @@ export default function ChangeGPAModal({
               autoComplete="off"
               step="0.5"
               min="0"
-              max="4"
+              max="2"
               required
             />
           </div>
@@ -111,7 +111,7 @@ export default function ChangeGPAModal({
               autoComplete="off"
               step="0.5"
               min="0"
-              max="4"
+              max="2"
               required
             />
           </div>
@@ -125,7 +125,7 @@ export default function ChangeGPAModal({
               autoComplete="off"
               step="0.5"
               min="0"
-              max="4"
+              max="2"
               required
             />
           </div>
@@ -139,7 +139,7 @@ export default function ChangeGPAModal({
               autoComplete="off"
               step="0.5"
               min="0"
-              max="4"
+              max="2"
               required
             />
           </div>
@@ -153,7 +153,7 @@ export default function ChangeGPAModal({
               autoComplete="off"
               step="0.5"
               min="0"
-              max="4"
+              max="2"
               required
             />
           </div>
@@ -167,7 +167,7 @@ export default function ChangeGPAModal({
               autoComplete="off"
               step="0.5"
               min="0"
-              max="4"
+              max="2"
               required
             />
           </div>
@@ -183,7 +183,7 @@ export default function ChangeGPAModal({
               autoComplete="off"
               step="0.5"
               min="0"
-              max="4"
+              max="2"
               required
             />
           </div>
@@ -192,15 +192,15 @@ export default function ChangeGPAModal({
           className="buttonPrimary"
           onClick={(e) => {
             if (
-              Number(advancedWeightInput) > 4 ||
-              Number(acceleratedWeightInput) > 4 ||
-              Number(honorsWeightInput) > 4 ||
-              Number(collegeWeightInput) > 4 ||
-              Number(dualWeightInput) > 4 ||
-              Number(apWeightInput) > 4 ||
-              Number(ibWeightInput) > 4
+              Number(advancedWeightInput) > 2 ||
+              Number(acceleratedWeightInput) > 2 ||
+              Number(honorsWeightInput) > 2 ||
+              Number(collegeWeightInput) > 2 ||
+              Number(dualWeightInput) > 2 ||
+              Number(apWeightInput) > 2 ||
+              Number(ibWeightInput) > 2
             ) {
-              alert("All weights must be between 0 and 4");
+              alert("All weights must be between 0 and 2");
             } else {
               const newGPASettings: GPASettings = {
                 usePlusMinus: usePlusMinusInput,

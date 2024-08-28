@@ -63,6 +63,7 @@ export default function FolderElem({
             name: "Enter a prompt",
             paper: "",
             status: "Not started",
+            notes: "",
             lastEdited: {
               year: currentDate.getFullYear(),
               month: currentDate.getMonth(),

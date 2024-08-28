@@ -5,10 +5,18 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { useEffect, useState } from "react";
 
-import { GPASettings, Stages, Strengths, Groups, Folders, Ranks } from "@/types";
+import {
+  GPASettings,
+  Stages,
+  Strengths,
+  Groups,
+  Folders,
+  Ranks,
+} from "@/types";
 import Header from "@/components/Header";
 import SideMenu from "@/components/SideMenu";
 import ChangeGPAModal from "@/components/ChangeGPAModal";
+import ImportDataModal from "@/components/ImportDataModal";
 config.autoAddCss = false;
 
 const lexend = Lexend({ subsets: ["latin"] });
@@ -108,6 +116,7 @@ export default function App({ Component, pageProps }: AppProps) {
   });
 
   const [changeGPAVis, setChangeGPAVis] = useState(false);
+  const [importDataVis, setImportDataVis] = useState(false);
 
   return (
     <main className={lexend.className}>
@@ -119,6 +128,7 @@ export default function App({ Component, pageProps }: AppProps) {
             setSmallScreenMenuVis("invisibleFade");
         }}
         setChangeGPAVis={setChangeGPAVis}
+        setImportDataVis={setImportDataVis}
       />
 
       <ChangeGPAModal
@@ -135,6 +145,11 @@ export default function App({ Component, pageProps }: AppProps) {
         }}
       />
 
+      <ImportDataModal
+        importDataVisible={importDataVis}
+        setImportDataVisible={setImportDataVis}
+      />
+
       <div className="flex h-full md:h-screen">
         <SideMenu
           smallScreenMenuVis={smallScreenMenuVis}
@@ -145,6 +160,7 @@ export default function App({ Component, pageProps }: AppProps) {
           ranks={ranks}
           gpaSettings={gpaSettings}
           setChangeGPAVis={setChangeGPAVis}
+          setImportDataVis={setImportDataVis}
         />
         <Component
           {...pageProps}
