@@ -10,6 +10,11 @@ export interface ChangeGPAModalProps {
 export interface ImportDataModalProps {
   importDataVisible: boolean;
   setImportDataVisible: Dispatch<SetStateAction<boolean>>;
+  setStages: Dispatch<SetStateAction<Stages>>;
+  setGroups: Dispatch<SetStateAction<Groups>>;
+  setStrengths: Dispatch<SetStateAction<Strengths>>;
+  setFolders: Dispatch<SetStateAction<Folders>>;
+  setRanks: Dispatch<SetStateAction<Ranks>>;
 }
 
 // course types

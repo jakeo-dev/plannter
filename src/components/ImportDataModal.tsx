@@ -6,6 +6,11 @@ import { useState } from "react";
 export default function ImportDataModal({
   importDataVisible,
   setImportDataVisible,
+  setStages,
+  setGroups,
+  setStrengths,
+  setFolders,
+  setRanks,
 }: ImportDataModalProps) {
   const [dataInput, setDataInput] = useState("");
 
@@ -43,12 +48,22 @@ export default function ImportDataModal({
             } else {
               let totalDataArray = dataInput.split("~~~~~~~~~~~~~~~~~~~~");
               localStorage.setItem("stages", totalDataArray[0]);
+              setStages(JSON.parse(totalDataArray[0]));
+
               localStorage.setItem("groups", totalDataArray[1]);
+              setGroups(JSON.parse(totalDataArray[1]));
+
               localStorage.setItem("strengths", totalDataArray[2]);
+              setStrengths(JSON.parse(totalDataArray[2]));
+    
               localStorage.setItem("folders", totalDataArray[3]);
+              setFolders(JSON.parse(totalDataArray[3]));
+
               localStorage.setItem("ranks", totalDataArray[4]);
+              setRanks(JSON.parse(totalDataArray[4]));
             }
             e.preventDefault();
+            setImportDataVisible(false);
           }}
         >
           <FontAwesomeIcon icon={faFileImport} className="mr-1.5 md:mr-2" />

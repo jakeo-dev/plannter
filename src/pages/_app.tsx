@@ -148,6 +148,11 @@ export default function App({ Component, pageProps }: AppProps) {
       <ImportDataModal
         importDataVisible={importDataVis}
         setImportDataVisible={setImportDataVis}
+        setStages={setStages}
+        setGroups={setGroups}
+        setStrengths={setStrengths}
+        setFolders={setFolders}
+        setRanks={setRanks}
       />
 
       <div className="flex h-full md:h-screen">
