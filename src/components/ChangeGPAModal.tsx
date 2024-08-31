@@ -51,7 +51,7 @@ export default function ChangeGPAModal({
         changeGPAVisible ? "visibleFade" : "invisibleFade"
       }`}
     >
-      <div className="bg-gray-100 dark:bg-gray-800 relative rounded-xl w-11/12 md:max-w-2xl shadow-md px-8 py-8 md:px-11 md:py-10">
+      <div className="bg-gray-100 dark:bg-gray-900 relative rounded-xl w-11/12 md:max-w-2xl shadow-md px-8 py-8 md:px-11 md:py-10">
         <button
           className="absolute top-6 right-7 text-lg hover:text-gray-500 transition"
           onClick={() => {
@@ -73,7 +73,7 @@ export default function ChangeGPAModal({
               className={`${
                 usePlusMinusInput
                   ? "bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-400 dark:hover:bg-emerald-700 dark:active:bg-emerald-800"
-                  : "bg-gray-100 hover:bg-gray-200 active:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 dark:active:bg-gray-600 border-2 border-gray-300 dark:border-gray-600"
+                  : "bg-gray-100 hover:bg-gray-200 active:bg-gray-300 dark:bg-gray-900 dark:hover:bg-gray-800 dark:active:bg-gray-700 border-2 border-gray-300 dark:border-gray-600"
               } w-6 h-6 rounded-md transition`}
             ></div>
             <label className="pl-2 cursor-pointer select-none">

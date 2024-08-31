@@ -42,7 +42,7 @@ export default function AddCourseModal({
         addCourseVisible ? "visibleFade" : "invisibleFade"
       }`}
     >
-      <div className="bg-gray-100 dark:bg-gray-800 relative rounded-xl w-11/12 md:max-w-2xl shadow-md px-8 py-8 md:px-11 md:py-10">
+      <div className="bg-gray-100 dark:bg-gray-900 relative rounded-xl w-11/12 md:max-w-2xl shadow-md px-8 py-8 md:px-11 md:py-10">
         <button
           className="absolute top-6 right-7 text-lg hover:text-gray-500 transition"
           onClick={() => {
