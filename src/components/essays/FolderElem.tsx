@@ -64,6 +64,7 @@ export default function FolderElem({
             paper: "",
             status: "Not started",
             notes: "",
+            linkedColleges: [],
             lastEdited: {
               year: currentDate.getFullYear(),
               month: currentDate.getMonth(),
