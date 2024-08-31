@@ -17,6 +17,11 @@ export interface ImportDataModalProps {
   setRanks: Dispatch<SetStateAction<Ranks>>;
 }
 
+export interface Option {
+  value: string;
+  label: string;
+}
+
 // course types
 
 export interface Stages {
@@ -168,6 +173,7 @@ export interface Essay {
   paper: string;
   status: string;
   notes: string;
+  linkedColleges: Option[];
   lastEdited?: {
     year: number;
     month: number;
