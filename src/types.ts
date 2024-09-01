@@ -15,9 +15,24 @@ export interface ImportDataModalProps {
   setStrengths: Dispatch<SetStateAction<Strengths>>;
   setFolders: Dispatch<SetStateAction<Folders>>;
   setRanks: Dispatch<SetStateAction<Ranks>>;
+  setGPASettings: Dispatch<SetStateAction<GPASettings>>;
+}
+
+export interface EditGradDateModalProps {
+  editGradDateVisible: boolean;
+  setEditGradDateVisible: Dispatch<SetStateAction<boolean>>;
+  gradDate: GradDate | null;
+  saveGradDate: (newGradDate: GradDate) => void;
+}
+
+export interface GradDate {
+  year: number;
+  month: number;
+  day: number;
 }
 
 export interface Option {
+  // for MultiSelect component
   value: string;
   label: string;
 }
@@ -25,11 +40,11 @@ export interface Option {
 // course types
 
 export interface Stages {
-  "Freshman": Stage;
-  "Sophomore": Stage;
-  "Junior": Stage;
-  "Senior": Stage;
-  "Other": Stage;
+  Freshman: Stage;
+  Sophomore: Stage;
+  Junior: Stage;
+  Senior: Stage;
+  Other: Stage;
 }
 
 export interface Stage {
@@ -85,9 +100,9 @@ export interface EditCourseModalProps {
 // activity types
 
 export interface Strengths {
-  "Major": Strength;
-  "Moderate": Strength;
-  "Minor": Strength;
+  Major: Strength;
+  Moderate: Strength;
+  Minor: Strength;
 }
 
 export interface Strength {
@@ -121,7 +136,7 @@ export interface EditActivityModalProps {
 // test types
 
 export interface Groups {
-  "All": Group;
+  All: Group;
 }
 
 export interface Group {
@@ -158,7 +173,7 @@ export interface EditTestModalProps {
 // essay types
 
 export interface Folders {
-  "All": Folder;
+  All: Folder;
 }
 
 export interface Folder {
@@ -194,9 +209,9 @@ export interface EditEssayModalProps {
 // college types
 
 export interface Ranks {
-  "Reach": Rank;
-  "Target": Rank;
-  "Safety": Rank;
+  Reach: Rank;
+  Target: Rank;
+  Safety: Rank;
 }
 
 export interface Rank {

@@ -12,11 +12,13 @@ import {
   Groups,
   Folders,
   Ranks,
+  GradDate,
 } from "@/types";
 import Header from "@/components/Header";
 import SideMenu from "@/components/SideMenu";
 import ChangeGPAModal from "@/components/ChangeGPAModal";
 import ImportDataModal from "@/components/ImportDataModal";
+import EditGradDateModal from "@/components/EditGradDateModal";
 config.autoAddCss = false;
 
 const lexend = Lexend({ subsets: ["latin"] });
@@ -37,6 +39,10 @@ export default function App({ Component, pageProps }: AppProps) {
 
     if (typeof localStorage.getItem("gpaWeights") === "string") {
       setGPASettings(JSON.parse(localStorage.getItem("gpaWeights") as string));
+    }
+
+    if (typeof localStorage.getItem("gradDate") === "string") {
+      setGradDate(JSON.parse(localStorage.getItem("gradDate") as string));
     }
 
     if (typeof localStorage.getItem("stages") === "string") {
@@ -115,8 +121,15 @@ export default function App({ Component, pageProps }: AppProps) {
     ibWeight: 1,
   });
 
+  const [gradDate, setGradDate] = useState<GradDate>({
+    year: -1,
+    month: 0,
+    day: 1,
+  });
+
   const [changeGPAVis, setChangeGPAVis] = useState(false);
   const [importDataVis, setImportDataVis] = useState(false);
+  const [editGradDateVis, setEditGradDateVis] = useState(false);
 
   return (
     <main className={lexend.className}>
@@ -129,6 +142,8 @@ export default function App({ Component, pageProps }: AppProps) {
         }}
         setChangeGPAVis={setChangeGPAVis}
         setImportDataVis={setImportDataVis}
+        setEditGradDateVis={setEditGradDateVis}
+        gradDate={gradDate}
       />
 
       <ChangeGPAModal
@@ -153,6 +168,21 @@ export default function App({ Component, pageProps }: AppProps) {
         setStrengths={setStrengths}
         setFolders={setFolders}
         setRanks={setRanks}
+        setGPASettings={setGPASettings}
+      />
+
+      <EditGradDateModal
+        editGradDateVisible={editGradDateVis}
+        setEditGradDateVisible={setEditGradDateVis}
+        gradDate={gradDate}
+        saveGradDate={(updatedGradDate: GradDate) => {
+          const newGradDate = JSON.parse(
+            JSON.stringify(updatedGradDate)
+          ) as GradDate; // make a deep copy
+
+          localStorage.setItem("gradDate", JSON.stringify(newGradDate));
+          setGradDate(newGradDate);
+        }}
       />
 
       <div className="flex h-full md:h-screen">
@@ -164,8 +194,10 @@ export default function App({ Component, pageProps }: AppProps) {
           folders={folders}
           ranks={ranks}
           gpaSettings={gpaSettings}
+          gradDate={gradDate}
           setChangeGPAVis={setChangeGPAVis}
           setImportDataVis={setImportDataVis}
+          setEditGradDateVis={setEditGradDateVis}
         />
         <Component
           {...pageProps}
@@ -180,6 +212,7 @@ export default function App({ Component, pageProps }: AppProps) {
           ranks={ranks}
           setRanks={setRanks}
           gpaSettings={gpaSettings}
+          gradDate={gradDate}
         />
       </div>
     </main>

@@ -9,11 +9,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import { GradDate } from "@/types";
 
 type HeaderProps = {
   onSmallScreenMenuClick: () => void;
   setChangeGPAVis: Dispatch<SetStateAction<boolean>>;
   setImportDataVis: Dispatch<SetStateAction<boolean>>;
+  setEditGradDateVis: Dispatch<SetStateAction<boolean>>;
+  gradDate: GradDate;
 };
 
 export default function Header(props: HeaderProps) {
@@ -36,6 +39,31 @@ export default function Header(props: HeaderProps) {
     document.addEventListener("click", handleOutsideClick);
     return () => document.removeEventListener("click", handleOutsideClick);
   }, []);
+
+  const [graduationText, setGraduationText] = useState("");
+
+  useEffect(() => {
+    const currentYear = new Date().getFullYear();
+    const currentMonth = Number(
+      String(new Date().getMonth() + 1).padStart(2, "0")
+    );
+    const currentDay = Number(String(new Date().getDate()).padStart(2, "0"));
+    const currentDate = new Date(currentYear, currentMonth - 1, currentDay);
+    const oneDay = 24 * 60 * 60 * 1000; // hours * mins * secs * millisecs
+
+    const gradDateObject = new Date(
+      props.gradDate?.year,
+      props.gradDate?.month,
+      props.gradDate?.day
+    );
+    let daysTilGrad = Math.round(
+      (gradDateObject.getTime() - currentDate.getTime()) / oneDay
+    );
+
+    if (daysTilGrad < 0) setGraduationText("");
+    else if (daysTilGrad == 0) setGraduationText("Happy graduation!");
+    else if (daysTilGrad > 0) setGraduationText(daysTilGrad + " days");
+  }, [props.gradDate]);
 
   return (
     <>
@@ -64,21 +92,25 @@ export default function Header(props: HeaderProps) {
           Plannter
         </h1>
 
-        <div className="hidden md:block font-LexendDeca font-medium ml-auto">
+        <div className="hidden md:flex font-LexendDeca font-medium ml-auto">
           <button
-            className="text-lg text-gray-600 hover:bg-gray-300 active:bg-gray-400 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 rounded-md px-3 py-1 transition"
-            /* onClick={ open countdown editor } */
+            className="flex items-center text-lg text-gray-600 hover:bg-gray-300 active:bg-gray-400 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 rounded-md px-3 py-1 transition"
+            onClick={() => {
+              props.setEditGradDateVis(true);
+            }}
           >
             <FontAwesomeIcon
               icon={faHourglassHalf}
-              aria-label="Edit countdown"
-              title="Edit countdown"
+              aria-label="Edit graduation countdown"
+              title="Edit graduation countdown"
+              className={graduationText != "" ? "mr-2" : ""}
             />
+            <span className="text-base">{graduationText}</span>
           </button>
 
           <div className="relative inline-block">
             <button
-              className="text-xl text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 px-2 pt-1 transition"
+              className="text-xl text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500 px-2 pb-1 transition"
               onClick={() => {
                 if (settingsVis == "invisibleFade")
                   setSettingsVis("visibleFade");

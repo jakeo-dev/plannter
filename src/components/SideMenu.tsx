@@ -19,6 +19,7 @@ import {
   Groups,
   Folders,
   Ranks,
+  GradDate,
 } from "@/types";
 import {
   calculateWeights,
@@ -34,9 +35,11 @@ type SideMenuProps = {
   folders: Folders;
   ranks: Ranks;
   gpaSettings: GPASettings;
+  gradDate: GradDate;
   smallScreenMenuVis: string;
   setChangeGPAVis: Dispatch<SetStateAction<boolean>>;
   setImportDataVis: Dispatch<SetStateAction<boolean>>;
+  setEditGradDateVis: Dispatch<SetStateAction<boolean>>;
 };
 
 function Statistic({
@@ -65,6 +68,31 @@ export default function SideMenu(props: SideMenuProps) {
   const [unweightedGPA, setUnweightedGPA] = useState(0);
   const [weightedGPA, setWeightedGPA] = useState(0);
   const [difficulty, setDifficulty] = useState(0);
+
+  const [graduationText, setGraduationText] = useState("Edit countdown");
+
+  useEffect(() => {
+    const currentYear = new Date().getFullYear();
+    const currentMonth = Number(
+      String(new Date().getMonth() + 1).padStart(2, "0")
+    );
+    const currentDay = Number(String(new Date().getDate()).padStart(2, "0"));
+    const currentDate = new Date(currentYear, currentMonth - 1, currentDay);
+    const oneDay = 24 * 60 * 60 * 1000; // hours * mins * secs * millisecs
+
+    const gradDateObject = new Date(
+      props.gradDate?.year,
+      props.gradDate?.month,
+      props.gradDate?.day
+    );
+    let daysTilGrad = Math.round(
+      (gradDateObject.getTime() - currentDate.getTime()) / oneDay
+    );
+
+    if (daysTilGrad < 0) setGraduationText("Edit countdown");
+    else if (daysTilGrad == 0) setGraduationText("Happy graduation!");
+    else if (daysTilGrad > 0) setGraduationText(daysTilGrad + " days");
+  }, [props.gradDate]);
 
   function Tab(props: { name: string; url: string }) {
     const styles =
@@ -203,10 +231,17 @@ export default function SideMenu(props: SideMenuProps) {
         <div className="block md:hidden text-base md:text-lg font-medium pr-4">
           <button
             className="block w-full text-left text-gray-600 dark:text-gray-400/80 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 mt-4 transition"
-            /* onClick="openCD()" */
+            onClick={() => {
+              props.setEditGradDateVis(true);
+            }}
           >
-            <FontAwesomeIcon icon={faHourglassHalf} className="mr-2" />
-            <span>Edit countdown</span>
+            <FontAwesomeIcon
+              icon={faHourglassHalf}
+              aria-label="Edit graduation countdown"
+              title="Edit graduation countdown"
+              className="mr-2"
+            />
+            <span>{graduationText}</span>
           </button>
           <button
             className="block w-full text-left text-gray-600 dark:text-gray-400/80 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 transition"

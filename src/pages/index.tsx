@@ -18,7 +18,7 @@ export default function Home() {
         content="plannter, planter, high school, college, colleges, application, applications, college application, college applications, college app, college apps, common app, school, schools, course, courses, extracurricular, extracurriculars, activity, activities, test, tests, exam, exams, essay, essays, college app help, college application help, course tracker, manage courses, college tracker, extracurricular tracker, manage extracurriculars"
       />
       <meta
-        property=" description"
+        property="description"
         content="Plan courses, keep track of extracurriculars, prepare for college applications, and more."
       />
 

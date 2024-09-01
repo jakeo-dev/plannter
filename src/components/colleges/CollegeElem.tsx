@@ -50,7 +50,10 @@ export default function CollegeElem({
           deadline.getTime(),
           currentDate.getTime()
         )} ${
-          college.status == "Considering" || college.status == "Applying"
+          (college.status == "Considering" || college.status == "Applying") &&
+          college.deadline.day != -1 &&
+          college.deadline.month != -1 &&
+          college.deadline.year != -1
             ? "block"
             : "hidden"
         } text-gray-600 dark:text-gray-400 text-sm p-0 m-0 mt-1`}

@@ -35,7 +35,7 @@ export default function EditCourseModal({
     String(course?.difficulty)
   );
   const [subjectInput, setSubjectInput] = useState(
-    course?.subject || "History"
+    course?.subject || "Other"
   );
   const [moreOptionsVis, setMoreOptionsVis] = useState(false);
 
@@ -63,7 +63,7 @@ export default function EditCourseModal({
     );
     setAdvLevelInput(String(course?.advancementLevel));
     setDifficultyInput(String(course?.difficulty));
-    setSubjectInput(course?.subject || "History");
+    setSubjectInput(course?.subject || "Other");
     if (course?.difficulty != 1) setMoreOptionsVis(true);
     else setMoreOptionsVis(false);
   }, [course]);

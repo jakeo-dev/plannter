@@ -51,21 +51,20 @@ export default function MultiSelect({
       classNames={{
         clearIndicator: ({ isFocused }) =>
           classNames(
-            isFocused ? "text-gray-600 dark:text-gray-400" : "text-gray-200 dark:text-gray-800",
             "p-1",
+            isFocused
+              ? "text-gray-600 dark:text-gray-400"
+              : "text-gray-200 dark:text-gray-800",
             isFocused ? "hover:text-red-800" : "hover:text-red-400"
           ),
         control: ({ isDisabled, isFocused }) =>
           classNames(
-            isDisabled ? "bg-gray-50 dark:bg-gray-950" : "bg-gray-100 dark:bg-gray-900",
+            "rounded-md border-2 px-3 py-2",
             isDisabled
-              ? "border-gray-100 dark:border-gray-900"
+              ? "bg-gray-50 dark:bg-gray-950 border-gray-100 dark:border-gray-900"
               : isFocused
-              ? "border-blue-600 border-2"
-              : "border-gray-300 dark:border-gray-700",
-            "rounded-md",
-            "border-2",
-            "px-3 py-2",
+              ? "bg-gray-100 dark:bg-gray-900 border-blue-600 border-2"
+              : "bg-gray-100 dark:bg-gray-900 border-gray-300 dark:border-gray-700",
             isFocused && "border-2 border-blue-600",
             isFocused
               ? "hover:border-blue-600 border-2 bg-gray-100 dark:bg-gray-700"
@@ -74,50 +73,37 @@ export default function MultiSelect({
         dropdownIndicator: ({ isFocused }) =>
           classNames(
             "text-gray-800 dark:text-gray-200",
-            isFocused ? "hover:text-gray-800 dark:hover:text-gray-200" : "hover:text-gray-500"
+            isFocused
+              ? "hover:text-gray-800 dark:hover:text-gray-200"
+              : "hover:text-gray-500 dark:hover:text-gray-500"
           ),
         group: () => classNames("py-2"),
         groupHeading: () =>
           classNames(
-            "text-gray-400 dark:text-gray-600",
-            "text-xs",
-            "font-medium",
-            "mb-1",
-            "px-3",
-            "uppercase"
+            "text-gray-400 dark:text-gray-600 text-xs font-medium px-3 mb-1 uppercase"
           ),
-        indicatorSeparator: ({ isDisabled }) =>
-          classNames(isDisabled ? "bg-gray-300 dark:bg-gray-700" : "bg-gray-300 dark:bg-gray-700", "mx-2 my-0.5"),
+        indicatorSeparator: () =>
+          classNames("hidden bg-gray-300 dark:bg-gray-700 mx-2 my-0.5"),
         input: () => classNames("text-gray-800 dark:text-gray-200 ml-0.5"),
         menu: () =>
-          classNames("bg-white dark:bg-gray-800", "rounded-md", "text-sm", "shadow-md", "my-1"),
+          classNames(
+            "bg-white dark:bg-gray-800 rounded-md text-sm shadow-md my-1"
+          ),
         menuList: () => classNames("py-1"),
         multiValue: () =>
           classNames(
-            "bg-gray-200 dark:bg-gray-800",
-            "border-2 border-gray-100 dark:border-gray-900",
-            "rounded-md",
-            "flex",
-            "items-center",
-            "pl-2",
-            "pr-1",
-            "py-0.5",
-            "m-[0.0625rem]"
+            "flex items-center bg-gray-200 dark:bg-gray-800 border-2 border-gray-100 dark:border-gray-900 rounded-md pl-2 pr-1 py-0.5 m-[0.0625rem]"
           ),
         multiValueLabel: () =>
-          classNames("rounded-md", "text-gray-800 dark:text-gray-200", "text-sm"),
-        multiValueRemove: ({ isFocused }) =>
+          classNames("rounded-md text-gray-800 dark:text-gray-200 text-sm"),
+        multiValueRemove: () =>
           classNames(
-            "rounded-full ml-1",
-            isFocused && "bg-red-400",
-            "p-0.5",
-            "hover:bg-gray-300 dark:hover:bg-gray-700",
-            "hover:text-red-600"
+            "hover:bg-gray-300 dark:hover:bg-gray-700 hover:text-red-600 dark:hover:text-red-400 rounded-full transition p-0.5 ml-1"
           ),
-        noOptionsMessage: () =>
-          classNames("text-sm", "text-gray-500", "py-2"),
+        noOptionsMessage: () => classNames("text-sm text-gray-500 py-2"),
         option: ({ isDisabled, isFocused, isSelected }) =>
           classNames(
+            "transition px-3 py-2",
             isSelected
               ? "bg-gray-300 dark:bg-gray-600"
               : isFocused
@@ -128,10 +114,10 @@ export default function MultiSelect({
               : isSelected
               ? "text-white"
               : "text-inherit",
-            "py-2",
-            "px-3",
             !isDisabled &&
-              (isSelected ? "active:bg-gray-200 dark:active:bg-gray-700" : "active:bg-gray-300 dark:active:bg-gray-600")
+              (isSelected
+                ? "active:bg-gray-200 dark:active:bg-gray-700"
+                : "active:bg-gray-300 dark:active:bg-gray-600")
           ),
         placeholder: () => classNames("text-gray-500"),
         valueContainer: () => classNames(),

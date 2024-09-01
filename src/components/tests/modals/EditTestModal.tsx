@@ -11,7 +11,7 @@ export default function EditTestModal({
 }: EditTestModalProps) {
   const [typeInput, setTypeInput] = useState(test?.type || "");
   const [subTypeInput, setSubTypeInput] = useState(test?.subType || "");
-  const [monthInput, setMonthInput] = useState(test?.month || "");
+  const [monthInput, setMonthInput] = useState(test?.month || "Jan");
   const [yearInput, setYearInput] = useState(String(test?.year) || "");
   const [scoreInput, setScoreInput] = useState(String(test?.score) || "");
   const [readScoreInput, setReadScoreInput] = useState(

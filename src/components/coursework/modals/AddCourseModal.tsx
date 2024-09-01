@@ -21,7 +21,7 @@ export default function AddCourseModal({
   const [percentGrade2Input, setPercentGrade2Input] = useState("");
   const [advLevelInput, setAdvLevelInput] = useState("1");
   const [difficultyInput, setDifficultyInput] = useState("1");
-  const [subjectInput, setSubjectInput] = useState("history");
+  const [subjectInput, setSubjectInput] = useState("Other");
   const [moreOptionsVis, setMoreOptionsVis] = useState(false);
 
   function revertToDefault() {
@@ -32,7 +32,7 @@ export default function AddCourseModal({
     setPercentGrade2Input("");
     setAdvLevelInput("1");
     setDifficultyInput("1");
-    setSubjectInput("history");
+    setSubjectInput("Other");
     setMoreOptionsVis(false);
   }
 

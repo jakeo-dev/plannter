@@ -189,6 +189,13 @@ export default function AddCollegeModal({
           onClick={(e) => {
             if (nameInput == "") {
               alert("Enter the name of this college");
+            } else if (
+              yearInput != "" &&
+              (Number(yearInput) < 1900 || Number(yearInput) > 9999)
+            ) {
+              alert(
+                "Enter a valid year for this college's application deadline"
+              );
             } else {
               const newCollege: College = {
                 uuid: crypto.randomUUID(),

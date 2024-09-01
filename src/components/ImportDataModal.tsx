@@ -11,6 +11,7 @@ export default function ImportDataModal({
   setStrengths,
   setFolders,
   setRanks,
+  setGPASettings,
 }: ImportDataModalProps) {
   const [dataInput, setDataInput] = useState("");
 
@@ -33,7 +34,7 @@ export default function ImportDataModal({
         <div>
           <label className="modalSubtext">Data</label>
           <textarea
-            className="input mb-0"
+            className="input resize-none mb-0"
             rows={8}
             value={dataInput}
             onInput={(e) => setDataInput(e.currentTarget.value)}
@@ -43,10 +44,19 @@ export default function ImportDataModal({
         <button
           className="buttonPrimary"
           onClick={(e) => {
-            if (dataInput == "") {
+            if (
+              dataInput == "" ||
+              !dataInput.includes("courses") ||
+              !dataInput.includes("tests") ||
+              !dataInput.includes("activities") ||
+              !dataInput.includes("essays") ||
+              !dataInput.includes("colleges") ||
+              !dataInput.includes("usePlusMinus")
+            ) {
               alert("Enter data to import");
             } else {
               let totalDataArray = dataInput.split("~~~~~~~~~~~~~~~~~~~~");
+
               localStorage.setItem("stages", totalDataArray[0]);
               setStages(JSON.parse(totalDataArray[0]));
 
@@ -55,15 +65,20 @@ export default function ImportDataModal({
 
               localStorage.setItem("strengths", totalDataArray[2]);
               setStrengths(JSON.parse(totalDataArray[2]));
-    
+
               localStorage.setItem("folders", totalDataArray[3]);
               setFolders(JSON.parse(totalDataArray[3]));
 
               localStorage.setItem("ranks", totalDataArray[4]);
               setRanks(JSON.parse(totalDataArray[4]));
+
+              localStorage.setItem("gpaWeights", totalDataArray[5]);
+              setGPASettings(JSON.parse(totalDataArray[5]));
+
+              setDataInput("");
+              setImportDataVisible(false);
             }
             e.preventDefault();
-            setImportDataVisible(false);
           }}
         >
           <FontAwesomeIcon icon={faFileImport} className="mr-1.5 md:mr-2" />
@@ -72,6 +87,7 @@ export default function ImportDataModal({
         <button
           className="buttonSecondary"
           onClick={() => {
+            setDataInput("");
             setImportDataVisible(false);
           }}
         >
