@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { MultiValue } from "react-select";
 import MultiSelect from "@/components/MultiSelect";
+import ResponsiveTextArea from "@/components/ResponsiveTextArea";
 
 export default function EditEssayModal({
   editEssayVisible,
@@ -18,6 +19,12 @@ export default function EditEssayModal({
     essay?.status || "Not started"
   );
   const [notesInput, setNotesInput] = useState(essay?.notes || "");
+  const [minInput, setMinInput] = useState(
+    essay?.min != -1 ? String(essay?.min) : ""
+  );
+  const [maxInput, setMaxInput] = useState(
+    essay?.max != -1 ? String(essay?.max) : ""
+  );
   const [currentDate, setCurrentDate] = useState(new Date());
   const [lastEditedSpan, setLastEditedSpan] = useState(`Edited ${monthName(
     essay?.lastEdited?.month || -1
@@ -58,6 +65,8 @@ export default function EditEssayModal({
     setPaperInput(essay?.paper || "");
     setStatusInput(essay?.status || "Not started");
     setNotesInput(essay?.notes || "");
+    setMinInput(essay?.min != -1 ? String(essay?.min) : "");
+    setMaxInput(essay?.max != -1 ? String(essay?.max) : "");
     setLinkedColleges(essay?.linkedColleges || []);
     setCurrentDate(new Date());
     setLastEditedSpan(`Edited ${monthName(
@@ -79,7 +88,15 @@ export default function EditEssayModal({
 
   useEffect(() => {
     updateSavedEssay();
-  }, [nameInput, paperInput, statusInput, notesInput, linkedColleges]);
+  }, [
+    nameInput,
+    paperInput,
+    statusInput,
+    notesInput,
+    minInput,
+    maxInput,
+    linkedColleges,
+  ]);
 
   function updateSavedEssay() {
     setCurrentDate(new Date());
@@ -93,21 +110,38 @@ export default function EditEssayModal({
         paper: paperInput,
         status: statusInput,
         notes: notesInput,
+        min: minInput != "" && Number(minInput) > -1 ? Number(minInput) : -1,
+        max: maxInput != "" && Number(maxInput) > 0 ? Number(maxInput) : -1,
         linkedColleges: linkedColleges,
         lastEdited: {
-          year: currentDate.getFullYear(),
-          month: currentDate.getMonth(),
-          day: currentDate.getDate(),
-          hour: currentDate.getHours(),
-          minute: currentDate.getMinutes(),
-          second: currentDate.getSeconds(),
+          year: essay?.lastEdited?.year || currentDate.getFullYear(),
+          month: essay?.lastEdited?.month || currentDate.getMonth(),
+          day: essay?.lastEdited?.day || currentDate.getDate(),
+          hour: essay?.lastEdited?.hour || currentDate.getHours(),
+          minute: essay?.lastEdited?.minute || currentDate.getMinutes(),
+          second: essay?.lastEdited?.second || currentDate.getSeconds(),
         },
       };
 
-      setLastEditedSpan(`Edited ${monthName(
-        currentDate.getMonth() || -1
-      )?.substring(0, 3)}
+      if (paperInput != essay?.paper) {
+        if (updatedEssay?.lastEdited?.year)
+          updatedEssay.lastEdited.year = currentDate.getFullYear();
+        if (updatedEssay?.lastEdited?.month)
+          updatedEssay.lastEdited.month = currentDate.getMonth();
+        if (updatedEssay?.lastEdited?.day)
+          updatedEssay.lastEdited.day = currentDate.getDate();
+        if (updatedEssay?.lastEdited?.hour)
+          updatedEssay.lastEdited.hour = currentDate.getHours();
+        if (updatedEssay?.lastEdited?.minute)
+          updatedEssay.lastEdited.minute = currentDate.getMinutes();
+        if (updatedEssay?.lastEdited?.second)
+          updatedEssay.lastEdited.second = currentDate.getSeconds();
+
+        setLastEditedSpan(`Edited ${monthName(
+          currentDate.getMonth() || -1
+        )?.substring(0, 3)}
     ${currentDate.getDate()}, ${currentDate.getFullYear()}`);
+      }
 
       saveEssay(updatedEssay);
     }
@@ -140,21 +174,43 @@ export default function EditEssayModal({
           Write essay
         </h1> */}
 
-        <div>
-          <label className="modalSubtext">Prompt</label>
-          <input
-            type="text"
-            className="input"
-            value={nameInput}
-            onInput={(e) => setNameInput(e.currentTarget.value)}
-            autoComplete="off"
-            maxLength={400}
-            required
-          />
+        <div className="flex gap-3 mb-2 md:mb-5">
+          <div className="w-full">
+            <label className="modalSubtext">Prompt</label>
+            <ResponsiveTextArea
+              value={nameInput}
+              onInput={(e) => setNameInput(e.currentTarget.value)}
+              className="max-h-[4.25rem] mb-0"
+              placeholder=""
+              maxLength={500}
+              required={true}
+            />
+          </div>
+          <div className="w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6">
+            <label className="modalSubtext">Word range</label>
+            <div className="flex">
+              <input
+                value={minInput}
+                onInput={(e) => setMinInput(e.currentTarget.value)}
+                className="input text-right rounded-r-none mb-0"
+                placeholder="Min"
+                type="number"
+                min={0}
+              />
+              <input
+                value={maxInput}
+                onInput={(e) => setMaxInput(e.currentTarget.value)}
+                className="input rounded-l-none border-l-0 mb-0"
+                placeholder="Max"
+                type="number"
+                min={1}
+              />
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-grow gap-x-6">
-          <div className="flex flex-col flex-grow w-full">
+        <div className="md:flex flex-grow gap-x-6">
+          <div className="flex flex-col flex-grow h-3/4 md:h-auto w-full">
             <textarea
               autoFocus
               className="input text-sm md:text-base mb-0 flex-grow resize-none"
@@ -169,19 +225,19 @@ export default function EditEssayModal({
           <div className="flex flex-col flex-grow w-1/3">
             <div className="mb-4">
               <label className="modalSubtext px-0">Word count</label>
-              <span className="">
+              <span>
                 {wordCount(paperInput)} word
                 {wordCount(paperInput) != 1 ? "s" : ""}
               </span>
             </div>
             <div className="mb-4">
               <label className="modalSubtext px-0">Character count</label>
-              <span className="">
+              <span>
                 {paperInput.replaceAll("\n", "").length} character
                 {paperInput.replaceAll("\n", "").length != 1 ? "s" : ""}
               </span>
             </div>
-            <div className="mb-4">
+            <div className="hidden md:block mb-4">
               <label className="modalSubtext">Status</label>
               <select
                 onChange={(e) => setStatusInput(e.currentTarget.value)}
@@ -200,7 +256,7 @@ export default function EditEssayModal({
                 </optgroup>
               </select>
             </div>
-            <div className="mb-4">
+            <div className="hidden md:block mb-4">
               <label className="modalSubtext">Linked colleges</label>
               <MultiSelect
                 options={collegesOptions}
@@ -227,7 +283,7 @@ export default function EditEssayModal({
                 isSearchable={true}
               />
             </div>
-            <div className="flex flex-col flex-grow">
+            <div className="hidden md:flex flex-col flex-grow">
               <label className="modalSubtext">Notes</label>
               <textarea
                 className="input text-sm md:text-sm mb-0 flex-grow resize-none"

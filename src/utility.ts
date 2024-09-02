@@ -1,5 +1,27 @@
 import { GPASettings } from "./types";
-import { faAtom, faAward, faBriefcase, faCalendarDay, faDesktop, faDumbbell, faGraduationCap, faHandshakeAngle, faHouseUser, faLandmarkFlag, faMagnifyingGlass, faMasksTheater, faMusic, faPalette, faPencil, faPlusMinus, faPuzzlePiece, faRankingStar, faUmbrellaBeach, faWrench, IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAtom,
+  faAward,
+  faBriefcase,
+  faCalendarDay,
+  faDesktop,
+  faDumbbell,
+  faGraduationCap,
+  faHandshakeAngle,
+  faHouseUser,
+  faLandmarkFlag,
+  faMagnifyingGlass,
+  faMasksTheater,
+  faMusic,
+  faPalette,
+  faPencil,
+  faPlusMinus,
+  faPuzzlePiece,
+  faRankingStar,
+  faUmbrellaBeach,
+  faWrench,
+  IconDefinition,
+} from "@fortawesome/free-solid-svg-icons";
 
 /**
  * Converts a letter grade to its corresponding GPA value.
@@ -241,8 +263,15 @@ export function getActivityIcon(category: string): IconDefinition {
  */
 export function wordCount(string: string) {
   // https://www.mediacollege.com/internet/javascript/text/count-words.html
-  string = string.replaceAll("\n", " ").replace(/(^\s*)|(\s*$)/gi, "").replace(/[ ]{2,}/gi, " ").replace(/\n /, "\n");
-  return string.split(" ").length;
+  if (string.trim().length == 0) return 0;
+  else {
+    string = string
+      .replaceAll("\n", " ")
+      .replace(/(^\s*)|(\s*$)/gi, "")
+      .replace(/[ ]{2,}/gi, " ")
+      .replace(/\n /, "\n");
+    return string.split(" ").length;
+  }
 }
 
 /**
@@ -275,7 +304,11 @@ export function monthName(num: number) {
  * @param currentDate - Current date
  * @returns Deadline class name
  */
-export function deadlineClassName(daysTil: number, deadlineDate: number, currentDate: number) {
+export function deadlineClassName(
+  daysTil: number,
+  deadlineDate: number,
+  currentDate: number
+) {
   if (deadlineDate < currentDate) return ""; // deadline passed
   else if (deadlineDate == currentDate) return "text-red-700"; // deadline today
   else if (daysTil < 7) return "text-orange-700"; // deadline super soon
@@ -291,9 +324,14 @@ export function deadlineClassName(daysTil: number, deadlineDate: number, current
  * @param currentDate - Current date
  * @returns Deadline text
  */
-export function deadlineText(daysTil: number, deadlineDate: number, currentDate: number) {
+export function deadlineText(
+  daysTil: number,
+  deadlineDate: number,
+  currentDate: number
+) {
   if (deadlineDate < currentDate) return "Deadline passed"; // deadline passed
-  else if (deadlineDate == currentDate) return "Deadline today"; // deadline today
+  else if (deadlineDate == currentDate)
+    return "Deadline today"; // deadline today
   else if (daysTil < 2) return "Deadline tomorrow"; // deadline tomorrow
   else return daysTil + " days until deadline"; // deadline far
 }
@@ -305,11 +343,18 @@ export function deadlineText(daysTil: number, deadlineDate: number, currentDate:
  * @returns Status color class name
  */
 export function statusColor(status: string) {
-  if (status == "Considering") return "bg-gray-500 hover:bg-gray-400 dark:bg-gray-400 dark:hover:bg-gray-500";
-  else if (status == "Applying") return "bg-gray-500 hover:bg-gray-400 dark:bg-gray-400 dark:hover:bg-gray-500";
-  else if (status == "Applied") return "bg-sky-700/80 hover:bg-sky-600/80 dark:bg-sky-400/80 dark:hover:bg-sky-500/80";
-  else if (status == "Accepted") return "bg-emerald-700/80 hover:bg-emerald-600/80 dark:bg-emerald-400/80 dark:hover:bg-emerald-500/80";
-  else if (status == "Deferred") return "bg-violet-700/80 hover:bg-violet-600/80 dark:bg-violet-400/80 dark:hover:bg-violet-500/80";
-  else if (status == "Waitlisted") return "bg-violet-700/80 hover:bg-violet-600/80 dark:bg-violet-400/80 dark:hover:bg-violet-500/80";
-  else if (status == "Denied") return "bg-red-700/80 hover:bg-red-600/80 dark:bg-red-400/80 dark:hover:bg-red-500/80";
+  if (status == "Considering")
+    return "bg-gray-500 hover:bg-gray-400 dark:bg-gray-400 dark:hover:bg-gray-500";
+  else if (status == "Applying")
+    return "bg-gray-500 hover:bg-gray-400 dark:bg-gray-400 dark:hover:bg-gray-500";
+  else if (status == "Applied")
+    return "bg-sky-700/80 hover:bg-sky-600/80 dark:bg-sky-400/80 dark:hover:bg-sky-500/80";
+  else if (status == "Accepted")
+    return "bg-emerald-700/80 hover:bg-emerald-600/80 dark:bg-emerald-400/80 dark:hover:bg-emerald-500/80";
+  else if (status == "Deferred")
+    return "bg-violet-700/80 hover:bg-violet-600/80 dark:bg-violet-400/80 dark:hover:bg-violet-500/80";
+  else if (status == "Waitlisted")
+    return "bg-violet-700/80 hover:bg-violet-600/80 dark:bg-violet-400/80 dark:hover:bg-violet-500/80";
+  else if (status == "Denied")
+    return "bg-red-700/80 hover:bg-red-600/80 dark:bg-red-400/80 dark:hover:bg-red-500/80";
 }

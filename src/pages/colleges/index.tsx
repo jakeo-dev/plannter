@@ -71,7 +71,7 @@ export default function Colleges({
         }}
       />
 
-      <div className="w-full overflow-y-scroll px-4 md:px-8 lg:px-16 xl:px-32 md:pt-28 md:pb-20 mt-8 md:mt-0 flex flex-col gap-12">
+      <div className="w-full overflow-y-scroll px-4 md:px-8 lg:px-16 xl:px-32 md:pt-28 md:pb-28 mt-8 md:mt-0 flex flex-col gap-12">
         {(Object.values(ranks) as Rank[]).map((rank) => (
           <RankElem
             key={rank.name}

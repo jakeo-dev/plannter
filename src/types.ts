@@ -188,6 +188,8 @@ export interface Essay {
   paper: string;
   status: string;
   notes: string;
+  min: number;
+  max: number;
   linkedColleges: Option[];
   lastEdited?: {
     year: number;
