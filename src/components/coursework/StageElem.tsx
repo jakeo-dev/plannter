@@ -32,6 +32,46 @@ function ListAttribute({
   );
 }
 
+function sortCourses(a: Course, b: Course) {
+  // weighted classes are above unweighted classes
+  if (a.advancementLevel !== b.advancementLevel) {
+    return b.advancementLevel - a.advancementLevel;
+  }
+
+  const calculateGradeScore = (scores: Course["scores"]) => {
+    let gradeScore = 0;
+
+    if (scores?.firstSemester) {
+      const firstSemesterGrade =
+        scores.firstSemester.percentGrade !== -1
+          ? getLetter(scores.firstSemester.percentGrade)
+          : scores.firstSemester.letterGrade;
+      gradeScore += letterToGPA(firstSemesterGrade, true);
+    }
+
+    if (scores?.secondSemester) {
+      const secondSemesterGrade =
+        scores.secondSemester.percentGrade !== -1
+          ? getLetter(scores.secondSemester.percentGrade)
+          : scores.secondSemester.letterGrade;
+      gradeScore += letterToGPA(secondSemesterGrade, true);
+    }
+
+    return gradeScore;
+  };
+
+  const gradeScoreA = calculateGradeScore(a.scores);
+  const gradeScoreB = calculateGradeScore(b.scores);
+
+  // sort by highest grade score first (more semesters and higher grade = higher score)
+  if (gradeScoreA !== gradeScoreB) {
+    return gradeScoreB - gradeScoreA;
+  }
+
+  // sort alphabetically
+  return a.name.localeCompare(b.name);
+}
+
 export default function StageElem({
   stage,
   gpaSettings,
@@ -124,31 +164,35 @@ export default function StageElem({
         </div>
       </div>
       <ul>
-        {(Object.values(stage?.courses || {}) as Course[]).map((course) => (
-          <CourseElem
-            key={course.uuid}
-            course={course}
-            onEdit={() => {
-              setActiveCourse(course);
-              setActiveStage(stage);
-              setCurrentStageName(stage.name || "");
-              setEditCourseVisible(true);
-            }}
-            onTrash={() => {
-              if (
-                confirm("Are you sure you want to remove " + course.name + "?")
-              ) {
-                const newStage = JSON.parse(JSON.stringify(stage)) as Stage;
+        {(Object.values(stage?.courses || {}) as Course[])
+          .sort(sortCourses)
+          .map((course) => (
+            <CourseElem
+              key={course.uuid}
+              course={course}
+              onEdit={() => {
+                setActiveCourse(course);
+                setActiveStage(stage);
+                setCurrentStageName(stage.name || "");
+                setEditCourseVisible(true);
+              }}
+              onTrash={() => {
+                if (
+                  confirm(
+                    "Are you sure you want to remove " + course.name + "?"
+                  )
+                ) {
+                  const newStage = JSON.parse(JSON.stringify(stage)) as Stage;
 
-                if (newStage.courses && course.uuid in newStage.courses) {
-                  delete newStage.courses[course.uuid];
+                  if (newStage.courses && course.uuid in newStage.courses) {
+                    delete newStage.courses[course.uuid];
+                  }
+
+                  setStage(newStage);
                 }
-
-                setStage(newStage);
-              }
-            }}
-          />
-        ))}
+              }}
+            />
+          ))}
       </ul>
       <button
         className="text-gray-100 dark:text-gray-900 border-2 rounded-md bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 border-transparent w-full text-left transition px-3 py-2"
