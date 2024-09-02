@@ -1,12 +1,10 @@
 import { College, EditCollegeModalProps, Option } from "@/types";
 import { faFloppyDisk, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import classNames from "classnames";
 import { useEffect, useState } from "react";
 import AsyncSelect from "react-select/async";
 import collegeList from "@/database/colleges.json";
 import { reactSelectElemClassNames } from "@/utility";
-
 
 function fuzzyMatch(pattern: string, text: string): boolean {
   let patternIndex = 0;
@@ -24,6 +22,7 @@ function fuzzyMatch(pattern: string, text: string): boolean {
 
 async function filterOptions(inputValue: string): Promise<Option[]> {
   return collegeList
+    .map((i) => i.name)
     .filter((i) => fuzzyMatch(inputValue, i))
     .slice(0, 20)
     .map((value) => {

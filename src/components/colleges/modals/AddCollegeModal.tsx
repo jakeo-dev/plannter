@@ -4,10 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
 import collegeList from "@/database/colleges.json";
-import classNames from "classnames";
 import AsyncSelect from "react-select/async";
 import { reactSelectElemClassNames } from "@/utility";
-
 
 function fuzzyMatch(pattern: string, text: string): boolean {
   let patternIndex = 0;
@@ -25,6 +23,7 @@ function fuzzyMatch(pattern: string, text: string): boolean {
 
 async function filterOptions(inputValue: string): Promise<Option[]> {
   return collegeList
+    .map((i) => i.name)
     .filter((i) => fuzzyMatch(inputValue, i))
     .slice(0, 20)
     .map((value) => {
@@ -81,7 +80,17 @@ export default function AddCollegeModal({
         <AsyncSelect
           loadOptions={filterOptions}
           value={{ value: nameInput, label: nameInput }}
-          onChange={(e) => setNameInput(e?.value ?? "")}
+          onChange={(e) => {
+            setNameInput(e?.value ?? "");
+            if (e?.value) {
+              for (const college of collegeList) {
+                if (college.name == e.value) {
+                  setLocationInput(`${college.city}, ${college.state}`);
+                  setChanceInput(String(college.percentAdmitted));
+                }
+              }
+            }
+          }}
           unstyled
           classNamePrefix="select"
           classNames={reactSelectElemClassNames()}

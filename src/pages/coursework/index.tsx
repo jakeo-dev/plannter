@@ -1,4 +1,4 @@
-import { act, Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 import CommonHead from "@/components/CommonHead";
 
