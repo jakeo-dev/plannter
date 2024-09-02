@@ -7,8 +7,6 @@ import { MultiValue } from "react-select";
 import MultiSelect from "@/components/MultiSelect";
 import ResponsiveTextArea from "@/components/ResponsiveTextArea";
 
-import collegeList from "@/database/colleges.json";
-
 export default function EditEssayModal({
   editEssayVisible,
   setEditEssayVisible,
@@ -46,31 +44,6 @@ export default function EditEssayModal({
   const [selectedColleges, setSelectedColleges] = useState<
     MultiValue<{ value: string; label: string }>
   >(selectedCollegesArray || []);
-
-  function fuzzyMatch(pattern: string, text: string): boolean {
-    let patternIndex = 0;
-    let textIndex = 0;
-
-    while (patternIndex < pattern.length && textIndex < text.length) {
-      if (
-        pattern[patternIndex].toLowerCase() === text[textIndex].toLowerCase()
-      ) {
-        patternIndex++;
-      }
-      textIndex++;
-    }
-
-    return patternIndex === pattern.length;
-  }
-
-  async function filterOptions(inputValue: string): Promise<Option[]> {
-    return collegeList
-      .filter((i) => fuzzyMatch(inputValue, i))
-      .slice(0, 20)
-      .map((value) => {
-        return { value, label: value };
-      });
-  }
 
   useEffect(() => {
     const ranks = JSON.parse(localStorage.getItem("ranks") as string);
@@ -297,7 +270,7 @@ export default function EditEssayModal({
             <div className="hidden md:block mb-4">
               <label className="modalSubtext">Linked colleges</label>
               <MultiSelect
-                loadOptions={filterOptions}
+                options={collegesOptions}
                 value={selectedColleges}
                 onChange={(selectedColleges) => {
                   setSelectedColleges(selectedColleges);
