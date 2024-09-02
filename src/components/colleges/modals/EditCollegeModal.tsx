@@ -1,7 +1,35 @@
-import { College, EditCollegeModalProps } from "@/types";
+import { College, EditCollegeModalProps, Option } from "@/types";
 import { faFloppyDisk, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import classNames from "classnames";
 import { useEffect, useState } from "react";
+import AsyncSelect from "react-select/async";
+import collegeList from "@/database/colleges.json";
+import { reactSelectElemClassNames } from "@/utility";
+
+
+function fuzzyMatch(pattern: string, text: string): boolean {
+  let patternIndex = 0;
+  let textIndex = 0;
+
+  while (patternIndex < pattern.length && textIndex < text.length) {
+    if (pattern[patternIndex].toLowerCase() === text[textIndex].toLowerCase()) {
+      patternIndex++;
+    }
+    textIndex++;
+  }
+
+  return patternIndex === pattern.length;
+}
+
+async function filterOptions(inputValue: string): Promise<Option[]> {
+  return collegeList
+    .filter((i) => fuzzyMatch(inputValue, i))
+    .slice(0, 20)
+    .map((value) => {
+      return { value, label: value };
+    });
+}
 
 export default function EditCollegeModal({
   editCollegeVisible,
@@ -58,20 +86,19 @@ export default function EditCollegeModal({
           <FontAwesomeIcon icon={faXmark} />
         </button>
 
-        <h1 className="text-xl font-medium mb-6">Add college</h1>
+        <h1 className="text-xl font-medium mb-6">Edit college</h1>
 
         <label className="modalSubtext">
           College name<span className="text-red-500">*</span>
         </label>
-        <input
-          type="text"
-          className="input"
-          value={nameInput}
-          onInput={(e) => setNameInput(e.currentTarget.value)}
-          autoComplete="off"
-          maxLength={100}
-          required
-        />
+        <AsyncSelect
+          loadOptions={filterOptions}
+          value={{ value: nameInput, label: nameInput }}
+          onChange={(e) => setNameInput(e?.value ?? "")}
+          unstyled
+          classNamePrefix="select"
+          classNames={reactSelectElemClassNames()}
+        ></AsyncSelect>
 
         <label className="modalSubtext">Location</label>
         <input
