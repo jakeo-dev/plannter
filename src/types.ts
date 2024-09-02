@@ -1,5 +1,12 @@
 import { Dispatch, SetStateAction } from "react";
 
+export type StageNames =
+  | "Freshman"
+  | "Sophomore"
+  | "Junior"
+  | "Senior"
+  | "Other";
+
 export interface ChangeGPAModalProps {
   changeGPAVisible: boolean;
   setChangeGPAVisible: Dispatch<SetStateAction<boolean>>;
@@ -49,7 +56,7 @@ export interface Stages {
 
 export interface Stage {
   gradeLevel: number | null;
-  name: "Freshman" | "Sophomore" | "Junior" | "Senior" | "Other";
+  name: StageNames;
   courses?: { [key: string]: Course };
 }
 
@@ -85,16 +92,17 @@ export interface GPASettings {
 export interface AddCourseModalProps {
   addCourseVisible: boolean;
   setAddCourseVisible: Dispatch<SetStateAction<boolean>>;
-  currentStageName: string;
+  currentStageName: StageNames;
   addCourse: (course: Course) => void;
 }
 
 export interface EditCourseModalProps {
   editCourseVisible: boolean;
   setEditCourseVisible: Dispatch<SetStateAction<boolean>>;
-  currentStageName: string;
+  currentStageName: StageNames;
+  setCurrentStageName: Dispatch<SetStateAction<StageNames>>;
   course: Course | null;
-  saveCourse: (course: Course) => void;
+  saveCourse: (course: Course, stage: StageNames) => void;
 }
 
 // activity types

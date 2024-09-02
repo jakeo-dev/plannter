@@ -1,9 +1,9 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { act, Dispatch, SetStateAction, useState } from "react";
 
 import CommonHead from "@/components/CommonHead";
 
 import StageElem from "@/components/coursework/StageElem";
-import { Course, GPASettings, Stage, Stages } from "@/types";
+import { Course, GPASettings, Stage, StageNames, Stages } from "@/types";
 import AddCourseModal from "@/components/coursework/modals/AddCourseModal";
 import EditCourseModal from "@/components/coursework/modals/EditCourseModal";
 
@@ -19,7 +19,8 @@ export default function Coursework({
   const [activeStage, setActiveStage] = useState<Stage | null>(null);
   const [activeCourse, setActiveCourse] = useState<Course | null>(null);
 
-  const [currentStageName, setCurrentStageName] = useState("");
+  const [currentStageName, setCurrentStageName] =
+    useState<StageNames>("Freshman"); // "Freshman" is a default value, changes when a stage is added/edited
 
   const [addCourseVisible, setAddCourseVisible] = useState(false);
   const [editCourseVisible, setEditCourseVisible] = useState(false);
@@ -54,14 +55,25 @@ export default function Coursework({
         editCourseVisible={editCourseVisible}
         setEditCourseVisible={setEditCourseVisible}
         currentStageName={currentStageName}
+        setCurrentStageName={setCurrentStageName}
         course={activeCourse}
-        saveCourse={(updatedCourse: Course) => {
+        saveCourse={(updatedCourse, currentStageName) => {
           if (!activeStage) return;
           if (!activeCourse) return;
 
           const newStages = JSON.parse(JSON.stringify(stages)) as Stages; // make a deep copy
-          const currentStage = newStages[activeStage.name];
-          if (!currentStage.courses) return;
+          const currentStage = newStages[currentStageName];
+
+          if (!currentStage.courses) {
+            currentStage.courses = {};
+          }
+
+          const oldCourses = newStages[activeStage.name].courses;
+
+          // delete course from previous stage
+          if (activeStage.name != currentStageName && oldCourses) {
+            delete oldCourses[activeCourse.uuid];
+          }
 
           currentStage.courses[activeCourse.uuid] = updatedCourse;
           setStages(newStages);

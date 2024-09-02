@@ -1,4 +1,4 @@
-import { Course, EditCourseModalProps } from "@/types";
+import { Course, EditCourseModalProps, StageNames } from "@/types";
 import { getLetter } from "@/utility";
 import {
   faChevronRight,
@@ -14,8 +14,10 @@ export default function EditCourseModal({
   saveCourse,
   course,
   currentStageName,
+  setCurrentStageName,
 }: EditCourseModalProps) {
   const [nameInput, setNameInput] = useState(course?.name || "");
+
   const [grade1Input, setGrade1Input] = useState(
     course?.scores?.firstSemester.letterGrade || "none"
   );
@@ -34,9 +36,7 @@ export default function EditCourseModal({
   const [difficultyInput, setDifficultyInput] = useState(
     String(course?.difficulty)
   );
-  const [subjectInput, setSubjectInput] = useState(
-    course?.subject || "Other"
-  );
+  const [subjectInput, setSubjectInput] = useState(course?.subject || "Other");
   const [moreOptionsVis, setMoreOptionsVis] = useState(false);
 
   useEffect(() => {
@@ -125,28 +125,53 @@ export default function EditCourseModal({
           </div>
         </div>
 
-        <label className="modalSubtext">
-          Subject<span className="text-red-500">*</span>
-        </label>
-        <select
-          onChange={(e) => setSubjectInput(e.currentTarget.value)}
-          value={subjectInput}
-          className="input darkArrowsSelect dark:lightArrowsSelect"
-          required
-        >
-          <optgroup label="Select a subject">
-            <option value="History">History</option>
-            <option value="English">English</option>
-            <option value="Math">Math</option>
-            <option value="Science">Science</option>
-            <option value="Foreign Language">Foreign Language</option>
-            <option value="Technology">Technology</option>
-            <option value="Visual Arts">Visual Arts</option>
-            <option value="Performing Arts">Performing Arts</option>
-            <option value="PE">Physical Education</option>
-            <option value="Other">Other</option>
-          </optgroup>
-        </select>
+        <div className="md:flex gap-2 mb-4 md:mb-6">
+          <div className="flex-1">
+            <label className="modalSubtext">
+              Grade<span className="text-red-500">*</span>
+            </label>
+            <select
+              onChange={(e) =>
+                setCurrentStageName(e.currentTarget.value as StageNames)
+              }
+              value={currentStageName}
+              className="input darkArrowsSelect dark:lightArrowsSelect"
+              required
+            >
+              <optgroup label="Select a grade level">
+                <option value="Freshman">Freshman</option>
+                <option value="Sophomore">Sophomore</option>
+                <option value="Junior">Junior</option>
+                <option value="Senior">Senior</option>
+                <option value="Other">Other</option>
+              </optgroup>
+            </select>
+          </div>
+          <div className="flex-1">
+            <label className="modalSubtext">
+              Subject<span className="text-red-500">*</span>
+            </label>
+            <select
+              onChange={(e) => setSubjectInput(e.currentTarget.value)}
+              value={subjectInput}
+              className="input darkArrowsSelect dark:lightArrowsSelect"
+              required
+            >
+              <optgroup label="Select a subject">
+                <option value="History">History</option>
+                <option value="English">English</option>
+                <option value="Math">Math</option>
+                <option value="Science">Science</option>
+                <option value="Foreign Language">Foreign Language</option>
+                <option value="Technology">Technology</option>
+                <option value="Visual Arts">Visual Arts</option>
+                <option value="Performing Arts">Performing Arts</option>
+                <option value="PE">Physical Education</option>
+                <option value="Other">Other</option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
 
         <div className="md:flex gap-2 mb-4 md:mb-6">
           <div className="flex-1">
@@ -324,7 +349,7 @@ export default function EditCourseModal({
                 },
               };
 
-              saveCourse(updatedCourse);
+              saveCourse(updatedCourse, currentStageName);
               setEditCourseVisible(false);
             }
             e.preventDefault();

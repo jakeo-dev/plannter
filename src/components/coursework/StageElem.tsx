@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
-import { Course, GPASettings, Grade, Stage } from "@/types";
+import { Course, GPASettings, Grade, Stage, StageNames } from "@/types";
 import {
   letterToGPA,
   getLetter,
@@ -47,7 +47,7 @@ export default function StageElem({
   setActiveStage: Dispatch<SetStateAction<Stage | null>>;
   setActiveCourse: Dispatch<SetStateAction<Course | null>>;
   setStage: (stage: Stage) => void;
-  setCurrentStageName: Dispatch<SetStateAction<string>>;
+  setCurrentStageName: Dispatch<SetStateAction<StageNames>>;
   setAddCourseVisible: Dispatch<SetStateAction<boolean>>;
   setEditCourseVisible: Dispatch<SetStateAction<boolean>>;
 }) {
@@ -131,6 +131,7 @@ export default function StageElem({
             onEdit={() => {
               setActiveCourse(course);
               setActiveStage(stage);
+              setCurrentStageName(stage.name || "");
               setEditCourseVisible(true);
             }}
             onTrash={() => {

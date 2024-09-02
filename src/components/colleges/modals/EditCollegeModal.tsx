@@ -212,7 +212,6 @@ export default function EditCollegeModal({
                 "Enter a valid year for this college's application deadline"
               );
             } else {
-              console.log(Number(yearInput));
               const updatedCollege: College = {
                 uuid: college.uuid,
                 name: nameInput,
