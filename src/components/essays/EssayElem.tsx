@@ -50,7 +50,7 @@ export default function EssayElem({
           <span
             className={`${essay.status ? "" : "hidden"} ${
               essay.status == "Finished"
-                ? "text-white dark:text-black bg-emerald-700/80 dark:bg-emerald-400/80 rounded-[0.25rem] px-[0.3125rem] py-[0.0625rem]"
+                ? "text-white dark:text-black bg-emerald-700/80 dark:bg-emerald-400/80 rounded-[0.25rem] px-[0.35rem]"
                 : ""
             }`}
           >
@@ -65,7 +65,7 @@ export default function EssayElem({
               className={
                 (wordCount(essay.paper) > essay.max && essay.max != -1) ||
                 (wordCount(essay.paper) < essay.min && essay.min != -1)
-                  ? "text-red-700"
+                  ? "text-red-700 dark:text-red-400"
                   : ""
               }
             >

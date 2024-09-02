@@ -11,12 +11,12 @@ export default function AddActivityModal({
 }: AddActivityModalProps) {
   const [nameInput, setNameInput] = useState("");
   const [descriptionInput, setDescriptionInput] = useState("");
-  const [categoryInput, setCategoryInput] = useState("Athletics");
+  const [categoryInput, setCategoryInput] = useState("Other");
 
   function revertToDefault() {
     setNameInput("");
     setDescriptionInput("");
-    setCategoryInput("Athletics");
+    setCategoryInput("Other");
   }
 
   return (

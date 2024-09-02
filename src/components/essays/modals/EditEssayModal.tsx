@@ -225,7 +225,18 @@ export default function EditEssayModal({
           <div className="flex flex-col flex-grow w-1/3">
             <div className="mb-4">
               <label className="modalSubtext px-0">Word count</label>
-              <span>
+              <span
+                className={
+                  (wordCount(paperInput) >
+                    Number(maxInput != "" ? maxInput : -1) &&
+                    Number(maxInput != "" ? maxInput : -1) != -1) ||
+                  (wordCount(paperInput) <
+                    Number(minInput != "" ? minInput : 9999999) &&
+                    Number(minInput != "" ? minInput : -1) != -1)
+                    ? "text-red-700 dark:text-red-400"
+                    : ""
+                }
+              >
                 {wordCount(paperInput)} word
                 {wordCount(paperInput) != 1 ? "s" : ""}
               </span>

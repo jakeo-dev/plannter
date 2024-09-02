@@ -15,13 +15,13 @@ export default function EditActivityModal({
     activity?.description || ""
   );
   const [categoryInput, setCategoryInput] = useState(
-    activity?.category || "Athletics"
+    activity?.category || "Other"
   );
 
   useEffect(() => {
     setNameInput(activity?.name || "");
     setDescriptionInput(activity?.description || "");
-    setCategoryInput(activity?.category || "Athletics");
+    setCategoryInput(activity?.category || "Other");
   }, [activity]);
 
   if (activity === null) return <></>;
