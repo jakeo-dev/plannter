@@ -1,11 +1,11 @@
 import { Option } from "@/types";
 import { Dispatch, SetStateAction } from "react";
 import { MultiValue } from "react-select";
-import Select from "react-select";
+import AsyncSelect from "react-select/async";
 import classNames from "classnames";
 
 export default function MultiSelect({
-  options,
+  loadOptions,
   value,
   onChange,
   searchInput,
@@ -17,7 +17,7 @@ export default function MultiSelect({
   isClearable,
   isSearchable,
 }: {
-  options: Option[];
+  loadOptions: (inputValue: string) => Promise<Option[]>;
   value: MultiValue<{
     value: string;
     label: string;
@@ -33,9 +33,9 @@ export default function MultiSelect({
   isSearchable: boolean;
 }) {
   return (
-    <Select
+    <AsyncSelect
       isMulti
-      options={options}
+      loadOptions={loadOptions}
       value={value}
       onChange={onChange}
       inputValue={searchInput}

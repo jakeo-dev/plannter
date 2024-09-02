@@ -1,7 +1,36 @@
-import { AddCollegeModalProps, College } from "@/types";
+import { AddCollegeModalProps, College, Option } from "@/types";
 import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+
+import collegeList from "@/database/colleges.json";
+import classNames from "classnames";
+import AsyncSelect from "react-select/async";
+import { reactSelectElemClassNames } from "@/utility";
+
+
+function fuzzyMatch(pattern: string, text: string): boolean {
+  let patternIndex = 0;
+  let textIndex = 0;
+
+  while (patternIndex < pattern.length && textIndex < text.length) {
+    if (pattern[patternIndex].toLowerCase() === text[textIndex].toLowerCase()) {
+      patternIndex++;
+    }
+    textIndex++;
+  }
+
+  return patternIndex === pattern.length;
+}
+
+async function filterOptions(inputValue: string): Promise<Option[]> {
+  return collegeList
+    .filter((i) => fuzzyMatch(inputValue, i))
+    .slice(0, 20)
+    .map((value) => {
+      return { value, label: value };
+    });
+}
 
 export default function AddCollegeModal({
   addCollegeVisible,
@@ -49,14 +78,14 @@ export default function AddCollegeModal({
         <label className="modalSubtext">
           College name<span className="text-red-500">*</span>
         </label>
-        <input
-          type="text"
-          className="input"
-          value={nameInput}
-          onInput={(e) => setNameInput(e.currentTarget.value)}
-          autoComplete="off"
-          maxLength={100}
-        />
+        <AsyncSelect
+          loadOptions={filterOptions}
+          value={{ value: nameInput, label: nameInput }}
+          onChange={(e) => setNameInput(e?.value ?? "")}
+          unstyled
+          classNamePrefix="select"
+          classNames={reactSelectElemClassNames()}
+        ></AsyncSelect>
 
         <label className="modalSubtext">Location</label>
         <input
