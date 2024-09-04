@@ -8,7 +8,7 @@
   }
 
   .attr {
-    @apply inline-flex bg-gray-500 dark:bg-gray-400 text-sm text-gray-100 dark:text-gray-900 rounded-md break-words px-2 py-[0.055rem] first:ml-0 ml-2 mt-2;
+    @apply inline-flex bg-gray-500 dark:bg-gray-400 text-sm text-gray-100 dark:text-gray-900 rounded-md break-words px-2 py-[0.075rem] first:ml-0 ml-2 mt-2;
   }
 
   .modalTitle {

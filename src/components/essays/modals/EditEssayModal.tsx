@@ -86,6 +86,27 @@ export default function EditEssayModal({
     setSelectedColleges(selectedCollegesArray || []);
   }, [essay]);
 
+  const placeholders = [
+    "Start writing your essay here...",
+    "This essay could get you into your dream school...",
+    "Something remarkable is about to be written...",
+    "Don't be afraid of a blank page...",
+    "This is where your essay begins...",
+    "Your essay begins here...",
+    "Write the first line of your future...",
+    "Fill this space with your creativity...",
+    "Just start writing...",
+    "Share your story...",
+  ];
+  const [paperPlaceholder, setPaperPlaceholder] = useState(
+    "Start writing your essay here..."
+  );
+
+  useEffect(() => {
+    let random = Math.floor(Math.random() * placeholders.length);
+    setPaperPlaceholder(placeholders[random]);
+  }, [editEssayVisible]);
+
   useEffect(() => {
     updateSavedEssay();
   }, [
@@ -217,7 +238,7 @@ export default function EditEssayModal({
               value={paperInput}
               onInput={(e) => setPaperInput(e.currentTarget.value)}
               autoComplete="off"
-              placeholder="Start writing your essay here"
+              placeholder={paperPlaceholder}
               maxLength={1000000}
             />
           </div>

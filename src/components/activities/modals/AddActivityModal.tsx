@@ -1,3 +1,4 @@
+import ResponsiveTextArea from "@/components/ResponsiveTextArea";
 import { AddActivityModalProps, Activity } from "@/types";
 import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -52,13 +53,13 @@ export default function AddActivityModal({
         />
 
         <label className="modalSubtext">Description</label>
-        <textarea
-          rows={4}
-          className="input"
+        <ResponsiveTextArea
+          className="max-h-[8.5rem]"
           value={descriptionInput}
           onInput={(e) => setDescriptionInput(e.currentTarget.value)}
-          autoComplete="off"
           maxLength={250}
+          required={false}
+          placeholder=""
         />
 
         <label className="modalSubtext">

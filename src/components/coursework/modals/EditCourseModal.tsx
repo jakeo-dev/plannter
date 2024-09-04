@@ -125,53 +125,48 @@ export default function EditCourseModal({
           </div>
         </div>
 
-        <div className="md:flex gap-2 mb-4 md:mb-6">
-          <div className="flex-1">
-            <label className="modalSubtext">
-              Grade<span className="text-red-500">*</span>
-            </label>
-            <select
-              onChange={(e) =>
-                setCurrentStageName(e.currentTarget.value as StageNames)
-              }
-              value={currentStageName}
-              className="input darkArrowsSelect dark:lightArrowsSelect"
-              required
-            >
-              <optgroup label="Select a grade level">
-                <option value="Freshman">Freshman</option>
-                <option value="Sophomore">Sophomore</option>
-                <option value="Junior">Junior</option>
-                <option value="Senior">Senior</option>
-                <option value="Other">Other</option>
-              </optgroup>
-            </select>
-          </div>
-          <div className="flex-1">
-            <label className="modalSubtext">
-              Subject<span className="text-red-500">*</span>
-            </label>
-            <select
-              onChange={(e) => setSubjectInput(e.currentTarget.value)}
-              value={subjectInput}
-              className="input darkArrowsSelect dark:lightArrowsSelect"
-              required
-            >
-              <optgroup label="Select a subject">
-                <option value="History">History</option>
-                <option value="English">English</option>
-                <option value="Math">Math</option>
-                <option value="Science">Science</option>
-                <option value="Foreign Language">Foreign Language</option>
-                <option value="Technology">Technology</option>
-                <option value="Visual Arts">Visual Arts</option>
-                <option value="Performing Arts">Performing Arts</option>
-                <option value="PE">Physical Education</option>
-                <option value="Other">Other</option>
-              </optgroup>
-            </select>
-          </div>
-        </div>
+        <label className="modalSubtext">
+          Grade level<span className="text-red-500">*</span>
+        </label>
+        <select
+          onChange={(e) =>
+            setCurrentStageName(e.currentTarget.value as StageNames)
+          }
+          value={currentStageName}
+          className="input darkArrowsSelect dark:lightArrowsSelect"
+          required
+        >
+          <optgroup label="Select a grade level">
+            <option value="Freshman">9th (Freshman)</option>
+            <option value="Sophomore">10th (Sophomore)</option>
+            <option value="Junior">11th (Junior)</option>
+            <option value="Senior">12th (Senior)</option>
+            <option value="Other">Other</option>
+          </optgroup>
+        </select>
+
+        <label className="modalSubtext">
+          Subject<span className="text-red-500">*</span>
+        </label>
+        <select
+          onChange={(e) => setSubjectInput(e.currentTarget.value)}
+          value={subjectInput}
+          className="input darkArrowsSelect dark:lightArrowsSelect"
+          required
+        >
+          <optgroup label="Select a subject">
+            <option value="History">History</option>
+            <option value="English">English</option>
+            <option value="Math">Math</option>
+            <option value="Science">Science</option>
+            <option value="Foreign Language">Foreign Language</option>
+            <option value="Technology">Technology</option>
+            <option value="Visual Arts">Visual Arts</option>
+            <option value="Performing Arts">Performing Arts</option>
+            <option value="PE">Physical Education</option>
+            <option value="Other">Other</option>
+          </optgroup>
+        </select>
 
         <div className="md:flex gap-2 mb-4 md:mb-6">
           <div className="flex-1">

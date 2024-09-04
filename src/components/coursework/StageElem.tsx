@@ -24,11 +24,11 @@ function ListAttribute({
   if (!calculation) return <></>;
 
   return (
-    <button
-      className={`${classN} text-sm text-left bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-md break-words transition px-2 py-[0.055rem] mr-1 md:mr-2 mt-2`}
+    <div
+      className={`${classN} inline-flex text-sm text-left bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md break-words transition px-2 py-[0.075rem] mr-1 md:mr-2 mt-2`}
     >
       {calculation.toFixed(2)} {name}
-    </button>
+    </div>
   );
 }
 
