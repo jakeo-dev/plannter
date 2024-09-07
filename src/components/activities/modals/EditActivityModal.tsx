@@ -18,11 +18,31 @@ export default function EditActivityModal({
   const [categoryInput, setCategoryInput] = useState(
     activity?.category || "Other"
   );
+  const [hoursPerWeekInput, setHoursPerWeekInput] = useState(
+    activity?.hoursPerWeek && activity?.hoursPerWeek != -1
+      ? String(activity?.hoursPerWeek)
+      : ""
+  );
+  const [weeksPerYearInput, setWeeksPerYearInput] = useState(
+    activity?.weeksPerYear && activity?.weeksPerYear != -1
+      ? String(activity?.weeksPerYear)
+      : ""
+  );
 
   useEffect(() => {
     setNameInput(activity?.name || "");
     setDescriptionInput(activity?.description || "");
     setCategoryInput(activity?.category || "Other");
+    setHoursPerWeekInput(
+      activity?.hoursPerWeek && activity?.hoursPerWeek != -1
+        ? String(activity?.hoursPerWeek)
+        : ""
+    );
+    setWeeksPerYearInput(
+      activity?.weeksPerYear && activity?.weeksPerYear != -1
+        ? String(activity?.weeksPerYear)
+        : ""
+    );
   }, [activity]);
 
   if (activity === null) return <></>;
@@ -68,6 +88,33 @@ export default function EditActivityModal({
           placeholder=""
         />
 
+        <div className="flex gap-2 mb-4 md:mb-6">
+          <div className="flex-1">
+            <label className="modalSubtext">Hours per week</label>
+            <input
+              type="number"
+              className="input mb-0"
+              value={hoursPerWeekInput}
+              onInput={(e) => setHoursPerWeekInput(e.currentTarget.value)}
+              autoComplete="off"
+              min={1}
+              max={168}
+            />
+          </div>
+          <div className="flex-1">
+            <label className="modalSubtext">Weeks per year</label>
+            <input
+              type="number"
+              className="input mb-0"
+              value={weeksPerYearInput}
+              onInput={(e) => setWeeksPerYearInput(e.currentTarget.value)}
+              autoComplete="off"
+              min={1}
+              max={52}
+            />
+          </div>
+        </div>
+
         <label className="modalSubtext">
           Type<span className="text-red-500">*</span>
         </label>
@@ -108,12 +155,31 @@ export default function EditActivityModal({
           onClick={(e) => {
             if (nameInput == "") {
               alert("Enter the name of this activity");
+            } else if (
+              Number(hoursPerWeekInput) > 168 ||
+              Number(hoursPerWeekInput) < 1
+            ) {
+              alert("Hours per week not possible");
+            } else if (
+              Number(weeksPerYearInput) > 52 ||
+              Number(weeksPerYearInput) < 1
+            ) {
+              alert("Weeks per year not possible");
+            } else if (
+              (hoursPerWeekInput == "" && weeksPerYearInput != "") ||
+              (weeksPerYearInput == "" && hoursPerWeekInput != "")
+            ) {
+              alert("Enter both hours per week and weeks per year");
             } else {
               const updatedActivity: Activity = {
                 uuid: activity.uuid,
                 name: nameInput,
                 description: descriptionInput,
                 category: categoryInput,
+                hoursPerWeek:
+                  hoursPerWeekInput != "" ? Number(hoursPerWeekInput) : -1,
+                weeksPerYear:
+                  weeksPerYearInput != "" ? Number(weeksPerYearInput) : -1,
               };
 
               saveActivity(updatedActivity);

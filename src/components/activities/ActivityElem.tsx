@@ -27,12 +27,31 @@ export default function ActivityElem({
         {activity.name}
       </span>
       <span
-        className={`block text-gray-600 dark:text-gray-400 text-sm md:text-sm break-words ${
+        className={`block text-gray-600 dark:text-gray-400 text-sm break-words ${
           activity.description != "" ? "mt-1" : ""
         }`}
       >
         {activity.description}
       </span>
+
+      <div
+        className={`text-gray-600 dark:text-gray-400 text-sm gap-2 mt-1 ${
+          activity.hoursPerWeek &&
+          activity.weeksPerYear &&
+          activity.hoursPerWeek != -1 &&
+          activity.weeksPerYear != -1
+            ? "flex items-center"
+            : "hidden"
+        }`}
+      >
+        <span className="block break-words">
+          {activity.hoursPerWeek} hr/wk
+        </span>
+        <span>•</span>
+        <span className="block break-words">
+          {activity.weeksPerYear} wk/yr
+        </span>
+      </div>
 
       <ItemOptions
         onEdit={onEdit}

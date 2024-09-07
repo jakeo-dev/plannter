@@ -124,6 +124,8 @@ export interface Activity {
   name: string;
   description: string;
   category: string;
+  hoursPerWeek: number;
+  weeksPerYear: number;
 }
 
 export interface AddActivityModalProps {
