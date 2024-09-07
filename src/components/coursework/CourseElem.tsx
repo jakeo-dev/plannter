@@ -16,7 +16,7 @@ export default function CourseElem({
   onTrash: () => void;
 }) {
   return (
-    <li className="item pr-16">
+    <div onClick={onEdit} className="item pr-16">
       <div
         className={`attr ${
           course.scores?.firstSemester.letterGrade == "none" ? "hidden" : ""
@@ -58,7 +58,13 @@ export default function CourseElem({
           : ""}
       </div> */}
 
-      <ItemOptions onEdit={onEdit} onTrash={onTrash} />
-    </li>
+      <ItemOptions
+        onEdit={onEdit}
+        onTrash={(e) => {
+          e.stopPropagation();
+          onTrash();
+        }}
+      />
+    </div>
   );
 }

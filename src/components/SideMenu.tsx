@@ -98,7 +98,7 @@ export default function SideMenu(props: SideMenuProps) {
     const styles =
       router.pathname === props.url
         ? "bg-emerald-600/30"
-        : "hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50";
+        : "hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/60 dark:active:bg-gray-600/50";
 
     return (
       <Link
@@ -230,7 +230,7 @@ export default function SideMenu(props: SideMenuProps) {
 
         <div className="block md:hidden text-base md:text-lg font-medium pr-4">
           <button
-            className="block w-full text-left text-gray-600 dark:text-gray-400/80 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 mt-4 transition"
+            className="block w-full text-left text-gray-600 dark:text-gray-400/80 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/60 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 mt-4 transition"
             onClick={() => {
               props.setEditGradDateVis(true);
             }}
@@ -244,7 +244,7 @@ export default function SideMenu(props: SideMenuProps) {
             <span>{graduationText}</span>
           </button>
           <button
-            className="block w-full text-left text-gray-600 dark:text-gray-400/80 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 transition"
+            className="block w-full text-left text-gray-600 dark:text-gray-400/80 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/60 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 transition"
             onClick={() => {
               if (localStorage.getItem("theme") === "dark") {
                 document.documentElement.classList.remove("dark");
@@ -260,7 +260,7 @@ export default function SideMenu(props: SideMenuProps) {
             <span className="hidden dark:inline">Toggle light mode</span>
           </button>
           <button
-            className="block w-full text-left text-gray-600 dark:text-gray-400/80 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 transition"
+            className="block w-full text-left text-gray-600 dark:text-gray-400/80 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/60 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 transition"
             onClick={() => {
               props.setChangeGPAVis(true);
             }}
@@ -269,7 +269,7 @@ export default function SideMenu(props: SideMenuProps) {
             <span>Change GPA calculation</span>
           </button>
           <button
-            className="block w-full text-left text-gray-600 dark:text-gray-400/80 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/50 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 transition"
+            className="block w-full text-left text-gray-600 dark:text-gray-400/80 hover:bg-gray-400/30 dark:hover:bg-gray-600/30 active:bg-gray-400/60 dark:active:bg-gray-600/50 rounded-r-full px-6 py-3 md:px-7 transition"
             onClick={() => {
               props.setImportDataVis(true);
             }}

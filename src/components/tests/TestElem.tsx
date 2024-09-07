@@ -11,7 +11,7 @@ export default function TestElem({
   onTrash: () => void;
 }) {
   return (
-    <li className="item">
+    <div onClick={onEdit} className="item">
       <div className="block pr-12">
         <div
           className={`attr ${
@@ -44,7 +44,13 @@ export default function TestElem({
         Math: {test.mathScore}
       </div>
 
-      <ItemOptions onEdit={onEdit} onTrash={onTrash} />
-    </li>
+      <ItemOptions
+        onEdit={onEdit}
+        onTrash={(e) => {
+          e.stopPropagation();
+          onTrash();
+        }}
+      />
+    </div>
   );
 }

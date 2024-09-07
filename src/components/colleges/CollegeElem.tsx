@@ -61,7 +61,10 @@ export default function CollegeElem({
   }, [statusInput]);
 
   return (
-    <li className="item border-t-2 rounded-t-md border-b-2 rounded-b-md pr-14 md:pr-16 mb-3">
+    <div
+      onClick={onEdit}
+      className="item border-t-2 rounded-t-md border-b-2 rounded-b-md pr-14 md:pr-16 mb-3"
+    >
       <FontAwesomeIcon icon={faBuildingColumns} className="mr-2" />
       <span>{college.name}</span>
       <span className="block md:inline text-gray-600 dark:text-gray-400 text-sm p-0 m-0 md:ml-2 mt-1">
@@ -96,7 +99,10 @@ export default function CollegeElem({
       </span>
       <div className="block mt-2">
         <select
-          onClick={onStatusClicked}
+          onClick={(e) => {
+            e.stopPropagation();
+            onStatusClicked();
+          }}
           onChange={(e) => setStatusInput(e.currentTarget.value)}
           value={statusInput}
           className={`${statusColor(
@@ -115,7 +121,13 @@ export default function CollegeElem({
         </select>
       </div>
 
-      <ItemOptions onEdit={onEdit} onTrash={onTrash} />
-    </li>
+      <ItemOptions
+        onEdit={onEdit}
+        onTrash={(e) => {
+          e.stopPropagation();
+          onTrash();
+        }}
+      />
+    </div>
   );
 }

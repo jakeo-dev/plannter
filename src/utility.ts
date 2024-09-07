@@ -339,7 +339,7 @@ export function deadlineText(
 }
 
 /**
- * Get color class name college app status
+ * Get color class name from college app status
  *
  * @param status - College application status
  * @returns Status color class name
@@ -365,7 +365,6 @@ export function statusColor(status: string) {
  * Converts React Select default styles to Plannter styles (includes mb-4).
  *
  * @returns An object containing class names for different React Select elements.
- *
  */
 export function reactSelectElemClassNames() {
   return {
@@ -392,7 +391,7 @@ export function reactSelectElemClassNames() {
       ),
     dropdownIndicator: ({ isFocused }) =>
       classNames(
-        "text-gray-800 dark:text-gray-200",
+        "cursor-pointer text-gray-800 dark:text-gray-200",
         isFocused
           ? "hover:text-gray-800 dark:hover:text-gray-200"
           : "hover:text-gray-500 dark:hover:text-gray-500"
@@ -438,7 +437,7 @@ export function reactSelectElemClassNames() {
             : "active:bg-gray-300 dark:active:bg-gray-600")
       ),
     placeholder: () => classNames("text-gray-500"),
-    valueContainer: () => classNames(),
+    valueContainer: () => classNames("cursor-text"),
   } as ClassNamesConfig<
     {
       value: string;

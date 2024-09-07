@@ -94,7 +94,7 @@ export default function Header(props: HeaderProps) {
 
         <div className="hidden md:flex font-LexendDeca font-medium ml-auto">
           <button
-            className="flex items-center text-lg text-gray-600 hover:bg-gray-300 active:bg-gray-400 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 rounded-md px-3 py-1 transition"
+            className="flex items-center text-lg text-gray-600 hover:bg-gray-300 active:bg-gray-400/60 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 rounded-md px-3 py-1 transition"
             onClick={() => {
               props.setEditGradDateVis(true);
             }}
@@ -130,7 +130,7 @@ export default function Header(props: HeaderProps) {
               className={`${settingsVis} absolute right-0 w-80 bg-gray-100 dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 rounded-md shadow-lg p-3 mt-2`}
             >
               <button
-                className="block w-full text-base text-left text-gray-600 hover:bg-gray-300 active:bg-gray-400 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 transition rounded-md px-3 py-2 mt-1 first:mt-0"
+                className="block w-full text-base text-left text-gray-600 hover:bg-gray-300 active:bg-gray-400/60 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 transition rounded-md px-3 py-2 mt-1 first:mt-0"
                 onClick={() => {
                   if (localStorage.getItem("theme") === "dark") {
                     document.documentElement.classList.remove("dark");
@@ -146,7 +146,7 @@ export default function Header(props: HeaderProps) {
                 <span className="hidden dark:inline">Toggle light mode</span>
               </button>
               <button
-                className="block w-full text-base text-left text-gray-600 hover:bg-gray-300 active:bg-gray-400 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 transition rounded-md px-3 py-2 mt-1 first:mt-0"
+                className="block w-full text-base text-left text-gray-600 hover:bg-gray-300 active:bg-gray-400/60 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 transition rounded-md px-3 py-2 mt-1 first:mt-0"
                 onClick={() => {
                   props.setChangeGPAVis(true);
                 }}
@@ -155,7 +155,7 @@ export default function Header(props: HeaderProps) {
                 <span>Change GPA calculation</span>
               </button>
               <button
-                className="block w-full text-base text-left text-gray-600 hover:bg-gray-300 active:bg-gray-400 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 transition rounded-md px-3 py-2 mt-1 first:mt-0"
+                className="block w-full text-base text-left text-gray-600 hover:bg-gray-300 active:bg-gray-400/60 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 transition rounded-md px-3 py-2 mt-1 first:mt-0"
                 onClick={() => {
                   props.setImportDataVis(true);
                 }}

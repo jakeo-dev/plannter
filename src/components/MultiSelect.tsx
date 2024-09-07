@@ -72,7 +72,7 @@ export default function MultiSelect({
           ),
         dropdownIndicator: ({ isFocused }) =>
           classNames(
-            "text-gray-800 dark:text-gray-200",
+            "cursor-pointer text-gray-800 dark:text-gray-200",
             isFocused
               ? "hover:text-gray-800 dark:hover:text-gray-200"
               : "hover:text-gray-500 dark:hover:text-gray-500"
@@ -120,7 +120,7 @@ export default function MultiSelect({
                 : "active:bg-gray-300 dark:active:bg-gray-600")
           ),
         placeholder: () => classNames("text-gray-500"),
-        valueContainer: () => classNames(),
+        valueContainer: () => classNames("cursor-text"),
       }}
     />
   );

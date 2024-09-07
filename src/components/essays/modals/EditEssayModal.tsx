@@ -181,7 +181,7 @@ export default function EditEssayModal({
         editEssayVisible ? "visibleFade" : "invisibleFade"
       }`}
     >
-      <div className="flex flex-col bg-gray-100 dark:bg-gray-900 relative w-full h-full px-8 py-8 md:px-24 md:pt-12 md:pb-16">
+      <div className="flex flex-col bg-gray-100 dark:bg-gray-900 dark:border-2 dark:border-gray-800 relative w-full h-full px-8 py-8 md:px-24 md:pt-12 md:pb-16">
         <button
           className="absolute top-[4.25rem] left-7 text-lg border-gray-300 dark:border-gray-700 rounded-full border-2 hover:bg-gray-200 dark:hover:bg-gray-800 active:bg-gray-300 dark:active:bg-gray-700 px-2.5 py-1 transition"
           onClick={() => {

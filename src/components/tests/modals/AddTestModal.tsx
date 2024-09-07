@@ -203,7 +203,10 @@ export default function AddTestModal({
                   subTypeInput != "" ? subTypeInput : ""
                 } (${monthInput} ${yearInput})`,
                 type: typeInput,
-                subType: subTypeInput,
+                subType:
+                  typeInput == "AP" || typeInput == "IB" || typeInput == "Other"
+                    ? subTypeInput
+                    : "",
                 month: monthInput,
                 year: yearInput != "" ? Number(yearInput) : -1,
                 score: scoreInput != "" ? Number(scoreInput) : -1,
