@@ -123,15 +123,15 @@ export function getOverallDifficultyText(difficulty: number) {
  */
 export function getDifficultyColor(difficulty: number) {
   if (difficulty < 2) {
-    return "bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 transition";
+    return "bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 transition";
   } else if (difficulty < 3) {
-    return "bg-yellow-300 hover:bg-yellow-400 dark:bg-yellow-700/80 dark:hover:bg-yellow-600/80 text-gray-700 dark:text-gray-300 transition";
+    return "bg-yellow-300 dark:bg-yellow-700/80 text-gray-700 dark:text-gray-300 transition";
   } else if (difficulty < 4) {
-    return "bg-orange-300 hover:bg-orange-400 dark:bg-orange-700/80 dark:hover:bg-orange-600/80 text-gray-700 dark:text-gray-300 transition";
+    return "bg-orange-300 dark:bg-orange-700/80 text-gray-700 dark:text-gray-300 transition";
   } else if (difficulty < 5) {
-    return "bg-red-300 hover:bg-red-400 dark:bg-red-700/80 dark:hover:bg-red-600/80 text-gray-700 dark:text-gray-300 transition";
+    return "bg-red-300 dark:bg-red-700/80 text-gray-700 dark:text-gray-300 transition";
   } else {
-    return "bg-pink-300 hover:bg-pink-400 dark:bg-pink-700/80 dark:hover:bg-pink-600/80 text-gray-700 dark:text-gray-300 transition";
+    return "bg-pink-300 dark:bg-pink-700/80 text-gray-700 dark:text-gray-300 transition";
   }
 }
 

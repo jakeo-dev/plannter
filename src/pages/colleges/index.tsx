@@ -35,9 +35,7 @@ export default function Colleges({
         addCollege={(newCollege: College) => {
           if (!activeRank) return;
 
-          const newRanks = JSON.parse(
-            JSON.stringify(ranks)
-          ) as Ranks; // make a deep copy
+          const newRanks = JSON.parse(JSON.stringify(ranks)) as Ranks; // make a deep copy
           const currentRank = newRanks[activeRank.name];
 
           if (!currentRank.colleges) {
@@ -59,9 +57,7 @@ export default function Colleges({
           if (!activeRank) return;
           if (!activeCollege) return;
 
-          const newRanks = JSON.parse(
-            JSON.stringify(ranks)
-          ) as Ranks; // make a deep copy
+          const newRanks = JSON.parse(JSON.stringify(ranks)) as Ranks; // make a deep copy
           const currentRank = newRanks[activeRank.name];
           if (!currentRank.colleges) return;
 
@@ -82,14 +78,15 @@ export default function Colleges({
             setEditCollegeVisible={setEditCollegeVisible}
             setCurrentRankName={setCurrentRankName}
             setRank={(rank: Rank) => {
-              const newRanks = JSON.parse(
-                JSON.stringify(ranks)
-              ) as Ranks; // make a deep copy
+              const newRanks = JSON.parse(JSON.stringify(ranks)) as Ranks; // make a deep copy
 
               newRanks[rank.name] = rank;
               setRanks(newRanks);
               localStorage.setItem("ranks", JSON.stringify(newRanks));
             }}
+            activeRank={activeRank}
+            setRanks={setRanks}
+            ranks={ranks}
           />
         ))}
       </div>

@@ -244,8 +244,7 @@ export default function EditEssayModal({
           </div>
 
           <div className="flex flex-col flex-grow w-1/3">
-            <div className="mb-4">
-              <label className="modalSubtext px-0">Word count</label>
+            <div className="flex gap-4 mb-4">
               <span
                 className={
                   (wordCount(paperInput) >
@@ -261,9 +260,6 @@ export default function EditEssayModal({
                 {wordCount(paperInput)} word
                 {wordCount(paperInput) != 1 ? "s" : ""}
               </span>
-            </div>
-            <div className="mb-4">
-              <label className="modalSubtext px-0">Character count</label>
               <span>
                 {paperInput.replaceAll("\n", "").length} character
                 {paperInput.replaceAll("\n", "").length != 1 ? "s" : ""}

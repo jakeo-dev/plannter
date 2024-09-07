@@ -3,13 +3,18 @@ import { College } from "@/types";
 import { deadlineClassName, deadlineText, statusColor } from "@/utility";
 import { faBuildingColumns } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 
 export default function CollegeElem({
   college,
+  onStatusChange,
+  onStatusClicked,
   onEdit,
   onTrash,
 }: {
   college: College;
+  onStatusChange: (college: College) => void;
+  onStatusClicked: () => void;
   onEdit: () => void;
   onTrash: () => void;
 }) {
@@ -29,6 +34,31 @@ export default function CollegeElem({
   let daysTilDeadline = Math.round(
     Math.abs((deadline.getTime() - currentDate.getTime()) / oneDay)
   );
+
+  const [statusInput, setStatusInput] = useState(
+    college?.status || "Considering"
+  );
+
+  useEffect(() => {
+    setStatusInput(college?.status || "Considering");
+  }, [college]);
+
+  useEffect(() => {
+    const updatedCollege: College = {
+      uuid: college.uuid,
+      name: college.name,
+      location: college.location,
+      chance: college.chance,
+      deadline: {
+        day: college.deadline.day,
+        month: college.deadline.month,
+        year: college.deadline.year,
+      },
+      status: statusInput,
+    };
+
+    onStatusChange(updatedCollege);
+  }, [statusInput]);
 
   return (
     <li className="item border-t-2 rounded-t-md border-b-2 rounded-b-md pr-14 md:pr-16 mb-3">
@@ -65,13 +95,24 @@ export default function CollegeElem({
         )}
       </span>
       <div className="block mt-2">
-        <span
+        <select
+          onClick={onStatusClicked}
+          onChange={(e) => setStatusInput(e.currentTarget.value)}
+          value={statusInput}
           className={`${statusColor(
-            college.status
-          )} text-sm text-gray-100 dark:text-gray-900 rounded-md px-2.5 py-1 transition`}
+            statusInput
+          )} lightArrowsSelect dark:darkArrowsSelect text-sm text-gray-100 dark:text-gray-900 rounded-md pl-2.5 pr-3.5 py-[0.1875rem] transition`}
         >
-          {college.status}
-        </span>
+          <optgroup label="Select a category">
+            <option value="Considering">Considering</option>
+            <option value="Applying">Applying</option>
+            <option value="Applied">Applied</option>
+            <option value="Accepted">Accepted</option>
+            <option value="Deferred">Deferred</option>
+            <option value="Waitlisted">Waitlisted</option>
+            <option value="Denied">Denied</option>
+          </optgroup>
+        </select>
       </div>
 
       <ItemOptions onEdit={onEdit} onTrash={onTrash} />

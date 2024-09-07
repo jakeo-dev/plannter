@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
-import { College, Rank } from "@/types";
+import { College, Rank, Ranks } from "@/types";
 import CollegeElem from "./CollegeElem";
 
 export default function RankElem({
@@ -11,6 +11,9 @@ export default function RankElem({
   setActiveCollege,
   setRank,
   setCurrentRankName,
+  activeRank,
+  setRanks,
+  ranks,
   setAddCollegeVisible,
   setEditCollegeVisible,
 }: {
@@ -19,6 +22,9 @@ export default function RankElem({
   setActiveCollege: Dispatch<SetStateAction<College | null>>;
   setRank: (rank: Rank) => void;
   setCurrentRankName: Dispatch<SetStateAction<string>>;
+  activeRank: Rank | null;
+  setRanks: Dispatch<SetStateAction<Ranks>>;
+  ranks: Ranks;
   setAddCollegeVisible: Dispatch<SetStateAction<boolean>>;
   setEditCollegeVisible: Dispatch<SetStateAction<boolean>>;
 }) {
@@ -34,6 +40,20 @@ export default function RankElem({
           <CollegeElem
             key={college.uuid}
             college={college}
+            onStatusChange={(updatedCollege: College) => {
+              if (!activeRank) return;
+
+              const newRanks = JSON.parse(JSON.stringify(ranks)) as Ranks; // make a deep copy
+              const currentRank = newRanks[activeRank.name];
+              if (!currentRank.colleges) return;
+
+              currentRank.colleges[updatedCollege.uuid] = updatedCollege;
+              setRanks(newRanks);
+              localStorage.setItem("ranks", JSON.stringify(newRanks));
+            }}
+            onStatusClicked={() => {
+              setActiveRank(rank);
+            }}
             onEdit={() => {
               setActiveCollege(college);
               setActiveRank(rank);

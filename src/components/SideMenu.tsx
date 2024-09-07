@@ -54,12 +54,12 @@ function Statistic({
   if (!number) return <></>;
 
   return (
-    <button className="inline-block whitespace-nowrap w-full text-sm text-left bg-transparent hover:bg-gray-300 dark:hover:bg-gray-800 rounded-md text-gray-700 dark:text-gray-400 transition pl-2 pr-4 py-[0.055rem] my-1.5 -ml-2">
+    <div className="inline-block whitespace-nowrap w-full text-sm text-left bg-transparent rounded-md text-gray-700 dark:text-gray-400 transition pl-2 pr-4 my-1.5 -ml-2">
       <span className="text-base font-bold">
         {decimal ? number.toFixed(2) : number}
       </span>
       {` ${title}`}
-    </button>
+    </div>
   );
 }
 
