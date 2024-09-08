@@ -157,12 +157,12 @@ export default function EditActivityModal({
               alert("Enter the name of this activity");
             } else if (
               Number(hoursPerWeekInput) > 168 ||
-              Number(hoursPerWeekInput) < 1
+              (hoursPerWeekInput && Number(hoursPerWeekInput) < 1)
             ) {
               alert("Hours per week not possible");
             } else if (
               Number(weeksPerYearInput) > 52 ||
-              Number(weeksPerYearInput) < 1
+              (weeksPerYearInput && Number(weeksPerYearInput) < 1)
             ) {
               alert("Weeks per year not possible");
             } else if (
