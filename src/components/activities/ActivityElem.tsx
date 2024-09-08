@@ -17,7 +17,7 @@ export default function ActivityElem({
       onClick={onEdit}
       className="item lg:bg-gray-100 lg:odd:bg-gray-100 lg:[&:nth-child(4n)]:bg-gray-200 lg:[&:nth-child(4n+1)]:bg-gray-200 lg:hover:bg-gray-300 lg:hover:[&:nth-child(4n)]:bg-gray-300 lg:hover:[&:nth-child(4n+1)]:bg-gray-300 dark:lg:bg-gray-900 dark:lg:odd:bg-gray-900 dark:lg:[&:nth-child(4n)]:bg-gray-800 dark:lg:[&:nth-child(4n+1)]:bg-gray-800 dark:lg:hover:bg-gray-700 dark:lg:hover:odd:bg-gray-700 dark:lg:hover:[&:nth-child(4n)]:bg-gray-700 dark:lg:hover:[&:nth-child(4n+1)]:bg-gray-700 lg:rounded-t-md lg:rounded-b-md lg:border-t-2 lg:border-b-2 last:odd:mb-3 last:even:mb-3 lg:[&:nth-last-child(2)]:odd:mb-3"
     >
-      <span className="block pr-12 md:pr-11">
+      <span className="block pr-7 md:pr-6">
         <FontAwesomeIcon
           icon={getActivityIcon(activity.category)}
           className="mr-2"

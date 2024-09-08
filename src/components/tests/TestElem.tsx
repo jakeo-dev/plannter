@@ -12,7 +12,7 @@ export default function TestElem({
 }) {
   return (
     <div onClick={onEdit} className="item">
-      <div className="block pr-12">
+      <div className="block pr-7 md:pr-6">
         <div
           className={`attr ${
             test.score != -1 ? "" : "hidden"

@@ -16,7 +16,7 @@ export default function CourseElem({
   onTrash: () => void;
 }) {
   return (
-    <div onClick={onEdit} className="item pr-16">
+    <div onClick={onEdit} className="item pr-10">
       <div
         className={`attr ${
           course.scores?.firstSemester.letterGrade == "none" ? "hidden" : ""

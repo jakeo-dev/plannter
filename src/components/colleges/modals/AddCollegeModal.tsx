@@ -96,26 +96,35 @@ export default function AddCollegeModal({
           classNames={reactSelectElemClassNames()}
         ></AsyncSelect>
 
-        <label className="modalSubtext">Location</label>
-        <input
-          type="text"
-          className="input"
-          value={locationInput}
-          onInput={(e) => setLocationInput(e.currentTarget.value)}
-          autoComplete="off"
-          maxLength={100}
-        />
+        <div className="flex gap-2 mb-4 md:mb-6">
+          <div className="flex-1">
+            <label className="modalSubtext">Location</label>
+            <input
+              type="text"
+              className="input mb-0"
+              value={locationInput}
+              onInput={(e) => setLocationInput(e.currentTarget.value)}
+              autoComplete="off"
+              maxLength={100}
+            />
+          </div>
 
-        <label className="modalSubtext">Chance percentage</label>
-        <input
-          type="number"
-          className="input"
-          value={chanceInput}
-          onInput={(e) => setChanceInput(e.currentTarget.value)}
-          autoComplete="off"
-          min={0}
-          max={100}
-        />
+          <div className="flex-[0.5]">
+            <label className="modalSubtext hidden md:block">
+              Chance percentage
+            </label>
+            <label className="modalSubtext md:hidden">Chance %</label>
+            <input
+              type="number"
+              className="input mb-0"
+              value={chanceInput}
+              onInput={(e) => setChanceInput(e.currentTarget.value)}
+              autoComplete="off"
+              min={0}
+              max={100}
+            />
+          </div>
+        </div>
 
         <label className="modalSubtext">
           Application deadline

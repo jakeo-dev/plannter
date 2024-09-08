@@ -63,7 +63,7 @@ export default function CollegeElem({
   return (
     <div
       onClick={onEdit}
-      className="item border-t-2 rounded-t-md border-b-2 rounded-b-md pr-14 md:pr-16 mb-3"
+      className="item border-t-2 rounded-t-md border-b-2 rounded-b-md pr-10 mb-3"
     >
       <FontAwesomeIcon icon={faBuildingColumns} className="mr-2" />
       <span>{college.name}</span>
