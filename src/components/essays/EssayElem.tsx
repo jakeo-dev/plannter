@@ -53,7 +53,7 @@ export default function EssayElem({
           <span
             className={`${essay.status ? "" : "hidden"} ${
               essay.status == "Finished"
-                ? "text-white dark:text-black bg-emerald-700/80 dark:bg-emerald-400/80 rounded-[0.25rem] px-[0.35rem]"
+                ? "text-white dark:text-black bg-emerald-700/80 dark:bg-emerald-400/80 rounded-[0.25rem] px-[0.35rem] md:py-0 lg:py-[0.08rem] xl:py-0"
                 : ""
             }`}
           >

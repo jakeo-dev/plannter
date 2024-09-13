@@ -21,14 +21,16 @@ function sortEssays(a: Essay, b: Essay) {
     return getStatusLevel(b.status) - getStatusLevel(a.status);
   }
 
+  /* 
+  // sort by length, shortest > longest
   const sortPaperLengths = (paperLengthA: number, paperLengthB: number) => {
     if (paperLengthA > paperLengthB) return 1;
     else if (paperLengthB > paperLengthA) return -1;
     else return 0;
-  };
+  }; */
 
-  // sort by length, shortest > longest
-  return sortPaperLengths(a.paper.length, b.paper.length);
+  // sort alphabetically
+  return a.name.localeCompare(b.name);
 }
 
 export default function FolderElem({
