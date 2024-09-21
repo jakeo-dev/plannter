@@ -40,6 +40,13 @@ export default function App({ Component, pageProps }: AppProps) {
         return str ? /\d/.test(str) : false;
       };
 
+      if (typeof localStorage.getItem("gradDate") === "string") {
+        localStorage.removeItem("gradDate");
+        localStorage.removeItem("gradDay");
+        localStorage.removeItem("gradMonth");
+        localStorage.removeItem("gradYear");
+      }
+
       /* * * * * * EXPORT COURSEWORK * * * * * */
       const allCoursesData: Record<string, any> = {};
 
