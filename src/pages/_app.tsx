@@ -176,7 +176,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
       for (let strengthLevel = 1; strengthLevel <= 3; strengthLevel++) {
         let list = document.createElement("ul");
-        list.id = `listActs${strengthLevel}`;
+        list.id = strengthLevel != 1 ? `listActs${strengthLevel}` : `listActs`;
         list.innerHTML = localStorage.getItem(`listActs${strengthLevel}`) ?? "";
         const currentItems = list?.getElementsByTagName("li") ?? [];
 
@@ -244,7 +244,7 @@ export default function App({ Component, pageProps }: AppProps) {
           rankLevel === 1 ? "Reach" : rankLevel === 2 ? "Target" : "Safety";
 
         let list = document.createElement("ul");
-        list.id = `listColleges${rankLevel}`;
+        list.id = rankLevel != 1 ? `listColleges${rankLevel}` : `listColleges`;
         list.innerHTML = localStorage.getItem(`listColleges${rankLevel}`) ?? "";
         const currentItems = list?.getElementsByTagName("li") ?? [];
 
