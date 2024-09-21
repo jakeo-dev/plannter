@@ -299,6 +299,28 @@ export function monthName(num: number) {
 }
 
 /**
+ * Convert month number to month name
+ *
+ * @param name - The month name (first 3 letters)
+ * @returns The corresponding month number
+ */
+export function monthNumber(name: string) {
+  if (name == "Jan") return 0;
+  else if (name == "Feb") return 1;
+  else if (name == "Mar") return 2;
+  else if (name == "Apr") return 3;
+  else if (name == "May") return 4;
+  else if (name == "Jun") return 5;
+  else if (name == "Jul") return 6;
+  else if (name == "Aug") return 7;
+  else if (name == "Sep") return 8;
+  else if (name == "Oct") return 9;
+  else if (name == "Nov") return 10;
+  else if (name == "Dec") return 11;
+  else return -1;
+}
+
+/**
  * Get class name for deadline text from days until deadline, deadline date, and current date
  *
  * @param daysTil - Days until deadline

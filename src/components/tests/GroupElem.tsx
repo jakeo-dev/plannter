@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Dispatch, SetStateAction } from "react";
 
+import { monthNumber } from "@/utility";
 import { Test, Group } from "@/types";
 import TestElem from "./TestElem";
 
@@ -19,6 +20,21 @@ function sortTests(a: Test, b: Test) {
   // act > sat > preact > psat > ap > ib > other
   if (getTypeLevel(a.type) !== getTypeLevel(b.type)) {
     return getTypeLevel(b.type) - getTypeLevel(a.type);
+  }
+
+  // sort by score (higher > lower)
+  if (a.score !== b.score) {
+    return b.score - a.score;
+  }
+
+  // sort by year (later > earlier)
+  if (a.year !== b.year) {
+    return b.year - a.year;
+  }
+
+  // sort by month (later > earlier)
+  if (a.month !== b.month) {
+    return monthNumber(b.month) - monthNumber(a.month);
   }
 
   // sort alphabetically
