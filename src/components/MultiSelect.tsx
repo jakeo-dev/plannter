@@ -92,7 +92,7 @@ export default function MultiSelect({
         menuList: () => classNames("py-1"),
         multiValue: () =>
           classNames(
-            "flex items-center bg-gray-200 dark:bg-gray-800 border-2 border-gray-100 dark:border-gray-900 rounded-md pl-2 pr-1 py-0.5 m-[0.0625rem]"
+            "flex items-center bg-gray-200 dark:bg-gray-800 border-2 border-gray-100 dark:border-gray-900 rounded-md max-w-[20ch] lg:max-w-[35ch] overflow-hidden text-ellipsis pl-2 pr-1 py-0.5 m-[0.0625rem]"
           ),
         multiValueLabel: () =>
           classNames("rounded-md text-gray-800 dark:text-gray-200 text-sm"),

@@ -1,5 +1,5 @@
 import ResponsiveTextArea from "@/components/ResponsiveTextArea";
-import { AddActivityModalProps, Activity } from "@/types";
+import { AddActivityModalProps, Activity, Strengths } from "@/types";
 import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
@@ -7,8 +7,9 @@ import { useState } from "react";
 export default function AddActivityModal({
   addActivityVisible,
   setAddActivityVisible,
-  currentStrengthName,
   addActivity,
+  strengths,
+  activeStrength,
 }: AddActivityModalProps) {
   const [nameInput, setNameInput] = useState("");
   const [descriptionInput, setDescriptionInput] = useState("");
@@ -158,6 +159,14 @@ export default function AddActivityModal({
                   hoursPerWeekInput != "" ? Number(hoursPerWeekInput) : -1,
                 weeksPerYear:
                   weeksPerYearInput != "" ? Number(weeksPerYearInput) : -1,
+                order:
+                  strengths &&
+                  activeStrength &&
+                  strengths[activeStrength.name]?.activities
+                    ? Object.keys(
+                        strengths[activeStrength.name].activities ?? {}
+                      ).length
+                    : 0,
               };
 
               addActivity(newActivity);
@@ -168,7 +177,7 @@ export default function AddActivityModal({
           }}
         >
           <FontAwesomeIcon icon={faPlus} className="mr-1 md:mr-1.5" />
-          Add {currentStrengthName.toLocaleLowerCase()} activity
+          Add activity
         </button>
 
         <button

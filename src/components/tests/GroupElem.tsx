@@ -21,7 +21,7 @@ function sortTests(a: Test, b: Test) {
     return getTypeLevel(b.type) - getTypeLevel(a.type);
   }
 
-  // sort "other" tests alphabetically
+  // sort alphabetically
   return a.subType.localeCompare(b.subType);
 }
 

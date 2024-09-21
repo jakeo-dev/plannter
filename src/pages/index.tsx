@@ -15,17 +15,17 @@ export default function Home() {
     <CommonHead>
       <meta
         name="keywords"
-        content="plannter, planter, high school, college, colleges, application, applications, college application, college applications, college app, college apps, common app, school, schools, course, courses, extracurricular, extracurriculars, activity, activities, test, tests, exam, exams, essay, essays, college app help, college application help, course tracker, manage courses, college tracker, extracurricular tracker, manage extracurriculars"
+        content="plannter, planter, high school, college, colleges, application, applications, college application, college applications, college app, college apps, common app, school, schools, course, courses, extracurricular, extracurriculars, activity, activities, test, tests, exam, exams, essay, essays, college app help, college application help, course tracker, manage courses, college tracker, extracurricular tracker, activity tracker, manage extracurriculars, manage activities"
       />
       <meta
         property="description"
-        content="Plan courses, keep track of extracurriculars, prepare for college applications, and more."
+        content="Plan courses, keep track of activities, prepare for college applications, and more."
       />
 
       <meta property="og:title" content="Plannter" />
       <meta
         property="og:description"
-        content="Plan courses, keep track of extracurriculars, prepare for college applications, and more."
+        content="Plan courses, keep track of activities, prepare for college applications, and more."
       />
       <meta name="theme-color" content="#16a34a" />
       <meta property="og:image" content="plannter-favicon.png" />
@@ -35,7 +35,7 @@ export default function Home() {
       <meta name="twitter:title" content="Plannter" />
       <meta
         name="twitter:description"
-        content="Plan courses, keep track of extracurriculars, prepare for college applications, and more."
+        content="Plan courses, keep track of activities, prepare for college applications, and more."
       />
       <meta name="twitter:image" content="plannter-favicon.png" />
       <meta name="twitter:url" content="https://plannter.jakeo.dev" />

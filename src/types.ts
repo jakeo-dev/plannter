@@ -108,14 +108,12 @@ export interface EditCourseModalProps {
 // activity types
 
 export interface Strengths {
-  Major: Strength;
-  Moderate: Strength;
-  Minor: Strength;
+  All: Strength;
 }
 
 export interface Strength {
   level: number | null;
-  name: "Major" | "Moderate" | "Minor";
+  name: "All";
   activities?: { [key: string]: Activity };
 }
 
@@ -126,19 +124,20 @@ export interface Activity {
   category: string;
   hoursPerWeek: number;
   weeksPerYear: number;
+  order: number;
 }
 
 export interface AddActivityModalProps {
   addActivityVisible: boolean;
   setAddActivityVisible: Dispatch<SetStateAction<boolean>>;
-  currentStrengthName: string;
   addActivity: (activity: Activity) => void;
+  strengths: Strengths;
+  activeStrength: Strength | null;
 }
 
 export interface EditActivityModalProps {
   editActivityVisible: boolean;
   setEditActivityVisible: Dispatch<SetStateAction<boolean>>;
-  currentStrengthName: string;
   activity: Activity | null;
   saveActivity: (activity: Activity) => void;
 }

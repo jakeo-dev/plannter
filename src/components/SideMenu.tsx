@@ -13,7 +13,6 @@ import {
   GPASettings,
   Grade,
   Stages,
-  Activity,
   Strengths,
   Test,
   Groups,
@@ -196,7 +195,7 @@ export default function SideMenu(props: SideMenuProps) {
           </h2>
           <Tab name="Coursework" url="/coursework" />
           <Tab name="Tests" url="/tests" />
-          <Tab name="Extracurriculars" url="/extracurriculars" />
+          <Tab name="Activities" url="/activities" />
           <h2 className="text-sm text-gray-500 px-6 md:px-7 mb-2 mt-6">
             Application
           </h2>
@@ -214,8 +213,7 @@ export default function SideMenu(props: SideMenuProps) {
             title={getOverallDifficultyText(difficulty)}
           />
 
-          {/* <Statistic number={} title="Extracurriculars" />
-          <Statistic number={} title="Test Scores" /> */}
+          {/* <Statistic number={} title="Test Scores" /> */}
           <button
             className={`${
               unweightedGPA ? "" : "hidden "

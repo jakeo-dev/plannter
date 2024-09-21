@@ -9,7 +9,6 @@ export default function EditActivityModal({
   setEditActivityVisible,
   saveActivity,
   activity,
-  currentStrengthName,
 }: EditActivityModalProps) {
   const [nameInput, setNameInput] = useState(activity?.name || "");
   const [descriptionInput, setDescriptionInput] = useState(
@@ -180,6 +179,7 @@ export default function EditActivityModal({
                   hoursPerWeekInput != "" ? Number(hoursPerWeekInput) : -1,
                 weeksPerYear:
                   weeksPerYearInput != "" ? Number(weeksPerYearInput) : -1,
+                order: activity.order,
               };
 
               saveActivity(updatedActivity);
@@ -189,7 +189,7 @@ export default function EditActivityModal({
           }}
         >
           <FontAwesomeIcon icon={faFloppyDisk} className="mr-1.5 md:mr-2" />
-          Save {currentStrengthName.toLocaleLowerCase()} activity
+          Save activity
         </button>
 
         <button

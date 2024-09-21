@@ -78,12 +78,10 @@ export default function App({ Component, pageProps }: AppProps) {
   });
 
   const [strengths, setStrengths] = useState<Strengths>({
-    Major: {
-      name: "Major",
+    All: {
+      name: "All",
       level: 1,
     },
-    Moderate: { name: "Moderate", level: 2 },
-    Minor: { name: "Minor", level: 3 },
   });
 
   const [groups, setGroups] = useState<Groups>({

@@ -7,7 +7,7 @@ import { Activity, Strength, Strengths } from "@/types";
 import AddActivityModal from "@/components/activities/modals/AddActivityModal";
 import EditActivityModal from "@/components/activities/modals/EditActivityModal";
 
-export default function Extracurriculars({
+export default function Activities({
   strengths,
   setStrengths,
 }: {
@@ -17,21 +17,18 @@ export default function Extracurriculars({
   const [activeStrength, setActiveStrength] = useState<Strength | null>(null);
   const [activeActivity, setActiveActivity] = useState<Activity | null>(null);
 
-  const [currentStrengthName, setCurrentStrengthName] = useState("");
-
   const [addActivityVisible, setAddActivityVisible] = useState(false);
   const [editActivityVisible, setEditActivityVisible] = useState(false);
 
   return (
     <>
       <CommonHead>
-        <title>Plannter: Extracurriculars</title>
+        <title>Plannter: Activities</title>
       </CommonHead>
 
       <AddActivityModal
         addActivityVisible={addActivityVisible}
         setAddActivityVisible={setAddActivityVisible}
-        currentStrengthName={currentStrengthName}
         addActivity={(newActivity: Activity) => {
           if (!activeStrength) return;
 
@@ -48,12 +45,13 @@ export default function Extracurriculars({
           setStrengths(newStrengths);
           localStorage.setItem("strengths", JSON.stringify(newStrengths));
         }}
+        strengths={strengths}
+        activeStrength={activeStrength}
       />
 
       <EditActivityModal
         editActivityVisible={editActivityVisible}
         setEditActivityVisible={setEditActivityVisible}
-        currentStrengthName={currentStrengthName}
         activity={activeActivity}
         saveActivity={(updatedActivity: Activity) => {
           if (!activeStrength) return;
@@ -80,7 +78,6 @@ export default function Extracurriculars({
             setActiveActivity={setActiveActivity}
             setAddActivityVisible={setAddActivityVisible}
             setEditActivityVisible={setEditActivityVisible}
-            setCurrentStrengthName={setCurrentStrengthName}
             setStrength={(strength: Strength) => {
               const newStrengths = JSON.parse(
                 JSON.stringify(strengths)
