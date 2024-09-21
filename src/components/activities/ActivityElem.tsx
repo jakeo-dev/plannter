@@ -59,12 +59,11 @@ export default function ActivityElem({
         <span className="block break-words">{activity.weeksPerYear} wk/yr</span>
       </div>
 
-      <span className="block">
-        {activity.order != null ? activity.order : "NO ORDER"}
-      </span>
-
       {/* item options */}
       <div className="flex gap-2.5 items-center absolute top-4 right-4 text-right float-right">
+        {/* <div className="flex leading-none text-gray-600 dark:text-gray-400">
+          {activity.order != null ? activity.order + 1 : ""}
+        </div> */}
         <button
           onClick={(e) => {
             e.stopPropagation();
