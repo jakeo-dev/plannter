@@ -162,12 +162,14 @@ export default function App({ Component, pageProps }: AppProps) {
           month: localStorage.getItem(`${testId}Month`),
           year: localStorage.getItem(`${testId}Year`),
           score: parseInt(localStorage.getItem(`${testId}Score`) ?? "-1"),
-          readScore: parseInt(
-            localStorage.getItem(`${testId}ReadingScore`) ?? "-1"
-          ),
-          mathScore: parseInt(
-            localStorage.getItem(`${testId}MathScore`) ?? "-1"
-          ),
+          readScore:
+            localStorage.getItem(`${testId}ReadingScore`) != ""
+              ? parseInt(localStorage.getItem(`${testId}ReadingScore`) ?? "-1")
+              : -1,
+          mathScore:
+            localStorage.getItem(`${testId}ReadingScore`) != ""
+              ? parseInt(localStorage.getItem(`${testId}ReadingScore`) ?? "-1")
+              : -1,
         };
 
         allTests[newTestId] = testData;
@@ -184,7 +186,10 @@ export default function App({ Component, pageProps }: AppProps) {
       for (let strengthLevel = 1; strengthLevel <= 3; strengthLevel++) {
         let list = document.createElement("ul");
         list.id = strengthLevel != 1 ? `listActs${strengthLevel}` : `listActs`;
-        list.innerHTML = localStorage.getItem(`listActs${strengthLevel}`) ?? "";
+        list.innerHTML =
+          strengthLevel != 1
+            ? localStorage.getItem(`listActs${strengthLevel}`) ?? ""
+            : localStorage.getItem(`listActs`) ?? "";
         const currentItems = list?.getElementsByTagName("li") ?? [];
 
         for (let j = 0; j < currentItems.length; j++) {
@@ -252,7 +257,10 @@ export default function App({ Component, pageProps }: AppProps) {
 
         let list = document.createElement("ul");
         list.id = rankLevel != 1 ? `listColleges${rankLevel}` : `listColleges`;
-        list.innerHTML = localStorage.getItem(`listColleges${rankLevel}`) ?? "";
+        list.innerHTML =
+          rankLevel != 1
+            ? localStorage.getItem(`listColleges${rankLevel}`) ?? ""
+            : localStorage.getItem(`listColleges`) ?? "";
         const currentItems = list?.getElementsByTagName("li") ?? [];
 
         const colleges: Record<string, any> = {};
