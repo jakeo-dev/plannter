@@ -54,10 +54,12 @@ export default function App({ Component, pageProps }: AppProps) {
             : gradeLevel === 12
             ? "Senior"
             : "Other";
-        const currentItems =
-          document
-            .getElementById(`list${gradeLevel}`)
-            ?.getElementsByTagName("li") ?? [];
+
+        let list = document.createElement("ul");
+        list.id = `list${gradeLevel}`;
+        list.innerHTML = localStorage.getItem(`list${gradeLevel}`) ?? "";
+        const currentItems = list?.getElementsByTagName("li") ?? [];
+
         const courses: Record<string, any> = {};
 
         for (let j = 0; j < currentItems.length; j++) {
@@ -132,8 +134,11 @@ export default function App({ Component, pageProps }: AppProps) {
 
       /* * * * * * EXPORT TESTS * * * * * */
       const allTests: Record<string, any> = {};
-      const currentTests =
-        document.getElementById("listTests")?.getElementsByTagName("li") ?? [];
+
+      let list = document.createElement("ul");
+      list.id = `listTests`;
+      list.innerHTML = localStorage.getItem(`listTests`) ?? "";
+      const currentTests = list?.getElementsByTagName("li") ?? [];
 
       for (let j = 0; j < currentTests.length; j++) {
         const test = currentTests[j];
@@ -170,10 +175,10 @@ export default function App({ Component, pageProps }: AppProps) {
       let order = 0;
 
       for (let strengthLevel = 1; strengthLevel <= 3; strengthLevel++) {
-        const currentItems =
-          document
-            .getElementById(`listActs${strengthLevel}`)
-            ?.getElementsByTagName("li") ?? [];
+        let list = document.createElement("ul");
+        list.id = `listActs${strengthLevel}`;
+        list.innerHTML = localStorage.getItem(`listActs${strengthLevel}`) ?? "";
+        const currentItems = list?.getElementsByTagName("li") ?? [];
 
         for (let j = 0; j < currentItems.length; j++) {
           const activity = currentItems[j];
@@ -199,8 +204,11 @@ export default function App({ Component, pageProps }: AppProps) {
 
       /* * * * * * EXPORT ESSAYS * * * * * */
       const allEssays: Record<string, any> = {};
-      const currentEssays =
-        document.getElementById("listEssays")?.getElementsByTagName("li") ?? [];
+
+      let listE = document.createElement("ul");
+      listE.id = `listEssays`;
+      listE.innerHTML = localStorage.getItem(`listEssays`) ?? "";
+      const currentEssays = listE?.getElementsByTagName("li") ?? [];
 
       for (let j = 0; j < currentEssays.length; j++) {
         const essay = currentEssays[j];
@@ -234,10 +242,12 @@ export default function App({ Component, pageProps }: AppProps) {
       for (let rankLevel = 1; rankLevel <= 3; rankLevel++) {
         const rankName =
           rankLevel === 1 ? "Reach" : rankLevel === 2 ? "Target" : "Safety";
-        const currentItems =
-          document
-            .getElementById(`listColleges${rankLevel}`)
-            ?.getElementsByTagName("li") ?? [];
+
+        let list = document.createElement("ul");
+        list.id = `listColleges${rankLevel}`;
+        list.innerHTML = localStorage.getItem(`listColleges${rankLevel}`) ?? "";
+        const currentItems = list?.getElementsByTagName("li") ?? [];
+
         const colleges: Record<string, any> = {};
 
         for (let j = 0; j < currentItems.length; j++) {
