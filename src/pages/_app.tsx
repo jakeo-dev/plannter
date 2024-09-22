@@ -321,7 +321,7 @@ export default function App({ Component, pageProps }: AppProps) {
           ? Number(localStorage.getItem("gradDay"))
           : -1,
         month: localStorage.getItem("gradMonth")
-          ? Number(localStorage.getItem("gradMonth"))
+          ? Number(localStorage.getItem("gradMonth")) - 1
           : -1,
         year: localStorage.getItem("gradYear")
           ? Number(localStorage.getItem("gradYear"))
