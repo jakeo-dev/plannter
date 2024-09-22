@@ -384,6 +384,25 @@ export function statusColor(status: string) {
 }
 
 /**
+ * Get index of greatest number in an array
+ *
+ * @param array - Array of numbers
+ * @returns Index of greatest number in given array
+ */
+export function indexOfGreatestNumber(array: number[]) {
+  let greatest = -99999;
+  let greatestNumIndex = -1;
+
+  for (let i = 0; i < array.length; i++) {
+    if (Number(array[i]) > greatest) {
+      greatest = Number(array[i]);
+      greatestNumIndex = i;
+    }
+  }
+  return greatestNumIndex;
+}
+
+/**
  * Converts React Select default styles to Plannter styles (includes mb-4).
  *
  * @returns An object containing class names for different React Select elements.
