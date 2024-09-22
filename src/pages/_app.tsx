@@ -164,8 +164,8 @@ export default function App({ Component, pageProps }: AppProps) {
               ? parseInt(localStorage.getItem(`${testId}ReadingScore`) ?? "-1")
               : -1,
           mathScore:
-            localStorage.getItem(`${testId}ReadingScore`) != ""
-              ? parseInt(localStorage.getItem(`${testId}ReadingScore`) ?? "-1")
+            localStorage.getItem(`${testId}MathScore`) != ""
+              ? parseInt(localStorage.getItem(`${testId}MathScore`) ?? "-1")
               : -1,
         };
 
