@@ -304,7 +304,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
       /* * * * * EXPORT GPA CALCULATION * * * * * */
       const gpaCalculation = {
-        usePlusMinus: Boolean(localStorage.getItem("gpaPlusMinus")) || false,
+        usePlusMinus: localStorage.getItem("gpaPlusMinus")
+          ? Boolean(localStorage.getItem("gpaPlusMinus"))
+          : false,
         noneWeight: 0,
         advancedWeight: localStorage.getItem("advWeight")
           ? Number(localStorage.getItem("advWeight"))
