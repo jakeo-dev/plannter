@@ -21,9 +21,39 @@ function sortEssays(a: Essay, b: Essay) {
     return getStatusLevel(b.status) - getStatusLevel(a.status);
   }
 
-  /* 
+  // sort by number of linked colleges
+  if (a.linkedColleges.length !== b.linkedColleges.length) {
+    return b.linkedColleges.length - a.linkedColleges.length;
+  }
+
+  // sort by linked colleges alphabetically
+  if (a.linkedColleges[0] !== b.linkedColleges[0]) {
+    return a.linkedColleges[0].label.localeCompare(b.linkedColleges[0].label);
+  }
+
+  // sort by recently edited newer > older
+  /* const bDate = new Date(
+    b.lastEdited?.year || 0,
+    b.lastEdited?.month || 0,
+    b.lastEdited?.day || 0,
+    b.lastEdited?.hour || 0,
+    b.lastEdited?.minute || 0,
+    b.lastEdited?.second || 0
+  );
+  const aDate = new Date(
+    a.lastEdited?.year || 0,
+    a.lastEdited?.month || 0,
+    a.lastEdited?.day || 0,
+    a.lastEdited?.hour || 0,
+    a.lastEdited?.minute || 0,
+    a.lastEdited?.second || 0
+  );
+  if (aDate.getTime() !== bDate.getTime()) {
+    return bDate.getTime() - aDate.getTime();
+  } */
+
   // sort by length, shortest > longest
-  const sortPaperLengths = (paperLengthA: number, paperLengthB: number) => {
+  /* const sortPaperLengths = (paperLengthA: number, paperLengthB: number) => {
     if (paperLengthA > paperLengthB) return 1;
     else if (paperLengthB > paperLengthA) return -1;
     else return 0;
