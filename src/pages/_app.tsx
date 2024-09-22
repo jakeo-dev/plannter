@@ -304,13 +304,23 @@ export default function App({ Component, pageProps }: AppProps) {
 
       /* * * * * EXPORT GPA CALCULATION * * * * * */
       const gpaCalculation = {
-        usePlusMinus: localStorage.getItem("gpaPlusMinus"),
+        usePlusMinus: Boolean(localStorage.getItem("gpaPlusMinus")) || false,
         noneWeight: 0,
-        advancedWeight: Number(localStorage.getItem("advWeight")),
-        honorsWeight: Number(localStorage.getItem("honWeight")),
-        collegeWeight: Number(localStorage.getItem("colWeight")),
-        apWeight: Number(localStorage.getItem("apWeight")),
-        ibWeight: Number(localStorage.getItem("ibWeight")),
+        advancedWeight: localStorage.getItem("advWeight")
+          ? Number(localStorage.getItem("advWeight"))
+          : 0,
+        honorsWeight: localStorage.getItem("honWeight")
+          ? Number(localStorage.getItem("honWeight"))
+          : 0.5,
+        collegeWeight: localStorage.getItem("colWeight")
+          ? Number(localStorage.getItem("colWeight"))
+          : 0,
+        apWeight: localStorage.getItem("apWeight")
+          ? Number(localStorage.getItem("apWeight"))
+          : 1,
+        ibWeight: localStorage.getItem("ibWeight")
+          ? Number(localStorage.getItem("ibWeight"))
+          : 1,
       };
 
       const finalFormattedGpaCalculationString = JSON.stringify(gpaCalculation);
