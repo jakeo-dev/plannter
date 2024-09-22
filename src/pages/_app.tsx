@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { Lexend } from "next/font/google";
+import { Days_One, Lexend } from "next/font/google";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { useEffect, useState } from "react";
@@ -42,9 +42,6 @@ export default function App({ Component, pageProps }: AppProps) {
 
       if (typeof localStorage.getItem("gradDate") === "string") {
         localStorage.removeItem("gradDate");
-        localStorage.removeItem("gradDay");
-        localStorage.removeItem("gradMonth");
-        localStorage.removeItem("gradYear");
       }
 
       /* * * * * * EXPORT COURSEWORK * * * * * */
@@ -318,6 +315,21 @@ export default function App({ Component, pageProps }: AppProps) {
 
       const finalFormattedGpaCalculationString = JSON.stringify(gpaCalculation);
 
+      /* * * * * EXPORT GRADUATION DATE * * * * * */
+      const gradDate = {
+        day: localStorage.getItem("gradDay")
+          ? Number(localStorage.getItem("gradDay"))
+          : -1,
+        month: localStorage.getItem("gradMonth")
+          ? Number(localStorage.getItem("gradMonth"))
+          : -1,
+        year: localStorage.getItem("gradYear")
+          ? Number(localStorage.getItem("gradYear"))
+          : -1,
+      };
+
+      const finalFormattedGradDateString = JSON.stringify(gradDate);
+
       localStorage.clear();
 
       localStorage.setItem("stages", finalFormattedCourseworkString);
@@ -337,6 +349,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
       localStorage.setItem("gpaWeights", finalFormattedGpaCalculationString);
       setGPASettings(JSON.parse(finalFormattedGpaCalculationString));
+
+      localStorage.setItem("gradDate", finalFormattedGradDateString);
+      setGradDate(JSON.parse(finalFormattedGradDateString));
     }
 
     const isDarkMode =
