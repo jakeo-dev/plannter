@@ -123,7 +123,6 @@ export default function GroupElem({
       setBestSAT(highestSAT);
       setBestACT(highestACT);
       setFavoredTest(findFavoredTest(highestSAT || -1, highestACT || -1));
-      console.log(findFavoredTest(highestSAT || -1, highestACT || -1));
     }
   }, [group.tests]);
 

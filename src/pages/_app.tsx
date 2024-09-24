@@ -19,6 +19,7 @@ import SideMenu from "@/components/SideMenu";
 import ChangeGPAModal from "@/components/ChangeGPAModal";
 import ImportDataModal from "@/components/ImportDataModal";
 import EditGradDateModal from "@/components/EditGradDateModal";
+import { Analytics } from "@vercel/analytics/react";
 config.autoAddCss = false;
 
 const lexend = Lexend({ subsets: ["latin"] });
@@ -550,6 +551,8 @@ export default function App({ Component, pageProps }: AppProps) {
           gradDate={gradDate}
         />
       </div>
+
+      <Analytics />
     </main>
   );
 }
