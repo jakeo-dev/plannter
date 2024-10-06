@@ -2,11 +2,11 @@
 
 Plan courses, keep track of extracurriculars, prepare for college applications, and more.
 
-Coursework      |  Colleges
+**Coursework**      |  **Colleges**
 :-----------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------:
-![image](https://github.com/user-attachments/assets/701a0e26-1a53-48e4-bb8f-2198151b8508) | ![image](https://github.com/user-attachments/assets/65d2aa8f-4e28-4290-ae35-1e483a041b21)
+![image](https://www.jakeo.dev/images/plannter-ss-1.png) | ![image](https://www.jakeo.dev/images/plannter-ss-5.png)
 **Essays**        |  **Extracurriculars**
-![image](https://github.com/user-attachments/assets/808edad6-778c-4cc4-aa77-c3fe44fd8c2c) | ![image](https://github.com/user-attachments/assets/6cda2fca-dbe1-481e-83f2-e544bd88a64c)
+![image](https://www.jakeo.dev/images/plannter-ss-4.png) | ![image](https://www.jakeo.dev/images/plannter-ss-3.png)
 
 ## Local Development
 
