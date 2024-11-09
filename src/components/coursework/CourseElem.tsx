@@ -16,7 +16,15 @@ export default function CourseElem({
   onTrash: () => void;
 }) {
   return (
-    <div onClick={onEdit} className="item pr-10">
+    <div
+      onClick={onEdit}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") onEdit();
+      }}
+      role="button"
+      tabIndex={0}
+      className="item pr-10"
+    >
       <div
         className={`attr ${
           course.scores?.firstSemester.letterGrade == "none" ? "hidden" : ""

@@ -25,6 +25,11 @@ export default function ActivityElem({
   return (
     <div
       onClick={onEdit}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") onEdit();
+      }}
+      role="button"
+      tabIndex={0}
       className="item border-t-2 rounded-t-md border-b-2 rounded-b-md mb-3"
     >
       <span className="block pr-20 md:pr-20">

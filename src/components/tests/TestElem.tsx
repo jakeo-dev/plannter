@@ -11,7 +11,15 @@ export default function TestElem({
   onTrash: () => void;
 }) {
   return (
-    <div onClick={onEdit} className="item">
+    <div
+      onClick={onEdit}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") onEdit();
+      }}
+      role="button"
+      tabIndex={0}
+      className="item"
+    >
       <div className="block pr-7 md:pr-6">
         <div
           className={`attr ${

@@ -24,6 +24,11 @@ export default function EssayElem({
   return (
     <div
       onClick={onEdit}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") onEdit();
+      }}
+      role="button"
+      tabIndex={0}
       className="item h-[13.1rem] lg:h-[15.5rem] xl:h-[13.1rem] lg:bg-gray-100 lg:odd:bg-gray-100 lg:[&:nth-child(4n)]:bg-gray-200 lg:[&:nth-child(4n+1)]:bg-gray-200 lg:hover:bg-gray-300 lg:hover:[&:nth-child(4n)]:bg-gray-300 lg:hover:[&:nth-child(4n+1)]:bg-gray-300 dark:lg:bg-gray-900 dark:lg:odd:bg-gray-900 dark:lg:[&:nth-child(4n)]:bg-gray-800 dark:lg:[&:nth-child(4n+1)]:bg-gray-800 dark:lg:hover:bg-gray-700 dark:lg:hover:odd:bg-gray-700 dark:lg:hover:[&:nth-child(4n)]:bg-gray-700 dark:lg:hover:[&:nth-child(4n+1)]:bg-gray-700 rounded-t-md rounded-b-md border-t-2 border-b-2 last:odd:mb-3 last:even:mb-3 mb-3 lg:mb-0 lg:[&:nth-last-child(2)]:odd:mb-3"
     >
       <span className="line-clamp-2 overflow-ellipsis break-words pr-7 md:pr-6">

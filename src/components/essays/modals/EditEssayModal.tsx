@@ -180,6 +180,12 @@ export default function EditEssayModal({
       className={`bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto ${
         editEssayVisible ? "visibleFade" : "invisibleFade"
       }`}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") {
+          setEditEssayVisible(false);
+        }
+      }}
+      tabIndex={0}
     >
       <div className="flex flex-col bg-gray-100 dark:bg-gray-900 dark:border-2 dark:border-gray-800 relative w-full h-full px-8 py-8 md:px-24 md:pt-12 md:pb-16">
         <button

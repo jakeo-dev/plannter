@@ -28,6 +28,12 @@ export default function EditGradDateModal({
       className={`bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto ${
         editGradDateVisible ? "visibleFade" : "invisibleFade"
       }`}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") {
+          setEditGradDateVisible(false);
+        }
+      }}
+      tabIndex={0}
     >
       <div className="bg-gray-100 dark:bg-gray-900 dark:border-2 dark:border-gray-800 relative rounded-xl w-11/12 md:max-w-2xl shadow-md px-8 py-8 md:px-11 md:py-10">
         <button
