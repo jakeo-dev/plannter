@@ -27,7 +27,7 @@ export default function EditEssayModal({
   );
   const [currentDate, setCurrentDate] = useState(new Date());
   const [lastEditedSpan, setLastEditedSpan] = useState(`Edited ${monthName(
-    essay?.lastEdited?.month || -1
+    essay?.lastEdited?.month ?? -1
   )?.substring(0, 3)}
   ${essay?.lastEdited?.day}, ${essay?.lastEdited?.year}`);
   const [linkedColleges, setLinkedColleges] = useState(
@@ -70,7 +70,7 @@ export default function EditEssayModal({
     setLinkedColleges(essay?.linkedColleges || []);
     setCurrentDate(new Date());
     setLastEditedSpan(`Edited ${monthName(
-      essay?.lastEdited?.month || -1
+      essay?.lastEdited?.month ?? -1
     )?.substring(0, 3)}
   ${essay?.lastEdited?.day}, ${essay?.lastEdited?.year}`);
 
@@ -136,7 +136,7 @@ export default function EditEssayModal({
         linkedColleges: linkedColleges,
         lastEdited: {
           year: essay?.lastEdited?.year || currentDate.getFullYear(),
-          month: essay?.lastEdited?.month || currentDate.getMonth(),
+          month: essay?.lastEdited?.month ?? currentDate.getMonth(),
           day: essay?.lastEdited?.day || currentDate.getDate(),
           hour: essay?.lastEdited?.hour || currentDate.getHours(),
           minute: essay?.lastEdited?.minute || currentDate.getMinutes(),
@@ -159,7 +159,7 @@ export default function EditEssayModal({
           updatedEssay.lastEdited.second = currentDate.getSeconds();
 
         setLastEditedSpan(`Edited ${monthName(
-          currentDate.getMonth() || -1
+          currentDate.getMonth() ?? -1
         )?.substring(0, 3)}
     ${currentDate.getDate()}, ${currentDate.getFullYear()}`);
       }

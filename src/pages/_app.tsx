@@ -30,7 +30,7 @@ export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // convert local storage from old plannter to new plannter
+    // convert local storage from old plannter to new plannter IF NECESSARY
     if (
       typeof window !== "undefined" &&
       typeof localStorage.getItem("stages") !== "string"

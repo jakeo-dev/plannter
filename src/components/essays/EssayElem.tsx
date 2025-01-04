@@ -86,10 +86,7 @@ export default function EssayElem({
             •
           </span>
           <span className={essay.lastEdited ? "" : "hidden"}>
-            {`Edited ${monthName(essay.lastEdited?.month || -1)?.substring(
-              0,
-              3
-            )} 
+            {`Edited ${monthName(essay.lastEdited?.month ?? -1)?.substring(0,3)} 
         ${essay.lastEdited?.day}, 
         ${essay.lastEdited?.year}`}
           </span>
