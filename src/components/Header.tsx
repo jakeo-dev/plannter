@@ -62,7 +62,8 @@ export default function Header(props: HeaderProps) {
 
     if (daysTilGrad < 0) setGraduationText("");
     else if (daysTilGrad == 0) setGraduationText("Happy graduation!");
-    else if (daysTilGrad > 0) setGraduationText(daysTilGrad + " days");
+    else if (daysTilGrad == 1) setGraduationText(daysTilGrad + " day");
+    else if (daysTilGrad > 1) setGraduationText(daysTilGrad + " days");
   }, [props.gradDate]);
 
   return (
@@ -154,7 +155,7 @@ export default function Header(props: HeaderProps) {
                 <FontAwesomeIcon icon={faWrench} className="mr-2" />
                 <span>Change GPA calculation</span>
               </button>
-              <button
+              {/* <button
                 className="block w-full text-base text-left text-gray-600 hover:bg-gray-300 active:bg-gray-400/60 dark:text-gray-400 dark:hover:bg-gray-700 dark:active:bg-gray-600 transition rounded-md px-3 py-2 mt-1 first:mt-0"
                 onClick={() => {
                   props.setImportDataVis(true);
@@ -162,7 +163,7 @@ export default function Header(props: HeaderProps) {
               >
                 <FontAwesomeIcon icon={faFileImport} className="mr-2" />
                 <span>Import data</span>
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

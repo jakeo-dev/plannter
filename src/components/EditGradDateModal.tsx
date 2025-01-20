@@ -16,6 +16,11 @@ export default function EditGradDateModal({
   );
 
   const currentYear = new Date().getFullYear();
+  const currentMonth = Number(
+    String(new Date().getMonth() + 1).padStart(2, "0")
+  );
+  const currentDay = Number(String(new Date().getDate()).padStart(2, "0"));
+  const currentDate = new Date(currentYear, currentMonth - 1, currentDay);
 
   useEffect(() => {
     setDayInput(String(gradDate?.day) || "1");
@@ -135,12 +140,8 @@ export default function EditGradDateModal({
         <button
           className="buttonPrimary"
           onClick={(e) => {
-            if (
-              yearInput == "" ||
-              Number(yearInput) < currentYear ||
-              Number(yearInput) > 9999
-            ) {
-              alert("Enter a valid year in the future");
+            if (yearInput == "" || Number(yearInput) > 9999 || new Date(Number(yearInput), Number(monthInput), Number(dayInput)) < currentDate) {
+              alert("Enter a valid date in the future");
             } else {
               const newGradDate: GradDate = {
                 day: Number(dayInput),

@@ -45,24 +45,33 @@ export default function ChangeGPAModal({
     setIBWeightInput(gpaSettings?.ibWeight || "0");
   }, [gpaSettings]);
 
+  function cancelModal() {
+    setChangeGPAVisible(false);
+
+    setUsePlusMinusInput(gpaSettings?.usePlusMinus || false);
+    setAdvancedWeightInput(gpaSettings?.advancedWeight || "0");
+    setAcceleratedWeightInput(gpaSettings?.acceleratedWeight || "0");
+    setHonorsWeightInput(gpaSettings?.honorsWeight || "0");
+    setCollegeWeightInput(gpaSettings?.collegeWeight || "0");
+    setDualWeightInput(gpaSettings?.dualWeight || "0");
+    setAPWeightInput(gpaSettings?.apWeight || "0");
+    setIBWeightInput(gpaSettings?.ibWeight || "0");
+  }
+
   return (
     <div
       className={`bg-black/40 flex justify-center items-center fixed top-0 left-0 z-30 w-full h-full overflow-auto ${
         changeGPAVisible ? "visibleFade" : "invisibleFade"
       }`}
       onKeyDown={(e) => {
-        if (e.key === "Escape") {
-          setChangeGPAVisible(false);
-        }
+        if (e.key === "Escape") cancelModal();
       }}
       tabIndex={0}
     >
       <div className="bg-gray-100 dark:bg-gray-900 dark:border-2 dark:border-gray-800 relative rounded-xl w-11/12 md:max-w-2xl shadow-md px-8 py-8 md:px-11 md:py-10">
         <button
           className="absolute top-6 right-7 text-lg hover:text-gray-500 transition"
-          onClick={() => {
-            setChangeGPAVisible(false);
-          }}
+          onClick={() => cancelModal()}
         >
           <FontAwesomeIcon icon={faXmark} />
         </button>
@@ -229,12 +238,7 @@ export default function ChangeGPAModal({
           <FontAwesomeIcon icon={faFloppyDisk} className="mr-1.5 md:mr-2" />
           Save calculation
         </button>
-        <button
-          className="buttonSecondary"
-          onClick={() => {
-            setChangeGPAVisible(false);
-          }}
-        >
+        <button className="buttonSecondary" onClick={() => cancelModal()}>
           Cancel
         </button>
       </div>
